@@ -1,0 +1,144 @@
+﻿<Window x:Class="Agerfor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Agerfor"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        BorderThickness="0"
+        Background="White"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        BorderBrush="Transparent"
+        Title="Agerfor" Height="740" Width="1360" Icon="icon.ico">
+
+    <materialDesign:DialogHost>
+        <Grid>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2" />
+            </Grid.Effect>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*" />
+                
+                <RowDefinition Height="644*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="650*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Background="#2B91C5">
+                
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Background="#2B91C5">
+                <StackPanel Orientation="Vertical">
+                    <Button VerticalAlignment="Top" Height="70" Background="Transparent" BorderThickness="0" Margin="0 0 0 0">
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="Speedometer" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Tableau de" VerticalAlignment="Center" Height="25" />
+                            <TextBlock Margin="0 -10 0 0" Text="bord" HorizontalAlignment="Center" VerticalAlignment="Center"
+                         Height="18" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0" x:Name="BtnClient" Click="BtnClient_Click">
+
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="users" Width="35" Height="35"
+                                         VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4 0 0 -3" />
+                            </StackPanel>
+                            <TextBlock Text="Clients" VerticalAlignment="Center" Height="18" TextAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button VerticalAlignment="Top" Height="75" Background="Transparent" BorderThickness="0" Margin="0 0 0 5">
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="Building" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Programme" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" />
+                            
+                        </StackPanel>
+                    </Button>
+
+                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0"  >
+                
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="File" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Demande" VerticalAlignment="Center" Height="18" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0">
+
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="assignment" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Attributions" VerticalAlignment="Center" Height="18" />
+                        </StackPanel>
+                    </Button>
+                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0">
+
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="Cash" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Versements" VerticalAlignment="Center" Height="18" />
+                        </StackPanel>
+                    </Button>
+                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0"
+                  >
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="CashRefund" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Remboursements" VerticalAlignment="Center" Height="18" />
+                        </StackPanel>
+                    </Button>
+                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0"
+                 >
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="FileFind" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Recapulatif" VerticalAlignment="Center" Height="18" />
+                        </StackPanel>
+                    </Button>
+                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0"
+                  >
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="lock" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Cloture" VerticalAlignment="Center" Height="18" />
+                        </StackPanel>
+                    </Button>
+                   
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1" Background="White">
+                <TextBlock Text="Agence de Gestion et de Régulation Foncières Urbaines de la Wilaya d'Oran" x:Name="currentWindow" Margin="-100 0 0 0" FontSize="23" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" Foreground="#666666" />
+                
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                    <materialDesign:PackIcon Margin="0 0 10 0" Kind="Account" Foreground="#2B91C5" Width="25" Height="25"
+                                   VerticalAlignment="Center" />
+                    <TextBlock Text="Admin" Foreground="#2B91C5" VerticalAlignment="Center" FontSize="22" />
+                    <materialDesign:PopupBox Foreground="#2B91C5" VerticalAlignment="Center"
+                                   PlacementMode="BottomAndAlignRightEdges" HorizontalAlignment="Right" Margin="5"
+                                   StaysOpen="False">
+                        <StackPanel Width="150">
+                            <Button Content="Utilisateur" />
+                            <Button x:Name="Réglage"  Content="Settings" />
+                            <Separator />
+                            <Button x:Name="ScreenSize" Content="Plain Écran" Click="FullScreen_Click" />
+                            <Button x:Name="Sortir" Content="Exit" Click="Exit_Click" />
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Background="#E6EAED">
+                <Frame x:Name="Frame" />
+            </Grid>
+        </Grid>
+    </materialDesign:DialogHost>
+</Window>

@@ -1,0 +1,233 @@
+﻿<Page x:Class="Agerfor.Views.Clients.AddClient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Agerfor.Views.Clients"
+      mc:Ignorable="d" 
+      xml:lang="en-IN"
+      xmlns:encoding="UTF-8"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="880" d:DesignWidth="1024"
+      Background="#E6EAED" Title="AddClient">
+      <ScrollViewer>
+         <Grid Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0"  HorizontalAlignment="Right">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Numéro*</Label>
+                        
+                        <TextBox x:Name="inputNumClient" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0">Sexe</Label>
+                        <ComboBox x:Name="inputSexe" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Center" FontSize="15"
+                          Height="35">
+                            <ComboBoxItem IsSelected="True">Homme</ComboBoxItem>
+                            <ComboBoxItem>Femme</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red" >Nom*</Label>
+                        <TextBox x:Name="inputName" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prénom*</Label>
+                        <TextBox x:Name="inputPrenom" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Date naissance*</Label>
+                        <DatePicker x:Name="inputDateNaissance" Background="#FAFAFA" Height="38" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prénom père*</Label>
+                        <TextBox x:Name="inputPrenomPere" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Nom mère*</Label>
+                        <TextBox x:Name="inputNomMere" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prénom mère*</Label>
+                        <TextBox x:Name="inputPrenomMere" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Numéro CNI*</Label>
+                        <TextBox x:Name="inputNumcni" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Date CNI*</Label>
+                        <DatePicker  x:Name="inputDateCni" Background="#FAFAFA" Height="38" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 14" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Lieu CNI*</Label>
+                        <ComboBox x:Name="inputLieucni" materialDesign:HintAssist.Hint="Selectionner une wilaya" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Center" FontSize="15"
+                          Height="35" BorderBrush="Red">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Téléphone*</Label>
+                        <TextBox x:Name="inputTelphone" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 14" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0">Situation familiale</Label>
+                        <ComboBox x:Name="inputSituationFamiliale" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Center" FontSize="15"
+                          Height="35" SelectionChanged="inputSituationFamiliale_SelectionChanged" >
+                            <ComboBoxItem >Célibataire</ComboBoxItem>
+                            <ComboBoxItem >Marié(e)</ComboBoxItem>
+                            <ComboBoxItem >Veuf(ve)</ComboBoxItem>
+                            <ComboBoxItem >Divorcé(e)</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Nom conjoint*</Label>
+                        <TextBox x:Name="inputNomconjoint" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prénom conjoint*</Label>
+                        <TextBox x:Name="inputPrenomConjoint" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Date naissance Conj*</Label>
+                        <DatePicker x:Name="inputDateNaissanceConj" Background="#FAFAFA" Height="38" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right"  BorderBrush="Red"/>
+                    </StackPanel>
+                   
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Proffession conj*</Label>
+                        <TextBox x:Name="inputProffessionConj" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1" Margin="10 0 0 0" HorizontalAlignment="Left">
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 55" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0">Date création</Label>
+                        <DatePicker  x:Name="inputDateCration" Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" SelectedDate="{x:Static sys:DateTime.Now}"  >
+                           
+                        </DatePicker>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="left">
+                        <TextBox x:Name="inputNomAR" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" InputLanguageManager.InputLanguage="ar-EG"/>
+                        <Label FontSize="16" Margin="10 0 0 0" Foreground="Red">*اللقب</Label>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="left">
+                        <TextBox x:Name="inputPrenomAR" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        <Label FontSize="16" Margin="10 0 0 0" Foreground="Red">*الإسم</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Lieu naissance*</Label>
+                        <ComboBox x:Name="inputLieuNaissance" Background="#FAFAFA" Width="320" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Center" FontSize="15" materialDesign:HintAssist.Hint="Selectionner une wilaya"
+                          Height="35" BorderBrush="Red">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="left">
+                        <TextBox  x:Name="inputPrenomPereAR" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        <Label FontSize="16" Margin="10 0 0 0" Foreground="Red">*إسم الأب</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="left">
+                        <TextBox x:Name="inputnomMereAR" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
+                        <Label FontSize="16" Margin="10 0 0 0" Foreground="Red">*لقب الأم</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="left">
+                        <TextBox x:Name="inputPrenomMereAr" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        <Label FontSize="16" Margin="10 0 0 0" Foreground="Red">*إسم الأم</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 14" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Ville*</Label>
+                        <ComboBox  x:Name="inputVille" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Center" FontSize="15" materialDesign:HintAssist.Hint="Selectionner une ville"
+                          Height="35" BorderBrush="Red">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Adresse*</Label>
+                            <TextBox x:Name="inputAdress" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Proffession*</Label>
+                            <TextBox x:Name="inputProffession" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16">Nom autre contacte</Label>
+                            <TextBox x:Name="inputNomAutreCntacte" Background="#FAFAFA" Width="320" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 17" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0">Téléphone contact</Label>
+                        <TextBox x:Name="inputTelphoneContact" Background="#FAFAFA" Width="320" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="left">
+                        <TextBox x:Name="inputNomConjArab" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        <Label FontSize="16" Margin="10 0 0 0" Foreground="Red">*لقب الزوجة</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="left">
+                        <TextBox x:Name="inputPrenomCongAr" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
+                        <Label FontSize="16" Margin="10 0 0 0" Foreground="Red">*إسم الزوجة</Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 14" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Lieu Naissance Conj*</Label>
+                        <ComboBox x:Name="inputLieuNaissanceConj" Background="#FAFAFA" Width="320" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Center" FontSize="15" materialDesign:HintAssist.Hint="Selectionner une wilaya"
+                          Height="35" BorderBrush="Red">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 60 0 0">
+                        <Button  Content="Ajouter" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnAjouter" Click="BtnAjouter_Click"/>
+                        <Button  Content="Modifier" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnModifier"/>
+                        <Button  Content="Annuler" Height="35" Width="110" x:Name="BtnAnnuler" Click="BtnAnnuler_Click" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Page>
