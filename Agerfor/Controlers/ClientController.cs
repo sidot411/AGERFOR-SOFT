@@ -24,5 +24,33 @@ namespace Agerfor.Controlers
                 MessageBox.Show("Le client n'a pas était ajouté !");
             }
         }
+
+        public void Editclient(string NumClient, string DateCreation, string Nom, string Prenom, string NomAr, string PrenomAr, string Sexe, string DateNaissance, string LieuNaissance, string PrenomPere, string PrenomPereAr, string NomMere, string PrenomMere, string NomMereAr, string PrenomMereAr, string Cni, string DateCni, string LieuCni, string Ville, string Adress, string Proffession, string Tel, string NomContact, string TelContact, string Situation, string NomConj, string PrenomConj, string NomConjAR, string PrenomConjAR, string DateNaissanceConj, string LieuNaissanceConj, string ProfessionConj)
+        {
+            try
+            {
+                msq.ExecuteQuery("update client set NumClient='" + NumClient + "',DateCreation='" + DateCreation + "',Nom='" + Nom + "',Prenom='" + Prenom + "',NomAr='" + NomAr + "',PrenomAr='" + PrenomAr + "',Sexe='" + Sexe + "',DateNaissance='" + DateNaissance + "',LieuNaissance='" + LieuNaissance + "',PrenomPere='" + PrenomPere + "',PrenomPereAr='" + PrenomPereAr + "',NomMere='" + NomMere + "',PrenomMere='" + PrenomMere + "',NomMereAr='" + NomMereAr + "',PrenomMereAr='" + PrenomMereAr + "',Cni='" + Cni + "',DateCni='" + DateCni + "',LieuCni='" + LieuCni + "',Ville='" + Ville + "',Adress='" + Adress + "',Proffession='" + Proffession + "',Tel='" + Tel + "',NomContact='" + NomContact + "',TelContact='" + TelContact + "',Situation='" + Situation + "',NomConj='" + NomConj + "',PrénomConj='" + PrenomConj + "',NomConjAR='" + NomConjAR + "',PrenomConjAR='" + PrenomConjAR + "',DateNaissanceConj='" + DateNaissanceConj + "',LieuNaissanceConj='" + LieuNaissanceConj + "',ProfessionConj='" + ProfessionConj + "' where NumClient='"+NumClient+"'");
+                MessageBox.Show("Le client a était modifié avec succès");
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Le client n'a pas était modifié !");
+            }
+        }
+
+        public void DeleteClient(string NumClient)
+        {
+            try
+            {
+                msq.ExecuteQuery("delete from client where NumClient = '" + NumClient + "'");
+                
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Le Client n'a pas était supprimer", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

@@ -14,15 +14,19 @@ namespace Agerfor.Views.Clients
     /// </summary>
     public partial class AddClient : Page
     {
+        string NumClient = "";
+        string Situation = "";
         Agerfor.Controlers.MySqlHelper msh = new Agerfor.Controlers.MySqlHelper();
         ClientController cc = new ClientController();
 
-        string NumClient = "";
-        string Situation = "";
+
         public AddClient(string NumClient, string Situation)
         {
+
             InitializeComponent();
-            inputNomconjoint.IsEnabled = inputPrenomConjoint.IsEnabled = inputNomConjArab.IsEnabled = inputPrenomCongAr.IsEnabled = inputDateNaissanceConj.IsEnabled = inputLieuNaissanceConj.IsEnabled = inputProffessionConj.IsEnabled = false; 
+            this.NumClient = NumClient;
+            this.Situation = Situation;
+            inputNomconjoint.IsEnabled = inputPrenomConjoint.IsEnabled = inputNomConjArab.IsEnabled = inputPrenomCongAr.IsEnabled = inputDateNaissanceConj.IsEnabled = inputLieuNaissanceConj.IsEnabled = inputProffessionConj.IsEnabled = false;
 
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieucni, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieuNaissance, "NomWilaya");
@@ -44,7 +48,7 @@ namespace Agerfor.Views.Clients
                 bool oneTime = true;
                 while (rdr.Read())
                 {
-                    
+
                     if (oneTime)
                     {
                         inputNumClient.Text = rdr["NumClient"].ToString();
@@ -90,67 +94,68 @@ namespace Agerfor.Views.Clients
             }
             else
             {
-                string query = "select * from client where NumClient =" + NumClient;
-                MySqlDataReader rdr = null;
-                MySqlConnection con = null;
-                MySqlCommand cmd = null;
-
-                con = new MySqlConnection(Database.ConnectionString);
-                con.Open();
-                cmd = new MySqlCommand(query);
-                cmd.Connection = con;
-                rdr = cmd.ExecuteReader();
-                bool oneTime = true;
-                while (rdr.Read())
+                if (NumClient != "")
                 {
+                    string query = "select * from client where NumClient =" + NumClient;
+                    MySqlDataReader rdr = null;
+                    MySqlConnection con = null;
+                    MySqlCommand cmd = null;
 
-                    if (oneTime)
+                    con = new MySqlConnection(Database.ConnectionString);
+                    con.Open();
+                    cmd = new MySqlCommand(query);
+                    cmd.Connection = con;
+                    rdr = cmd.ExecuteReader();
+                    bool oneTime = true;
+                    while (rdr.Read())
                     {
-                        inputNumClient.Text = rdr["NumClient"].ToString();
-                        inputName.Text = rdr["Nom"].ToString();
-                        inputPrenom.Text = rdr["Prenom"].ToString();
-                        inputNomAR.Text = rdr["NomAR"].ToString();
-                        inputPrenomAR.Text = rdr["PrenomAr"].ToString();
-                        inputSexe.Text = rdr["Sexe"].ToString();
-                        inputLieuNaissance.Text = rdr["LieuNaissance"].ToString();
-                        inputPrenomPere.Text = rdr["PrenomPere"].ToString();
-                        inputNomMere.Text = rdr["NomMere"].ToString();
-                        inputPrenomMere.Text = rdr["PrenomMere"].ToString();
-                        inputnomMereAR.Text = rdr["NomMereAr"].ToString();
-                        inputPrenomMereAr.Text = rdr["PrenomMereAr"].ToString();
-                        inputNumcni.Text = rdr["Cni"].ToString();
-                        inputLieucni.Text = rdr["LieuCni"].ToString();
-                        inputTelphone.Text = rdr["Tel"].ToString();
-                        inputSituationFamiliale.Text = rdr["Situation"].ToString();
-                        inputPrenomPereAR.Text = rdr["PrenomPereAR"].ToString();
-                        inputVille.Text = rdr["Ville"].ToString();
-                        inputAdress.Text = rdr["Adress"].ToString();
-                        inputProffession.Text = rdr["Proffession"].ToString();
-                        inputNomAutreCntacte.Text = rdr["NomContact"].ToString();
-                        inputTelphoneContact.Text = rdr["TelContact"].ToString();
-                        inputDateCration.SelectedDate = DateTime.ParseExact(rdr["DateCreation"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                        inputDateNaissance.SelectedDate = DateTime.ParseExact(rdr["DateNaissance"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                        inputDateCni.SelectedDate = DateTime.ParseExact(rdr["DateCni"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
-                        oneTime = false;
+                        if (oneTime)
+                        {
+                            inputNumClient.Text = rdr["NumClient"].ToString();
+                            inputName.Text = rdr["Nom"].ToString();
+                            inputPrenom.Text = rdr["Prenom"].ToString();
+                            inputNomAR.Text = rdr["NomAR"].ToString();
+                            inputPrenomAR.Text = rdr["PrenomAr"].ToString();
+                            inputSexe.Text = rdr["Sexe"].ToString();
+                            inputLieuNaissance.Text = rdr["LieuNaissance"].ToString();
+                            inputPrenomPere.Text = rdr["PrenomPere"].ToString();
+                            inputNomMere.Text = rdr["NomMere"].ToString();
+                            inputPrenomMere.Text = rdr["PrenomMere"].ToString();
+                            inputnomMereAR.Text = rdr["NomMereAr"].ToString();
+                            inputPrenomMereAr.Text = rdr["PrenomMereAr"].ToString();
+                            inputNumcni.Text = rdr["Cni"].ToString();
+                            inputLieucni.Text = rdr["LieuCni"].ToString();
+                            inputTelphone.Text = rdr["Tel"].ToString();
+                            inputSituationFamiliale.Text = rdr["Situation"].ToString();
+                            inputPrenomPereAR.Text = rdr["PrenomPereAR"].ToString();
+                            inputVille.Text = rdr["Ville"].ToString();
+                            inputAdress.Text = rdr["Adress"].ToString();
+                            inputProffession.Text = rdr["Proffession"].ToString();
+                            inputNomAutreCntacte.Text = rdr["NomContact"].ToString();
+                            inputTelphoneContact.Text = rdr["TelContact"].ToString();
+                            inputDateCration.SelectedDate = DateTime.ParseExact(rdr["DateCreation"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                            inputDateNaissance.SelectedDate = DateTime.ParseExact(rdr["DateNaissance"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                            inputDateCni.SelectedDate = DateTime.ParseExact(rdr["DateCni"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+
+                            oneTime = false;
+                        }
                     }
+
+
+                    con.Close();
                 }
-
-
-                con.Close();
             }
         }
 
 
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
         {
-           
             
             if (inputSituationFamiliale.SelectedIndex == 1)
             {
                 if (Clientissecure1() == true)
-                {
-                MessageBox.Show(inputNomAR.Text);
+                { 
                     cc.ajouterclient(inputNumClient.Text, inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text);
                     AddClient AddClient2 = new AddClient("","");
                     this.NavigationService.Navigate(AddClient2);
@@ -219,6 +224,7 @@ namespace Agerfor.Views.Clients
             else
             {
                 inputNomconjoint.IsEnabled = inputPrenomConjoint.IsEnabled = inputNomConjArab.IsEnabled = inputPrenomCongAr.IsEnabled = inputDateNaissanceConj.IsEnabled = inputLieuNaissanceConj.IsEnabled = inputProffessionConj.IsEnabled = false;
+                inputNomconjoint.Text = inputPrenomConjoint.Text = inputNomConjArab.Text = inputPrenomCongAr.Text = inputDateNaissanceConj.Text = inputLieuNaissanceConj.Text = inputProffessionConj.Text = "";
 
             }
 
@@ -226,8 +232,40 @@ namespace Agerfor.Views.Clients
 
         private void BtnAnnuler_Click(object sender, RoutedEventArgs e)
         {
-            Client c = new Client();
+            Client c = new Client("");
             this.NavigationService.Navigate(c);
+        }
+
+        private void BtnModifier_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (inputSituationFamiliale.SelectedIndex == 1)
+            {
+                if (Clientissecure1() == true)
+                {
+                    cc.Editclient(inputNumClient.Text, inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text);
+                    Client c = new Client("");
+                    this.NavigationService.Navigate(c);
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez entrer les informations nécessaire");
+                }
+            }
+            else
+            {
+                if (Clientissecure2() == true)
+                {
+                    
+                    cc.Editclient(inputNumClient.Text, inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text);
+                    Client c = new Client("");
+                    this.NavigationService.Navigate(c);
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez entrer les informations nécessaire");
+                }
+            }
         }
     }
 }

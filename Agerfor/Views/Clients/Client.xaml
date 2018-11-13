@@ -10,7 +10,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="740" d:DesignWidth="1024"
       Title="Client"
-      Background="#E6EAED">
+      Background="#E6EAED" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,11 +24,11 @@
         <Grid Grid.Column="0" Grid.Row="0">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20 0 0 0">
                
-                <TextBox  Foreground="#262626" Width="230" VerticalContentAlignment="Center"
+                <TextBox  x:Name="inputrecherche" Foreground="#262626" Width="230" VerticalContentAlignment="Center"
                  FontSize="18" Height="40"
                  Background="#FAFAFA" />
                 <Label Width="20" />
-                <ComboBox HorizontalContentAlignment="Center" Foreground="#797979" Height="40"
+                <ComboBox x:Name="SelectTypeRecherche" HorizontalContentAlignment="Center" Foreground="#797979" Height="40"
                   FontSize="16"
                   VerticalContentAlignment="Center" Background="#FAFAFA" Width="230">
                     <ComboBoxItem>Numclient</ComboBoxItem>
@@ -36,8 +36,8 @@
                     <ComboBoxItem>CNI client</ComboBoxItem>
                 </ComboBox>
                 <Label Width="20" />
-                <Button VerticalAlignment="Top" Height="41" FontSize="17" Width="180" BorderThickness="0" Margin="10"
-                Background="#2196F3" >
+                <Button x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="180" BorderThickness="0" Margin="10"
+                Background="#2196F3" Click="BtnRecherche_Click" >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 2 4 0" />
@@ -58,14 +58,14 @@
                     </StackPanel>
                 </Button>
                 <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3"
-                 >
+                 x:Name="BtnAjouterClient" Click="BtnAjouterClient_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkPlus" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
                         <TextBlock Text="Ajouter" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3"
+                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnModifierClient" Click="BtnModifierClient_Click"
                >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"
@@ -73,11 +73,11 @@
                         <TextBlock Text="Modifier" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3"
+                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" Click="Button_Click"
                >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" x:Name="BtnSupprimerClient" />
                         <TextBlock Text="Supprimer" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>

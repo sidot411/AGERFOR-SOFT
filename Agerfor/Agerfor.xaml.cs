@@ -61,7 +61,7 @@ namespace Agerfor
         private void BtnClient_Click(object sender, RoutedEventArgs e)
         {
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            Frame.Navigate(new Client());
+            Frame.Navigate(new Client(""));
             currentWindow.Text = "Clients";
             
 

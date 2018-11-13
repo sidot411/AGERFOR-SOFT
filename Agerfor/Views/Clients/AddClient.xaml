@@ -223,7 +223,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 60 0 0">
                         <Button  Content="Ajouter" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnAjouter" Click="BtnAjouter_Click"/>
-                        <Button  Content="Modifier" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnModifier"/>
+                        <Button  Content="Modifier" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnModifier" Click="BtnModifier_Click"/>
                         <Button  Content="Annuler" Height="35" Width="110" x:Name="BtnAnnuler" Click="BtnAnnuler_Click" />
                     </StackPanel>
                 </StackPanel>

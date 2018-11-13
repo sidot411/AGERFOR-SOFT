@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         BorderBrush="Transparent"
-        Title="Agerfor" Height="740" Width="1360" Icon="icon.ico">
+        Title="Agerfor" Height="780" Width="1360" Icon="icon.ico">
 
     <materialDesign:DialogHost>
         <Grid>
@@ -42,7 +42,22 @@
                          Height="18" />
                         </StackPanel>
                     </Button>
+                    <Button VerticalAlignment="Top" Height="75" Background="Transparent" BorderThickness="0" Margin="0 0 0 5">
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="Building" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Projet" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" />
 
+                        </StackPanel>
+                    </Button>
+                    <Button VerticalAlignment="Top" Height="75" Background="Transparent" BorderThickness="0" Margin="0 0 0 5">
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="HouseModern" Width="35" Height="35"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
+                            <TextBlock Text="Programme" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" />
+                            
+                        </StackPanel>
+                    </Button>
                     <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0" x:Name="BtnClient" Click="BtnClient_Click">
 
                         <StackPanel Orientation="Vertical">
@@ -51,15 +66,6 @@
                                          VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4 0 0 -3" />
                             </StackPanel>
                             <TextBlock Text="Clients" VerticalAlignment="Center" Height="18" TextAlignment="Center" />
-                        </StackPanel>
-                    </Button>
-
-                    <Button VerticalAlignment="Top" Height="75" Background="Transparent" BorderThickness="0" Margin="0 0 0 5">
-                        <StackPanel Orientation="Vertical">
-                            <materialDesign:PackIcon Kind="Building" Width="35" Height="35"
-                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
-                            <TextBlock Text="Programme" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" />
-                            
                         </StackPanel>
                     </Button>
 
