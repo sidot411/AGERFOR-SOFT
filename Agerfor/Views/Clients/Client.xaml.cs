@@ -126,10 +126,11 @@ namespace Agerfor.Views.Clients
         private void BtnRecherche_Click(object sender, RoutedEventArgs e)
         {
             {
-                if (inputrecherche.Text !="" && inputrecherche.Text != "" && SelectTypeRecherche.Text !="")
+                if (inputrecherche.Text !="" && inputrecherche.Text !="*" && SelectTypeRecherche.Text !="")
                 {
                     Client C = new Client("select * from client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%'");
                     C.inputrecherche.Text = inputrecherche.Text;
+                    C.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
                     this.NavigationService.Navigate(C);
                 }
                 else if (inputrecherche.Text == "*")

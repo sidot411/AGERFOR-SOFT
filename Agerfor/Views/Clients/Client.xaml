@@ -31,9 +31,9 @@
                 <ComboBox x:Name="SelectTypeRecherche" HorizontalContentAlignment="Center" Foreground="#797979" Height="40"
                   FontSize="16"
                   VerticalContentAlignment="Center" Background="#FAFAFA" Width="230">
-                    <ComboBoxItem>Numclient</ComboBoxItem>
-                    <ComboBoxItem IsSelected="True">Nom client</ComboBoxItem>
-                    <ComboBoxItem>CNI client</ComboBoxItem>
+                    <ComboBoxItem>NumClient</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">Nom</ComboBoxItem>
+                    <ComboBoxItem>Cni</ComboBoxItem>
                 </ComboBox>
                 <Label Width="20" />
                 <Button x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="180" BorderThickness="0" Margin="10"
