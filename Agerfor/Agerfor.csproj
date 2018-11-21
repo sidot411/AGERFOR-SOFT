@@ -68,12 +68,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controlers\ClientController.cs" />
+    <Compile Include="Controlers\DemandeController.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
     <Compile Include="Views\Clients\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Clients\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demande\AddDemande.xaml.cs">
+      <DependentUpon>AddDemande.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demande\Demande.xaml.cs">
+      <DependentUpon>Demande.xaml</DependentUpon>
     </Compile>
     <Page Include="Agerfor.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +99,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Clients\Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Demande\AddDemande.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Demande\Demande.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

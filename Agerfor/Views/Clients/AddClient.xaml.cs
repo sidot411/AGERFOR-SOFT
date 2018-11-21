@@ -5,6 +5,7 @@ using Agerfor.Controlers;
 using MySql.Data.MySqlClient;
 using DbConnection.Models;
 using System.Globalization;
+using Agerfor.Views.Demande;
 
 
 namespace Agerfor.Views.Clients
@@ -16,6 +17,7 @@ namespace Agerfor.Views.Clients
     {
         string NumClient = "";
         string Situation = "";
+        string tempNumDemande = "";
         Agerfor.Controlers.MySqlHelper msh = new Agerfor.Controlers.MySqlHelper();
         ClientController cc = new ClientController();
 
@@ -265,6 +267,56 @@ namespace Agerfor.Views.Clients
                 {
                     MessageBox.Show("Veuillez entrer les informations nécessaire");
                 }
+            }
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+                msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient", dataViewDemande);
+            
+           
+        }
+        private void dataViewDemande_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                DataGridCellInfo cell0 = dataViewDemande.SelectedCells[0];
+                tempNumDemande = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AddDemande AD = new AddDemande(tempNumDemande);
+                AD.BtnModifier.Visibility = Visibility.Collapsed;
+                this.NavigationService.Navigate(AD);
+
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Veuillez sélectioner une demande");
+            }
+
+        }
+
+        private void BtnAjouterDemande_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            { 
+            DemandeController DC = new DemandeController();
+            DC.ajouterDemande(inputDateDemande.Text,inputNumClient.Text,inputMotifDemande.Text,inputStatutDemande.Text,inputTypeDemande.Text);
+            msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient", dataViewDemande);
+
+            }
+            catch (Exception)
+            {
+
             }
         }
     }

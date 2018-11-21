@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Agerfor.Views.Clients;
+using Agerfor.Views.Demande;
 
 namespace Agerfor
 {
@@ -66,6 +67,14 @@ namespace Agerfor
             
 
             
+        }
+
+        private void BtnDemande_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            Frame.Navigate(new Demande(""));
+            currentWindow.Text = "Demande";
+
         }
     }
 }

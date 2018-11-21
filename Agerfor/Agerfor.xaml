@@ -69,7 +69,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0"  >
+                    <Button x:Name="BtnDemande" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0" Click="BtnDemande_Click"  >
                 
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="File" Width="35" Height="35"
