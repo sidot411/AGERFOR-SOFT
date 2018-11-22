@@ -271,10 +271,8 @@ namespace Agerfor.Views.Clients
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
-                msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient", dataViewDemande);
-            
-           
+            msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient and NumClient='"+inputNumClient.Text+"'",dataViewDemande);
+
         }
         private void dataViewDemande_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -310,15 +308,29 @@ namespace Agerfor.Views.Clients
             try
             { 
             DemandeController DC = new DemandeController();
-            DC.ajouterDemande(inputDateDemande.Text,inputNumClient.Text,inputMotifDemande.Text,inputStatutDemande.Text,inputTypeDemande.Text);
-            msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient", dataViewDemande);
-
+            DC.ajouterDemande(inputDateDemande.Text,inputNumClient.Text,inputMotifDemande.Text,inputStatutDemande.Text,inputTypeDemande.Text); msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient and NumClient='" + inputNumClient.Text + "'", dataViewDemande);
             }
             catch (Exception)
             {
 
             }
         }
+
+        private void BtnSupprimerDemande_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DemandeController DC = new DemandeController();
+                DC.supprimerDemande(tempNumDemande);
+                msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient and NumClient='" + inputNumClient.Text + "'", dataViewDemande);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+      
     }
 }
     

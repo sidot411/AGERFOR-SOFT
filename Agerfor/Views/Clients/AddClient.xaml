@@ -78,7 +78,7 @@
                         <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Lieu CNI*</Label>
                         <ComboBox x:Name="inputLieucni" materialDesign:HintAssist.Hint="Selectionner une wilaya" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Center" FontSize="15"
-                          Height="35" BorderBrush="Red">
+                          Height="35" BorderBrush="Red" >
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
@@ -161,7 +161,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button  Content="Afficher" Height="35" Width="100" Margin="0 0 20 0" Click="Button_Click" />
                         <Button  x:Name="BtnAjouterDemande" Content="Ajouter" Height="35" Width="100" Margin="0 0 20 0" Click="BtnAjouterDemande_Click"  />
-                        <Button  Content="Supprimer" Height="35" Width="100" Margin="0 0 20 0" />
+                        <Button  x:Name="BtnSupprimerDemande" Content="Supprimer" Height="35" Width="100" Margin="0 0 20 0" Click="BtnSupprimerDemande_Click" />
                     </StackPanel>
                
 
@@ -284,8 +284,8 @@
                                 </Border>
                             </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 250 0 0">
-                            <Button  Content="Ajouter" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnAjouter" />
-                            <Button  Content="Modifier" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnModifier" />
+                            <Button  Content="Ajouter" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnAjouter" Click="BtnAjouter_Click" />
+                            <Button  Content="Modifier" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnModifier" Click="BtnModifier_Click" />
                             <Button  Content="Annuler" Height="35" Width="110" x:Name="BtnAnnuler" Click="BtnAnnuler_Click"  />
                         </StackPanel>
 

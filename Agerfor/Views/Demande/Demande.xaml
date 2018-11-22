@@ -18,33 +18,71 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="47*" />
-            <RowDefinition Height="403*" />
+            <RowDefinition Height="250*" />
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="0">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20 0 0 0">
+            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,-134,0">
 
                 <TextBox  x:Name="inputrecherche" Foreground="#262626" Width="230" VerticalContentAlignment="Center"
                  FontSize="18" Height="40"
-                 Background="#FAFAFA" />
-                <Label Width="20" />
+                 Background="#FAFAFA" Margin="0 0 10 0" />
+              
                 <ComboBox x:Name="SelectTypeRecherche" HorizontalContentAlignment="Center" Foreground="#797979" Height="40"
                   FontSize="16"
-                  VerticalContentAlignment="Center" Background="#FAFAFA" Width="230">
-                    <ComboBoxItem>Num Client</ComboBoxItem>
+                  VerticalContentAlignment="Center" Background="#FAFAFA" Width="160" Margin="0 0 10 0">
+                    <ComboBoxItem>NumClient</ComboBoxItem>
                     <ComboBoxItem IsSelected="True">Nom</ComboBoxItem>
-                    <ComboBoxItem>Date Demande</ComboBoxItem>
-                    <ComboBoxItem>Type Demande</ComboBoxItem>
+                    <ComboBoxItem>DateDemande</ComboBoxItem>
+                    <ComboBoxItem>TypeDemande</ComboBoxItem>
                 </ComboBox>
-                <Label Width="20" />
-                <Button x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="180" BorderThickness="0" Margin="10"
-                Background="#2196F3"  >
+                    <ComboBox x:Name="inputTypeDemande"  Background="#FAFAFA" Width="160" FontSize="18"
+                         VerticalContentAlignment="Center" Height="40" materialDesign:HintAssist.Hint="Type Demande" HorizontalContentAlignment="Left" Margin="0 0 10 0" >
+                        <ComboBoxItem>Régularisation</ComboBoxItem>
+                        <ComboBoxItem>Vente par Adjudication</ComboBoxItem>
+                        <ComboBoxItem>Vente Libre</ComboBoxItem>
+                        <ComboBoxItem>Autre</ComboBoxItem>
+                        <ComboBoxItem>Tous</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox  x:Name="inputStatutDemande" Background="#FAFAFA" Width="160" FontSize="18"
+                         VerticalContentAlignment="Center" Height="40" materialDesign:HintAssist.Hint="Statut Demande"  HorizontalContentAlignment="Left">
+                        <ComboBoxItem>En cours</ComboBoxItem>
+                        <ComboBoxItem>Acceptée</ComboBoxItem>
+                        <ComboBoxItem>Refusée</ComboBoxItem>
+                        <ComboBoxItem>Annulée</ComboBoxItem>
+                        <ComboBoxItem>Tous</ComboBoxItem>
+                    </ComboBox>
+                    
+                <Button x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="10"
+                Background="#2196F3" Click="BtnRecherche_Click"  >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 2 4 0" />
-                        <TextBlock Foreground="White" Text="Recercher" VerticalAlignment="Center" Height="25" />
-                    </StackPanel>
+                        </StackPanel>
                 </Button>
+                
                 <Label />
+            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
+                    <Label FontSize="16" FontWeight="Bold" VerticalAlignment="Center">Du</Label>
+                    <DatePicker  x:Name="inputDateDemande" Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="200" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right">
+                    </DatePicker>
+                    <Label FontSize="16" FontWeight="Bold" VerticalAlignment="Center" >Au</Label>
+                    <DatePicker  Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="219" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" Margin="0 0 19 0">
+                    </DatePicker>
+                    <Button x:Name="BtnRechercheDate" VerticalAlignment="Top" Height="41" FontSize="17" Width="230" BorderThickness="0" Margin="10"
+                Background="#2196F3" Click="BtnRecherche_Click"  >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 2 4 0" />
+                            <TextBlock Foreground="White" Text="Recercher par date" VerticalAlignment="Center" Height="25" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2">
@@ -56,22 +94,37 @@
                         <TextBlock Text="Afficher" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnModifierDemande" Click="BtnModifierDemande_Click" >
-                    <StackPanel Orientation="Vertical">
-                        <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
-                        <TextBlock Text="Modifier" VerticalAlignment="Center" Height="25" />
-                    </StackPanel>
-                </Button>
-                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BnSupprimerDemande">
+                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BnSupprimerDemande" Click="BnSupprimerDemande_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" x:Name="BtnSupprimerClient" />
                         <TextBlock Text="Supprimer" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
+                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnAccepterDemande" Click="BtnAccepterDemande_Click">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                        <TextBlock Text="Accepter" VerticalAlignment="Center" Height="25" />
+                    </StackPanel>
+                </Button>
+                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnRefuserDemande" Click="BtnRefuserDemande_Click">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                        <TextBlock Text="Refuser" VerticalAlignment="Center" Height="25" />
+                    </StackPanel>
+                </Button>
+                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnAnnulerDemande" Click="BtnAnnulerDemande_Click">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                        <TextBlock Text="Annuler" VerticalAlignment="Center" Height="25" />
+                    </StackPanel>
+                </Button>
 
             </StackPanel>
+           
         </Grid>
         <Grid Grid.Column="0" Grid.Row="1">
             <Border BorderThickness="1">

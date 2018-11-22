@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 21 Novembre 2018 à 14:13
+-- Généré le :  Jeu 22 Novembre 2018 à 12:40
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -67,7 +67,8 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`ID`, `NumClient`, `DateCreation`, `Nom`, `Prenom`, `NomAr`, `PrenomAr`, `Sexe`, `DateNaissance`, `LieuNaissance`, `PrenomPere`, `PrenomPereAr`, `NomMere`, `PrenomMere`, `NomMereAr`, `PrenomMereAr`, `Cni`, `DateCni`, `LieuCni`, `Ville`, `Adress`, `Proffession`, `Tel`, `NomContact`, `TelContact`, `Situation`, `NomConj`, `PrénomConj`, `NomConjAR`, `PrenomConjAR`, `DateNaissanceConj`, `LieuNaissanceConj`, `ProfessionConj`) VALUES
-(1, '0000002', '11-11-2018', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '18-11-2018', 'ORAN', 'MOUNIR', 'منير', 'FRIOUI', 'ZOULIKHA', 'فريوي', 'زليخة', '3325165', '11-11-2018', 'ORAN', 'ORAN', 'N°1233 USTO', 'Informaticien', '0661934408', 'MOUNIR', '0661934408', 'Célibataire', '', '', '', '', '', '', '');
+(1, '0000002', '11-11-2018', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '18-11-2018', 'ORAN', 'MOUNIR', 'منير', 'FRIOUI', 'ZOULIKHA', 'فريوي', 'زليخة', '3325165', '11-11-2018', 'ORAN', 'ORAN', 'N°1233 USTO', 'Informaticien', '0661934408', 'MOUNIR', '0661934408', 'Célibataire', '', '', '', '', '', '', ''),
+(2, '0000033', '22-11-2018', 'MABROUK', 'SOUMIA', 'مبروك', 'سمية', 'Femme', '01-11-2018', 'ORAN', 'IBRAHIM', 'ابراهيم', 'BAGHDAD', 'DJAMILA', 'بغداد', 'جميلة', '33652269', '01-11-2018', 'ORAN', 'ORAN', 'N° 233 BT 2 USTO', 'Informaticienne', '0669855487', 'BRAHIM', '0553897456', 'Célibataire', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -108,9 +109,9 @@ CREATE TABLE `demande` (
 --
 
 INSERT INTO `demande` (`NumDemande`, `DateDemande`, `RefClient`, `Motif`, `TypeDemande`, `StatutDemande`) VALUES
-(1, '21-11-2018', '0000002', 'Rien', 'Régularisation', 'En cours'),
-(2, '21-11-2018', '0000002', '', 'Régularisation', 'En cours'),
-(3, '21-11-2018', '0000002', 'rien', 'Régularisation', 'En cours');
+(1, '21-11-2018', '0000002', 'Rien', 'Régularisation', 'Acceptée'),
+(4, '22-11-2018', '0000002', 'RIEN', 'Régularisation', 'En cours'),
+(5, '22-11-2018', '0000033', 'RIEN', 'Vente Libre', 'En cours');
 
 -- --------------------------------------------------------
 
@@ -156,12 +157,12 @@ ALTER TABLE `demande`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `demande`
 --
 ALTER TABLE `demande`
-  MODIFY `NumDemande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `NumDemande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

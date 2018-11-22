@@ -35,8 +35,8 @@
                     <ComboBox x:Name="inputStatutDemande"  Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"  HorizontalContentAlignment="Left">
                         <ComboBoxItem>En cours</ComboBoxItem>
-                        <ComboBoxItem>Favorable</ComboBoxItem>
-                        <ComboBoxItem>Défavorable</ComboBoxItem>
+                        <ComboBoxItem>Acceptée</ComboBoxItem>
+                        <ComboBoxItem>Refusée</ComboBoxItem>
                         <ComboBoxItem>Annulée</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
