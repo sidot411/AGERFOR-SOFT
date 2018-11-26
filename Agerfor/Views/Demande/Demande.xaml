@@ -33,8 +33,7 @@
                   VerticalContentAlignment="Center" Background="#FAFAFA" Width="160" Margin="0 0 10 0">
                     <ComboBoxItem>NumClient</ComboBoxItem>
                     <ComboBoxItem IsSelected="True">Nom</ComboBoxItem>
-                    <ComboBoxItem>DateDemande</ComboBoxItem>
-                    <ComboBoxItem>TypeDemande</ComboBoxItem>
+                  
                 </ComboBox>
                     <ComboBox x:Name="inputTypeDemande"  Background="#FAFAFA" Width="160" FontSize="18"
                          VerticalContentAlignment="Center" Height="40" materialDesign:HintAssist.Hint="Type Demande" HorizontalContentAlignment="Left" Margin="0 0 10 0" >
@@ -65,17 +64,17 @@
             </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
                     <Label FontSize="16" FontWeight="Bold" VerticalAlignment="Center">Du</Label>
-                    <DatePicker  x:Name="inputDateDemande" Background="#FAFAFA" Height="35" FontSize="17"
+                    <DatePicker  x:Name="inputDateDemandeFrom" Background="#FAFAFA" Height="35" FontSize="17"
                             VerticalContentAlignment="Center" Width="200" SelectedDateFormat="Short"
                             HorizontalAlignment="Right">
                     </DatePicker>
                     <Label FontSize="16" FontWeight="Bold" VerticalAlignment="Center" >Au</Label>
-                    <DatePicker  Background="#FAFAFA" Height="35" FontSize="17"
+                    <DatePicker x:Name="inputDateDemandeTo" Background="#FAFAFA" Height="35" FontSize="17"
                             VerticalContentAlignment="Center" Width="219" SelectedDateFormat="Short"
                             HorizontalAlignment="Right" Margin="0 0 19 0">
                     </DatePicker>
                     <Button x:Name="BtnRechercheDate" VerticalAlignment="Top" Height="41" FontSize="17" Width="230" BorderThickness="0" Margin="10"
-                Background="#2196F3" Click="BtnRecherche_Click"  >
+                Background="#2196F3" Click="BtnRechercheDate_Click" >
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 2 4 0" />

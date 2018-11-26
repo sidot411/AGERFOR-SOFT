@@ -34,6 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
@@ -70,6 +71,7 @@
     <Compile Include="Controlers\ClientController.cs" />
     <Compile Include="Controlers\DemandeController.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
+    <Compile Include="Controlers\ProjetController.cs" />
     <Compile Include="Views\Clients\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
@@ -81,6 +83,12 @@
     </Compile>
     <Compile Include="Views\Demande\Demande.xaml.cs">
       <DependentUpon>Demande.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projet\AddProjet.xaml.cs">
+      <DependentUpon>AddProjet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projet\Projet.xaml.cs">
+      <DependentUpon>Projet.xaml</DependentUpon>
     </Compile>
     <Page Include="Agerfor.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +115,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Demande\Demande.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Projet\AddProjet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Projet\Projet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,6 +167,7 @@
       <Name>DbConnection</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

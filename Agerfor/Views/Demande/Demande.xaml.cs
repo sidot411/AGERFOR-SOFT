@@ -22,7 +22,7 @@ namespace Agerfor.Views.Demande
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Query =="")
+            if (Query == "")
             {
                 msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient", dataGridView2);
             }
@@ -31,21 +31,21 @@ namespace Agerfor.Views.Demande
                 msh.LoadData(Query, dataGridView2);
             }
 
-           
+
         }
-        
+
 
         private void BtnAfficherDemande_Click(object sender, RoutedEventArgs e)
         {
             try
-            { 
+            {
                 AddDemande AD = new AddDemande(tempNumDemande);
                 AD.BtnModifier.Visibility = Visibility.Collapsed;
                 this.NavigationService.Navigate(AD);
-                
-                
+
+
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Veuillez sélectioner une demande");
             }
@@ -104,7 +104,7 @@ namespace Agerfor.Views.Demande
 
             }
 
-        
+
         }
 
         private void BtnAccepterDemande_Click(object sender, RoutedEventArgs e)
@@ -153,73 +153,20 @@ namespace Agerfor.Views.Demande
         }
 
         private void BtnRecherche_Click(object sender, RoutedEventArgs e)
-        { 
-                if (inputTypeDemande.SelectedIndex == 4 && inputStatutDemande.SelectedIndex == 4)
-                {
-                    if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
-                    {
-                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient");
-                        D.inputrecherche.Text = inputrecherche.Text;
-                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
-                        this.NavigationService.Navigate(D);
-                    }
-                    else if (inputrecherche.Text == "*")
-                    {
-                        Demande D = new Demande("");
-                        D.inputrecherche.Text = "*";
-                        this.NavigationService.Navigate(D);
-                    }
-                    else
-                    {
-                        MessageBox.Show("La recherche ne peut pas etre effectuer");
-                    }
-                }
-               
-             else if(inputTypeDemande.SelectedIndex == 4  && inputStatutDemande.SelectedIndex !=4 || inputTypeDemande.SelectedIndex == -1 && inputStatutDemande.SelectedIndex != 4)
-                {
-                    if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
-                    {
-                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and StatutDemande='" + inputStatutDemande.Text + "'");
-                        D.inputrecherche.Text = inputrecherche.Text;
-                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
-                        this.NavigationService.Navigate(D);
-                    }
-                    else if (inputrecherche.Text == "*")
-                    {
-                        Demande D = new Demande("");
-                        D.inputrecherche.Text = "*";
-                        this.NavigationService.Navigate(D);
-                    }
-                    else
-                    {
-                        MessageBox.Show("La recherche ne peut pas etre effectuer");
-                    }
-                }
-                else if (inputTypeDemande.SelectedIndex != 4 && inputStatutDemande.SelectedIndex == 4)
-                {
-                    if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
-                    {
-                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and TypeDemande='" + inputTypeDemande.Text + "'");
-                        D.inputrecherche.Text = inputrecherche.Text;
-                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
-                        this.NavigationService.Navigate(D);
-                    }
-                    else if (inputrecherche.Text == "*")
-                    {
-                        Demande D = new Demande("");
-                        D.inputrecherche.Text = "*";
-                        this.NavigationService.Navigate(D);
-                    }
-                    else
-                    {
-                        MessageBox.Show("La recherche ne peut pas etre effectuer");
-                    }
-                }
-                else
-                {
+        {
+            if (inputTypeDemande.SelectedIndex == 4 && inputStatutDemande.SelectedIndex == 4 || inputTypeDemande.SelectedIndex == -1 && inputStatutDemande.SelectedIndex == -1)
+            {
+
                 if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
                 {
                     Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient");
+                    D.inputrecherche.Text = inputrecherche.Text;
+                    D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                    this.NavigationService.Navigate(D);
+                }
+                else if (inputrecherche.Text == "" && SelectTypeRecherche.Text != "")
+                {
+                    Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient ");
                     D.inputrecherche.Text = inputrecherche.Text;
                     D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
                     this.NavigationService.Navigate(D);
@@ -235,8 +182,156 @@ namespace Agerfor.Views.Demande
                     MessageBox.Show("La recherche ne peut pas etre effectuer");
                 }
             }
+
+            else if (inputTypeDemande.SelectedIndex == 4 && inputStatutDemande.SelectedIndex != 4 || inputTypeDemande.SelectedIndex == -1 && inputStatutDemande.SelectedIndex != 4)
+            {
+                if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
+                {
+                    Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and StatutDemande='" + inputStatutDemande.Text + "'");
+                    D.inputrecherche.Text = inputrecherche.Text;
+                    D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                    this.NavigationService.Navigate(D);
+                }
+                else if (inputrecherche.Text == "" && SelectTypeRecherche.Text != "")
+                {
+                    Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and StatutDemande='" + inputStatutDemande.Text + "'");
+                    D.inputrecherche.Text = inputrecherche.Text;
+                    D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                    this.NavigationService.Navigate(D);
+                }
+            }
+
+            else if (inputTypeDemande.SelectedIndex != 4 && inputStatutDemande.SelectedIndex == 4 || inputTypeDemande.SelectedIndex != 4 && inputStatutDemande.SelectedIndex == -1)
+            {
+                if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
+                {
+                    Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and TypeDemande='" + inputTypeDemande.Text + "'");
+                    D.inputrecherche.Text = inputrecherche.Text;
+                    D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                    this.NavigationService.Navigate(D);
+                }
+                else if (inputrecherche.Text == "" && SelectTypeRecherche.Text != "")
+                {
+                    Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and TypeDemande='" + inputTypeDemande.Text + "'");
+                    D.inputrecherche.Text = inputrecherche.Text;
+                    D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                    this.NavigationService.Navigate(D);
+                }
+            }
+
+            else if (inputTypeDemande.SelectedIndex != 4 && inputStatutDemande.SelectedIndex != 4)
+            {
+
+                if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
+                {
+                    Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and TypeDemande='" + inputTypeDemande.Text + "' and StatutDemande='" + inputStatutDemande + "'");
+                    D.inputrecherche.Text = inputrecherche.Text;
+                    D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                    this.NavigationService.Navigate(D);
+                }
+                else if (inputrecherche.Text == "" && SelectTypeRecherche.Text != "")
+                {
+                   
+                    Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and TypeDemande='" + inputTypeDemande.Text + "' and StatutDemande='" + inputStatutDemande.Text + "'");
+                    D.inputrecherche.Text = inputrecherche.Text;
+                    D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                    this.NavigationService.Navigate(D);
+                }
+            }
+            if (inputDateDemandeFrom.Text != "" && inputDateDemandeTo.Text != "")
+            {
+                if (inputTypeDemande.SelectedIndex == 4 && inputStatutDemande.SelectedIndex == 4 || inputTypeDemande.SelectedIndex == -1 && inputStatutDemande.SelectedIndex == -1)
+                {
+
+                    if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
+                    {
+                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "'");
+                        D.inputrecherche.Text = inputrecherche.Text;
+                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                        this.NavigationService.Navigate(D);
+                    }
+                    else if (inputrecherche.Text == "" && SelectTypeRecherche.Text != "")
+                    {
+                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "' ");
+                        D.inputrecherche.Text = inputrecherche.Text;
+                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                        this.NavigationService.Navigate(D);
+                    }
+                    else if (inputrecherche.Text == "*")
+                    {
+                        Demande D = new Demande("select * from demande,client where DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "' and demande.RefClient=Client.NumClient and DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "'");
+                        this.NavigationService.Navigate(D);
+                    }
+                    else
+                    {
+                        MessageBox.Show("La recherche ne peut pas etre effectuer");
+                    }
+                }
+
+
+                else if (inputTypeDemande.SelectedIndex == 4 && inputStatutDemande.SelectedIndex != 4 || inputTypeDemande.SelectedIndex == -1 && inputStatutDemande.SelectedIndex != 4)
+                {
+                    if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
+                    {
+                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and StatutDemande='" + inputStatutDemande.Text + "' and DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "'");
+                        D.inputrecherche.Text = inputrecherche.Text;
+                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                        this.NavigationService.Navigate(D);
+                    }
+                    else if (inputrecherche.Text == "" && SelectTypeRecherche.Text != "")
+                    {
+                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and StatutDemande='" + inputStatutDemande.Text + "' DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "'");
+                        D.inputrecherche.Text = inputrecherche.Text;
+                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                        this.NavigationService.Navigate(D);
+                    }
+                }
+
+                else if (inputTypeDemande.SelectedIndex != 4 && inputStatutDemande.SelectedIndex == 4 || inputTypeDemande.SelectedIndex != 4 && inputStatutDemande.SelectedIndex == -1)
+                {
+                    if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
+                    {
+                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and TypeDemande='" + inputTypeDemande.Text + "' and DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "'");
+                        D.inputrecherche.Text = inputrecherche.Text;
+                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                        this.NavigationService.Navigate(D);
+                    }
+                    else if (inputrecherche.Text == "" && SelectTypeRecherche.Text != "")
+                    {
+                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and TypeDemande='" + inputTypeDemande.Text + "' and DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "'");
+                        D.inputrecherche.Text = inputrecherche.Text;
+                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                        this.NavigationService.Navigate(D);
+                    }
+                }
+
+                else if (inputTypeDemande.SelectedIndex != 4 && inputStatutDemande.SelectedIndex != 4)
+                {
+
+                    if (inputrecherche.Text != "" && inputrecherche.Text != "*" && SelectTypeRecherche.Text != "")
+                    {
+                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and TypeDemande='" + inputTypeDemande.Text + "' and StatutDemande='" + inputStatutDemande + "' and DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "'");
+                        D.inputrecherche.Text = inputrecherche.Text;
+                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                        this.NavigationService.Navigate(D);
+                    }
+                    else if (inputrecherche.Text == "" && SelectTypeRecherche.Text != "")
+                    {
+                      
+                        Demande D = new Demande("select * from demande,client where " + SelectTypeRecherche.Text + " like'%" + inputrecherche.Text + "%' and demande.RefClient=client.NumClient and TypeDemande='" + inputTypeDemande.Text + "' and StatutDemande='" + inputStatutDemande.Text + "'and DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "'");
+                        D.inputrecherche.Text = inputrecherche.Text;
+                        D.SelectTypeRecherche.Text = SelectTypeRecherche.Text;
+                        this.NavigationService.Navigate(D);
+                    }
+                }
             }
         }
-    }
-    
 
+        private void BtnRechercheDate_Click(object sender, RoutedEventArgs e)
+        {
+            Demande D = new Demande("Select * from demande,client where DateDemande BETWEEN '" + inputDateDemandeFrom.Text + "' and '" + inputDateDemandeTo.Text + "' and demande.RefClient=client.NumClient");
+            this.NavigationService.Navigate(D);
+        }
+    }
+}
+          

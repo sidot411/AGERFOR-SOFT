@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 22 Novembre 2018 à 12:40
+-- Généré le :  Lun 26 Novembre 2018 à 14:49
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -19,6 +19,20 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `agerforsoft`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `acteprojet`
+--
+
+CREATE TABLE `acteprojet` (
+  `NumActe` varchar(50) NOT NULL,
+  `DateActe` varchar(50) NOT NULL,
+  `DateEnrgActe` varchar(50) NOT NULL,
+  `DatePubliActe` varchar(50) NOT NULL,
+  `RefProjet` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -112,6 +126,34 @@ INSERT INTO `demande` (`NumDemande`, `DateDemande`, `RefClient`, `Motif`, `TypeD
 (1, '21-11-2018', '0000002', 'Rien', 'Régularisation', 'Acceptée'),
 (4, '22-11-2018', '0000002', 'RIEN', 'Régularisation', 'En cours'),
 (5, '22-11-2018', '0000033', 'RIEN', 'Vente Libre', 'En cours');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `projet`
+--
+
+CREATE TABLE `projet` (
+  `RefProjet` varchar(50) NOT NULL,
+  `NomProjet` varchar(50) NOT NULL,
+  `VolProjet` varchar(50) NOT NULL,
+  `Conservation` varchar(50) NOT NULL,
+  `Vendeur` varchar(50) NOT NULL,
+  `Wilaya` varchar(50) NOT NULL,
+  `Daira` varchar(50) NOT NULL,
+  `Commune` varchar(50) NOT NULL,
+  `Superficie` double NOT NULL,
+  `NomGeometre` varchar(50) NOT NULL,
+  `AdresseGeometre` varchar(50) NOT NULL,
+  `NumGeometre` varchar(50) NOT NULL,
+  `LimiteNord` varchar(50) NOT NULL,
+  `LimiteEst` varchar(50) NOT NULL,
+  `LimiteOuest` varchar(50) NOT NULL,
+  `LimiteSud` varchar(50) NOT NULL,
+  `PrixVente` double NOT NULL,
+  `NumRecu` varchar(50) NOT NULL,
+  `DateRecu` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
