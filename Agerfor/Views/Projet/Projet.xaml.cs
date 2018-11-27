@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Agerfor.Controlers;
+using Agerfor.Views.Projet;
 
 namespace Agerfor.Views.Projet
 {
@@ -38,6 +39,7 @@ namespace Agerfor.Views.Projet
             {
                 MessageBox.Show(tempRefProjet);
                 AddProjet AP = new AddProjet(tempRefProjet);
+                AP.inputRefProjet.IsEnabled = AP.inputNomProjet.IsEnabled = AP.inputVolProjet.IsEnabled = AP.inputConservProjet.IsEnabled = AP.inputVendeurProjet.IsEnabled = AP.inputWilayaProjet.IsEnabled = AP.inputDairaProjet.IsEnabled = AP.inputCommuneProjet.IsEnabled = AP.inputSuperficieProjet.IsEnabled = AP.inputNomGeo.IsEnabled = AP.inputAddressGeo.IsEnabled = AP.inputTelGeo.IsEnabled = AP.inputLimitEst.IsEnabled = AP.inputLimitNord.IsEnabled = AP.inputLimitOuest.IsEnabled = AP.inputLimitSud.IsEnabled = AP.inputPrix.IsEnabled = AP.inputNumReçu.IsEnabled = AP.inputDateRecu.IsEnabled =AP.BtnAjouterProjet.IsEnabled =AP.BtnModifierProjet.IsEnabled= AP.BtnUploadFiles.IsEnabled=AP.inputNumAct.IsEnabled=AP.inputDateActe.IsEnabled=AP.inputEnrgActe.IsEnabled=AP.inputDatepubliActe.IsEnabled=AP.BtnAjouterActe.IsEnabled=AP.BtnModifierActe.IsEnabled=AP.BtnSupprimerActe.IsEnabled=AP.BtnJoindre.IsEnabled=AP.BtnOuvrirActe.IsEnabled= false;
                 this.NavigationService.Navigate(AP);
             }
             catch (Exception)
@@ -74,7 +76,11 @@ namespace Agerfor.Views.Projet
                 else
                 {
                     ProjetController PC = new ProjetController();
+                    ActeController AC = new ActeController();
+                    AC.SupprimerActe2(tempRefProjet);
                     PC.DeleteProjet(tempRefProjet);
+                    
+                   
                     MessageBox.Show("Le projet " + tempRefProjet + " à était bien supprimer");
                     Projet P = new Projet("");
                     NavigationService.Navigate(P);
@@ -102,6 +108,21 @@ namespace Agerfor.Views.Projet
             {
 
             }
+        }
+
+        private void BtnModifierProjet_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AddProjet AP = new AddProjet(tempRefProjet);
+                AP.BtnAjouterProjet.IsEnabled = false;
+                this.NavigationService.Navigate(AP);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Veuillez sélectionner une référence");
+            }
+
         }
     }
 }

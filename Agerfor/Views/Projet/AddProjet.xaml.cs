@@ -4,7 +4,11 @@ using MySql.Data.MySqlClient;
 using DbConnection.Models;
 using System.Globalization;
 using Agerfor.Controlers;
-using System.Globalization;
+using System.Threading;
+using System.Windows;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 
 namespace Agerfor.Views.Projet
@@ -15,11 +19,21 @@ namespace Agerfor.Views.Projet
     public partial class AddProjet : Page
     {
         ProjetController PC = new ProjetController();
+        ActeController AC = new ActeController();
         Agerfor.Controlers.MySqlHelper msh = new Agerfor.Controlers.MySqlHelper();
         string RefProjet = "";
+        string Query = "";
+        string TempNumActe = "";
+        string TempDateActe = "";
+        string TempDateEnrgActe = "";
+        string TempDatePubliActe = "";
+
         public AddProjet(string RefProjet)
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             msh.FillDropDownList("select NomWilaya from wilaya",inputConservProjet, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya",inputWilayaProjet, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya",inputDairaProjet, "NomWilaya");
@@ -27,7 +41,7 @@ namespace Agerfor.Views.Projet
             this.RefProjet = RefProjet;
             if (RefProjet !="")
             {
-                string query = "select * from projet where RefProjet ="+RefProjet;
+                string query = "select * from projet where RefProjet ="+ RefProjet;
                 MySqlDataReader rdr = null;
                 MySqlConnection con = null;
                 MySqlCommand cmd = null;
@@ -61,10 +75,15 @@ namespace Agerfor.Views.Projet
                         inputLimitSud.Text = rdr["LimiteSud"].ToString();
                         inputPrix.Text = rdr["PrixVente"].ToString();
                         inputNumReçu.Text = rdr["NumRecu"].ToString();
-                        inputDateRecu.SelectedDate = DateTime.ParseExact(rdr["DateRecu"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                        inputDateRecu.SelectedDate = DateTime.ParseExact(rdr["DateRecu"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        /*
+                       inputNumAct.Text = rdr["NumActe"].ToString();
 
+                       inputDateActe.SelectedDate = DateTime.ParseExact(rdr["DateActe"].ToString(), "dd-MM-yyyy", CultureInfo.InstalledUICulture);
+                       inputEnrgActe.SelectedDate = DateTime.ParseExact(rdr["DateEnrgActe"].ToString(), "dd-MM-yyyy", CultureInfo.InstalledUICulture);
+                       inputDatepubliActe.SelectedDate = DateTime.ParseExact(rdr["DatePubliActe"].ToString(), "dd-MM-yyyy", CultureInfo.InstalledUICulture);*/
 
-                       oneTime = false;
+                        oneTime = false;
                     }
                 }
 
@@ -73,12 +92,184 @@ namespace Agerfor.Views.Projet
             }
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Query == "")
+            {
+                msh.LoadData("select * from acteprojet where RefProjet='"+inputRefProjet.Text+"'", dataViewActeProjet);
+            }
+            else
+            {
+                msh.LoadData(Query, dataViewActeProjet);
+            }
+        }
+
         private void BtnAjouterProjet_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-           
-            PC.AjouterProjet(inputRefProjet.Text, inputNomProjet.Text, inputVolProjet.Text, inputConservProjet.Text, inputVendeurProjet.Text, inputWilayaProjet.Text, inputDairaProjet.Text, inputCommuneProjet.Text,double.Parse(inputSuperficieProjet.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text, inputLimitNord.Text, inputLimitEst.Text, inputLimitOuest.Text, inputLimitSud.Text,double.Parse(inputPrix.Text), inputNumReçu.Text, inputDateRecu.Text);
+            DirectoryCreator dcr = new DirectoryCreator();
+            dcr.CreateDirectory(inputRefProjet.Text);
+            
+            PC.AjouterProjet(inputRefProjet.Text, inputNomProjet.Text, inputVolProjet.Text, inputConservProjet.Text, inputVendeurProjet.Text, inputWilayaProjet.Text, inputDairaProjet.Text, inputCommuneProjet.Text, decimal.Parse(inputSuperficieProjet.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text, inputLimitNord.Text, inputLimitEst.Text, inputLimitOuest.Text, inputLimitSud.Text, decimal.Parse(inputPrix.Text), inputNumReçu.Text, inputDateRecu.Text); 
             AddProjet Addprojet = new AddProjet("");
             this.NavigationService.Navigate(Addprojet);
+        }
+
+        private void BtnModifierProjet_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            PC.Editprojet(inputRefProjet.Text, inputNomProjet.Text, inputVolProjet.Text, inputConservProjet.Text, inputVendeurProjet.Text, inputWilayaProjet.Text, inputDairaProjet.Text, inputCommuneProjet.Text,decimal.Parse(inputSuperficieProjet.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text, inputLimitNord.Text, inputLimitEst.Text, inputLimitOuest.Text, inputLimitSud.Text,decimal.Parse(inputPrix.Text), inputNumReçu.Text, inputDateRecu.Text);
+            RefProjet = inputRefProjet.Text;
+            AddProjet Addprojet = new AddProjet(RefProjet);
+            this.NavigationService.Navigate(Addprojet);
+        }
+
+       
+
+        private void dataViewActeProjet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGridCellInfo cell0 = dataViewActeProjet.SelectedCells[0];
+            TempNumActe = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+            inputNumAct.Text = TempNumActe;
+            DataGridCellInfo cell1 = dataViewActeProjet.SelectedCells[1];
+            TempDateActe = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
+            inputDateActe.Text = TempDateActe;
+            DataGridCellInfo cell2 = dataViewActeProjet.SelectedCells[2];
+            TempDateEnrgActe = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
+            inputEnrgActe.Text = TempDateActe;
+            DataGridCellInfo cell3 = dataViewActeProjet.SelectedCells[3];
+            TempDatePubliActe = ((TextBlock)cell3.Column.GetCellContent(cell3.Item)).Text;
+            inputDatepubliActe.Text = TempDatePubliActe;
+
+        }
+
+        private void BtnAjouterActe_Click(object sender, RoutedEventArgs e)
+        {
+            string Acte="Acte";
+            DirectoryCreator dcr = new DirectoryCreator();
+            dcr.CreateDirectory(inputRefProjet.Text + "/" +Acte +"/"+inputNumAct.Text);
+
+            AC.AjouterActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text, inputRefProjet.Text);
+            RefProjet = inputRefProjet.Text;
+            AddProjet Addprojet = new AddProjet(RefProjet);
+            this.NavigationService.Navigate(Addprojet);
+        }
+
+        private void BtnModifierActe_Click(object sender, RoutedEventArgs e)
+        {
+            
+            AC.EditerActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text, inputRefProjet.Text,TempNumActe);
+            RefProjet = inputRefProjet.Text;
+            AddProjet Addprojet = new AddProjet(RefProjet);
+            this.NavigationService.Navigate(Addprojet);
+        }
+
+        private void BtnSupprimerActe_Click(object sender, RoutedEventArgs e)
+        {
+           
+            DirectoryCreator DC = new DirectoryCreator();
+            DC.DeleteDirectory(@"Projet\" + inputRefProjet.Text + @"\Acte\" + TempNumActe); 
+            AC.SupprimerActe(inputNumAct.Text);
+            RefProjet = inputRefProjet.Text;
+            AddProjet Addprojet = new AddProjet(RefProjet);
+            this.NavigationService.Navigate(Addprojet);
+        }
+
+        private void BtnOpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text;
+                OpenFolder(folderPath);
+            }
+        }
+        
+        private void OpenFolder(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+            else
+            {
+                DirectoryCreator dcr = new DirectoryCreator();
+                dcr.CreateDirectory(inputRefProjet.Text + "/");
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+        private void BtnUploadFiles_Click(object sender, RoutedEventArgs e)
+        {
+            SelectFile("Document");
+        }
+        public void SelectFile(string theDirectory)
+        {
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text + @"\" +theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
+                dcr.CreateDirectory(inputRefProjet.Text + "/" + theDirectory + "/");
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+
+                File.Copy(fileName, Path.Combine(Path.GetDirectoryName(fileName), destinationFolder));
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
+        }
+        public void SelectFile2(string theDirectory)
+        {
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text+ @"\" + theDirectory + @"\" +inputNumAct.Text+ @"\" + Path.GetFileName(openFileDialog1.FileName);
+                dcr.CreateDirectory(inputRefProjet.Text + "/" + theDirectory + "/");
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+
+                File.Copy(fileName, Path.Combine(Path.GetDirectoryName(fileName), destinationFolder));
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
+        }
+
+
+
+        private void BtnOuvrirActe_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                
+                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text + @"\Acte\" + inputNumAct.Text;
+                OpenFolder(folderPath);
+            }
+        }
+
+        private void BtnJoindre_Click(object sender, RoutedEventArgs e)
+        {
+            SelectFile2("Acte");
         }
     }
 

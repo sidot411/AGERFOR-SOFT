@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 26 Novembre 2018 à 14:49
+-- Généré le :  Mar 27 Novembre 2018 à 14:31
 -- Version du serveur :  5.7.14
--- Version de PHP :  7.0.10
+-- Version de PHP :  5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -33,6 +33,13 @@ CREATE TABLE `acteprojet` (
   `DatePubliActe` varchar(50) NOT NULL,
   `RefProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `acteprojet`
+--
+
+INSERT INTO `acteprojet` (`NumActe`, `DateActe`, `DateEnrgActe`, `DatePubliActe`, `RefProjet`) VALUES
+('0000003', '27/11/2018', '27/11/2018', '27/11/2018', '12315616565');
 
 -- --------------------------------------------------------
 
@@ -142,7 +149,7 @@ CREATE TABLE `projet` (
   `Wilaya` varchar(50) NOT NULL,
   `Daira` varchar(50) NOT NULL,
   `Commune` varchar(50) NOT NULL,
-  `Superficie` double NOT NULL,
+  `Superficie` decimal(50,4) NOT NULL,
   `NomGeometre` varchar(50) NOT NULL,
   `AdresseGeometre` varchar(50) NOT NULL,
   `NumGeometre` varchar(50) NOT NULL,
@@ -150,10 +157,18 @@ CREATE TABLE `projet` (
   `LimiteEst` varchar(50) NOT NULL,
   `LimiteOuest` varchar(50) NOT NULL,
   `LimiteSud` varchar(50) NOT NULL,
-  `PrixVente` double NOT NULL,
+  `PrixVente` decimal(50,4) NOT NULL,
   `NumRecu` varchar(50) NOT NULL,
   `DateRecu` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `projet`
+--
+
+INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
+('12315616565', 'LPA', '3366699', 'ORAN', 'MABROUK', 'ORAN', 'ORAN', 'ORAN', '3366958554.2330', 'MABROUK', 'BT233 N°221 USTO', '0552369852', 'USTO NORD', 'USTO EST', 'USTO OUEST', 'USTO SUD ', '12223300000.2200', '112255', '27/11/2018'),
+('12315616565', 'LPA', '3366699', 'ORAN', 'MABROUK', 'ORAN', 'ORAN', 'ORAN', '3366958554.2330', 'MABROUK', 'BT233 N°221 USTO', '0552369852', 'USTO NORD', 'USTO EST', 'USTO OUEST', 'USTO SUD ', '12223300000.2200', '112255', '27/11/2018');
 
 -- --------------------------------------------------------
 

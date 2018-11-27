@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -68,8 +69,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controlers\ActeController.cs" />
     <Compile Include="Controlers\ClientController.cs" />
     <Compile Include="Controlers\DemandeController.cs" />
+    <Compile Include="Controlers\DirectoryCreator.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
     <Compile Include="Controlers\ProjetController.cs" />
     <Compile Include="Views\Clients\AddClient.xaml.cs">

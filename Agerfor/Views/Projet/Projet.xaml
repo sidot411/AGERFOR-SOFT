@@ -52,13 +52,6 @@
                         <TextBlock Text="Afficher" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="BtnSuppProjet" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" Click="BtnSuppProjet_Click">
-                    <StackPanel Orientation="Vertical">
-                        <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center" Margin="0 0 0 5" x:Name="BtnSupprimerClient" />
-                        <TextBlock Text="Supprimer" VerticalAlignment="Center" Height="25" />
-                    </StackPanel>
-                </Button>
                 <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnAjouterProjet" Click="BtnAjouterProjet_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkPlus" Width="35" Height="35" VerticalAlignment="Center"
@@ -66,21 +59,23 @@
                         <TextBlock Text="Ajouter" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnRefuserDemande">
+                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnModifierProjet" Click="BtnModifierProjet_Click" 
+               >
                     <StackPanel Orientation="Vertical">
-                        <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
+                        <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
-                        <TextBlock Text="Refuser" VerticalAlignment="Center" Height="25" />
-                    </StackPanel>
-                </Button>
-                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnAnnulerDemande">
-                    <StackPanel Orientation="Vertical">
-                        <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
-                        <TextBlock Text="Annuler" VerticalAlignment="Center" Height="25" />
+                        <TextBlock Text="Modifier" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
 
+                <Button x:Name="BtnSuppProjet" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" Click="BtnSuppProjet_Click">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" x:Name="BtnSupprimerClient" />
+                        <TextBlock Text="Supprimer" VerticalAlignment="Center" Height="25" />
+                    </StackPanel>
+                </Button>
+                
             </StackPanel>
 
         </Grid>
