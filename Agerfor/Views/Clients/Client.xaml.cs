@@ -42,8 +42,7 @@ namespace Agerfor.Views.Clients
             try
             {
                 AddClient AC = new AddClient(tempNumClient, tempSituation);
-                AC.BtnAjouter.Visibility = Visibility.Collapsed;
-                AC.BtnModifier.Visibility = Visibility.Collapsed;
+                AC.BtnAjouter.IsEnabled = AC.BtnModifier.IsEnabled = false;
                 this.NavigationService.Navigate(AC);
             }
             catch (Exception)
@@ -73,7 +72,7 @@ namespace Agerfor.Views.Clients
            if (tempNumClient !="")
             { 
                 AddClient AC = new AddClient(tempNumClient, tempSituation);
-                AC.BtnAjouter.Visibility = Visibility.Collapsed;
+                AC.BtnAjouter.IsEnabled = false; 
                 this.NavigationService.Navigate(AC);
             }
             else
@@ -105,6 +104,10 @@ namespace Agerfor.Views.Clients
                 }
                 else
                 {
+                    DirectoryCreator DC = new DirectoryCreator();
+                    
+                    DC.DeleteDirectory(@"Client\"+tempNumClient);
+                    
                     ClientController CC = new ClientController();
                     CC.DeleteClient(tempNumClient);
                     MessageBox.Show("Le client " + tempNumClient + " a était bien supprimer");

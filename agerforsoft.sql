@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 27 Novembre 2018 à 14:31
+-- Généré le :  Mer 28 Novembre 2018 à 14:44
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -34,12 +34,16 @@ CREATE TABLE `acteprojet` (
   `RefProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Contenu de la table `acteprojet`
+-- Structure de la table `antenne`
 --
 
-INSERT INTO `acteprojet` (`NumActe`, `DateActe`, `DateEnrgActe`, `DatePubliActe`, `RefProjet`) VALUES
-('0000003', '27/11/2018', '27/11/2018', '27/11/2018', '12315616565');
+CREATE TABLE `antenne` (
+  `ID` int(11) NOT NULL,
+  `NomAntenne` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -88,8 +92,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`ID`, `NumClient`, `DateCreation`, `Nom`, `Prenom`, `NomAr`, `PrenomAr`, `Sexe`, `DateNaissance`, `LieuNaissance`, `PrenomPere`, `PrenomPereAr`, `NomMere`, `PrenomMere`, `NomMereAr`, `PrenomMereAr`, `Cni`, `DateCni`, `LieuCni`, `Ville`, `Adress`, `Proffession`, `Tel`, `NomContact`, `TelContact`, `Situation`, `NomConj`, `PrénomConj`, `NomConjAR`, `PrenomConjAR`, `DateNaissanceConj`, `LieuNaissanceConj`, `ProfessionConj`) VALUES
-(1, '0000002', '11-11-2018', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '18-11-2018', 'ORAN', 'MOUNIR', 'منير', 'FRIOUI', 'ZOULIKHA', 'فريوي', 'زليخة', '3325165', '11-11-2018', 'ORAN', 'ORAN', 'N°1233 USTO', 'Informaticien', '0661934408', 'MOUNIR', '0661934408', 'Célibataire', '', '', '', '', '', '', ''),
-(2, '0000033', '22-11-2018', 'MABROUK', 'SOUMIA', 'مبروك', 'سمية', 'Femme', '01-11-2018', 'ORAN', 'IBRAHIM', 'ابراهيم', 'BAGHDAD', 'DJAMILA', 'بغداد', 'جميلة', '33652269', '01-11-2018', 'ORAN', 'ORAN', 'N° 233 BT 2 USTO', 'Informaticienne', '0669855487', 'BRAHIM', '0553897456', 'Célibataire', '', '', '', '', '', '', '');
+(5, '00000001', '28-11-2018', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '28-11-2018', 'ORAN', 'MOUNIR', 'منير', 'FRIOUI', 'ZOULIKHA', 'فريوي', 'زليخة', '213518132', '28-11-2018', 'ORAN', 'ORAN', 'BT233 N°2 SENIA', 'INFORMATICIEN', '0661934408', 'MOUNIR', '0773201236', 'Célibataire', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -137,6 +140,47 @@ INSERT INTO `demande` (`NumDemande`, `DateDemande`, `RefClient`, `Motif`, `TypeD
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `natureprogramme`
+--
+
+CREATE TABLE `natureprogramme` (
+  `ID` int(11) NOT NULL,
+  `NatureProgramme` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `natureprogramme`
+--
+
+INSERT INTO `natureprogramme` (`ID`, `NatureProgramme`) VALUES
+(1, 'Lotissement'),
+(2, 'Local'),
+(3, 'Logement'),
+(4, 'RHP'),
+(5, 'Terrain Industriel');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `programme`
+--
+
+CREATE TABLE `programme` (
+  `RefProgramme` varchar(50) NOT NULL,
+  `NomProgramme` varchar(50) NOT NULL,
+  `Antenne` varchar(50) NOT NULL,
+  `Site` varchar(50) NOT NULL,
+  `Daira` varchar(50) NOT NULL,
+  `Commune` varchar(50) NOT NULL,
+  `NatureProgramme` varchar(50) NOT NULL,
+  `TypeProgramme` varchar(50) NOT NULL,
+  `Nombre de biens` varchar(50) NOT NULL,
+  `Superficie` decimal(50,4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `projet`
 --
 
@@ -162,13 +206,44 @@ CREATE TABLE `projet` (
   `DateRecu` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Contenu de la table `projet`
+-- Structure de la table `typeprogramme`
 --
 
-INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
-('12315616565', 'LPA', '3366699', 'ORAN', 'MABROUK', 'ORAN', 'ORAN', 'ORAN', '3366958554.2330', 'MABROUK', 'BT233 N°221 USTO', '0552369852', 'USTO NORD', 'USTO EST', 'USTO OUEST', 'USTO SUD ', '12223300000.2200', '112255', '27/11/2018'),
-('12315616565', 'LPA', '3366699', 'ORAN', 'MABROUK', 'ORAN', 'ORAN', 'ORAN', '3366958554.2330', 'MABROUK', 'BT233 N°221 USTO', '0552369852', 'USTO NORD', 'USTO EST', 'USTO OUEST', 'USTO SUD ', '12223300000.2200', '112255', '27/11/2018');
+CREATE TABLE `typeprogramme` (
+  `ID` int(11) NOT NULL,
+  `TypeProgramme` varchar(50) NOT NULL,
+  `NatureProgramme` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `typeprogramme`
+--
+
+INSERT INTO `typeprogramme` (`ID`, `TypeProgramme`, `NatureProgramme`) VALUES
+(1, 'Social', 'Lotissement'),
+(2, 'Promoionnel', 'Lotissement'),
+(3, 'Transfert de gestion', 'Lotissement'),
+(4, 'Commercial', 'Local'),
+(5, 'Professionnel', 'Local'),
+(6, 'Centre commercial', 'Local'),
+(7, 'Cave', 'Local'),
+(8, 'Promotionel', 'Logement'),
+(9, 'Lpa', 'Logement'),
+(10, 'Lsp', 'Logement'),
+(11, 'Cnl', 'Logement'),
+(12, 'Fonal', 'Logement'),
+(13, 'Relogement', 'RHP'),
+(14, 'Restructuration', 'RHP'),
+(15, 'Prévention', 'RHP'),
+(16, 'Recasement', 'RHP'),
+(17, 'Zone d activité', 'Terrain Industriel'),
+(18, 'Zone depot', 'Terrain Industriel'),
+(19, 'Zone touristique', 'Terrain Industriel'),
+(20, 'Zone des sièges', 'Terrain Industriel'),
+(21, 'Show room', 'Terrain Industriel');
 
 -- --------------------------------------------------------
 
@@ -195,6 +270,12 @@ INSERT INTO `wilaya` (`NumWilaya`, `NomWilaya`) VALUES
 --
 
 --
+-- Index pour la table `antenne`
+--
+ALTER TABLE `antenne`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Index pour la table `client`
 --
 ALTER TABLE `client`
@@ -207,19 +288,46 @@ ALTER TABLE `demande`
   ADD PRIMARY KEY (`NumDemande`);
 
 --
+-- Index pour la table `natureprogramme`
+--
+ALTER TABLE `natureprogramme`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Index pour la table `typeprogramme`
+--
+ALTER TABLE `typeprogramme`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
 --
+-- AUTO_INCREMENT pour la table `antenne`
+--
+ALTER TABLE `antenne`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `demande`
 --
 ALTER TABLE `demande`
   MODIFY `NumDemande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `natureprogramme`
+--
+ALTER TABLE `natureprogramme`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `typeprogramme`
+--
+ALTER TABLE `typeprogramme`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

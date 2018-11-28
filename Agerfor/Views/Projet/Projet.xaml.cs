@@ -75,12 +75,13 @@ namespace Agerfor.Views.Projet
                 }
                 else
                 {
-                    ProjetController PC = new ProjetController();
-                    ActeController AC = new ActeController();
-                    AC.SupprimerActe2(tempRefProjet);
-                    PC.DeleteProjet(tempRefProjet);
                     
-                   
+                    ProjetController PC = new ProjetController();
+                    DirectoryCreator DC = new DirectoryCreator();   
+                    ActeController AC = new ActeController();
+                    DC.DeleteDirectory(@"Projet\" + tempRefProjet);
+                    AC.SupprimerActe2(tempRefProjet);
+                    PC.DeleteProjet(tempRefProjet);  
                     MessageBox.Show("Le projet " + tempRefProjet + " à était bien supprimer");
                     Projet P = new Projet("");
                     NavigationService.Navigate(P);

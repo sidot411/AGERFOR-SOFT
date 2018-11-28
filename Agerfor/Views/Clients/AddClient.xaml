@@ -122,7 +122,7 @@
                     </StackPanel>
                     <Line Stroke="Black" HorizontalAlignment="Stretch"
                   X2="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
-                  StrokeDashArray="2 2" StrokeThickness="1" Margin="0 16 0 10"/>
+                  StrokeDashArray="2 2" StrokeThickness="1" Margin="0 106 0 10"/>
                     <Label FontSize="16" FontWeight="Bold" Margin="0 0 0 20">Ajouter une demande</Label>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Margin="0 0 10 0">Date Demande</Label>
@@ -261,9 +261,32 @@
                           Height="35" BorderBrush="Red">
                             </ComboBox>
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 0">
+                            <StackPanel Orientation="Vertical">
+                            <Button  Content="Ajouter" Height="35" Width="110" Margin="0 0 0 10" x:Name="BtnAjouter" Click="BtnAjouter_Click" />
+                            <Button  Content="Modifier" Height="35" Width="110" Margin="0 0 0 10" x:Name="BtnModifier" Click="BtnModifier_Click" />
+                            <Button  Content="Annuler" Height="35" Width="110" x:Name="BtnAnnuler" Click="BtnAnnuler_Click"  />
+                        </StackPanel>
+                            <Button VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 10 0 0"
+                      Background="#2196F3" x:Name="BtnUploadFiles" HorizontalAlignment="center" Click="BtnUploadFiles_Click">
+                                <StackPanel Orientation="Vertical">
+                                    <materialDesign:PackIcon Kind="FileDocument" Width="35" Height="35" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                    <TextBlock Text="Joindre" VerticalAlignment="Center" Height="25" />
+                                </StackPanel>
+                            </Button>
+                            <Button VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 10 0 0"
+                      Background="#2196F3" x:Name="BtnOpenFolder" HorizontalAlignment="center" Click="BtnOpenFolder_Click">
+                                <StackPanel Orientation="Vertical">
+                                    <materialDesign:PackIcon Kind="FolderOpen" Width="35" Height="35" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                    <TextBlock Text="Ouvrir projet" VerticalAlignment="Center" Height="25" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
                         <Line Stroke="Black" HorizontalAlignment="Stretch"
                   X2="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
-                  StrokeDashArray="2 2" StrokeThickness="1" Margin="0 60 0 10"/>
+                  StrokeDashArray="2 2" StrokeThickness="1" Margin="0 25 0 10"/>
                         <Label FontSize="16" FontWeight="Bold">Liste des demandes</Label>
                         <StackPanel Orientation="Vertical" Margin="0 15 0 0">
                             <Border BorderThickness="1">
@@ -283,11 +306,7 @@
                                     </DataGrid>
                                 </Border>
                             </StackPanel>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 250 0 0">
-                            <Button  Content="Ajouter" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnAjouter" Click="BtnAjouter_Click" />
-                            <Button  Content="Modifier" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnModifier" Click="BtnModifier_Click" />
-                            <Button  Content="Annuler" Height="35" Width="110" x:Name="BtnAnnuler" Click="BtnAnnuler_Click"  />
-                        </StackPanel>
+                        
 
                     </StackPanel>
             </StackPanel>

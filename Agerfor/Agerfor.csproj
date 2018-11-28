@@ -87,6 +87,9 @@
     <Compile Include="Views\Demande\Demande.xaml.cs">
       <DependentUpon>Demande.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Programme\AddProgramme.xaml.cs">
+      <DependentUpon>AddProgramme.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Projet\AddProjet.xaml.cs">
       <DependentUpon>AddProjet.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Demande\Demande.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\AddProgramme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

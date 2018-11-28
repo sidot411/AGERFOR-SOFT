@@ -6,6 +6,10 @@ using MySql.Data.MySqlClient;
 using DbConnection.Models;
 using System.Globalization;
 using Agerfor.Views.Demande;
+using System.Threading;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 
 namespace Agerfor.Views.Clients
@@ -157,27 +161,31 @@ namespace Agerfor.Views.Clients
             if (inputSituationFamiliale.SelectedIndex == 1)
             {
                 if (Clientissecure1() == true)
-                { 
+                {
+                    DirectoryCreator dcr = new DirectoryCreator();
+                    dcr.CreateDirectory2(inputNumClient.Text);
                     cc.ajouterclient(inputNumClient.Text, inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text);
                     AddClient AddClient2 = new AddClient("","");
                     this.NavigationService.Navigate(AddClient2);
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez entrer les informations nécessaire");
+                    System.Windows.MessageBox.Show("Veuillez entrer les informations nécessaire");
                 }
             }
             else
             {
                 if (Clientissecure2() == true)
                 {
+                    DirectoryCreator dcr = new DirectoryCreator();
+                    dcr.CreateDirectory2(inputNumClient.Text);
                     cc.ajouterclient(inputNumClient.Text, inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text);
                     AddClient AddClient2 = new AddClient("","");
                     this.NavigationService.Navigate(AddClient2);
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez entrer les informations nécessaire");
+                    System.Windows.MessageBox.Show("Veuillez entrer les informations nécessaire");
                 }
             }
         }
@@ -251,7 +259,7 @@ namespace Agerfor.Views.Clients
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez entrer les informations nécessaire");
+                    System.Windows.MessageBox.Show("Veuillez entrer les informations nécessaire");
                 }
             }
             else
@@ -265,7 +273,7 @@ namespace Agerfor.Views.Clients
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez entrer les informations nécessaire");
+                    System.Windows.MessageBox.Show("Veuillez entrer les informations nécessaire");
                 }
             }
         }
@@ -298,7 +306,7 @@ namespace Agerfor.Views.Clients
             }
             catch (Exception)
             {
-                MessageBox.Show("Veuillez sélectioner une demande");
+                System.Windows.MessageBox.Show("Veuillez sélectioner une demande");
             }
 
         }
@@ -330,7 +338,64 @@ namespace Agerfor.Views.Clients
             }
         }
 
-      
+        private void BtnOpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Client\" + inputNumClient.Text;
+                OpenFolder(folderPath);
+            }
+        }
+        private void OpenFolder(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+            else
+            {
+                DirectoryCreator dcr = new DirectoryCreator();
+                dcr.CreateDirectory(inputNumClient.Text + "/");
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+        private void BtnUploadFiles_Click(object sender, RoutedEventArgs e)
+        {
+            SelectFile("Document");
+        }
+        public void SelectFile(string theDirectory)
+        {
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Client\" + inputNumClient.Text + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
+                dcr.CreateDirectory2(inputNumClient.Text + "/" + theDirectory + "/");
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+
+                File.Copy(fileName, Path.Combine(Path.GetDirectoryName(fileName), destinationFolder));
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
+        }
     }
 }
     
