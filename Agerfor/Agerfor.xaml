@@ -50,7 +50,7 @@
 
                         </StackPanel>
                     </Button>
-                    <Button VerticalAlignment="Top" Height="75" Background="Transparent" BorderThickness="0" Margin="0 0 0 5">
+                    <Button x:Name="BtnProgramme" VerticalAlignment="Top" Height="75" Background="Transparent" BorderThickness="0" Margin="0 0 0 5" HorizontalAlignment="Left" Width="110" Click="BtnProgramme_Click">
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="HouseModern" Width="35" Height="35"
                                        VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />

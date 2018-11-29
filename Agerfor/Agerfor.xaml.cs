@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Agerfor.Views.Clients;
 using Agerfor.Views.Demande;
 using Agerfor.Views.Projet;
+using Agerfor.Views.Programme;
+
 
 namespace Agerfor
 {
@@ -83,6 +85,13 @@ namespace Agerfor
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             Frame.Navigate(new Projet(""));
             currentWindow.Text = "Projet";
+        }
+
+        private void BtnProgramme_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            Frame.Navigate(new  AddProgramme());
+            currentWindow.Text = "Programe";
         }
     }
 }

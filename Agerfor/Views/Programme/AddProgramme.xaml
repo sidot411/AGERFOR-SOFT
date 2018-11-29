@@ -7,99 +7,246 @@
       mc:Ignorable="d" 
       xml:lang="en-IN"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      d:DesignHeight="1020" d:DesignWidth="1120" 
-      Title="AddProgramme" Background="#E6EAED" Loaded="Page_Loaded">
+      d:DesignHeight="1500" d:DesignWidth="1120" 
+      xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
+      Title="AddProgramme" Background="#E6EAED" Loaded="Page_Loaded" >
+    
+
     <ScrollViewer>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+        <DockPanel>
+            <StackPanel Orientation="Vertical">
+            <notifications:NotificationArea x:Name="WindowArea" Position="TopLeft" MaxItems="3"/>
+                <notifications:NotificationArea x:Name="WindowArea2" Position="TopLeft" MaxItems="3"/>
+            </StackPanel>
+            <Grid HorizontalAlignment="center" VerticalAlignment="Top" Margin="0 10 0 0">
+
+                <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" >
                     <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Informations programme</Label>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Réf Programme</Label>
-                        <TextBox x:Name="inputRefProjet" Background="#FAFAFA" Width="360" FontSize="18"
+                        <TextBox x:Name="inputRefProgramme" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Nom Programme</Label>
-                        <TextBox x:Name="inputNomProjet" Background="#FAFAFA" Width="360" FontSize="18"
+                        <TextBox x:Name="inputNomProgramme" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                         <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Antenne</Label>
-                        <ComboBox x:Name="inputConservProjet" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                        <ComboBox x:Name="inputAntenneProgramme" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner une Antenne"
                           Height="35" BorderBrush="Red">
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Site</Label>
-                        <TextBox x:Name="inputVendeurProjet" Background="#FAFAFA" Width="360" FontSize="18"
+                        <TextBox x:Name="inputSiteProgramme" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                         <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Daira</Label>
-                        <ComboBox x:Name="inputDairaProjet" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                        <ComboBox x:Name="inputDairaProgramme" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner une daira"
                           Height="35" BorderBrush="Red">
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                         <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Commune</Label>
-                        <ComboBox x:Name="inputCommuneProjet" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                        <ComboBox x:Name="inputCommuneProgramme" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner une commune"
                           Height="35" BorderBrush="Red">
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Nature Programme</Label>
-                        <ComboBox x:Name="inputNatureProgramme" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                </StackPanel>
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0 44 0 0">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Nature Programme</Label>
+                            <ComboBox x:Name="inputNatureProgramme" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Nature Programme"
-                          Height="35" BorderBrush="Red">
-                        </ComboBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Type Programme</Label>
-                        <ComboBox x:Name="inputTypeProgramme" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          Height="35" BorderBrush="Red" SelectionChanged="inputNatureProgramme_SelectionChanged">
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Type Programme</Label>
+                            <ComboBox x:Name="inputTypeProgramme" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Type Programme"
                           Height="35" BorderBrush="Red">
-                        </ComboBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Nombre de biens</Label>
-                        <TextBox x:Name="inputSuperficieProjet" Background="#FAFAFA" Width="360" FontSize="18"
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Nombre de biens</Label>
+                            <TextBox x:Name="inputNombredebien" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Superficie (m²)</Label>
-                        <TextBox x:Name="inputNomGeo" Background="#FAFAFA" Width="360" FontSize="18"
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Superficie (m²)</Label>
+                            <TextBox x:Name="inputSuperficie" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
                     </StackPanel>
-
                 </StackPanel>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right"/>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right"/>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right"/>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right"/>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0"/>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0"/>
-                    <StackPanel Orientation="Vertical" Margin="30 15 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Informations Acte </Label>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Num Acte</Label>
+                            <TextBox x:Name="NumActeProgramme" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date Acte</Label>
+                            <DatePicker  x:Name="inputDateActeProgramme" Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                            </DatePicker>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Date Enreg Acte</Label>
+                            <DatePicker x:Name="DateEnrgActeP" Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                            </DatePicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date Publi Acte</Label>
+                            <DatePicker x:Name="DatePubliActeP" Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                            </DatePicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Conservation</Label>
+                            <TextBox x:Name="inputConservation" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Frais Enrg</Label>
+                            <TextBox x:Name="inputFrais" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
+                            <Button  x:Name="BtnAjouterActe" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0"/>
+                            <Button  x:Name="BtnModifierActe" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
+                            <Button  x:Name="BtnSupprimerActe" Content="Supprimer" Height="35" Width="105" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
+
+                            <Button  x:Name="BtnJoindreActe" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
+                            <Button  x:Name="BtnOuvrirActe" Content="Ouvrir Acte" Height="35" Width="105" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Liste Actes</Label>
+                        <StackPanel Orientation="Vertical" Margin="20 0 0 0">
                         <Border BorderThickness="1">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="20" Opacity="0.2" />
                             </Border.Effect>
+                            <DataGrid x:Name="dataViewActeProjet" AutoGenerateColumns="False" BorderBrush="White"
+                        BorderThickness="0" 
+                        AlternatingRowBackground="#F3F3F3"
+                        CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
+                        Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num Acte" />
+                                    <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date Acte" />
+                                    <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Date Enrigistrement Acte" />
+                                    <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date Publication Acte" />
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </Border>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 40 0 0">
-                        <StackPanel Orientation="Vertical"/>
-                        
                     </StackPanel>
-
                 </StackPanel>
-            </StackPanel>
-        </Grid>
 
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <StackPanel Orientation="Vertical">
+                        <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Informations Permis de lotir</Label>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Num P lotir</Label>
+                            <TextBox  x:Name="inputNumLotir" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date P lotir</Label>
+                            <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                            </DatePicker>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Frais Divers</Label>
+                            <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre Ilot</Label>
+                            <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Nombre Lots</Label>
+                            <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Conservation</Label>
+                            <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Frais Enrg</Label>
+                            <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
+                            <Button   Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0"/>
+                            <Button   Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
+                            <Button   Content="Supprimer" Height="35" Width="105" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
+
+                            <Button  Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
+                            <Button   Content="Ouvrir Acte" Height="35" Width="105" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Liste permis de lotir</Label>
+                        <StackPanel Orientation="Vertical" Margin="20 0 0 0">
+                            <Border BorderThickness="1">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="20" Opacity="0.2" />
+                                </Border.Effect>
+                                <DataGrid  AutoGenerateColumns="False" BorderBrush="White"
+                        BorderThickness="0" 
+                        AlternatingRowBackground="#F3F3F3"
+                        CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
+                        Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn  Width="*" Binding="{Binding NumActe}" Header="Num Permis de lotir" />
+                                        <DataGridTextColumn  Width="*" Binding="{Binding DateActe}" Header="Date Permis de lotir" />
+                                        <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Date Enrg " />
+                                        <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date Publication" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+            
+        </Grid>
+            
+        </DockPanel>
     </ScrollViewer>
+   
 </Page>

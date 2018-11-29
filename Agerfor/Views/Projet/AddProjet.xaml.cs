@@ -147,7 +147,7 @@ namespace Agerfor.Views.Projet
             DirectoryCreator dcr = new DirectoryCreator();
             dcr.CreateDirectory(inputRefProjet.Text + "/" +Acte +"/"+inputNumAct.Text);
 
-            AC.AjouterActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text, inputRefProjet.Text);
+            AC.AjouterActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text,inputConservProjet.Text, inputRefProjet.Text);
             RefProjet = inputRefProjet.Text;
             AddProjet Addprojet = new AddProjet(RefProjet);
             this.NavigationService.Navigate(Addprojet);
@@ -156,7 +156,7 @@ namespace Agerfor.Views.Projet
         private void BtnModifierActe_Click(object sender, RoutedEventArgs e)
         {
             
-            AC.EditerActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text, inputRefProjet.Text,TempNumActe);
+            AC.EditerActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text, inputConservProjet.Text, inputRefProjet.Text,TempNumActe);
             RefProjet = inputRefProjet.Text;
             AddProjet Addprojet = new AddProjet(RefProjet);
             this.NavigationService.Navigate(Addprojet);
