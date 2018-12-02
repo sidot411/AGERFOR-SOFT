@@ -94,8 +94,14 @@
     <Compile Include="Views\Programme\AddProgramme.xaml.cs">
       <DependentUpon>AddProgramme.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Programme\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
+    <Compile Include="Views\Programme\CahierCharge.xaml.cs">
+      <DependentUpon>CahierCharge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\Convention.xaml.cs">
+      <DependentUpon>Convention.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\EDD.xaml.cs">
+      <DependentUpon>EDD.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Projet\AddProjet.xaml.cs">
       <DependentUpon>AddProjet.xaml</DependentUpon>
@@ -135,7 +141,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Programme\UserControl1.xaml">
+    <Page Include="Views\Programme\CahierCharge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\Convention.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\EDD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

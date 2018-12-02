@@ -10,6 +10,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Notifications.Wpf;
+using MaterialDesignThemes.Wpf;
 
 namespace Agerfor.Views.Programme
 {
@@ -43,7 +44,7 @@ namespace Agerfor.Views.Programme
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
+        {/*
             string tempnumlotir = inputNumLotir.Text;
             if (tempnumlotir == "")
             {
@@ -65,10 +66,30 @@ namespace Agerfor.Views.Programme
                 };
                 _notificationManager.Show(content2, "WindowArea2", onClick: () => _notificationManager.Show(clickContent2));
             }
-
+            */
 
         }
+
+       
+
+        private void BtnCahiercharge_Click(object sender, RoutedEventArgs e)
+        {
+            CahierCharge cahiercharge = new CahierCharge();
+            DialogHost.Show(cahiercharge);
         }
+
+        private void BtnEDD_Click(object sender, RoutedEventArgs e)
+        {
+            EDD EDD = new EDD();
+            DialogHost.Show(EDD);
+        }
+
+        private void BtnConvention_Click(object sender, RoutedEventArgs e)
+        {
+            Convention convention = new Convention();
+            DialogHost.Show(convention);
+        }
+    }
     }
 
 

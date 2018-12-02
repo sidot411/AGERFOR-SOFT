@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="Agerfor.Views.Programme.Convention"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Agerfor.Views.Programme"
+             mc:Ignorable="d" Background="#E6EAED"
+             Height="600" Width="1100"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <materialDesign:DialogHost>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*" />
+
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="19*" />
+                    <RowDefinition Height="256*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="White">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="title" FontSize="20"
+                     Foreground="#000" />
+                    <Button FontSize="20" Height="40" Width="45"
+                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                  HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
+                  Background="#fff" Grid.Column="1" BorderThickness="0" BorderBrush="Transparent"
+                  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                        <materialDesign:PackIcon x:Name="icon" Kind="Close" Height="25" Width="25"
+                                     Foreground="#2B91C5"
+                                     VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1" Margin="20">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0" VerticalAlignment="Center">
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Label FontSize="18" FontWeight="Bold" Margin="0 0 0 10">Informations convention</Label>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Num décision calpiref</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date décision calpiref
+                                    </Label>
+                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                                    </DatePicker>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Num arreté du wali</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date arreté du wali
+                                    </Label>
+                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                                    </DatePicker>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date convention
+                                    </Label>
+                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                                    </DatePicker>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Nature d'activité</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">superficie terain</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prix unitaire</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Majoration</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="20 0 0 0">
+                                <Label FontSize="18" FontWeight="Bold" Margin="0 0 0 0">Liste convention</Label>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                    <Border BorderThickness="1">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="20" Opacity="0.2" />
+                                        </Border.Effect>
+                                        <DataGrid x:Name="dataViewActeProjet" AutoGenerateColumns="False" BorderBrush="White"
+                        BorderThickness="0" 
+                        AlternatingRowBackground="#F3F3F3"
+                        CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
+                        Width="500" Height="220" RowDetailsVisibilityMode="VisibleWhenSelected">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num cahier charge" />
+                                                <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date cahier charge" />
+                                                <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Num publication" />
+                                                <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date publication" />
+                                                <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Notaire" />
+                                                <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Tel notaire" />
+                                                <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Adresse notaire" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Border>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <Button   Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" />
+                                <Button   Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
+                                <Button   Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" />
+                                <Button  Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
+                                <Button   Content="Ouvrir Acte" Height="35" Width="105" />
+                            </StackPanel>
+                           
+
+                        </StackPanel>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>

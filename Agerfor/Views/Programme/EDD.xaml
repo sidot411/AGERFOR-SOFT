@@ -1,0 +1,203 @@
+﻿<UserControl x:Class="Agerfor.Views.Programme.EDD"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Agerfor.Views.Programme"
+             mc:Ignorable="d" Background="#E6EAED"
+             Height="900" Width="1100"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <materialDesign:DialogHost>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*" />
+
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="19*" />
+                    <RowDefinition Height="256*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="White">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="title" FontSize="20"
+                     Foreground="#000" />
+                    <Button FontSize="20" Height="40" Width="45"
+                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                  HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
+                  Background="#fff" Grid.Column="1" BorderThickness="0" BorderBrush="Transparent"
+                  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                        <materialDesign:PackIcon x:Name="icon" Kind="Close" Height="25" Width="25"
+                                     Foreground="#2B91C5"
+                                     VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1" Margin="20">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0" VerticalAlignment="Center">
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Label FontSize="18" FontWeight="Bold" Margin="0 0 0 10">Informations EDD</Label>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Num EDD</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date EDD
+                                    </Label>
+                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                                    </DatePicker>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Num enregistremrent</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date enregistrement
+                                    </Label>
+                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                                    </DatePicker>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Volume</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Conservation</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                               
+                                
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Notaire</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Tel Notaire</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Adresse Notaire</Label>
+                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0 40 0 0">
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Nom/Prénom géomètre</Label>
+                                    <TextBox x:Name="inputNomGeo" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Adresse géomètre</Label>
+                                    <TextBox x:Name="inputAddressGeo" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Téléphone géomètre</Label>
+                                    <TextBox x:Name="inputTelGeo" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre logement</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre locaux</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre bureau</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre de cave</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre centre commercial</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre plc stationnement</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
+                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <Button   Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" />
+                                <Button   Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
+                                <Button   Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" />
+                                <Button  Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
+                                <Button   Content="Ouvrir Acte" Height="35" Width="105" />
+                            </StackPanel>
+                            <Label FontSize="18" FontWeight="Bold" Margin="0 10 0 0">Liste EDD</Label>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <Border BorderThickness="1">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="20" Opacity="0.2" />
+                                    </Border.Effect>
+                                    <DataGrid x:Name="dataViewActeProjet" AutoGenerateColumns="False" BorderBrush="White"
+                        BorderThickness="0" 
+                        AlternatingRowBackground="#F3F3F3"
+                        CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
+                        Width="1000" Height="220" RowDetailsVisibilityMode="VisibleWhenSelected">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num cahier charge" />
+                                            <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date cahier charge" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Num publication" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date publication" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Notaire" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Tel notaire" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Adresse notaire" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Border>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>
