@@ -90,7 +90,7 @@ namespace Agerfor
         private void BtnProgramme_Click(object sender, RoutedEventArgs e)
         {
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            Frame.Navigate(new  AddProgramme());
+            Frame.Navigate(new Programme(""));
             currentWindow.Text = "Programe";
         }
     }

@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Windows.Controls;
+using Agerfor.Controlers;
+using System.Windows;
+using Notifications.Wpf;
+using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
 using DbConnection.Models;
 using System.Globalization;
-using Agerfor.Controlers;
 using System.Threading;
-using System.Windows;
-using System.IO;
-using System.Diagnostics;
-using System.Windows.Forms;
-using Notifications.Wpf;
-using MaterialDesignThemes.Wpf;
 
 namespace Agerfor.Views.Programme
 {
@@ -19,16 +16,59 @@ namespace Agerfor.Views.Programme
     /// </summary>
     public partial class AddProgramme : Page
     {
+        ProgrammeController PC = new ProgrammeController();
+        string RefProgramme = "";
+
         private readonly NotificationManager _notificationManager = new NotificationManager();
         private readonly Random _random = new Random();
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public AddProgramme()
+        public AddProgramme(string refprogramme)
         {
+            this.RefProgramme = refprogramme;
             InitializeComponent();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             msh.FillDropDownList("select NatureProgramme from natureprogramme", inputNatureProgramme, "NatureProgramme");
-            var timer = new System.Timers.Timer { Interval = 3000 }; 
+            msh.FillDropDownList("select NomDaira from daira",inputDairaProgramme, "NomDaira");
+            
+ 
+            var timer = new System.Timers.Timer { Interval = 3000 };
             timer.Start();
+            if (refprogramme != "")
+            {
+                string query = "select * from programme where RefProgramme =" + refprogramme;
+                MySqlDataReader rdr = null;
+                MySqlConnection con = null;
+                MySqlCommand cmd = null;
+
+                con = new MySqlConnection(Database.ConnectionString);
+                con.Open();
+                cmd = new MySqlCommand(query);
+                cmd.Connection = con;
+                rdr = cmd.ExecuteReader();
+                bool oneTime = true;
+                while (rdr.Read())
+                {
+
+                    if (oneTime)
+                    {
+                        inputRefProgramme.Text = rdr["RefProgramme"].ToString();
+                        inputNomProgramme.Text = rdr["NomProgramme"].ToString();
+                        inputSiteProgramme.Text = rdr["Site"].ToString();
+                        inputDairaProgramme.Text = rdr["Daira"].ToString();
+                        inputCommuneProgramme.Text = rdr["Commune"].ToString();
+                        inputNatureProgramme.Text = rdr["NatureProgramme"].ToString();
+                        inputTypeProgramme.Text = rdr["TypeProgramme"].ToString();
+                        inputNombredebien.Text = rdr["NombreBiens"].ToString();
+                        inputSuperficie.Text = rdr["Superficie"].ToString();
+
+                      
+                        oneTime = false;
+                    }
+                }
+            }
         }
+            
 
         private void inputNatureProgramme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -37,6 +77,36 @@ namespace Agerfor.Views.Programme
             {
                 inputTypeProgramme.Items.Clear();
                 msh.FillDropDownList("select TypeProgramme from typeprogramme where typeprogramme.NatureProgramme='" + inputNatureProgramme.SelectedValue.ToString() + "'", inputTypeProgramme, "TypeProgramme");
+                if (inputNatureProgramme.SelectedValue.ToString() == "Lotissement" || inputNatureProgramme.SelectedValue.ToString() == "Terrain Industriel" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
+                {
+                    PermiLotir.IsEnabled = true;
+                    Permisconstruire.IsEnabled = false;
+
+                }
+                else
+                {
+                    PermiLotir.IsEnabled = true;
+                    Permisconstruire.IsEnabled = true;
+                }
+                if (inputNatureProgramme.SelectedValue.ToString() == "Lotissement" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
+                {
+                    BtnCahiercharge.IsEnabled = true;
+                    BtnEDD.IsEnabled = BtnConvention.IsEnabled = false;
+                }
+               if (inputNatureProgramme.SelectedValue.ToString() == "Terrain Industriel")
+                {
+                    BtnCahiercharge.IsEnabled = BtnConvention.IsEnabled = true;
+                    BtnEDD.IsEnabled  = false;
+                }
+
+                if (inputNatureProgramme.SelectedValue.ToString() == "Local"|| inputNatureProgramme.SelectedValue.ToString() == "Logement")
+                {
+                    BtnCahiercharge.IsEnabled = BtnConvention.IsEnabled = false;
+                    BtnEDD.IsEnabled = true;
+                }
+
+
+
             }
             catch (Exception)
             { }
@@ -67,7 +137,42 @@ namespace Agerfor.Views.Programme
                 _notificationManager.Show(content2, "WindowArea2", onClick: () => _notificationManager.Show(clickContent2));
             }
             */
+            
+            
+              /*  if (inputNatureProgramme.SelectedValue.ToString() == "Lotissement" || inputNatureProgramme.SelectedValue.ToString() == "Terrain Industriel" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
+                {
+                    PermiLotir.IsEnabled = true;
+                    Permisconstruire.IsEnabled = false;
 
+                }
+                else
+                {
+                    PermiLotir.IsEnabled = true;
+                    Permisconstruire.IsEnabled = true;
+                }
+                if (inputNatureProgramme.SelectedValue.ToString() == "Lotissement" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
+                {
+                    BtnCahiercharge.IsEnabled = true;
+                    BtnEDD.IsEnabled = BtnConvention.IsEnabled = false;
+                }
+                if (inputNatureProgramme.SelectedValue.ToString() == "Terrain Industriel")
+                {
+                    BtnCahiercharge.IsEnabled = BtnConvention.IsEnabled = true;
+                    BtnEDD.IsEnabled = false;
+                }
+
+                if (inputNatureProgramme.SelectedValue.ToString() == "Local" || inputNatureProgramme.SelectedValue.ToString() == "Logement")
+                {
+                    BtnCahiercharge.IsEnabled = BtnConvention.IsEnabled = false;
+                    BtnEDD.IsEnabled = true;
+                }
+                 else
+                 {*/
+                     PermiLotir.IsEnabled = Permisconstruire.IsEnabled = false;
+                     BtnCahiercharge.IsEnabled = BtnEDD.IsEnabled = BtnConvention.IsEnabled = false;
+                 
+
+            
         }
 
        
@@ -88,6 +193,18 @@ namespace Agerfor.Views.Programme
         {
             Convention convention = new Convention();
             DialogHost.Show(convention);
+        }
+
+        private void inputDairaProgramme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            inputCommuneProgramme.Items.Clear();
+            msh.FillDropDownList("select NomCommune from commune,daira where NomDaira='" + inputDairaProgramme.SelectedItem.ToString() + "'and daira.IdDaira=commune.IdDaira", inputCommuneProgramme, "NomCommune");
+        }
+
+        private void BtnAjouterProgramme_Click(object sender, RoutedEventArgs e)
+        {
+            PC.AjouterProgramme(inputRefProgramme.Text, inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text));
         }
     }
     }

@@ -180,13 +180,13 @@
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
                         Width="1000" Height="220" RowDetailsVisibilityMode="VisibleWhenSelected">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num cahier charge" />
-                                            <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date cahier charge" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Num publication" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date publication" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Notaire" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Tel notaire" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Adresse notaire" />
+                                            <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num EDD" />
+                                            <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date EDD" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Num enregistrement" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date enregistrement" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Volume" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Conservation" />
+                                           
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Border>

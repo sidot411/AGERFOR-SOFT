@@ -78,6 +78,7 @@
     <Compile Include="Controlers\DemandeController.cs" />
     <Compile Include="Controlers\DirectoryCreator.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
+    <Compile Include="Controlers\ProgrammeController.cs" />
     <Compile Include="Controlers\ProjetController.cs" />
     <Compile Include="Views\Clients\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
@@ -102,6 +103,9 @@
     </Compile>
     <Compile Include="Views\Programme\EDD.xaml.cs">
       <DependentUpon>EDD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\Programme.xaml.cs">
+      <DependentUpon>Programme.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Projet\AddProjet.xaml.cs">
       <DependentUpon>AddProjet.xaml</DependentUpon>
@@ -150,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Programme\EDD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\Programme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 28 Novembre 2018 à 14:44
+-- Généré le :  Lun 03 Décembre 2018 à 14:02
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -23,6 +23,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `acteprogramme`
+--
+
+CREATE TABLE `acteprogramme` (
+  `NumActe` varchar(50) NOT NULL,
+  `DateActe` varchar(50) NOT NULL,
+  `DateEnrgActe` varchar(50) NOT NULL,
+  `DatePubliActe` varchar(50) NOT NULL,
+  `Conservation` varchar(50) NOT NULL,
+  `FraisEnrg` decimal(50,4) DEFAULT NULL,
+  `RefProgramme` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `acteprojet`
 --
 
@@ -31,6 +47,7 @@ CREATE TABLE `acteprojet` (
   `DateActe` varchar(50) NOT NULL,
   `DateEnrgActe` varchar(50) NOT NULL,
   `DatePubliActe` varchar(50) NOT NULL,
+  `Conservation` varchar(50) NOT NULL,
   `RefProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -116,6 +133,77 @@ CREATE TABLE `cliententreprise` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `commune`
+--
+
+CREATE TABLE `commune` (
+  `IdCommune` varchar(50) NOT NULL,
+  `NomCommune` varchar(50) NOT NULL,
+  `IdDaira` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `commune`
+--
+
+INSERT INTO `commune` (`IdCommune`, `NomCommune`, `IdDaira`) VALUES
+('01', 'Oran', '01'),
+('02', 'Aïn El Turk', '02'),
+('03', 'Bousfer', '02'),
+('03', 'El Ançor', '02'),
+('04', 'Mers El Kébir', '02'),
+('05', 'Arzew', '03'),
+('06', 'Sidi Benyebka', '03'),
+('07', 'Bethioua', '04'),
+('08', 'Marsat El Hadjadj', '04'),
+('09', 'Aïn El Bia', '04'),
+('10', 'Es Senia', '05'),
+('12', 'El Kerma', '05'),
+('13', 'Sidi Chami', '05'),
+('14', 'Bir El Djir', '06'),
+('15', 'Hassi Ben Okba', '06'),
+('16', 'Hassi Bounif', '06'),
+('17', 'Boutlélis', '07'),
+('18', 'Aïn El Kerma', '07'),
+('19', 'Misserghin', '07'),
+('20', 'Oued Tlelat', '08'),
+('21', 'Boufatis', '08'),
+('22', 'El Braya', '08'),
+('23', 'Tafraoui', '08'),
+('24', 'Gdyel', '09'),
+('25', 'Ben Freha', '09'),
+('26', 'Hassi Mefsoukh', '09');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `daira`
+--
+
+CREATE TABLE `daira` (
+  `IdDaira` varchar(50) NOT NULL,
+  `NomDaira` varchar(50) NOT NULL,
+  `IdWilaya` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `daira`
+--
+
+INSERT INTO `daira` (`IdDaira`, `NomDaira`, `IdWilaya`) VALUES
+('01', 'ORAN', '31'),
+('02', 'Aïn El Turk', '31'),
+('03', 'Arzew', '31'),
+('04', 'Bethioua', '31'),
+('05', 'Es Sénia', '31'),
+('06', 'Bir El Djir', '31'),
+('07', 'Boutlélis', '31'),
+('08', 'Oued Tlelat', '31'),
+('09', 'Gdyel', '31');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `demande`
 --
 
@@ -168,15 +256,21 @@ INSERT INTO `natureprogramme` (`ID`, `NatureProgramme`) VALUES
 CREATE TABLE `programme` (
   `RefProgramme` varchar(50) NOT NULL,
   `NomProgramme` varchar(50) NOT NULL,
-  `Antenne` varchar(50) NOT NULL,
   `Site` varchar(50) NOT NULL,
   `Daira` varchar(50) NOT NULL,
   `Commune` varchar(50) NOT NULL,
   `NatureProgramme` varchar(50) NOT NULL,
   `TypeProgramme` varchar(50) NOT NULL,
-  `Nombre de biens` varchar(50) NOT NULL,
+  `NombreBiens` varchar(50) NOT NULL,
   `Superficie` decimal(50,4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `programme`
+--
+
+INSERT INTO `programme` (`RefProgramme`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`) VALUES
+('000001', '200 Logemment', 'ORAN', 'ORAN', 'ORAN', 'Terrain Industriel', 'Zone depot', '30', '22222220.2200');
 
 -- --------------------------------------------------------
 
@@ -205,6 +299,13 @@ CREATE TABLE `projet` (
   `NumRecu` varchar(50) NOT NULL,
   `DateRecu` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `projet`
+--
+
+INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
+('00001', 'AADL', '2151151', '', 'MABROUK', 'ORAN', 'ORAN', 'ORAN', '12123566.3200', 'MABROUK', 'ORAN', 'ORAN', 'ORAN', 'ORAN', 'ORAN', 'ORAN', '11200000.3600', '354168462', '01/12/2018');
 
 -- --------------------------------------------------------
 
