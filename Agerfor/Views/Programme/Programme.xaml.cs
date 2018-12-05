@@ -53,5 +53,41 @@ namespace Agerfor.Views.Programme
             AddProgramme AP = new AddProgramme(""); 
             NavigationService.Navigate(AP);
         }
+
+        private void BtnModifierProgramme_Click(object sender, RoutedEventArgs e)
+        {
+            AddProgramme AP = new AddProgramme(temprefprogramme);
+            AP.BtnAjouterProgramme.IsEnabled = false;
+            NavigationService.Navigate(AP);
+        }
+
+        private void BtnSuppProgramme_Click(object sender, RoutedEventArgs e)
+        {
+            if (temprefprogramme != "")
+            {
+                if (MessageBox.Show("Voulez-vous supprimer ce projet?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                {
+
+                    Programme P = new Programme("");
+                    NavigationService.Navigate(P);
+                }
+                else
+                {
+
+                    ProgrammeController PC = new ProgrammeController();
+                    PC.DeleteProgramme(temprefprogramme);
+                    Programme P = new Programme("");
+                    NavigationService.Navigate(P);
+                }
+
+            }
+
+
+            else
+            {
+                MessageBox.Show("Veuillez selectioner un projet", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
     }
 }

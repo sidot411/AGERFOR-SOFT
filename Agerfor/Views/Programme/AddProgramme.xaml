@@ -22,9 +22,16 @@
 
                 <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
-                    <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Informations programme</Label>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
+                            <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Informations programme</Label>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Projet</Label>
+                                <ComboBox x:Name="inputNomProjet" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner un projet"
+                          Height="35" BorderBrush="Red">
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Réf Programme</Label>
                         <TextBox x:Name="inputRefProgramme" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
@@ -84,13 +91,13 @@
                         </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
                                 <Button  x:Name="BtnAjouterProgramme" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterProgramme_Click"/>
-                                <Button  x:Name="BtnModifierProgramme" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button  x:Name="BtnSupprimerProgramme" Content="Supprimer" Height="35" Width="105" />
+                                <Button  x:Name="BtnModifierProgramme" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierProgramme_Click" />
+                                <Button  x:Name="BtnAnnulerProgramme" Content="Annuler" Height="35" Width="105" Click="BtnAnnulerProgramme_Click" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
 
-                                <Button  x:Name="BtnJoindreActe" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button  x:Name="BtnOuvrirActe" Content="Ouvrir Acte" Height="35" Width="105" />
+                                <Button  x:Name="BtnJoindreprogramme" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindreprogramme_Click" />
+                                <Button  x:Name="BtnOuvrirprogramme" Content="Ouvrir" Height="35" Width="105" Click="BtnOuvrirprogramme_Click"  />
                             </StackPanel>
                         </StackPanel>
                 </StackPanel>
@@ -136,14 +143,13 @@
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
-                            <Button  Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0"/>
-                            <Button  Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
-                            <Button  Content="Supprimer" Height="35" Width="105" />
+                            <Button  x:Name="BtnAjouterActeProgramme" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterActeProgramme_Click"/>
+                            <Button  x:Name="BtnModifierActeProgramme" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierActeProgramme_Click" />
+                            <Button  x:Name="BtnSupprimerActeProgramme" Content="Supprimer" Height="35" Width="105" Click="BtnSupprimerActeProgramme_Click" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
-
-                            <Button   Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
-                            <Button   Content="Ouvrir Acte" Height="35" Width="105" />
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
+                                <Button   x:Name="BtnJoindreActeProgramme" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindreActeProgramme_Click" />
+                            <Button  x:Name="BtnOuvrirActeProgramme" Content="Ouvrir Acte" Height="35" Width="105" Click="BtnOuvrirActeProgramme_Click"  />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
@@ -153,11 +159,11 @@
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="20" Opacity="0.2" />
                             </Border.Effect>
-                            <DataGrid x:Name="dataViewActeProjet" AutoGenerateColumns="False" BorderBrush="White"
+                            <DataGrid x:Name="datagridActeProgramme" AutoGenerateColumns="False" BorderBrush="White"
                         BorderThickness="0" 
                         AlternatingRowBackground="#F3F3F3"
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
-                        Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected">
+                        Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewActeProgramme_SelectionChanged">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num Acte" />
                                     <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date Acte" />

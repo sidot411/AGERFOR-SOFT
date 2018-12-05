@@ -24,9 +24,8 @@ namespace Agerfor.Views.Projet
         string RefProjet = "";
         string Query = "";
         string TempNumActe = "";
-        string TempDateActe = "";
-        string TempDateEnrgActe = "";
-        string TempDatePubliActe = "";
+ 
+  
 
         public AddProjet(string RefProjet)
         {
@@ -36,8 +35,7 @@ namespace Agerfor.Views.Projet
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             msh.FillDropDownList("select NomWilaya from wilaya",inputConservProjet, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya",inputWilayaProjet, "NomWilaya");
-            msh.FillDropDownList("select NomWilaya from wilaya",inputDairaProjet, "NomWilaya");
-            msh.FillDropDownList("select NomWilaya from wilaya",inputCommuneProjet, "NomWilaya");
+        
             this.RefProjet = RefProjet;
             if (RefProjet !="")
             {
@@ -94,7 +92,7 @@ namespace Agerfor.Views.Projet
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Query == "")
+            if (Query =="")
             {
                 msh.LoadData("select * from acteprojet where RefProjet='"+inputRefProjet.Text+"'", dataViewActeProjet);
             }
@@ -126,18 +124,35 @@ namespace Agerfor.Views.Projet
 
         private void dataViewActeProjet_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            string tempNumActeProgramme = "";
             DataGridCellInfo cell0 = dataViewActeProjet.SelectedCells[0];
-            TempNumActe = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
-            inputNumAct.Text = TempNumActe;
-            DataGridCellInfo cell1 = dataViewActeProjet.SelectedCells[1];
-            TempDateActe = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
-            inputDateActe.Text = TempDateActe;
-            DataGridCellInfo cell2 = dataViewActeProjet.SelectedCells[2];
-            TempDateEnrgActe = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
-            inputEnrgActe.Text = TempDateActe;
-            DataGridCellInfo cell3 = dataViewActeProjet.SelectedCells[3];
-            TempDatePubliActe = ((TextBlock)cell3.Column.GetCellContent(cell3.Item)).Text;
-            inputDatepubliActe.Text = TempDatePubliActe;
+            tempNumActeProgramme = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+
+            string query = "select * from acteprojet where NumActe =" + tempNumActeProgramme;
+            MySqlDataReader rdr = null;
+            MySqlConnection con = null;
+            MySqlCommand cmd = null;
+
+            con = new MySqlConnection(Database.ConnectionString);
+            con.Open();
+            cmd = new MySqlCommand(query);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            bool oneTime = true;
+            while (rdr.Read())
+            {
+
+                if (oneTime)
+                {
+                    inputNumAct.Text = rdr["NumActe"].ToString();
+                    inputDateActe.Text = rdr["DateActe"].ToString();
+                    inputEnrgActe.Text = rdr["DateEnrgActe"].ToString();
+                    inputDatepubliActe.Text = rdr["DatePubliActe"].ToString();
+                    inputConservProjet.Text = rdr["Conservation"].ToString();
+                    
+                    oneTime = false;
+                }
+            }
 
         }
 
@@ -207,7 +222,7 @@ namespace Agerfor.Views.Projet
 
         private void BtnUploadFiles_Click(object sender, RoutedEventArgs e)
         {
-            SelectFile("Document");
+            SelectFile("Document-Projet");
         }
         public void SelectFile(string theDirectory)
         {
@@ -270,6 +285,23 @@ namespace Agerfor.Views.Projet
         private void BtnJoindre_Click(object sender, RoutedEventArgs e)
         {
             SelectFile2("Acte");
+        }
+
+        private void inputWilayaProjet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            inputDairaProjet.Items.Clear();
+            msh.FillDropDownList("select NomDaira from wilaya,daira where NomWilaya='" +inputWilayaProjet.SelectedItem.ToString() + "'and daira.IdWilaya=wilaya.NumWilaya", inputDairaProjet, "NomDaira");
+
+        }
+
+
+
+        private void inputDairaProjet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            inputCommuneProjet.Items.Clear();
+            msh.FillDropDownList("select NomCommune from commune,daira where NomDaira='" + inputDairaProjet.SelectedItem.ToString() + "'and daira.IdDaira=commune.IdDaira", inputCommuneProjet, "NomCommune");
+
         }
     }
 

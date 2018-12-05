@@ -59,7 +59,7 @@
                         <TextBlock Text="Ajouter" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="BtnModifierProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3">
+                <Button x:Name="BtnModifierProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" Click="BtnModifierProgramme_Click">
                
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"
@@ -68,7 +68,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button x:Name="BtnSuppProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" >
+                <Button x:Name="BtnSuppProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" Click="BtnSuppProgramme_Click" >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
@@ -92,7 +92,6 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Binding="{Binding RefProgramme}" Header="Réf programme" />
                         <DataGridTextColumn Width="*" Binding="{Binding NomProgramme}" Header="Nom programme" />
-                        <DataGridTextColumn Width="*" Binding="{Binding Antenne}" Header="Antenne" />
                         <DataGridTextColumn Width="*" Binding="{Binding Site}" Header="Site" />
                         <DataGridTextColumn Width="*" Binding="{Binding Daira}" Header="Daira" />
                         <DataGridTextColumn Width="*" Binding="{Binding Commune}" Header="Commune" />

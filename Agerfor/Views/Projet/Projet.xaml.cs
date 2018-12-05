@@ -79,7 +79,9 @@ namespace Agerfor.Views.Projet
                     ProjetController PC = new ProjetController();
                     DirectoryCreator DC = new DirectoryCreator();   
                     ActeController AC = new ActeController();
+                    ProgrammeController PRC = new ProgrammeController();
                     DC.DeleteDirectory(@"Projet\" + tempRefProjet);
+                    PRC.DeleteProgrammeFromProjet(tempRefProjet);
                     AC.SupprimerActe2(tempRefProjet);
                     PC.DeleteProjet(tempRefProjet);  
                     MessageBox.Show("Le projet " + tempRefProjet + " à était bien supprimer");

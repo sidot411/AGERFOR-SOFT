@@ -40,14 +40,14 @@
                             <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Wilaya</Label>
                             <ComboBox x:Name="inputWilayaProjet" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner une wilaya"
-                          Height="35" BorderBrush="Red">
+                          Height="35" BorderBrush="Red" SelectionChanged="inputWilayaProjet_SelectionChanged" >
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                             <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Daira</Label>
                             <ComboBox x:Name="inputDairaProjet" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner une daira"
-                          Height="35" BorderBrush="Red">
+                          Height="35" BorderBrush="Red" SelectionChanged="inputDairaProjet_SelectionChanged">
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
