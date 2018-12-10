@@ -4,9 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Agerfor.Views.Programme"
-      mc:Ignorable="d" 
-      xml:lang="en-IN"
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"   
+      xml:lang="en-IN" 
+      xmlns:mydata="clr-namespace:SmarterDB.CodeProject.TestData;assembly=SmarterDB.CodeProject.TestData"    
+      xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  
       d:DesignHeight="2200" d:DesignWidth="1300" 
       xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
       Title="AddProgramme" Background="#E6EAED" Loaded="Page_Loaded" >
@@ -19,7 +21,13 @@
                 <notifications:NotificationArea x:Name="WindowArea2" Position="TopLeft" MaxItems="3"/>
             </StackPanel>
             <Grid VerticalAlignment="Top" Margin="0 10 0 20" HorizontalAlignment="Center" x:Name="GridProgramme">
-
+                <Grid.Resources >
+                    <myentry:NumericConverter x:Key="myconverter"/>
+                    <myentry:NumericToValueTypeConverter x:Key="mytypeconverter"/>
+                </Grid.Resources>
+                <Grid.DataContext>
+                    <mydata:TestDataModel></mydata:TestDataModel>
+                </Grid.DataContext>
                 <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
@@ -31,6 +39,7 @@
                           Height="35" BorderBrush="Red">
                                 </ComboBox>
                             </StackPanel>
+                            
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Réf Programme</Label>
                         <TextBox x:Name="inputRefProgramme" Background="#FAFAFA" Width="360" FontSize="18"
@@ -134,13 +143,15 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                             <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Conservation</Label>
-                            <TextBox x:Name="inputConservation" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                            <ComboBox x:Name="inputConservation" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Selectionner une conservation"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                             <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Frais Enrg</Label>
                             <TextBox x:Name="inputFrais" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
                             <Button  x:Name="BtnAjouterActeProgramme" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterActeProgramme_Click"/>
@@ -192,13 +203,16 @@
                             HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
                             </DatePicker>
                         </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Frais Divers</Label>
-                            <TextBox x:Name="inputFraisPLotir" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                            
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                            <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Frais Divers (D.A.)</Label>
+                                <TextBox x:Name="inputFraisPLotir" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" />
+                                
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+   <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                             <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre Ilot</Label>
                             <TextBox x:Name="inputNbrIlot" Background="#FAFAFA" Width="120" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
@@ -206,45 +220,46 @@
                             <TextBox x:Name="inputNbrLots"  Background="#FAFAFA" Width="120" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie cessible globale</Label>
-                            <TextBox x:Name="inputSuperficieGlobal" Background="#FAFAFA" Width="360" FontSize="18"
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right" >
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie cessible globale (m²)</Label>
+                                <TextBox x:Name="inputSuperficieGlobal" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie voiries</Label>
-                            <TextBox x:Name="inputSuperficieViries" Background="#FAFAFA" Width="360" FontSize="18"
+                          
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie voiries (m²)</Label>
+                                <TextBox   x:Name="inputSuperficieVoiries" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
                         </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie espace vert</Label>
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie espace vert (m²)</Label>
                                 <TextBox x:Name="inputSuperficieEspaceVert" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie equipements</Label>
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie equipements (m²)</Label>
                                 <TextBox x:Name="inputSuperficieEquipements" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie aménagement</Label>
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie aménagement (m²)</Label>
                                 <TextBox  x:Name="inputSuperficieAmenagement" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Autres superficie</Label>
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Autres superficie (m²)</Label>
                                 <TextBox x:Name="inputAutresSuperficie" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
-                            <Button  x:Name="BtnAjouterPLotir" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0"/>
-                            <Button  x:Name="BtnModifierPLotir" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
-                            <Button  x:Name="BtnSupprimerPLotir" Content="Supprimer" Height="35" Width="105" />
+                            <Button  x:Name="BtnAjouterPLotir" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterPLotir_Click"/>
+                            <Button  x:Name="BtnModifierPLotir" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierPLotir_Click" />
+                            <Button  x:Name="BtnSupprimerPLotir" Content="Supprimer" Height="35" Width="105" Click="BtnSupprimerPLotir_Click" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
 
-                            <Button  x:Name="BtnJoindrePLotir" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
-                            <Button  x:Name="BtnOuvrirPLotir" Content="Ouvrir Acte" Height="35" Width="105" />
+                            <Button  x:Name="BtnJoindrePLotir" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindrePLotir_Click" />
+                            <Button  x:Name="BtnOuvrirPLotir" Content="Ouvrir Acte" Height="35" Width="105" Click="BtnOuvrirPLotir_Click" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
@@ -258,12 +273,12 @@
                         BorderThickness="0" 
                         AlternatingRowBackground="#F3F3F3"
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
-                        Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected" x:Name="DataGridPLotir">
+                        Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected" x:Name="DataGridPLotir" SelectionChanged="DataGridPLotir_SelectionChanged">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn  Width="*" Binding="{Binding NumActe}" Header="Num Permis de lotir" />
-                                        <DataGridTextColumn  Width="*" Binding="{Binding DateActe}" Header="Date Permis de lotir" />
-                                        <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Date Enrg " />
-                                        <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date Publication" />
+                                        <DataGridTextColumn  Width="*" Binding="{Binding NumPL}" Header="Num PL" />
+                                        <DataGridTextColumn  Width="*" Binding="{Binding DatePL}" Header="Date PL" />
+                                        <DataGridTextColumn  Width="*" Binding="{Binding FraisDiver}" Header="Frais(D.A.) " />
+                                        <DataGridTextColumn  Width="*" Binding="{Binding SuperficieCG}" Header="SuperficieCG(m²)" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Border>
@@ -364,7 +379,7 @@
                         BorderThickness="0" 
                         AlternatingRowBackground="#F3F3F3"
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
-                        Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected" x:Name="DataGridPConstruire">
+                        Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected" x:Name="DataGridPConstruire" >
                                         <DataGrid.Columns>
                                             <DataGridTextColumn  Width="*" Binding="{Binding NumActe}" Header="Num Permis de lotir" />
                                             <DataGridTextColumn  Width="*" Binding="{Binding DateActe}" Header="Date Permis de lotir" />

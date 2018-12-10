@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 03 Décembre 2018 à 14:02
+-- Généré le :  Lun 10 Décembre 2018 à 14:36
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -33,8 +33,19 @@ CREATE TABLE `acteprogramme` (
   `DatePubliActe` varchar(50) NOT NULL,
   `Conservation` varchar(50) NOT NULL,
   `FraisEnrg` decimal(50,4) DEFAULT NULL,
-  `RefProgramme` varchar(50) NOT NULL
+  `RefProgramme` varchar(50) NOT NULL,
+  `NomProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `acteprogramme`
+--
+
+INSERT INTO `acteprogramme` (`NumActe`, `DateActe`, `DateEnrgActe`, `DatePubliActe`, `Conservation`, `FraisEnrg`, `RefProgramme`, `NomProjet`) VALUES
+('0000001', '10/12/2018', '10/12/2018', '10/12/2018', 'Oran ouest', '12000.0000', '', ''),
+('000001', '10/12/2018', '10/12/2018', '12/12/2018', 'Oran ouest', '12000.0000', '000001', 'ADL'),
+('00001', '10/12/2018', '10/12/2018', '10/12/2018', 'ES senia', '3000.0000', '00003', 'ADL'),
+('000001', '10/12/2018', '10/12/2018', '10/12/2018', 'ES senia', '12220.3300', '00000001', 'ADL');
 
 -- --------------------------------------------------------
 
@@ -51,16 +62,12 @@ CREATE TABLE `acteprojet` (
   `RefProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `antenne`
+-- Contenu de la table `acteprojet`
 --
 
-CREATE TABLE `antenne` (
-  `ID` int(11) NOT NULL,
-  `NomAntenne` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+INSERT INTO `acteprojet` (`NumActe`, `DateActe`, `DateEnrgActe`, `DatePubliActe`, `Conservation`, `RefProjet`) VALUES
+('122220', '10/12/2018', '10/12/2018', '10/12/2018', 'Oran ouest', '0000001');
 
 -- --------------------------------------------------------
 
@@ -177,6 +184,31 @@ INSERT INTO `commune` (`IdCommune`, `NomCommune`, `IdDaira`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `conservation`
+--
+
+CREATE TABLE `conservation` (
+  `IdConservation` int(5) NOT NULL,
+  `NomConservation` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `conservation`
+--
+
+INSERT INTO `conservation` (`IdConservation`, `NomConservation`) VALUES
+(1, 'Oran ouest'),
+(2, 'Oran est'),
+(3, 'ES senia'),
+(4, 'Ain Turk'),
+(5, 'Bir el djir'),
+(6, 'Arzew'),
+(7, 'oued Tlilet'),
+(8, 'Bir el djir');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `daira`
 --
 
@@ -250,10 +282,33 @@ INSERT INTO `natureprogramme` (`ID`, `NatureProgramme`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `permilotir`
+--
+
+CREATE TABLE `permilotir` (
+  `NumPL` varchar(50) NOT NULL,
+  `DatePL` varchar(50) NOT NULL,
+  `FraisDiver` decimal(50,2) NOT NULL,
+  `NbrIlot` varchar(50) NOT NULL,
+  `NbrLots` varchar(50) NOT NULL,
+  `SuperficieCG` decimal(50,2) NOT NULL,
+  `SuperficieVoiries` decimal(50,2) NOT NULL,
+  `SuperficieEV` decimal(50,2) NOT NULL,
+  `SuperficieEquip` decimal(50,2) NOT NULL,
+  `SuperficieAmenag` decimal(50,2) NOT NULL,
+  `AutreSupercie` decimal(50,2) NOT NULL,
+  `RefProgramme` varchar(50) NOT NULL,
+  `NomProjet` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `programme`
 --
 
 CREATE TABLE `programme` (
+  `NomProjet` varchar(50) NOT NULL,
   `RefProgramme` varchar(50) NOT NULL,
   `NomProgramme` varchar(50) NOT NULL,
   `Site` varchar(50) NOT NULL,
@@ -269,8 +324,8 @@ CREATE TABLE `programme` (
 -- Contenu de la table `programme`
 --
 
-INSERT INTO `programme` (`RefProgramme`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`) VALUES
-('000001', '200 Logemment', 'ORAN', 'ORAN', 'ORAN', 'Terrain Industriel', 'Zone depot', '30', '22222220.2200');
+INSERT INTO `programme` (`NomProjet`, `RefProgramme`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`) VALUES
+('ADL', '00000001', '200 LOGEMENT', 'ORAN', 'Es Sénia', 'Es Senia', 'Logement', 'Lpa', '200', '3000.0000');
 
 -- --------------------------------------------------------
 
@@ -299,13 +354,6 @@ CREATE TABLE `projet` (
   `NumRecu` varchar(50) NOT NULL,
   `DateRecu` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `projet`
---
-
-INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
-('00001', 'AADL', '2151151', '', 'MABROUK', 'ORAN', 'ORAN', 'ORAN', '12123566.3200', 'MABROUK', 'ORAN', 'ORAN', 'ORAN', 'ORAN', 'ORAN', 'ORAN', '11200000.3600', '354168462', '01/12/2018');
 
 -- --------------------------------------------------------
 
@@ -371,16 +419,16 @@ INSERT INTO `wilaya` (`NumWilaya`, `NomWilaya`) VALUES
 --
 
 --
--- Index pour la table `antenne`
---
-ALTER TABLE `antenne`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Index pour la table `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Index pour la table `conservation`
+--
+ALTER TABLE `conservation`
+  ADD KEY `IdConservation` (`IdConservation`);
 
 --
 -- Index pour la table `demande`
@@ -405,15 +453,15 @@ ALTER TABLE `typeprogramme`
 --
 
 --
--- AUTO_INCREMENT pour la table `antenne`
---
-ALTER TABLE `antenne`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
   MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `conservation`
+--
+ALTER TABLE `conservation`
+  MODIFY `IdConservation` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `demande`
 --

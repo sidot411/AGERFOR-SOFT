@@ -5,12 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Agerfor.Views.Projet"
       mc:Ignorable="d" 
-      xml:lang="en-IN"
+      xml:lang="en-IN" 
+      xmlns:mydata="clr-namespace:SmarterDB.CodeProject.TestData;assembly=SmarterDB.CodeProject.TestData"    
+      xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="1020" d:DesignWidth="1120" 
       Title="AddProjet" Background="#E6EAED" Loaded="Page_Loaded">
     <ScrollViewer>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.Resources >
+                <myentry:NumericConverter x:Key="myconverter"/>
+                <myentry:NumericToValueTypeConverter x:Key="mytypeconverter"/>
+            </Grid.Resources>
+            <Grid.DataContext>
+                <mydata:TestDataModel></mydata:TestDataModel>
+            </Grid.DataContext>
             <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical" >
                         <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Informations Projet</Label>
@@ -100,7 +109,10 @@
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Prix(D.A.)</Label>
                         <TextBox x:Name="inputPrix" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" />
+                        
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Num Reçu</Label>

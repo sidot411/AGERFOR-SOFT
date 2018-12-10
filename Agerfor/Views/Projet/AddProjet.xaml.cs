@@ -33,7 +33,7 @@ namespace Agerfor.Views.Projet
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            msh.FillDropDownList("select NomWilaya from wilaya",inputConservProjet, "NomWilaya");
+            msh.FillDropDownList("select NomConservation from conservation",inputConservProjet, "NomConservation");
             msh.FillDropDownList("select NomWilaya from wilaya",inputWilayaProjet, "NomWilaya");
         
             this.RefProjet = RefProjet;
@@ -104,9 +104,10 @@ namespace Agerfor.Views.Projet
 
         private void BtnAjouterProjet_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            DirectoryCreator dcr = new DirectoryCreator();
-            dcr.CreateDirectory(inputRefProjet.Text);
+    
             
+            DirectoryCreator dcr = new DirectoryCreator();
+            dcr.CreateDirectory(inputRefProjet.Text);     
             PC.AjouterProjet(inputRefProjet.Text, inputNomProjet.Text, inputVolProjet.Text, inputConservProjet.Text, inputVendeurProjet.Text, inputWilayaProjet.Text, inputDairaProjet.Text, inputCommuneProjet.Text, decimal.Parse(inputSuperficieProjet.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text, inputLimitNord.Text, inputLimitEst.Text, inputLimitOuest.Text, inputLimitSud.Text, decimal.Parse(inputPrix.Text), inputNumReçu.Text, inputDateRecu.Text); 
             AddProjet Addprojet = new AddProjet("");
             this.NavigationService.Navigate(Addprojet);

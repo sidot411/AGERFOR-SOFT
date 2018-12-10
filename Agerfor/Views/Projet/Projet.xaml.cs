@@ -14,6 +14,7 @@ namespace Agerfor.Views.Projet
         MySqlHelper msh = new MySqlHelper();
         string tempRefProjet = "";
         string Query = "";
+        string tempnomprojet = "";
         public Projet(string Query)
         {
             InitializeComponent();
@@ -55,6 +56,9 @@ namespace Agerfor.Views.Projet
             {
                 DataGridCellInfo cell0 = dataGridView2.SelectedCells[0];
                 tempRefProjet = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+                DataGridCellInfo cell1 = dataGridView2.SelectedCells[1];
+                tempnomprojet = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
+
             }
             catch (Exception)
             {
@@ -80,7 +84,11 @@ namespace Agerfor.Views.Projet
                     DirectoryCreator DC = new DirectoryCreator();   
                     ActeController AC = new ActeController();
                     ProgrammeController PRC = new ProgrammeController();
+                    PermiLotirController PLC = new PermiLotirController();
+                    ActeProgrammeController APC = new ActeProgrammeController(); 
                     DC.DeleteDirectory(@"Projet\" + tempRefProjet);
+                    APC.SupprimerActeFromProjet(tempnomprojet);
+                    PLC.SupprimerPLFromProjet(tempnomprojet);
                     PRC.DeleteProgrammeFromProjet(tempRefProjet);
                     AC.SupprimerActe2(tempRefProjet);
                     PC.DeleteProjet(tempRefProjet);  

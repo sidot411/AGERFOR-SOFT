@@ -44,11 +44,11 @@ namespace Agerfor.Controlers
                 MessageBox.Show("L'Acte n'à pas était supprimé");
             }
         }
-        public void SupprimerActeFromProjet(string RefProjet)
+        public void SupprimerActeFromProjet(string NomProjet)
         {
             try
             {
-                msh.ExecuteQuery("delete from acteprogramme where RefProjet = '" + RefProjet + "'");
+                msh.ExecuteQuery("delete from acteprogramme where RefProjet = '" + NomProjet + "'");
                 MessageBox.Show("L'Acte à était bien supprimé");
             }
             catch (Exception)
@@ -56,6 +56,19 @@ namespace Agerfor.Controlers
                 MessageBox.Show("L'Acte n'à pas était supprimé");
             }
         }
+        public void SupprimerActeFromProgramme(string RefProgramme)
+        {
+            try
+            {
+                msh.ExecuteQuery("delete from acteprogramme where RefProjet = '" + RefProgramme + "'");
+                MessageBox.Show("L'Acte à était bien supprimé");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("L'Acte n'à pas était supprimé");
+            }
+        }
+      
     }
 }
 

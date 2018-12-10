@@ -36,6 +36,10 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="CurrencyTextBoxControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CurrencyTextBox.1.4.3\lib\CurrencyTextBoxControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
       <Private>True</Private>
@@ -51,6 +55,12 @@
     <Reference Include="Notifications.Wpf, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Notifications.Wpf.0.1.1\lib\net45\Notifications.Wpf.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="SmarterDB.CodeProject.DataEntry">
+      <HintPath>..\Convert\SmarterDB.CodeProject.DataEntry.Binary\SmarterDB.CodeProject.DataEntry.dll</HintPath>
+    </Reference>
+    <Reference Include="SmarterDB.CodeProject.TestData">
+      <HintPath>..\Convert\SmarterDB.CodeProject.DataEntry.Binary\SmarterDB.CodeProject.TestData.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -79,6 +89,7 @@
     <Compile Include="Controlers\DemandeController.cs" />
     <Compile Include="Controlers\DirectoryCreator.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
+    <Compile Include="Controlers\PermiLotirController.cs" />
     <Compile Include="Controlers\ProgrammeController.cs" />
     <Compile Include="Controlers\ProjetController.cs" />
     <Compile Include="Views\Clients\AddClient.xaml.cs">
@@ -211,7 +222,6 @@
       <Name>DbConnection</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

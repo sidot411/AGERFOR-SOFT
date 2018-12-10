@@ -19,12 +19,16 @@ namespace Agerfor.Views.Programme
     /// </summary>
     public partial class AddProgramme : Page
     {
+
+      
         ProgrammeController PC = new ProgrammeController();
         ActeProgrammeController APC = new ActeProgrammeController();
+        PermiLotirController PLC = new PermiLotirController();
         string RefProgramme = "";
         string Query = "";
         string tempNumActeProgramme = "";
         string tempnumprojet = "";
+        string tempNumPL = "";
         /*string tempDateActeProgramme = "";
         string tempDateEnregActe = "";
         string tempDatePubliActe = "";
@@ -43,7 +47,7 @@ namespace Agerfor.Views.Programme
             msh.FillDropDownList("select NatureProgramme from natureprogramme", inputNatureProgramme, "NatureProgramme");
             msh.FillDropDownList("select NomDaira from daira", inputDairaProgramme, "NomDaira");
             msh.FillDropDownList("select NomProjet from projet", inputNomProjet, "NomProjet");
-
+            msh.FillDropDownList("select NomConservation from conservation", inputConservation, "NomConservation");
 
 
             var timer = new System.Timers.Timer { Interval = 3000 };
@@ -164,6 +168,7 @@ namespace Agerfor.Views.Programme
             {
                 msh.LoadData(Query, datagridActeProgramme);
             }
+            msh.LoadData("select * from permilotir", DataGridPLotir);
 
             if (RefProgramme != "" && inputNatureProgramme.Text != "" && inputTypeProgramme.Text != "")
             {
@@ -319,6 +324,7 @@ namespace Agerfor.Views.Programme
         private void BtnAjouterActeProgramme_Click(object sender, RoutedEventArgs e)
 
         {
+            
             string Acte = "Acte";
             getrefprojet();
             DirectoryCreator DC = new DirectoryCreator();
@@ -372,6 +378,9 @@ namespace Agerfor.Views.Programme
 
         private void BtnSupprimerActeProgramme_Click(object sender, RoutedEventArgs e)
         {
+
+            DirectoryCreator DC = new DirectoryCreator();
+            DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\Acte\" + tempNumActeProgramme);
             APC.SupprimerActe(tempNumActeProgramme);
             AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
             NavigationService.Navigate(AP);
@@ -439,8 +448,112 @@ namespace Agerfor.Views.Programme
                 System.Windows.MessageBox.Show("aucun fichier selectionner");
             }
             }
+
+        private void BtnAjouterPLotir_Click(object sender, RoutedEventArgs e)
+        {
+            string PermisLotir = "PermisLotir";
+            getrefprojet();
+            DirectoryCreator DC = new DirectoryCreator();
+            DC.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text + "/" + PermisLotir + "/" + inputNumLotir.Text);
+            PLC.AjouterPL(inputNumLotir.Text, inputDatePLotir.Text, decimal.Parse(inputFraisPLotir.Text),inputNbrIlot.Text,inputNbrLots.Text,decimal.Parse(inputSuperficieGlobal.Text),decimal.Parse(inputSuperficieVoiries.Text),decimal.Parse(inputSuperficieEspaceVert.Text),decimal.Parse(inputSuperficieEquipements.Text),decimal.Parse(inputSuperficieAmenagement.Text),decimal.Parse(inputAutresSuperficie.Text),inputRefProgramme.Text,inputNomProjet.Text);
+            AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
+            NavigationService.Navigate(AP);
+        }
+
+        private void BtnModifierPLotir_Click(object sender, RoutedEventArgs e)
+        {
+            PLC.EditerPL(inputNumLotir.Text, inputDatePLotir.Text, decimal.Parse(inputFraisPLotir.Text), inputNbrIlot.Text, inputNbrLots.Text, decimal.Parse(inputSuperficieGlobal.Text), decimal.Parse(inputSuperficieVoiries.Text), decimal.Parse(inputSuperficieEspaceVert.Text), decimal.Parse(inputSuperficieEquipements.Text), decimal.Parse(inputSuperficieAmenagement.Text), decimal.Parse(inputAutresSuperficie.Text), inputRefProgramme.Text, inputNomProjet.Text, tempNumPL);
+            AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
+            NavigationService.Navigate(AP);
+        }
+
+        private void DataGridPLotir_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGridCellInfo cell0 = DataGridPLotir.SelectedCells[0];
+            tempNumPL = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+
+            string query = "select * from permilotir where NumPL =" + tempNumPL;
+            MySqlDataReader rdr = null;
+            MySqlConnection con = null;
+            MySqlCommand cmd = null;
+
+            con = new MySqlConnection(Database.ConnectionString);
+            con.Open();
+            cmd = new MySqlCommand(query);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            bool oneTime = true;
+            while (rdr.Read())
+            {
+
+                if (oneTime)
+                {
+                    inputNumLotir.Text = rdr["NumPL"].ToString();
+                    inputDatePLotir.Text = rdr["DatePL"].ToString();
+                    inputFraisPLotir.Text = rdr["FraisDiver"].ToString();
+                    inputNbrIlot.Text = rdr["NbrIlot"].ToString();
+                    inputNbrLots.Text = rdr["NbrLots"].ToString();
+                    inputSuperficieGlobal.Text = rdr["SuperficieCG"].ToString();
+                    inputSuperficieVoiries.Text = rdr["SuperficieVoiries"].ToString();
+                    inputSuperficieEspaceVert.Text = rdr["SuperficieEV"].ToString();
+                    inputSuperficieEquipements.Text = rdr["SuperficieEquip"].ToString();
+                    inputSuperficieAmenagement.Text = rdr["SuperficieAmenag"].ToString();
+                    inputAutresSuperficie.Text = rdr["AutreSupercie"].ToString();
+                    oneTime = false;
+                }
+            }
+        }
+
+        private void BtnSupprimerPLotir_Click(object sender, RoutedEventArgs e)
+        {
+
+            DirectoryCreator DC = new DirectoryCreator();
+            DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\PermisLotir\" + inputNumLotir.Text);
+            PLC.SupprimerPL(tempNumPL);
+            AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
+            NavigationService.Navigate(AP);
+
+        }
+
+        private void BtnOuvrirPLotir_Click(object sender, RoutedEventArgs e)
+        {
+            getrefprojet();
+            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\PermisLotir\" + inputNumLotir.Text;
+            System.Windows.MessageBox.Show(folderPath);
+            OpenFolder(folderPath);
+        }
+
+        private void BtnJoindrePLotir_Click(object sender, RoutedEventArgs e)
+        {
+            SelectFile3("Document Permis lotir");
+        }
+        public void SelectFile3(string theDirectory)
+        {
+            getrefprojet();
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\PermisLotir\" + inputNumLotir.Text + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
+                dcr.CreateDirectoryPerisLotir(tempnumprojet, inputRefProgramme.Text, inputNumLotir.Text + "/" + theDirectory);
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+
+                File.Copy(fileName, Path.Combine(Path.GetDirectoryName(fileName), destinationFolder));
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
         }
     }
+    }
+    
 
     
 

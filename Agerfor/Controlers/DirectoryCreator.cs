@@ -119,6 +119,36 @@ namespace Agerfor.Controlers
             return path;
 
         }
+
+        public string CreateDirectoryPerisLotir(string refprojet, string refprogramme, string numpermislotir)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + refprojet + @"\Programme\" + refprogramme + @"\PermisLotir\" + numpermislotir;
+
+            try
+            {
+                // Determine whether the directory exists.
+                if (Directory.Exists(path))
+                {
+                    Console.WriteLine("That path exists already.");
+                    return "";
+                }
+
+                // Try to create the directory.
+                DirectoryInfo di = Directory.CreateDirectory(path);
+                Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
+            finally
+            {
+            }
+
+            return path;
+
+        }
         public void DeleteDirectory(string name)
     {
         string path = Directory.GetCurrentDirectory()+@"\" + name;
