@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         BorderBrush="Transparent"
-        Title="Agerfor" Height="780" Width="1360" Icon="icon.ico">
+        Title="Agerfor" Height="780" Width="1360" Icon="icon.ico" Loaded="Page_Loaded">
 
     <materialDesign:DialogHost>
         <Grid>
@@ -28,12 +28,13 @@
                 <ColumnDefinition Width="110" />
                 <ColumnDefinition Width="650*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Background="#2B91C5">
+            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Background="#007CC3">
                 
             </Grid>
-            <Grid Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Background="#2B91C5">
+            <Grid Grid.Row="2" Grid.Column="0" Grid.RowSpan="2" Background="#007CC3">
                 <StackPanel Orientation="Vertical">
-                    <Button VerticalAlignment="Top" Height="70" Background="Transparent" BorderThickness="0" Margin="0 0 0 0">
+                    <Button Background="#007CC3" x:Name="BtnTableauDeBord" VerticalAlignment="Top" Height="70" Background="Transparent"  Margin="0 0 0 0" BorderThickness="5 0 0 0" BorderBrush="White">
+                        
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="Speedometer" Width="35" Height="35"
                                        VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
@@ -42,7 +43,8 @@
                          Height="18" />
                         </StackPanel>
                     </Button>
-                    <Button x:Name="BtnProjet" VerticalAlignment="Top" Height="75" Background="Transparent" BorderThickness="0" Margin="0 0 0 5" Click="BtnProjet_Click">
+
+                    <Button Background="#007CC3" x:Name="BtnProjet" VerticalAlignment="Top" Height="75" Background="Transparent"  Click="BtnProjet_Click" BorderThickness="5 0 0 0" BorderBrush="White">
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="Building" Width="35" Height="35"
                                        VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
@@ -50,7 +52,7 @@
 
                         </StackPanel>
                     </Button>
-                    <Button x:Name="BtnProgramme" VerticalAlignment="Top" Height="75" Background="Transparent" BorderThickness="0" Margin="0 0 0 5" HorizontalAlignment="Left" Width="110" Click="BtnProgramme_Click">
+                    <Button Background="#007CC3" x:Name="BtnProgramme" VerticalAlignment="Top" Height="75" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White" HorizontalAlignment="Left" Width="110" Click="BtnProgramme_Click">
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="HouseModern" Width="35" Height="35"
                                        VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
@@ -58,7 +60,7 @@
                             
                         </StackPanel>
                     </Button>
-                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0" x:Name="BtnClient" Click="BtnClient_Click">
+                    <Button Background="#007CC3" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White" x:Name="BtnClient" Click="BtnClient_Click">
 
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
@@ -69,7 +71,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="BtnDemande" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0" Click="BtnDemande_Click"  >
+                    <Button Background="#007CC3" x:Name="BtnDemande" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White" Click="BtnDemande_Click"  >
                 
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="File" Width="35" Height="35"
@@ -78,7 +80,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0">
+                    <Button Background="#007CC3" x:Name="BtnAttribution" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White">
 
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="assignment" Width="35" Height="35"
@@ -86,7 +88,7 @@
                             <TextBlock Text="Attributions" VerticalAlignment="Center" Height="18" />
                         </StackPanel>
                     </Button>
-                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0">
+                    <Button Background="#007CC3" x:Name="BtnVerssement" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White">
 
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="Cash" Width="35" Height="35"
@@ -94,7 +96,7 @@
                             <TextBlock Text="Versements" VerticalAlignment="Center" Height="18" />
                         </StackPanel>
                     </Button>
-                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0"
+                    <Button Background="#007CC3" x:Name="BtnRembourssement" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White"
                   >
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="CashRefund" Width="35" Height="35"
@@ -102,7 +104,7 @@
                             <TextBlock Text="Remboursements" VerticalAlignment="Center" Height="18" />
                         </StackPanel>
                     </Button>
-                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0"
+                    <Button Background="#007CC3" x:Name="BtnRecapulatif" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White"
                  >
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="FileFind" Width="35" Height="35"
@@ -110,7 +112,7 @@
                             <TextBlock Text="Recapulatif" VerticalAlignment="Center" Height="18" />
                         </StackPanel>
                     </Button>
-                    <Button VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="0"
+                    <Button Background="#007CC3" x:Name="BtnCloture" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White"
                   >
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="lock" Width="35" Height="35"
@@ -126,25 +128,25 @@
                    VerticalAlignment="Center" Foreground="#666666" />
                 
                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
-                    <materialDesign:PackIcon Margin="0 0 10 0" Kind="Account" Foreground="#2B91C5" Width="25" Height="25"
+                    <materialDesign:PackIcon Margin="0 0 10 0" Kind="Account" Foreground="#007CC3" Width="25" Height="25"
                                    VerticalAlignment="Center" />
-                    <TextBlock Text="Admin" Foreground="#2B91C5" VerticalAlignment="Center" FontSize="22" />
-                    <materialDesign:PopupBox Foreground="#2B91C5" VerticalAlignment="Center"
+                    <TextBlock Text="Admin" Foreground="#007CC3" VerticalAlignment="Center" FontSize="22" />
+                    <materialDesign:PopupBox Foreground="#007CC3" VerticalAlignment="Center"
                                    PlacementMode="BottomAndAlignRightEdges" HorizontalAlignment="Right" Margin="5"
                                    StaysOpen="False">
                         <StackPanel Width="150">
-                            <Button Content="Utilisateur" />
-                            <Button x:Name="Réglage"  Content="Settings" />
+                            <Button Background="#007CC3" Content="Utilisateur" />
+                            <Button Background="#007CC3" x:Name="Réglage"  Content="Settings" />
                             <Separator />
-                            <Button x:Name="ScreenSize" Content="Plain Écran" Click="FullScreen_Click" />
-                            <Button x:Name="Sortir" Content="Exit" Click="Exit_Click" />
+                            <Button Background="#007CC3" x:Name="ScreenSize" Content="Plain Écran" Click="FullScreen_Click" />
+                            <Button Background="#007CC3" x:Name="Sortir" Content="Exit" Click="Exit_Click" />
                         </StackPanel>
                     </materialDesign:PopupBox>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Background="#E6EAED">
                 <Frame x:Name="Frame" />
-            </Grid>
+                     </Grid>
         </Grid>
     </materialDesign:DialogHost>
 </Window>

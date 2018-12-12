@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 10 Décembre 2018 à 14:36
+-- Généré le :  Mer 12 Décembre 2018 à 14:42
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -45,7 +45,8 @@ INSERT INTO `acteprogramme` (`NumActe`, `DateActe`, `DateEnrgActe`, `DatePubliAc
 ('0000001', '10/12/2018', '10/12/2018', '10/12/2018', 'Oran ouest', '12000.0000', '', ''),
 ('000001', '10/12/2018', '10/12/2018', '12/12/2018', 'Oran ouest', '12000.0000', '000001', 'ADL'),
 ('00001', '10/12/2018', '10/12/2018', '10/12/2018', 'ES senia', '3000.0000', '00003', 'ADL'),
-('000001', '10/12/2018', '10/12/2018', '10/12/2018', 'ES senia', '12220.3300', '00000001', 'ADL');
+('0000003', '10/12/2018', '10/12/2018', '10/12/2018', 'Oran ouest', '12000.0000', '00000001', 'ADL'),
+('0000002', '10/12/2018', '10/12/2018', '10/12/2018', 'Oran ouest', '12000.0000', '00000001', 'ADL');
 
 -- --------------------------------------------------------
 
@@ -301,6 +302,46 @@ CREATE TABLE `permilotir` (
   `NomProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `permilotir`
+--
+
+INSERT INTO `permilotir` (`NumPL`, `DatePL`, `FraisDiver`, `NbrIlot`, `NbrLots`, `SuperficieCG`, `SuperficieVoiries`, `SuperficieEV`, `SuperficieEquip`, `SuperficieAmenag`, `AutreSupercie`, `RefProgramme`, `NomProjet`) VALUES
+('00001', '11/12/2018', '12000.00', '60', '62', '1200.36', '100.00', '100.00', '100.00', '100.00', '100.00', '000001', 'LPA');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `permisdeconstruire`
+--
+
+CREATE TABLE `permisdeconstruire` (
+  `NumPermis` varchar(50) NOT NULL,
+  `DatePermisC` varchar(50) NOT NULL,
+  `FraisDivers` decimal(50,2) NOT NULL,
+  `NbrLog` varchar(50) NOT NULL,
+  `SupLog` decimal(50,2) NOT NULL,
+  `NbrLoc` varchar(50) NOT NULL,
+  `SupLoc` decimal(50,2) NOT NULL,
+  `NbrBur` varchar(50) NOT NULL,
+  `SupBur` decimal(50,2) NOT NULL,
+  `NbrCave` varchar(50) NOT NULL,
+  `SupCave` decimal(50,2) NOT NULL,
+  `NbrCC` varchar(50) NOT NULL,
+  `SupCC` decimal(50,2) NOT NULL,
+  `NbrPS` varchar(50) NOT NULL,
+  `SupPS` decimal(50,2) NOT NULL,
+  `RefProgramme` varchar(50) NOT NULL,
+  `NomProjet` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `permisdeconstruire`
+--
+
+INSERT INTO `permisdeconstruire` (`NumPermis`, `DatePermisC`, `FraisDivers`, `NbrLog`, `SupLog`, `NbrLoc`, `SupLoc`, `NbrBur`, `SupBur`, `NbrCave`, `SupCave`, `NbrCC`, `SupCC`, `NbrPS`, `SupPS`, `RefProgramme`, `NomProjet`) VALUES
+('0000002', '12/12/2018', '12000.00', '60', '60.00', '60', '60.00', '60', '60.00', '60', '60.00', '60', '60.00', '60', '60.00', '000001', 'LPA');
+
 -- --------------------------------------------------------
 
 --
@@ -325,7 +366,7 @@ CREATE TABLE `programme` (
 --
 
 INSERT INTO `programme` (`NomProjet`, `RefProgramme`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`) VALUES
-('ADL', '00000001', '200 LOGEMENT', 'ORAN', 'Es Sénia', 'Es Senia', 'Logement', 'Lpa', '200', '3000.0000');
+('LPA', '000001', '200 LOGEMENT', 'ORAN', 'ORAN', 'Oran', 'Logement', 'Lpa', '200', '2223.3300');
 
 -- --------------------------------------------------------
 
@@ -354,6 +395,13 @@ CREATE TABLE `projet` (
   `NumRecu` varchar(50) NOT NULL,
   `DateRecu` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `projet`
+--
+
+INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
+('000001', 'LPA', '0000223', '', 'MABROUK', 'ORAN', 'Es Sénia', 'Es Senia', '100000.3300', 'MABROUK', 'BT36 N° 2 USTO', '0556321458', 'USTO', 'USTO', 'USTO', 'USTO', '1222.0000', '122336669', '12/12/2018');
 
 -- --------------------------------------------------------
 

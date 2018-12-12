@@ -30,6 +30,11 @@ namespace Agerfor
         {
             InitializeComponent();
         }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            BtnClient.BorderThickness = BtnDemande.BorderThickness = BtnProgramme.BorderThickness = BtnProjet.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness=BtnVerssement.BorderThickness = BtnAttribution.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
+        }
+
 
         private void FullScreen_Click(object sender, RoutedEventArgs e)
         {
@@ -64,6 +69,8 @@ namespace Agerfor
 
         private void BtnClient_Click(object sender, RoutedEventArgs e)
         {
+            BtnDemande.BorderThickness = BtnProjet.BorderThickness = BtnProgramme.BorderThickness = BtnTableauDeBord.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness = BtnVerssement.BorderThickness = BtnAttribution.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
+            BtnClient.BorderThickness = new Thickness(5, 0, 0, 0);
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             Frame.Navigate(new Client(""));
             currentWindow.Text = "Clients";
@@ -74,6 +81,8 @@ namespace Agerfor
 
         private void BtnDemande_Click(object sender, RoutedEventArgs e)
         {
+            BtnClient.BorderThickness = BtnProjet.BorderThickness = BtnProgramme.BorderThickness = BtnTableauDeBord.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness = BtnVerssement.BorderThickness = BtnAttribution.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
+            BtnDemande.BorderThickness = new Thickness(5, 0, 0, 0);
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             Frame.Navigate(new Demande(""));
             currentWindow.Text = "Demande";
@@ -82,6 +91,8 @@ namespace Agerfor
 
         private void BtnProjet_Click(object sender, RoutedEventArgs e)
         {
+            BtnClient.BorderThickness = BtnDemande.BorderThickness = BtnProgramme.BorderThickness = BtnTableauDeBord.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness = BtnVerssement.BorderThickness = BtnAttribution.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
+            BtnProjet.BorderThickness = new Thickness(5, 0, 0, 0);
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             Frame.Navigate(new Projet(""));
             currentWindow.Text = "Projet";
@@ -89,6 +100,8 @@ namespace Agerfor
 
         private void BtnProgramme_Click(object sender, RoutedEventArgs e)
         {
+            BtnClient.BorderThickness = BtnDemande.BorderThickness = BtnProjet.BorderThickness = BtnTableauDeBord.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness = BtnVerssement.BorderThickness = BtnAttribution.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
+            BtnProgramme.BorderThickness = new Thickness(5, 0, 0, 0);
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             Frame.Navigate(new Programme(""));
             currentWindow.Text = "Programe";

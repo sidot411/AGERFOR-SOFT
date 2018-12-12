@@ -33,8 +33,8 @@
                         <ComboBoxItem>NumClient</ComboBoxItem>
                         <ComboBoxItem IsSelected="True">Nom</ComboBoxItem>
                     </ComboBox>
-                    <Button x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="10"
-                Background="#2196F3" >
+                    <Button Background="#007CC3" Background="#007CC3" x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="10"
+                Background="#007CC3" >
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 2 4 0" />
@@ -45,21 +45,21 @@
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2">
             <StackPanel Orientation="Vertical" Margin="0 -5 10 0">
-                <Button x:Name="BtnAfficherProjet" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" Click="BtnAfficherProjet_Click">
+                <Button Background="#007CC3" Background="#007CC3" x:Name="BtnAfficherProjet" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#007CC3" Click="BtnAfficherProjet_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="Bookmark" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
                         <TextBlock Text="Afficher" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnAjouterProjet" Click="BtnAjouterProjet_Click">
+                <Button Background="#007CC3" Background="#007CC3" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#007CC3" x:Name="BtnAjouterProjet" Click="BtnAjouterProjet_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkPlus" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
                         <TextBlock Text="Ajouter" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" x:Name="BtnModifierProjet" Click="BtnModifierProjet_Click" 
+                <Button Background="#007CC3" Background="#007CC3" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#007CC3" x:Name="BtnModifierProjet" Click="BtnModifierProjet_Click" 
                >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"
@@ -68,7 +68,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button x:Name="BtnSuppProjet" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#2196F3" Click="BtnSuppProjet_Click">
+                <Button Background="#007CC3" Background="#007CC3" x:Name="BtnSuppProjet" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#007CC3" Click="BtnSuppProjet_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" x:Name="BtnSupprimerClient" />

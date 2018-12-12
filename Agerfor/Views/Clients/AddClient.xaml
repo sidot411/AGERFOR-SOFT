@@ -159,9 +159,9 @@
                            BorderBrush="Red" VerticalContentAlignment="Top" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button  Content="Afficher" Height="35" Width="100" Margin="0 0 20 0" Click="Button_Click" />
-                        <Button  x:Name="BtnAjouterDemande" Content="Ajouter" Height="35" Width="100" Margin="0 0 20 0" Click="BtnAjouterDemande_Click"  />
-                        <Button  x:Name="BtnSupprimerDemande" Content="Supprimer" Height="35" Width="100" Margin="0 0 20 0" Click="BtnSupprimerDemande_Click" />
+                        <Button Background="#007CC3"  Content="Afficher" Height="35" Width="100" Margin="0 0 20 0" Click="Button_Click" />
+                        <Button Background="#007CC3"  x:Name="BtnAjouterDemande" Content="Ajouter" Height="35" Width="100" Margin="0 0 20 0" Click="BtnAjouterDemande_Click"  />
+                        <Button Background="#007CC3"  x:Name="BtnSupprimerDemande" Content="Supprimer" Height="35" Width="100" Margin="0 0 20 0" Click="BtnSupprimerDemande_Click" />
                     </StackPanel>
                
 
@@ -263,20 +263,20 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 0">
                             <StackPanel Orientation="Vertical">
-                            <Button  Content="Ajouter" Height="35" Width="110" Margin="0 0 0 10" x:Name="BtnAjouter" Click="BtnAjouter_Click" />
-                            <Button  Content="Modifier" Height="35" Width="110" Margin="0 0 0 10" x:Name="BtnModifier" Click="BtnModifier_Click" />
-                            <Button  Content="Annuler" Height="35" Width="110" x:Name="BtnAnnuler" Click="BtnAnnuler_Click"  />
+                            <Button Background="#007CC3"  Content="Ajouter" Height="35" Width="110" Margin="0 0 0 10" x:Name="BtnAjouter" Click="BtnAjouter_Click" />
+                            <Button Background="#007CC3"  Content="Modifier" Height="35" Width="110" Margin="0 0 0 10" x:Name="BtnModifier" Click="BtnModifier_Click" />
+                            <Button Background="#007CC3"  Content="Annuler" Height="35" Width="110" x:Name="BtnAnnuler" Click="BtnAnnuler_Click"  />
                         </StackPanel>
-                            <Button VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 10 0 0"
-                      Background="#2196F3" x:Name="BtnUploadFiles" HorizontalAlignment="center" Click="BtnUploadFiles_Click">
+                            <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 10 0 0"
+                       x:Name="BtnUploadFiles" HorizontalAlignment="center" Click="BtnUploadFiles_Click">
                                 <StackPanel Orientation="Vertical">
                                     <materialDesign:PackIcon Kind="FileDocument" Width="35" Height="35" VerticalAlignment="Center"
                                            HorizontalAlignment="Center" Margin="0 0 0 5" />
                                     <TextBlock Text="Joindre" VerticalAlignment="Center" Height="25" />
                                 </StackPanel>
                             </Button>
-                            <Button VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 10 0 0"
-                      Background="#2196F3" x:Name="BtnOpenFolder" HorizontalAlignment="center" Click="BtnOpenFolder_Click">
+                            <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 10 0 0"
+                      x:Name="BtnOpenFolder" HorizontalAlignment="center" Click="BtnOpenFolder_Click">
                                 <StackPanel Orientation="Vertical">
                                     <materialDesign:PackIcon Kind="FolderOpen" Width="35" Height="35" VerticalAlignment="Center"
                                            HorizontalAlignment="Center" Margin="0 0 0 5" />
