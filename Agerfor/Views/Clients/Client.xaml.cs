@@ -148,5 +148,10 @@ namespace Agerfor.Views.Clients
                 }
             }
         }
+
+        private void inputrecherche2_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+        }
     }
 }

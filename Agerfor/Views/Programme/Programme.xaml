@@ -33,33 +33,35 @@
                         <ComboBoxItem>Ref Programme</ComboBoxItem>
                         <ComboBoxItem IsSelected="True">Nom programme</ComboBoxItem>
                     </ComboBox>
-                    <Button Background="#007CC3" Background="#007CC3" x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="10"
-                Background="#007CC3" >
+                    <Button Background="#007CC3" x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="10"
+                >
+                        
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 2 4 0" />
                         </StackPanel>
                     </Button>
+                    
                 </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2">
             <StackPanel Orientation="Vertical" Margin="0 -5 10 0">
-                <Button Background="#007CC3" Background="#007CC3" x:Name="BtnAfficherProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#007CC3" Click="BtnAfficherProgramme_Click">
+                <Button Background="#007CC3" x:Name="BtnAfficherProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnAfficherProgramme_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="Bookmark" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
                         <TextBlock Text="Afficher" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button Background="#007CC3" Background="#007CC3" x:Name="BtnAjouterProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#007CC3" Click="BtnAjouterProgramme_Click">
+                <Button Background="#007CC3" x:Name="BtnAjouterProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnAjouterProgramme_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkPlus" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
                         <TextBlock Text="Ajouter" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button Background="#007CC3" Background="#007CC3" x:Name="BtnModifierProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#007CC3" Click="BtnModifierProgramme_Click">
+                <Button Background="#007CC3" x:Name="BtnModifierProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnModifierProgramme_Click">
                
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"
@@ -68,7 +70,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button Background="#007CC3" Background="#007CC3" x:Name="BtnSuppProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Background="#007CC3" Click="BtnSuppProgramme_Click" >
+                <Button Background="#007CC3" x:Name="BtnSuppProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnSuppProgramme_Click" >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />

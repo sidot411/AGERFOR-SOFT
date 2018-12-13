@@ -88,12 +88,13 @@ namespace Agerfor.Views.Programme
                     ProgrammeController PC = new ProgrammeController();
                     DirectoryCreator DC = new DirectoryCreator();
                     PermiLotirController PLC = new PermiLotirController();
+                    PermisDeConstruireController PDCC = new PermisDeConstruireController();
                     
                     DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\"+ temprefprogramme);
-                   
-
+                    
                     APC.SupprimerActeFromProgramme(temprefprogramme);
                     PLC.SupprimerPLFromProgramme(temprefprogramme);
+                    PDCC.SupprimerPermisConstruireFromProgramme(temprefprogramme);
                     PC.DeleteProgramme(temprefprogramme);
                     Programme P = new Programme("");
                     NavigationService.Navigate(P);
@@ -133,5 +134,9 @@ namespace Agerfor.Views.Programme
             }
         }
 
+        private void inputrecherche2_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+        }
     }
 }

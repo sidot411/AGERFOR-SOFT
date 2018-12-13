@@ -16,7 +16,7 @@ using Agerfor.Views.Clients;
 using Agerfor.Views.Demande;
 using Agerfor.Views.Projet;
 using Agerfor.Views.Programme;
-
+using System.Windows.Forms;
 
 namespace Agerfor
 {
@@ -29,9 +29,20 @@ namespace Agerfor
         public MainWindow()
         {
             InitializeComponent();
+            
+            this.WindowState = WindowState.Normal;
+            this.Width = 1366;
+            this.Height = 730;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 0) - (windowHeight / 0);
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+         
             BtnClient.BorderThickness = BtnDemande.BorderThickness = BtnProgramme.BorderThickness = BtnProjet.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness=BtnVerssement.BorderThickness = BtnAttribution.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
         }
 
@@ -42,13 +53,15 @@ namespace Agerfor
             {
                 this.WindowState = WindowState.Normal;
                 this.Width = 1366;
-                this.Height = 740;
+                this.Height = 730;
                 double windowWidth = this.Width;
                 double windowHeight = this.Height;
                 double screenWidth = SystemParameters.PrimaryScreenWidth;
                 double screenHeight = SystemParameters.PrimaryScreenHeight;
                 this.Left = (screenWidth / 2) - (windowWidth / 2);
-                this.Top = (screenHeight / 2) - (windowHeight / 2);
+                this.Top = (screenHeight / 0) - (windowHeight / 0);
+                
+                
                 ScreenSize.Content = "Plein écran";
                 isFullScreen = false;
             }
@@ -106,5 +119,13 @@ namespace Agerfor
             Frame.Navigate(new Programme(""));
             currentWindow.Text = "Programe";
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+      
     }
 }

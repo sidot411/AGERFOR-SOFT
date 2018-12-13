@@ -31,8 +31,7 @@ namespace Agerfor.Views.Projet
         {
             InitializeComponent();
 
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+           
             msh.FillDropDownList("select NomConservation from conservation",inputConservProjet, "NomConservation");
             msh.FillDropDownList("select NomWilaya from wilaya",inputWilayaProjet, "NomWilaya");
         
@@ -104,13 +103,31 @@ namespace Agerfor.Views.Projet
 
         private void BtnAjouterProjet_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-    
-            
-            DirectoryCreator dcr = new DirectoryCreator();
-            dcr.CreateDirectory(inputRefProjet.Text);     
-            PC.AjouterProjet(inputRefProjet.Text, inputNomProjet.Text, inputVolProjet.Text, inputConservProjet.Text, inputVendeurProjet.Text, inputWilayaProjet.Text, inputDairaProjet.Text, inputCommuneProjet.Text, decimal.Parse(inputSuperficieProjet.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text, inputLimitNord.Text, inputLimitEst.Text, inputLimitOuest.Text, inputLimitSud.Text, decimal.Parse(inputPrix.Text), inputNumReçu.Text, inputDateRecu.Text); 
-            AddProjet Addprojet = new AddProjet("");
-            this.NavigationService.Navigate(Addprojet);
+
+            if (inputRefProjet.Text != "" && inputNomProjet.Text != "" && inputVolProjet.Text != "" && inputConservProjet.Text != "" && inputDairaProjet.Text != "" && inputCommuneProjet.Text != "" && inputSuperficieProjet.Text != "" && inputNomGeo.Text != "" && inputAddressGeo.Text != "" && inputTelGeo.Text != "" && inputLimitNord.Text != "" && inputLimitEst.Text != "" && inputLimitOuest.Text != "" && inputLimitSud.Text != "" && inputPrix.Text != "" && inputNumReçu.Text != "" && inputDateRecu.Text != "")
+            {
+                DirectoryCreator dcr = new DirectoryCreator();
+                dcr.CreateDirectory(inputRefProjet.Text);
+                PC.AjouterProjet(inputRefProjet.Text, inputNomProjet.Text, inputVolProjet.Text, inputConservProjet.Text, inputVendeurProjet.Text, inputWilayaProjet.Text, inputDairaProjet.Text, inputCommuneProjet.Text, decimal.Parse(inputSuperficieProjet.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text, inputLimitNord.Text, inputLimitEst.Text, inputLimitOuest.Text, inputLimitSud.Text, decimal.Parse(inputPrix.Text), inputNumReçu.Text, inputDateRecu.Text);
+                if (System.Windows.MessageBox.Show("Voulez-vous attacher des documents au projet?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                {
+                    AddProjet Addprojet = new AddProjet("");
+                    this.NavigationService.Navigate(Addprojet);
+                }
+                else
+                {
+                    SelectFile("Document-Projet");
+                    AddProjet Addprojet = new AddProjet("");
+                    this.NavigationService.Navigate(Addprojet);
+                }
+
+
+               
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez introduire toutes les informations nécessaires !", "Projet", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void BtnModifierProjet_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -159,34 +176,53 @@ namespace Agerfor.Views.Projet
 
         private void BtnAjouterActe_Click(object sender, RoutedEventArgs e)
         {
-            string Acte="Acte";
-            DirectoryCreator dcr = new DirectoryCreator();
-            dcr.CreateDirectory(inputRefProjet.Text + "/" +Acte +"/"+inputNumAct.Text);
+            if (inputNumAct.Text !="")
+            {
+                string Acte = "Acte";
+                DirectoryCreator dcr = new DirectoryCreator();
+                dcr.CreateDirectory(inputRefProjet.Text + "/" + Acte + "/" + inputNumAct.Text);
 
-            AC.AjouterActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text,inputConservProjet.Text, inputRefProjet.Text);
-            RefProjet = inputRefProjet.Text;
-            AddProjet Addprojet = new AddProjet(RefProjet);
-            this.NavigationService.Navigate(Addprojet);
+                AC.AjouterActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text, inputConservProjet.Text, inputRefProjet.Text);
+                RefProjet = inputRefProjet.Text;
+                AddProjet Addprojet = new AddProjet(RefProjet);
+                this.NavigationService.Navigate(Addprojet);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez introduire toutes les informations nécessaires !", "Projet", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void BtnModifierActe_Click(object sender, RoutedEventArgs e)
         {
-            
-            AC.EditerActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text, inputConservProjet.Text, inputRefProjet.Text,TempNumActe);
-            RefProjet = inputRefProjet.Text;
-            AddProjet Addprojet = new AddProjet(RefProjet);
-            this.NavigationService.Navigate(Addprojet);
+            if (TempNumActe != "")
+            {
+                AC.EditerActe(inputNumAct.Text, inputDateActe.Text, inputEnrgActe.Text, inputDatepubliActe.Text, inputConservProjet.Text, inputRefProjet.Text, TempNumActe);
+                RefProjet = inputRefProjet.Text;
+                AddProjet Addprojet = new AddProjet(RefProjet);
+                this.NavigationService.Navigate(Addprojet);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez sélectionner un Acte !", "Acte projet", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void BtnSupprimerActe_Click(object sender, RoutedEventArgs e)
         {
-           
-            DirectoryCreator DC = new DirectoryCreator();
-            DC.DeleteDirectory(@"Projet\" + inputRefProjet.Text + @"\Acte\" + TempNumActe); 
-            AC.SupprimerActe(inputNumAct.Text);
-            RefProjet = inputRefProjet.Text;
-            AddProjet Addprojet = new AddProjet(RefProjet);
-            this.NavigationService.Navigate(Addprojet);
+            if (TempNumActe != "")
+            {
+                DirectoryCreator DC = new DirectoryCreator();
+                DC.DeleteDirectory(@"Projet\" + inputRefProjet.Text + @"\Acte\" + TempNumActe);
+                AC.SupprimerActe(inputNumAct.Text);
+                RefProjet = inputRefProjet.Text;
+                AddProjet Addprojet = new AddProjet(RefProjet);
+                this.NavigationService.Navigate(Addprojet);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez sélectionner un Acte !", "Acte projet", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void BtnOpenFolder_Click(object sender, RoutedEventArgs e)
@@ -276,16 +312,28 @@ namespace Agerfor.Views.Projet
 
         private void BtnOuvrirActe_Click(object sender, RoutedEventArgs e)
         {
+            if(TempNumActe != "")
             {
                 
                 string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text + @"\Acte\" + inputNumAct.Text;
                 OpenFolder(folderPath);
             }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez sélectionner un Acte !", "Acte projet", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void BtnJoindre_Click(object sender, RoutedEventArgs e)
         {
-            SelectFile2("Acte");
+            if (TempNumActe != "")
+            {
+                SelectFile2("Acte");
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez sélectionner un Acte !", "Acte projet", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void inputWilayaProjet_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -303,6 +351,12 @@ namespace Agerfor.Views.Projet
             inputCommuneProjet.Items.Clear();
             msh.FillDropDownList("select NomCommune from commune,daira where NomDaira='" + inputDairaProjet.SelectedItem.ToString() + "'and daira.IdDaira=commune.IdDaira", inputCommuneProjet, "NomCommune");
 
+        }
+
+        private void BtnAnnulerProjet_Click(object sender, RoutedEventArgs e)
+        {
+            Projet p = new Projet("");
+            NavigationService.Navigate(p);
         }
     }
 

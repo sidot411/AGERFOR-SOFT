@@ -44,6 +44,7 @@
                         <TextBlock Foreground="White" Text="Recercher" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
+
                 <Label />
             </StackPanel>
         </Grid>

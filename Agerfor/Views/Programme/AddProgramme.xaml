@@ -99,14 +99,14 @@
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                         </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
-                                <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnAjouterProgramme" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterProgramme_Click"/>
-                                <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnModifierProgramme" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierProgramme_Click" />
-                                <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnAnnulerProgramme" Content="Annuler" Height="35" Width="105" Click="BtnAnnulerProgramme_Click" />
+                                <Button Background="#007CC3"   x:Name="BtnAjouterProgramme" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterProgramme_Click"/>
+                                <Button Background="#007CC3"  x:Name="BtnModifierProgramme" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierProgramme_Click" />
+                                <Button Background="#007CC3"  x:Name="BtnAnnulerProgramme" Content="Annuler" Height="35" Width="105" Click="BtnAnnulerProgramme_Click" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
 
-                                <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnJoindreprogramme" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindreprogramme_Click" />
-                                <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnOuvrirprogramme" Content="Ouvrir" Height="35" Width="105" Click="BtnOuvrirprogramme_Click"  />
+                                <Button Background="#007CC3"  x:Name="BtnJoindreprogramme" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindreprogramme_Click" />
+                                <Button Background="#007CC3"  x:Name="BtnOuvrirprogramme" Content="Ouvrir" Height="35" Width="105" Click="BtnOuvrirprogramme_Click"  />
                             </StackPanel>
                         </StackPanel>
                 </StackPanel>
@@ -154,13 +154,13 @@
                          myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
-                            <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnAjouterActeProgramme" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterActeProgramme_Click"/>
-                            <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnModifierActeProgramme" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierActeProgramme_Click" />
-                            <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnSupprimerActeProgramme" Content="Supprimer" Height="35" Width="105" Click="BtnSupprimerActeProgramme_Click" />
+                            <Button Background="#007CC3"  x:Name="BtnAjouterActeProgramme" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterActeProgramme_Click"/>
+                            <Button Background="#007CC3"  x:Name="BtnModifierActeProgramme" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierActeProgramme_Click" />
+                            <Button Background="#007CC3"  x:Name="BtnSupprimerActeProgramme" Content="Supprimer" Height="35" Width="105" Click="BtnSupprimerActeProgramme_Click" />
                         </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
-                                <Button Background="#007CC3" Background="#007CC3"   x:Name="BtnJoindreActeProgramme" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindreActeProgramme_Click" />
-                            <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnOuvrirActeProgramme" Content="Ouvrir Acte" Height="35" Width="105" Click="BtnOuvrirActeProgramme_Click"  />
+                                <Button Background="#007CC3"   x:Name="BtnJoindreActeProgramme" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindreActeProgramme_Click" />
+                            <Button Background="#007CC3"  x:Name="BtnOuvrirActeProgramme" Content="Ouvrir Acte" Height="35" Width="105" Click="BtnOuvrirActeProgramme_Click"  />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
@@ -252,14 +252,14 @@
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
-                            <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnAjouterPLotir" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterPLotir_Click"/>
-                            <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnModifierPLotir" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierPLotir_Click" />
-                            <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnSupprimerPLotir" Content="Supprimer" Height="35" Width="105" Click="BtnSupprimerPLotir_Click" />
+                            <Button Background="#007CC3"   x:Name="BtnAjouterPLotir" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterPLotir_Click"/>
+                            <Button Background="#007CC3"   x:Name="BtnModifierPLotir" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierPLotir_Click" />
+                            <Button Background="#007CC3"   x:Name="BtnSupprimerPLotir" Content="Supprimer" Height="35" Width="105" Click="BtnSupprimerPLotir_Click" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
 
-                            <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnJoindrePLotir" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindrePLotir_Click" />
-                            <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnOuvrirPLotir" Content="Ouvrir PL" Height="35" Width="105" Click="BtnOuvrirPLotir_Click" />
+                            <Button Background="#007CC3"  x:Name="BtnJoindrePLotir" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindrePLotir_Click" />
+                            <Button Background="#007CC3"  x:Name="BtnOuvrirPLotir" Content="Ouvrir PL" Height="35" Width="105" Click="BtnOuvrirPLotir_Click" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
@@ -361,14 +361,14 @@
                             </StackPanel>
                            
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
-                                <Button Background="#007CC3" Background="#007CC3"   x:Name="BtnAjouterPC" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterPC_Click"/>
-                                <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnModifierPC" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierPC_Click" />
-                                <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnSupprimerPC" Content="Supprimer" Height="35" Width="105" Click="BtnSupprimerPC_Click" />
+                                <Button Background="#007CC3"   x:Name="BtnAjouterPC" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterPC_Click"/>
+                                <Button Background="#007CC3"   x:Name="BtnModifierPC" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierPC_Click" />
+                                <Button Background="#007CC3"   x:Name="BtnSupprimerPC" Content="Supprimer" Height="35" Width="105" Click="BtnSupprimerPC_Click" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
 
-                                <Button Background="#007CC3" Background="#007CC3" x:Name="BtnJoindrePC" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindrePC_Click" />
-                                <Button Background="#007CC3" Background="#007CC3"  x:Name="BtnOuvrirPC" Content="Ouvrir PC" Height="35" Width="105" Click="BtnOuvrirPC_Click" />
+                                <Button Background="#007CC3"  x:Name="BtnJoindrePC" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindrePC_Click" />
+                                <Button Background="#007CC3"  x:Name="BtnOuvrirPC" Content="Ouvrir PC" Height="35" Width="105" Click="BtnOuvrirPC_Click" />
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
@@ -393,25 +393,25 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 60 0 0" HorizontalAlignment="Right">
-                        <Button Background="#007CC3" Background="#007CC3" x:Name="BtnCahiercharge" Height="60" Width="150" Margin="0 0 20 0" Click="BtnCahiercharge_Click" >
+                        <Button Background="#007CC3"  x:Name="BtnCahiercharge" Height="60" Width="150" Margin="0 0 20 0" Click="BtnCahiercharge_Click" >
                             <StackPanel Orientation="Vertical">
                             <TextBlock>Ajouter/Afficher</TextBlock>
                             <TextBlock TextAlignment="Center">Cahier de charge</TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Background="#007CC3" Background="#007CC3" x:Name="BtnEDD" Height="60" Width="150" Margin="0 0 20 0" Click="BtnEDD_Click" >
+                        <Button Background="#007CC3"  x:Name="BtnEDD" Height="60" Width="150" Margin="0 0 20 0" Click="BtnEDD_Click" >
                             <StackPanel Orientation="Vertical">
                                 <TextBlock>Ajouter/Afficher</TextBlock>
                                 <TextBlock TextAlignment="Center">EDD</TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Background="#007CC3" Background="#007CC3" x:Name="BtnConvention" Height="60" Width="150" Margin="0 0 20 0" Click="BtnConvention_Click" >
+                        <Button Background="#007CC3" x:Name="BtnConvention" Height="60" Width="150" Margin="0 0 20 0" Click="BtnConvention_Click" >
                             <StackPanel Orientation="Vertical">
                                 <TextBlock>Ajouter/Afficher</TextBlock>
                                 <TextBlock TextAlignment="Center">Convention</TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Background="#007CC3" Background="#007CC3" Height="60" Width="150" Margin="0 0 20 0" >
+                        <Button Background="#007CC3" Height="60" Width="150" Margin="0 0 20 0" >
                             <StackPanel Orientation="Vertical">
                                 <TextBlock>Ajouter/Afficher</TextBlock>
                                 <TextBlock TextAlignment="Center">Conformité</TextBlock>

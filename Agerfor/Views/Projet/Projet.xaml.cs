@@ -38,10 +38,15 @@ namespace Agerfor.Views.Projet
         {
             try
             {
-                
+                if (tempnomprojet != "") { 
                 AddProjet AP = new AddProjet(tempRefProjet);
                 AP.inputRefProjet.IsEnabled = AP.inputNomProjet.IsEnabled = AP.inputVolProjet.IsEnabled = AP.inputConservProjet.IsEnabled = AP.inputVendeurProjet.IsEnabled = AP.inputWilayaProjet.IsEnabled = AP.inputDairaProjet.IsEnabled = AP.inputCommuneProjet.IsEnabled = AP.inputSuperficieProjet.IsEnabled = AP.inputNomGeo.IsEnabled = AP.inputAddressGeo.IsEnabled = AP.inputTelGeo.IsEnabled = AP.inputLimitEst.IsEnabled = AP.inputLimitNord.IsEnabled = AP.inputLimitOuest.IsEnabled = AP.inputLimitSud.IsEnabled = AP.inputPrix.IsEnabled = AP.inputNumReçu.IsEnabled = AP.inputDateRecu.IsEnabled =AP.BtnAjouterProjet.IsEnabled =AP.BtnModifierProjet.IsEnabled= AP.BtnUploadFiles.IsEnabled=AP.inputNumAct.IsEnabled=AP.inputDateActe.IsEnabled=AP.inputEnrgActe.IsEnabled=AP.inputDatepubliActe.IsEnabled=AP.BtnAjouterActe.IsEnabled=AP.BtnModifierActe.IsEnabled=AP.BtnSupprimerActe.IsEnabled=AP.BtnJoindre.IsEnabled=AP.BtnOuvrirActe.IsEnabled= false;
                 this.NavigationService.Navigate(AP);
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez sélectionner un projet!", "Projet", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             catch (Exception)
             {
@@ -102,7 +107,7 @@ namespace Agerfor.Views.Projet
 
             else
             {
-                MessageBox.Show("Veuillez selectioner un projet", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Veuillez selectioner un projet", "Projet", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
 
@@ -113,6 +118,7 @@ namespace Agerfor.Views.Projet
             try
             {
                 AddProjet AP = new AddProjet("");
+                AP.BtnModifierProjet.IsEnabled = AP.BtnUploadFiles.IsEnabled=AP.BtnOpenFolder.IsEnabled= false;
                 NavigationService.Navigate(AP);
             }
             catch (Exception)
@@ -123,15 +129,16 @@ namespace Agerfor.Views.Projet
 
         private void BtnModifierProjet_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (tempnomprojet != "")
             {
-                AddProjet AP = new AddProjet(tempRefProjet);
-                AP.BtnAjouterProjet.IsEnabled = false;
-                this.NavigationService.Navigate(AP);
+                    AddProjet AP = new AddProjet(tempRefProjet);
+                    AP.BtnAjouterProjet.IsEnabled = false;
+                    this.NavigationService.Navigate(AP);
+        
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Veuillez sélectionner une référence");
+                MessageBox.Show("Veuillez selectioner un projet", "Projet", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
         }
