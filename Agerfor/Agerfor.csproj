@@ -88,6 +88,7 @@
     </ApplicationDefinition>
     <Compile Include="Controlers\ActeController.cs" />
     <Compile Include="Controlers\ActeProgrammeController.cs" />
+    <Compile Include="Controlers\CahierChargeProgrammeController.cs" />
     <Compile Include="Controlers\ClientController.cs" />
     <Compile Include="Controlers\DemandeController.cs" />
     <Compile Include="Controlers\DirectoryCreator.cs" />

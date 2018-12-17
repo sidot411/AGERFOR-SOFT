@@ -89,10 +89,14 @@ namespace Agerfor.Views.Projet
                     DirectoryCreator DC = new DirectoryCreator();   
                     ActeController AC = new ActeController();
                     ProgrammeController PRC = new ProgrammeController();
+                    ActeProgrammeController APC = new ActeProgrammeController();
                     PermiLotirController PLC = new PermiLotirController();
-                    ActeProgrammeController APC = new ActeProgrammeController(); 
+                    PermisDeConstruireController PDCC = new PermisDeConstruireController();
+                   
+
                     DC.DeleteDirectory(@"Projet\" + tempRefProjet);
                     APC.SupprimerActeFromProjet(tempnomprojet);
+                    PDCC.SupprimerPermisConstruireFromProjet(tempnomprojet);
                     PLC.SupprimerPLFromProjet(tempnomprojet);
                     PRC.DeleteProgrammeFromProjet(tempRefProjet);
                     AC.SupprimerActe2(tempRefProjet);

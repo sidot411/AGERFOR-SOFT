@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 12 Décembre 2018 à 14:42
+-- Généré le :  Lun 17 Décembre 2018 à 13:07
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -37,17 +37,6 @@ CREATE TABLE `acteprogramme` (
   `NomProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `acteprogramme`
---
-
-INSERT INTO `acteprogramme` (`NumActe`, `DateActe`, `DateEnrgActe`, `DatePubliActe`, `Conservation`, `FraisEnrg`, `RefProgramme`, `NomProjet`) VALUES
-('0000001', '10/12/2018', '10/12/2018', '10/12/2018', 'Oran ouest', '12000.0000', '', ''),
-('000001', '10/12/2018', '10/12/2018', '12/12/2018', 'Oran ouest', '12000.0000', '000001', 'ADL'),
-('00001', '10/12/2018', '10/12/2018', '10/12/2018', 'ES senia', '3000.0000', '00003', 'ADL'),
-('0000003', '10/12/2018', '10/12/2018', '10/12/2018', 'Oran ouest', '12000.0000', '00000001', 'ADL'),
-('0000002', '10/12/2018', '10/12/2018', '10/12/2018', 'Oran ouest', '12000.0000', '00000001', 'ADL');
-
 -- --------------------------------------------------------
 
 --
@@ -63,12 +52,41 @@ CREATE TABLE `acteprojet` (
   `RefProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Contenu de la table `acteprojet`
+-- Structure de la table `cahierchargeprogramme`
 --
 
-INSERT INTO `acteprojet` (`NumActe`, `DateActe`, `DateEnrgActe`, `DatePubliActe`, `Conservation`, `RefProjet`) VALUES
-('122220', '10/12/2018', '10/12/2018', '10/12/2018', 'Oran ouest', '0000001');
+CREATE TABLE `cahierchargeprogramme` (
+  `NomProjet` varchar(50) NOT NULL,
+  `RefProgramme` varchar(50) NOT NULL,
+  `NumCahierCharge` varchar(50) NOT NULL,
+  `DateEnre` varchar(50) NOT NULL,
+  `Volume` varchar(50) NOT NULL,
+  `NumPubli` varchar(50) NOT NULL,
+  `DatePubli` varchar(50) NOT NULL,
+  `Conservation` varchar(50) NOT NULL,
+  `Notaire` varchar(50) NOT NULL,
+  `TelNotaire` varchar(50) NOT NULL,
+  `AdresseNotaire` varchar(50) NOT NULL,
+  `SuperficieCessible` decimal(50,2) NOT NULL,
+  `SuperficieVoirie` decimal(50,2) NOT NULL,
+  `SuperficieEv` decimal(50,2) NOT NULL,
+  `SuperficieEq` decimal(50,2) NOT NULL,
+  `AutreSuperficie` decimal(50,2) NOT NULL,
+  `NomPreomGeo` varchar(50) NOT NULL,
+  `AdresseGeo` varchar(50) NOT NULL,
+  `TelGeo` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `cahierchargeprogramme`
+--
+
+INSERT INTO `cahierchargeprogramme` (`NomProjet`, `RefProgramme`, `NumCahierCharge`, `DateEnre`, `Volume`, `NumPubli`, `DatePubli`, `Conservation`, `Notaire`, `TelNotaire`, `AdresseNotaire`, `SuperficieCessible`, `SuperficieVoirie`, `SuperficieEv`, `SuperficieEq`, `AutreSuperficie`, `NomPreomGeo`, `AdresseGeo`, `TelGeo`) VALUES
+('LPA', '000002', '0000001', '16/12/2018', '12222366', '22366666', '16/12/2018', '12336366', 'mabrouk', '02369988555', 'bt 23 n)1 usto', '100.22', '300.36', '30.00', '660.30', '600.00', '', '', ''),
+('LPA', '000002', '00003', '16/12/2018', '0333669', '122336', '16/12/2018', 'oran', 'mabrouk', '055169874', 'bt 2365 N°23', '200.00', '150.00', '120.00', '110.00', '256.00', 'mabrouk', 'bt23 usto', '0556369877');
 
 -- --------------------------------------------------------
 
@@ -117,6 +135,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`ID`, `NumClient`, `DateCreation`, `Nom`, `Prenom`, `NomAr`, `PrenomAr`, `Sexe`, `DateNaissance`, `LieuNaissance`, `PrenomPere`, `PrenomPereAr`, `NomMere`, `PrenomMere`, `NomMereAr`, `PrenomMereAr`, `Cni`, `DateCni`, `LieuCni`, `Ville`, `Adress`, `Proffession`, `Tel`, `NomContact`, `TelContact`, `Situation`, `NomConj`, `PrénomConj`, `NomConjAR`, `PrenomConjAR`, `DateNaissanceConj`, `LieuNaissanceConj`, `ProfessionConj`) VALUES
+(6, '000002', '13-12-2018', 'KHIAT', 'MOUNIR', 'خياط', 'منير', 'Homme', '13-12-2018', 'ORAN', 'MOUNIR', 'منير', 'TEST', 'TEST', 'تست', 'تست', '1223666', '13-12-2018', 'ORAN', 'ORAN', 'ORAN', 'INFORMATIQUE', '053698741', 'TEST', 'TEST', 'Célibataire', '', '', '', '', '', '', ''),
 (5, '00000001', '28-11-2018', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '28-11-2018', 'ORAN', 'MOUNIR', 'منير', 'FRIOUI', 'ZOULIKHA', 'فريوي', 'زليخة', '213518132', '28-11-2018', 'ORAN', 'ORAN', 'BT233 N°2 SENIA', 'INFORMATICIEN', '0661934408', 'MOUNIR', '0773201236', 'Célibataire', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
@@ -302,13 +321,6 @@ CREATE TABLE `permilotir` (
   `NomProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `permilotir`
---
-
-INSERT INTO `permilotir` (`NumPL`, `DatePL`, `FraisDiver`, `NbrIlot`, `NbrLots`, `SuperficieCG`, `SuperficieVoiries`, `SuperficieEV`, `SuperficieEquip`, `SuperficieAmenag`, `AutreSupercie`, `RefProgramme`, `NomProjet`) VALUES
-('00001', '11/12/2018', '12000.00', '60', '62', '1200.36', '100.00', '100.00', '100.00', '100.00', '100.00', '000001', 'LPA');
-
 -- --------------------------------------------------------
 
 --
@@ -335,13 +347,6 @@ CREATE TABLE `permisdeconstruire` (
   `NomProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `permisdeconstruire`
---
-
-INSERT INTO `permisdeconstruire` (`NumPermis`, `DatePermisC`, `FraisDivers`, `NbrLog`, `SupLog`, `NbrLoc`, `SupLoc`, `NbrBur`, `SupBur`, `NbrCave`, `SupCave`, `NbrCC`, `SupCC`, `NbrPS`, `SupPS`, `RefProgramme`, `NomProjet`) VALUES
-('0000002', '12/12/2018', '12000.00', '60', '60.00', '60', '60.00', '60', '60.00', '60', '60.00', '60', '60.00', '60', '60.00', '000001', 'LPA');
-
 -- --------------------------------------------------------
 
 --
@@ -366,7 +371,8 @@ CREATE TABLE `programme` (
 --
 
 INSERT INTO `programme` (`NomProjet`, `RefProgramme`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`) VALUES
-('LPA', '000001', '200 LOGEMENT', 'ORAN', 'ORAN', 'Oran', 'Logement', 'Lpa', '200', '2223.3300');
+('LPA', '000001', '200 logement', 'oran', 'ORAN', 'Oran', 'Logement', 'Lpa', '90', '12223336.3300'),
+('LPA', '000002', '260 LOTISSEMENT', 'ORAN', 'Es Sénia', 'Es Senia', 'Lotissement', 'Promoionnel', '260', '1666988777.3300');
 
 -- --------------------------------------------------------
 
@@ -401,7 +407,7 @@ CREATE TABLE `projet` (
 --
 
 INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
-('000001', 'LPA', '0000223', '', 'MABROUK', 'ORAN', 'Es Sénia', 'Es Senia', '100000.3300', 'MABROUK', 'BT36 N° 2 USTO', '0556321458', 'USTO', 'USTO', 'USTO', 'USTO', '1222.0000', '122336669', '12/12/2018');
+('0000001', 'LPA', '0023336', 'Oran ouest', 'MABROUK', 'ORAN', 'ORAN', 'Oran', '1223366.6600', 'MABRUK', 'BT36 N°6 USTO ', '0556987412', 'USTO', 'USTO', 'USTO', 'USTO', '122669933.3300', '122366998', '16/12/2018');
 
 -- --------------------------------------------------------
 
@@ -504,7 +510,7 @@ ALTER TABLE `typeprogramme`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `conservation`
 --

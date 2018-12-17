@@ -64,5 +64,18 @@ namespace Agerfor.Controlers
                 MessageBox.Show("Le permis de construire n'a pas éé supprimé");
             }
         }
+
+        public void SupprimerPermisConstruireFromProjet(string tempNomProjet)
+        {
+            try
+            {
+                msh.ExecuteQuery("delete from permisdeconstruire where RefProgramme='" + tempNomProjet + "'");
+                MessageBox.Show("Le permis de construire à été bien supprimé");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Le permis de construire n'a pas éé supprimé");
+            }
+        }
     }
 }

@@ -15,38 +15,14 @@
             <ColumnDefinition Width="341*" />
             <ColumnDefinition Width="52*" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="250*" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Column="0" Grid.Row="0">
+       
+        <Grid Grid.Column="0">
             <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="30 0 0 0" >
-
-                    <TextBox  x:Name="inputrecherche" Foreground="#262626" Width="230" VerticalContentAlignment="Center"
-                 FontSize="18" Height="40"
-                 Background="#FAFAFA" Margin="0 0 10 0" />
-
-                    <ComboBox x:Name="SelectTypeRecherche" HorizontalContentAlignment="Center" Foreground="#797979" Height="40"
-                  FontSize="16"
-                  VerticalContentAlignment="Center" Background="#FAFAFA" Width="160" Margin="0 0 10 0">
-                        <ComboBoxItem>Ref Programme</ComboBoxItem>
-                        <ComboBoxItem IsSelected="True">Nom programme</ComboBoxItem>
-                    </ComboBox>
-                    <Button Background="#007CC3" x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="10"
-                >
-                        
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center" Margin="0 2 4 0" />
-                        </StackPanel>
-                    </Button>
-                    
-                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="30 0 0 0" />
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2">
-            <StackPanel Orientation="Vertical" Margin="0 -5 10 0">
+            <StackPanel Orientation="Vertical" Margin="0 0 0 10" VerticalAlignment="Bottom">
                 <Button Background="#007CC3" x:Name="BtnAfficherProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnAfficherProgramme_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="Bookmark" Width="35" Height="35" VerticalAlignment="Center"
@@ -69,7 +45,6 @@
                         <TextBlock Text="Modifier" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-
                 <Button Background="#007CC3" x:Name="BtnSuppProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnSuppProgramme_Click" >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
@@ -77,19 +52,46 @@
                         <TextBlock Text="Supprimer" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
+              
 
             </StackPanel>
 
         </Grid>
-        <Grid Grid.Column="0" Grid.Row="1">
-            <Border BorderThickness="1">
+        <Grid Grid.Column="0">
+            <StackPanel Orientation="Vertical" Margin="30 10 0 0 ">
+                <TextBlock FontFamily="Arial" FontSize="16" FontWeight="Bold">Recherche rapide</TextBlock>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                        <TextBox x:Name="inputRefProgramme" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Référance programme" Margin="0 0 0 10" KeyUp="inputRefProgramme_KeyUp" GotFocus="inputRefProgramme_GotFocus"/>
+                        <TextBox x:Name="inputNomProgramme" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom programme" Margin="0 0 0 10" KeyUp="inputNomProgramme_KeyUp" GotFocus="inputNomProgramme_GotFocus" />
+                        <TextBox x:Name="Site" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Site Programme" Margin="0 0 0 10" KeyUp="Site_KeyUp" GotFocus="Site_GotFocus"/>
+                        <TextBox x:Name="Daira" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Daira" Margin="0 0 0 10" KeyUp="Daira_KeyUp" GotFocus="Daira_GotFocus" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="30 10 0 0">
+                        <TextBox x:Name="Commune" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Commune" Margin="0 0 0 10" KeyUp="Commune_KeyUp" GotFocus="Commune_GotFocus"/>
+                        <TextBox x:Name="Natureprogramme" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nature Programme" Margin="0 0 0 10" KeyUp="Natureprogramme_KeyUp" GotFocus="Natureprogramme_GotFocus" />
+                        <TextBox x:Name="Typeprogramme" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Type Programme" Margin="0 0 0 10" KeyUp="Typeprogramme_KeyUp" GotFocus="Typeprogramme_GotFocus"/>
+                        <TextBox x:Name="Nombredebien" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nombre de biens" Margin="0 0 0 10" KeyUp="Nombredebien_KeyUp" GotFocus="Nombredebien_GotFocus"/>
+
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+                <Border BorderThickness="1">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.2" />
                 </Border.Effect>
                 <DataGrid HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="dataGridView2"
                   AutoGenerateColumns="False" BorderBrush="White" BorderThickness="0"
                   CanUserAddRows="False" AlternatingRowBackground="#F3F3F3"
-                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30 5 10 15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" SelectionChanged="dataGridView2_SelectionChanged" >
+                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30,234,10,15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" SelectionChanged="dataGridView2_SelectionChanged" >
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Binding="{Binding RefProgramme}" Header="Réf programme" />

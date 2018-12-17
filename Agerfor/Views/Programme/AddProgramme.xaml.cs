@@ -217,7 +217,7 @@ namespace Agerfor.Views.Programme
 
         private void BtnCahiercharge_Click(object sender, RoutedEventArgs e)
         {
-            CahierCharge cahiercharge = new CahierCharge();
+            CahierCharge cahiercharge = new CahierCharge(inputNomProjet.Text,inputRefProgramme.Text);
             DialogHost.Show(cahiercharge);
         }
 
