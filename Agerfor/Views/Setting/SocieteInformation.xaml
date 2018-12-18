@@ -11,7 +11,7 @@
       Title="SocieteInformation">
 
     <Grid>
-        <StackPanel>
+        <StackPanel Orientation="Horizontal">
             
         </StackPanel>   
     </Grid>

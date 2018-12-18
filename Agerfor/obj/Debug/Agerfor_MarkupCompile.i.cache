@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\obj\Debug\
+C:\Users\KHALED\Documents\Soft\sidot411\AGERFOR-SOFT\Agerfor\obj\Debug\
 Agerfor
 none
 false
 DEBUG;TRACE
-C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\App.xaml
+C:\Users\KHALED\Documents\Soft\sidot411\AGERFOR-SOFT\Agerfor\App.xaml
 141075971225
 7-2044779865
-33-2093824120
-23-473166564
+33326362478
+23-910482092
 Agerfor.xaml;Views\Clients\AddClient.xaml;Views\Clients\Client.xaml;Views\Demande\AddDemande.xaml;Views\Demande\Demande.xaml;Views\Programme\AddProgramme.xaml;Views\Programme\CahierCharge.xaml;Views\Programme\Convention.xaml;Views\Programme\EDD.xaml;Views\Programme\Programme.xaml;Views\Projet\AddProjet.xaml;Views\Projet\Projet.xaml;Views\Setting\SettingUserControl.xaml;Views\Setting\SocieteInformation.xaml;
 
 True
