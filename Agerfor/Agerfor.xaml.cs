@@ -16,7 +16,9 @@ using Agerfor.Views.Clients;
 using Agerfor.Views.Demande;
 using Agerfor.Views.Projet;
 using Agerfor.Views.Programme;
+using Agerfor.Views.Setting;
 using System.Windows.Forms;
+using MaterialDesignThemes.Wpf;
 
 namespace Agerfor
 {
@@ -126,6 +128,10 @@ namespace Agerfor
                 this.DragMove();
         }
 
-      
+        private void Réglage_Click(object sender, RoutedEventArgs e)
+        {
+            SettingUserControl SUC = new SettingUserControl();
+            DialogHost.Show(SUC);
+        }
     }
 }

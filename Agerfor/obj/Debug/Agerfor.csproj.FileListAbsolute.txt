@@ -46,3 +46,7 @@ C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\obj\Debug\Agerfor.Properties.R
 C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\obj\Debug\Agerfor.csproj.GenerateResource.Cache
 C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\obj\Debug\Agerfor.exe
 C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\obj\Debug\Agerfor.pdb
+C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\obj\Debug\Views\Setting\SettingUserControl.g.cs
+C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\obj\Debug\Views\Setting\SettingUserControl.baml
+C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\obj\Debug\Views\Setting\SocieteInformation.g.cs
+C:\Users\HP\Documents\GitHub\AGERFOR-SOFT\Agerfor\obj\Debug\Views\Setting\SocieteInformation.baml

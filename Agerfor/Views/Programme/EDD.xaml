@@ -21,10 +21,10 @@
                 <Grid Grid.Row="0" Background="White">
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="title" FontSize="20"
                      Foreground="#000" />
-                    <Button  FontSize="20" Height="40" Width="45"
+                    <Button FontSize="20" Height="40" Width="45"
                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
-                  Background="#007CC3" Grid.Column="1" BorderThickness="0" BorderBrush="Transparent"
+                  Background="#fff" Grid.Column="1" BorderThickness="0" BorderBrush="Transparent"
                   Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                         <materialDesign:PackIcon x:Name="icon" Kind="Close" Height="25" Width="25"
                                      Foreground="#2B91C5"

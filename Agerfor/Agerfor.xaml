@@ -139,7 +139,7 @@
                                    StaysOpen="False">
                         <StackPanel Width="150">
                             <Button Background="#007CC3" Content="Utilisateur" />
-                            <Button Background="#007CC3" x:Name="Réglage"  Content="Settings" />
+                            <Button Background="#007CC3" x:Name="Réglage"  Content="Settings" Click="Réglage_Click"/>
                             <Separator />
                             <Button Background="#007CC3" x:Name="ScreenSize" Content="Plain Écran" Click="FullScreen_Click" />
                             <Button Background="#007CC3" x:Name="Sortir" Content="Exit" Click="Exit_Click" />
