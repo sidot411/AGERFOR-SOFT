@@ -11,8 +11,67 @@
       Title="SocieteInformation">
 
     <Grid>
-        <StackPanel Orientation="Vertical">
-            
-        </StackPanel>   
+        <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0 0 30 0">
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="Nom Agence" FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputNomAgence" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="Tél Agence" FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputTelAgence" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="Email" FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputEmail" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"  Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="RC" FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputRC" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="AI" FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputAI" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="Adresse " FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputAdressAgence" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="Fax " FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputFaxAgence" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="Site Web " FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputSieWeb" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="NIF " FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputNIF" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <Label Content="NIS " FontSize="16" FontStyle="Normal"  Margin="0 0 10 0"/>
+                    <TextBox x:Name="inputNIS" Height="30" Width="250" Background="White"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+                    <Button x:Name="BtnModifierAgence" Height="30" Width="100" Content="Modifier"></Button>
+                </StackPanel>
+
+            </StackPanel>
+
+        </StackPanel>
     </Grid>
 </Page>
