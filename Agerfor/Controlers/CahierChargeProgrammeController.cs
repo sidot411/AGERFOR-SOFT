@@ -33,8 +33,9 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("update cahierchargeprogramme set NomProjet='" + NomProjet + "',RefProgramme='" + RefProgramme + "',NumCahierCharge='" + NumCahierCharge + "',DateEnre='" + DateEnre + "',Volume='" + Volume + "',NumPubli='" + NumPubli + "',DatePuli='" + DatePubli + "',Conservation='" + Conservation + "',Notaire='" + Notaire + "',TelNotaire='" + TelNotaire + "',AdresseNotaire='" + AdresseNotaire + "',SuperficieCessible='" + SuperficieCessible + "',SuperficieVoirie='" + SuperficieVoirie + "',SuperficieEv='" + SuperficieEv + "',SuperficieEq='" + SuperficieEq + "',AutreSuperficie='" + AutreSuperficie + "',NomPreomGeo='" + NomPrenomGeo + "',AdresseGeo='" + AdresseGeo + "',TelGeo='" + TelGeo + "' where NumCahierCharge='"+tempNumCahierDeCharge+"' and NomProjet='"+NomProjet+ "' and RefProgramme='"+RefProgramme+"')");
-                MessageBox.Show("Le cahier de charge à été bien modifié");
+                msh.ExecuteQuery("update cahierchargeprogramme set NomProjet='" + NomProjet + "',RefProgramme='" + RefProgramme + "',NumCahierCharge='" + NumCahierCharge + "', DateEnre='" + DateEnre + "',Volume='"+ Volume+"' where NumCahierCharge = '" + tempNumCahierDeCharge + "' and NomProjet = '" + NomProjet + "' and RefProgramme = '" + RefProgramme + "'"); 
+
+                                MessageBox.Show("Le cahier de charge à été bien modifié");
             }
             catch(Exception)
             {
@@ -42,6 +43,9 @@ namespace Agerfor.Controlers
             }
 
         }
+        /*
+       ,NumPubli='" + NumPubli + "',DatePuli='" + DatePubli + "',Conservation='" + Conservation + "',Notaire='" + Notaire + "',TelNotaire='" + TelNotaire + "',AdresseNotaire='" + AdresseNotaire + "',SuperficieCessible='" + SuperficieCessible + "',SuperficieVoirie='" + SuperficieVoirie + "',SuperficieEv='" + SuperficieEv + "',SuperficieEq='" + SuperficieEq + "',AutreSuperficie='" + AutreSuperficie + "',NomPreomGeo='" + NomPrenomGeo + "',AdresseGeo='" + AdresseGeo + "',TelGeo='" + TelGeo + "' where NumCahierCharge = '"+tempNumCahierDeCharge+"' and NomProjet = '"+NomProjet+ "' and RefProgramme = '"+RefProgramme+"'");*/
+
 
         public void SupprimerCahierCharge()
         {

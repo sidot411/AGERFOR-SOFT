@@ -140,7 +140,7 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
                                 <Button Background="#007CC3" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" x:Name="BtnAjouterCC" Click="BtnAjouterCC_Click" />
-                                <Button Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
+                                <Button Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" x:Name="BtnModifierCC" Click="BtnModifierCC_Click" />
                                 <Button Background="#007CC3" Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" />
                                 <Button Background="#007CC3" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
                                 <Button Background="#007CC3" Content="Ouvrir Acte" Height="35" Width="105" />    

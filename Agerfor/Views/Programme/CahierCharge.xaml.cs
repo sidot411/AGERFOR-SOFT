@@ -74,10 +74,32 @@ namespace Agerfor.Views.Programme
                 {
                     inputNumCahierCharge.Text = rdr["NumCahierCharge"].ToString();
                     inputDateEnreg.Text = rdr["DateEnre"].ToString();
+                    inputVolume.Text = rdr["Volume"].ToString();
+                    inputNumPubli.Text = rdr["NumPubli"].ToString();
+                    inputDatePubli.Text = rdr["DatePubli"].ToString();
+                    inputConservation.Text = rdr["Conservation"].ToString();
+                    inputNotaire.Text = rdr["Notaire"].ToString();
+                    inputTelNotaire.Text = rdr["TelNotaire"].ToString();
+                    inputAdresseNotaire.Text = rdr["AdresseNotaire"].ToString();
+                    inputSuperficieCessible.Text = rdr["SuperficieCessible"].ToString();
+                    inputSuperficieVoirie.Text = rdr["SuperficieVoirie"].ToString();
+                    inputSuperficieEv.Text = rdr["SuperficieEv"].ToString();
+                    inputSuperficieEq.Text = rdr["SuperficieEq"].ToString();
+                    inputAutreSuperficie.Text = rdr["AutreSuperficie"].ToString();
+                    inputNomGeo.Text = rdr["NomPreomGeo"].ToString();
+                    inputAddressGeo.Text = rdr["AdresseGeo"].ToString();
+                    inputTelGeo.Text = rdr["TelGeo"].ToString();
+
 
                     oneTime = false;
                 }
             }
+        }
+
+        private void BtnModifierCC_Click(object sender, RoutedEventArgs e)
+        {
+            CCPC.ModifierCahierCharge(NomProjet, RefProgramme, inputNumCahierCharge.Text, inputDateEnreg.Text,inputVolume.Text, inputNumPubli.Text, inputDatePubli.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, decimal.Parse(inputSuperficieCessible.Text), decimal.Parse(inputSuperficieVoirie.Text), decimal.Parse(inputSuperficieEv.Text), decimal.Parse(inputSuperficieEq.Text), decimal.Parse(inputAutreSuperficie.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text, tempNumCahierDeCharge);
+            msh.LoadData("select * from cahierchargeprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewCahierCharge);
         }
     }
 }
