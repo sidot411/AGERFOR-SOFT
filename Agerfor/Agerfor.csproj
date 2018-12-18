@@ -228,6 +228,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CurrencyTextBoxControl.dll" />
+    <Content Include="MaterialDesignColors.dll" />
+    <Content Include="MaterialDesignThemes.Wpf.dll" />
+    <Content Include="MySql.Data.dll" />
+    <Content Include="Notifications.Wpf.dll" />
     <Content Include="SmarterDB.CodeProject.DataEntry.dll" />
     <Content Include="SmarterDB.CodeProject.TestData.dll" />
   </ItemGroup>
