@@ -11,6 +11,8 @@
       Title="SocieteInformation">
 
     <Grid>
-        
+        <StackPanel>
+            
+        </StackPanel>   
     </Grid>
 </Page>
