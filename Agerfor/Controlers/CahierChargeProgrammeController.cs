@@ -47,9 +47,30 @@ namespace Agerfor.Controlers
        ,NumPubli='" + NumPubli + "',DatePuli='" + DatePubli + "',Conservation='" + Conservation + "',Notaire='" + Notaire + "',TelNotaire='" + TelNotaire + "',AdresseNotaire='" + AdresseNotaire + "',SuperficieCessible='" + SuperficieCessible + "',SuperficieVoirie='" + SuperficieVoirie + "',SuperficieEv='" + SuperficieEv + "',SuperficieEq='" + SuperficieEq + "',AutreSuperficie='" + AutreSuperficie + "',NomPreomGeo='" + NomPrenomGeo + "',AdresseGeo='" + AdresseGeo + "',TelGeo='" + TelGeo + "' where NumCahierCharge = '"+tempNumCahierDeCharge+"' and NomProjet = '"+NomProjet+ "' and RefProgramme = '"+RefProgramme+"'");*/
 
 
-        public void SupprimerCahierCharge()
+        public void SupprimerCahierCharge(string tempNumCahierDeCharge)
         {
+            try
+            {
+                msh.ExecuteQuery("delete from cahierchargeprogramme where NumCahierCharge='" + tempNumCahierDeCharge + "'");
+                MessageBox.Show("Le cahier de charge à été bien supprimer");
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Le cahier de charge n'a pas été supprimer");
+            }
+        }
 
+        public void SupprimerCahierChargeFromProgramme(string tempNumCahierDeCharge)
+        {
+            try
+            {
+                msh.ExecuteQuery("delete from cahierchargeprogramme where NumCahierCharge='" + tempNumCahierDeCharge + "'");
+                MessageBox.Show("Le cahier de charge à été bien supprimer");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Le cahier de charge n'a pas été supprimer");
+            }
         }
     }
 }

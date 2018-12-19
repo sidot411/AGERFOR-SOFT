@@ -15,18 +15,22 @@ using System.Windows.Shapes;
 using Agerfor.Controlers;
 using MySql.Data.MySqlClient;
 using DbConnection.Models;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Agerfor.Views.Programme
 {
     /// <summary>
     /// Interaction logic for CahierCharge.xaml
     /// </summary>
-    public partial class CahierCharge : UserControl
+    public partial class CahierCharge : System.Windows.Controls.UserControl
     {
         CahierChargeProgrammeController CCPC = new CahierChargeProgrammeController();
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
         string RefProgramme = "";
         string NomProjet = "";
+        string tempnumprojet = "";
         string tempNumCahierDeCharge = "";
         public CahierCharge(string NomProjet, string refprogramme)
         {
@@ -46,7 +50,10 @@ namespace Agerfor.Views.Programme
 
         private void BtnAjouterCC_Click(object sender, RoutedEventArgs e)
         {
-          
+            string CC = "Cahier des charges";
+            getrefprojet();
+            DirectoryCreator DC = new DirectoryCreator();
+            DC.CreateDirectoryProgramme(tempnumprojet, RefProgramme + "/" + CC + "/" + inputNumCahierCharge.Text);
             CCPC.AjouterCahierCharge(NomProjet,RefProgramme,inputNumCahierCharge.Text,inputDateEnreg.Text,inputVolume.Text,inputNumPubli.Text,inputDatePubli.Text,inputConservation.Text,inputNotaire.Text,inputTelNotaire.Text,inputAdresseNotaire.Text,decimal.Parse(inputSuperficieCessible.Text),decimal.Parse(inputSuperficieVoirie.Text),decimal.Parse(inputSuperficieEv.Text),decimal.Parse(inputSuperficieEq.Text),decimal.Parse(inputAutreSuperficie.Text),inputNomGeo.Text,inputAddressGeo.Text,inputTelGeo.Text);
             msh.LoadData("select * from cahierchargeprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewCahierCharge);
         }
@@ -101,5 +108,98 @@ namespace Agerfor.Views.Programme
             CCPC.ModifierCahierCharge(NomProjet, RefProgramme, inputNumCahierCharge.Text, inputDateEnreg.Text,inputVolume.Text, inputNumPubli.Text, inputDatePubli.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, decimal.Parse(inputSuperficieCessible.Text), decimal.Parse(inputSuperficieVoirie.Text), decimal.Parse(inputSuperficieEv.Text), decimal.Parse(inputSuperficieEq.Text), decimal.Parse(inputAutreSuperficie.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text, tempNumCahierDeCharge);
             msh.LoadData("select * from cahierchargeprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewCahierCharge);
         }
+
+        private void BtnSupprimerCC_Click(object sender, RoutedEventArgs e)
+        {
+            CCPC.SupprimerCahierCharge(tempNumCahierDeCharge);
+            msh.LoadData("select * from cahierchargeprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewCahierCharge);
+        }
+        //Référence Projet//
+        private void getrefprojet()
+        {
+            string query2 = "select RefProjet from projet where NomProjet ='" +NomProjet + "'";
+            MySqlDataReader rdr2 = null;
+            MySqlConnection con2 = null;
+            MySqlCommand cmd2 = null;
+
+            con2 = new MySqlConnection(Database.ConnectionString);
+            con2.Open();
+            cmd2 = new MySqlCommand(query2);
+            cmd2.Connection = con2;
+            rdr2 = cmd2.ExecuteReader();
+            bool oneTime = true;
+            while (rdr2.Read())
+            {
+
+                if (oneTime)
+                {
+                    tempnumprojet = rdr2["RefProjet"].ToString();
+                    oneTime = false;
+                }
+            }
+        }
+
+        private void BtnOuvrirCC_Click(object sender, RoutedEventArgs e)
+        {
+            getrefprojet();
+            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + RefProgramme + @"\Cahier des charges\" + inputNumCahierCharge.Text;
+
+            OpenFolder(folderPath);
+        }
+
+        private void OpenFolder(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+            else
+            {
+                DirectoryCreator dcr = new DirectoryCreator();
+                dcr.CreateDirectoryProgramme(tempnumprojet, RefProgramme + "/");
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+        private void BtnJoindreCC_Click(object sender, RoutedEventArgs e)
+        {
+            SelectFile("Document Cahier des charges");
+        }
+
+        public void SelectFile(string theDirectory)
+        {
+            getrefprojet();
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + RefProgramme + @"\Cahier des charges\" + inputNumCahierCharge.Text + @"\" + theDirectory + @"\" + System.IO.Path.GetFileName(openFileDialog1.FileName);
+                dcr.CreateDirectoryPermisDeConstruire(tempnumprojet, RefProgramme, inputNumCahierCharge.Text+ "/" + theDirectory);
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+
+                File.Copy(fileName, System.IO.Path.Combine(System.IO.Path.GetDirectoryName(fileName), destinationFolder));
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
+        }
     }
+
 }
