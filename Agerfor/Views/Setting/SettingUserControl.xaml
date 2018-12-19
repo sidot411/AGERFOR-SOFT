@@ -55,6 +55,14 @@
                             <TextBlock Text="Database" VerticalAlignment="Center" Height="25" />
                         </StackPanel>
                     </Button>
+                    <Button x:Name="Btnreferentiel" VerticalAlignment="Top" Height="70" Background="Transparent"
+                  BorderThickness="0" HorizontalAlignment="Right" Width="108" Click="Btnreferentiel_Click" >
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="BookOpen" Height="35" Width="35" HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="Référentiel" VerticalAlignment="Center" Height="25" />
+                        </StackPanel>
+                    </Button>
 
                 </StackPanel>
             </Grid>

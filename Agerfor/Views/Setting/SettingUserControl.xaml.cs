@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Agerfor.Views;
+using Agerfor.Views.Setting.referentiel;
+
 
 namespace Agerfor.Views.Setting
 {
@@ -42,6 +44,13 @@ namespace Agerfor.Views.Setting
             Frame.Navigate(new Database());
             title.Text = "base de donnée";
 
+        }
+
+        private void Btnreferentiel_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            Frame.Navigate(new Ref());
+            title.Text = "Référentiel";
         }
     }
 }
