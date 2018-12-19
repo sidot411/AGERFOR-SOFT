@@ -35,5 +35,13 @@ namespace Agerfor.Views.Setting
             Frame.Navigate(new SocieteInformation());
             title.Text = "Information Société";
         }
+
+        private void BtnDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            Frame.Navigate(new Database());
+            title.Text = "base de donnée";
+
+        }
     }
 }

@@ -131,6 +131,9 @@
     <Compile Include="Views\Projet\Projet.xaml.cs">
       <DependentUpon>Projet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Setting\Database.xaml.cs">
+      <DependentUpon>Database.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Setting\SettingUserControl.xaml.cs">
       <DependentUpon>SettingUserControl.xaml</DependentUpon>
     </Compile>
@@ -190,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Projet\Projet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\Database.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
