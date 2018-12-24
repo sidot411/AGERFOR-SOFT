@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,15 +16,17 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("insert into programme values('"+NomProjet+"','" + RefProgramme + "','" + NomProgramme + "','" + Site + "','" + Daira + "','" + Commune+ "','" + NatureProgramme + "','" + TypeProgramme + "','" + NombreBiens + "','"+Superficie+"')");
+                msh.ExecuteQuery("insert into programme values('" + NomProjet + "','" + RefProgramme + "','" + NomProgramme + "','" + Site + "','" + Daira + "','" + Commune + "','" + NatureProgramme + "','" + TypeProgramme + "','" + NombreBiens + "','" + Superficie + "')");
                 MessageBox.Show("Le programme a était ajouter avec succès");
             }
-
-            catch (Exception)
+            catch (MySqlException myException)
             {
-                MessageBox.Show("Le programme n'a pas était ajouté !");
+                MessageBox.Show("La référance "+RefProgramme+" existe déja veuillez entrer une référance différante - MySQLMessage: " + myException.Message + "\n" ,"Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
-        }
+
+
+        }        
         public void Editprogramme(string NomProjet, string RefProgramme, string NomProgramme, string Site, string Daira, string Commune, string NatureProgramme, string TypeProgramme, string NombreBiens, decimal Superficie)
         {
             try
@@ -53,7 +57,7 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("delete from programme where NomProjet = '" + NomProjet+ "'");
+                msh.ExecuteQuery("delete from programme where NomProjet = '" +NomProjet+ "'");
                 MessageBox.Show("Le(s) programme(s) du projet "+NomProjet+" ont était bien supprimé");
             }
 

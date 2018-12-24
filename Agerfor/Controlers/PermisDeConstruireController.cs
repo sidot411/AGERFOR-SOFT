@@ -57,11 +57,11 @@ namespace Agerfor.Controlers
             try
             {
                 msh.ExecuteQuery("delete from permisdeconstruire where RefProgramme='" + tempRefProgramme + "'");
-                MessageBox.Show("Le permis de construire à été bien supprimé");
+                
             }
             catch (Exception)
             {
-                MessageBox.Show("Le permis de construire n'a pas éé supprimé");
+                
             }
         }
 
@@ -69,12 +69,12 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("delete from permisdeconstruire where RefProgramme='" + tempNomProjet + "'");
-                MessageBox.Show("Le permis de construire à été bien supprimé");
+                msh.ExecuteQuery("delete from permisdeconstruire where NomProjet='" + tempNomProjet + "'");
+                
             }
             catch (Exception)
             {
-                MessageBox.Show("Le permis de construire n'a pas éé supprimé");
+                
             }
         }
     }

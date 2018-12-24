@@ -95,8 +95,10 @@
     <Compile Include="Controlers\ActeProgrammeController.cs" />
     <Compile Include="Controlers\CahierChargeProgrammeController.cs" />
     <Compile Include="Controlers\ClientController.cs" />
+    <Compile Include="Controlers\ConventionController.cs" />
     <Compile Include="Controlers\DemandeController.cs" />
     <Compile Include="Controlers\DirectoryCreator.cs" />
+    <Compile Include="Controlers\EddController.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
     <Compile Include="Controlers\PermiLotirController.cs" />
     <Compile Include="Controlers\PermisDeConstruireController.cs" />

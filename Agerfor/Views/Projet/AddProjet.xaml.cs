@@ -24,8 +24,8 @@ namespace Agerfor.Views.Projet
         string RefProjet = "";
         string Query = "";
         string TempNumActe = "";
- 
-  
+        string tempNumActeProgramme = "";
+
 
         public AddProjet(string RefProjet)
         {
@@ -142,7 +142,7 @@ namespace Agerfor.Views.Projet
 
         private void dataViewActeProjet_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string tempNumActeProgramme = "";
+            
             DataGridCellInfo cell0 = dataViewActeProjet.SelectedCells[0];
             tempNumActeProgramme = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
 
@@ -312,7 +312,7 @@ namespace Agerfor.Views.Projet
 
         private void BtnOuvrirActe_Click(object sender, RoutedEventArgs e)
         {
-            if(TempNumActe != "")
+            if(tempNumActeProgramme != "")
             {
                 
                 string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text + @"\Acte\" + inputNumAct.Text;
@@ -326,7 +326,7 @@ namespace Agerfor.Views.Projet
 
         private void BtnJoindre_Click(object sender, RoutedEventArgs e)
         {
-            if (TempNumActe != "")
+            if (tempNumActeProgramme != "")
             {
                 SelectFile2("Acte");
             }

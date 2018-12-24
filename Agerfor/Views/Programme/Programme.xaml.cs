@@ -21,6 +21,7 @@ namespace Agerfor.Views.Programme
         PermiLotirController PLC = new PermiLotirController();
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
         string temprefprogramme = "";
+        string tempNomProgramme = "";
         string tempNomProjet = "";
         string tempnumprojet = "";
         string query = "";
@@ -47,35 +48,41 @@ namespace Agerfor.Views.Programme
         private void dataGridView2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGridCellInfo cell0 = dataGridView2.SelectedCells[0];
-            temprefprogramme = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+            tempNomProjet = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
             DataGridCellInfo cell1 = dataGridView2.SelectedCells[1];
-            tempNomProjet = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
-        }
-        private void BtnAfficherProgramme_Click(object sender, RoutedEventArgs e)
+            temprefprogramme = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
+            DataGridCellInfo cell2 = dataGridView2.SelectedCells[2];
+            tempNomProgramme = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
+             
+        
+
+    }
+    private void BtnAfficherProgramme_Click(object sender, RoutedEventArgs e)
         {
 
-            AddProgramme AP = new AddProgramme(temprefprogramme);
+            AddProgramme AP = new AddProgramme(temprefprogramme,tempNomProgramme);
             AP.GridProgramme.IsEnabled = false;
             NavigationService.Navigate(AP);
 
         }
         private void BtnAjouterProgramme_Click(object sender, RoutedEventArgs e)
         {
-            AddProgramme AP = new AddProgramme(""); 
+            AddProgramme AP = new AddProgramme("",""); 
             NavigationService.Navigate(AP);
         }
 
         private void BtnModifierProgramme_Click(object sender, RoutedEventArgs e)
         {
-            AddProgramme AP = new AddProgramme(temprefprogramme);
+            AddProgramme AP = new AddProgramme(temprefprogramme,tempNomProgramme);
             AP.BtnAjouterProgramme.IsEnabled = false;
             NavigationService.Navigate(AP);
         }
 
         private void BtnSuppProgramme_Click(object sender, RoutedEventArgs e)
         {
-            if (temprefprogramme != "")
+            if (temprefprogramme !="")
             {
+                System.Windows.MessageBox.Show("Note: Lors de la supression d'un programme tous les élements qui appartienent au programme à savoir(Acte,Permis de lotir, permis de construire, Cahier des charges, Edd,Convention, et documents) seront automatiquement supprimé !", "Information", MessageBoxButton.OK, MessageBoxImage.Warning);
                 if (System.Windows.MessageBox.Show("Voulez-vous supprimer ce projet?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
                 {
 
@@ -84,17 +91,23 @@ namespace Agerfor.Views.Programme
                 }
                 else
                 {
+                    getrefprojet();
                     ActeProgrammeController APC = new ActeProgrammeController();
                     ProgrammeController PC = new ProgrammeController();
                     DirectoryCreator DC = new DirectoryCreator();
                     PermiLotirController PLC = new PermiLotirController();
                     PermisDeConstruireController PDCC = new PermisDeConstruireController();
+                    CahierChargeProgrammeController CCPC = new CahierChargeProgrammeController();
+                    EddController EC = new EddController();
+                    ConventionController CC = new ConventionController();
                     
-                    DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\"+ temprefprogramme);
-                    
+                    DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + temprefprogramme);   
                     APC.SupprimerActeFromProgramme(temprefprogramme);
                     PLC.SupprimerPLFromProgramme(temprefprogramme);
                     PDCC.SupprimerPermisConstruireFromProgramme(temprefprogramme);
+                    CCPC.SupprimerCahierChargefromProgramme(temprefprogramme);
+                    EC.SupprimerEddFromProgramme(temprefprogramme);
+                    CC.SupprimerConventionFromProgramme(temprefprogramme);
                     PC.DeleteProgramme(temprefprogramme);
                     Programme P = new Programme("");
                     NavigationService.Navigate(P);
@@ -135,7 +148,9 @@ namespace Agerfor.Views.Programme
         }
 
 
-   
+
+
+
 
         private void inputRefProgramme_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {

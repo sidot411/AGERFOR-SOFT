@@ -76,6 +76,9 @@ namespace Agerfor.Views.Projet
         {
             if (tempRefProjet != "")
             {
+
+                System.Windows.MessageBox.Show("Note: Lors de la supression d'un projet tous les élements qui appartienent au projet et au programmes du projet à savoir(Acte,Permis de lotir, permis de construire, Cahier des charges, Edd,Convention, et documents) seront automatiquement supprimé !", "Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+
                 if (MessageBox.Show("Voulez-vous supprimer ce projet?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
                 {
 
@@ -92,13 +95,19 @@ namespace Agerfor.Views.Projet
                     ActeProgrammeController APC = new ActeProgrammeController();
                     PermiLotirController PLC = new PermiLotirController();
                     PermisDeConstruireController PDCC = new PermisDeConstruireController();
+                    CahierChargeProgrammeController CCPC = new CahierChargeProgrammeController();
+                    EddController EC = new EddController();
+                    ConventionController CC = new ConventionController();
                    
 
                     DC.DeleteDirectory(@"Projet\" + tempRefProjet);
+                    CC.SupprimerConventionFromProjet(tempnomprojet);
+                    EC.SupprimerEddFromProjet(tempnomprojet);
+                    CCPC.SupprimerCahierChargeFromProjet(tempnomprojet);
                     APC.SupprimerActeFromProjet(tempnomprojet);
                     PDCC.SupprimerPermisConstruireFromProjet(tempnomprojet);
                     PLC.SupprimerPLFromProjet(tempnomprojet);
-                    PRC.DeleteProgrammeFromProjet(tempRefProjet);
+                    PRC.DeleteProgrammeFromProjet(tempnomprojet);
                     AC.SupprimerActe2(tempRefProjet);
                     PC.DeleteProjet(tempRefProjet);  
                     MessageBox.Show("Le projet " + tempRefProjet + " à était bien supprimer");
