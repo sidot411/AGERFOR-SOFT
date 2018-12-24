@@ -41,7 +41,7 @@ namespace Agerfor.Views.Programme
         private readonly NotificationManager _notificationManager = new NotificationManager();
         private readonly Random _random = new Random();
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public AddProgramme(string refprogramme)
+        public AddProgramme(string refprogramme, string NomProgramme)
         {
             this.RefProgramme = refprogramme;
             InitializeComponent();
@@ -52,6 +52,8 @@ namespace Agerfor.Views.Programme
             msh.FillDropDownList("select NomDaira from daira", inputDairaProgramme, "NomDaira");
             msh.FillDropDownList("select NomProjet from projet", inputNomProjet, "NomProjet");
             msh.FillDropDownList("select NomConservation from conservation", inputConservation, "NomConservation");
+            inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
+            inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
 
 
             var timer = new System.Timers.Timer { Interval = 3000 };
@@ -175,6 +177,7 @@ namespace Agerfor.Views.Programme
             msh.LoadData("select * from permilotir", DataGridPLotir);
             msh.LoadData("select * from permisdeconstruire", DataGridPConstruire);
 
+
             if (RefProgramme != "" && inputNatureProgramme.Text != "" && inputTypeProgramme.Text != "")
             {
                 if (inputNatureProgramme.SelectedValue.ToString() == "Lotissement" || inputNatureProgramme.SelectedValue.ToString() == "Terrain Industriel" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
@@ -223,13 +226,13 @@ namespace Agerfor.Views.Programme
 
         private void BtnEDD_Click(object sender, RoutedEventArgs e)
         {
-            EDD EDD = new EDD();
+            EDD EDD = new EDD(inputNomProjet.Text, inputRefProgramme.Text);
             DialogHost.Show(EDD);
         }
 
         private void BtnConvention_Click(object sender, RoutedEventArgs e)
         {
-            Convention convention = new Convention();
+            Convention convention = new Convention(inputNomProjet.Text, inputRefProgramme.Text);
             DialogHost.Show(convention);
         }
 
@@ -246,15 +249,15 @@ namespace Agerfor.Views.Programme
             DirectoryCreator DC = new DirectoryCreator();
             DC.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text);
             PC.AjouterProgramme(inputNomProjet.Text, inputRefProgramme.Text, inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text));
-            AddProgramme AP = new AddProgramme("");
+            AddProgramme AP = new AddProgramme("","");
             NavigationService.Navigate(AP);
-            System.Windows.MessageBox.Show(tempnumprojet);
+           
         }
         //Modifier Programme//
         private void BtnModifierProgramme_Click(object sender, RoutedEventArgs e)
         {
             PC.Editprogramme(inputNomProjet.Text, inputRefProgramme.Text, inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text));
-            AddProgramme AP = new AddProgramme("");
+            AddProgramme AP = new AddProgramme("","");
             NavigationService.Navigate(AP);
         }
         //Annuler Programme//
@@ -334,16 +337,20 @@ namespace Agerfor.Views.Programme
             getrefprojet();
             DirectoryCreator DC = new DirectoryCreator();
             DC.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text + "/" + Acte + "/" + NumActeProgramme.Text);
-            APC.AjouterActeProgramme(NumActeProgramme.Text, inputDateActeProgramme.Text, DateEnrgActeP.Text, DatePubliActeP.Text, inputConservation.Text, decimal.Parse(inputFrais.Text), inputRefProgramme.Text,inputNomProjet.Text);
-            AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
-            NavigationService.Navigate(AP);
+            APC.AjouterActeProgramme(NumActeProgramme.Text, inputDateActeProgramme.Text, DateEnrgActeP.Text, DatePubliActeP.Text, inputConservation.Text, decimal.Parse(inputFrais.Text),inputRefProgramme.Text,inputNomProjet.Text);
+            msh.LoadData("select * from acteprogramme where RefProgramme='" + RefProgramme + "'", datagridActeProgramme);
+            NumActeProgramme.Text = inputDateActeProgramme.Text = DateEnrgActeP.Text = DatePubliActeP.Text = inputConservation.Text = "";
+            inputFrais.Text = "0.00";
+            inputFraisDivers.Text = "0.00";
+            inputFraisPLotir.Text = "0.00";
+
         }
 
         private void BtnModifierActeProgramme_Click(object sender, RoutedEventArgs e)
         {
 
             APC.EditerActe(NumActeProgramme.Text, inputDateActeProgramme.Text, DateEnrgActeP.Text, DatePubliActeP.Text, inputConservation.Text, decimal.Parse(inputFrais.Text), inputRefProgramme.Text,inputNomProjet.Text, tempNumActeProgramme);
-            AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
+            AddProgramme AP = new AddProgramme(inputRefProgramme.Text,inputNomProgramme.Text);
             NavigationService.Navigate(AP);
         }
 
@@ -387,7 +394,7 @@ namespace Agerfor.Views.Programme
             DirectoryCreator DC = new DirectoryCreator();
             DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\Acte\" + tempNumActeProgramme);
             APC.SupprimerActe(tempNumActeProgramme);
-            AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
+            AddProgramme AP = new AddProgramme(inputRefProgramme.Text,inputNomProgramme.Text);
             NavigationService.Navigate(AP);
         }
 
@@ -461,14 +468,18 @@ namespace Agerfor.Views.Programme
             DirectoryCreator DC = new DirectoryCreator();
             DC.CreateDirectoryPermisLotir(tempnumprojet, inputRefProgramme.Text, inputNumLotir.Text);
             PLC.AjouterPL(inputNumLotir.Text, inputDatePLotir.Text, decimal.Parse(inputFraisPLotir.Text),inputNbrIlot.Text,inputNbrLots.Text,decimal.Parse(inputSuperficieGlobal.Text),decimal.Parse(inputSuperficieVoiries.Text),decimal.Parse(inputSuperficieEspaceVert.Text),decimal.Parse(inputSuperficieEquipements.Text),decimal.Parse(inputSuperficieAmenagement.Text),decimal.Parse(inputAutresSuperficie.Text),inputRefProgramme.Text,inputNomProjet.Text);
-            AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
-            NavigationService.Navigate(AP);
+            msh.LoadData("select * from permilotir", DataGridPLotir);
+            inputNumLotir.Text = inputDatePLotir.Text = inputNbrLots.Text = inputNbrIlot.Text = "";
+            inputFraisPLotir.Text = "0.00";
+            inputFrais.Text = "0.00";
+            inputFraisDivers.Text = "0.00";
+            inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
         }
 
         private void BtnModifierPLotir_Click(object sender, RoutedEventArgs e)
         {
             PLC.EditerPL(inputNumLotir.Text, inputDatePLotir.Text, decimal.Parse(inputFraisPLotir.Text), inputNbrIlot.Text, inputNbrLots.Text, decimal.Parse(inputSuperficieGlobal.Text), decimal.Parse(inputSuperficieVoiries.Text), decimal.Parse(inputSuperficieEspaceVert.Text), decimal.Parse(inputSuperficieEquipements.Text), decimal.Parse(inputSuperficieAmenagement.Text), decimal.Parse(inputAutresSuperficie.Text), inputRefProgramme.Text, inputNomProjet.Text, tempNumPL);
-            AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
+            AddProgramme AP = new AddProgramme(inputRefProgramme.Text,inputNomProgramme.Text);
             NavigationService.Navigate(AP);
         }
 
@@ -515,7 +526,7 @@ namespace Agerfor.Views.Programme
             DirectoryCreator DC = new DirectoryCreator();
             DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\PermisLotir\" + inputNumLotir.Text);
             PLC.SupprimerPL(tempNumPL);
-            AddProgramme AP = new AddProgramme(inputRefProgramme.Text);
+            AddProgramme AP = new AddProgramme(inputRefProgramme.Text,inputNomProgramme.Text);
             NavigationService.Navigate(AP);
 
         }
@@ -566,6 +577,12 @@ namespace Agerfor.Views.Programme
             PermisDeConstruireController PDCC = new PermisDeConstruireController();
             PDCC.AjouterPermisConstruire(inputNumPermisConstruire.Text,inputDatePermisConstruire.Text,decimal.Parse(inputFraisDivers.Text),inputNbrLog.Text,decimal.Parse(inputSupLog.Text),inputNbrLoc.Text,decimal.Parse(inputSupLoc.Text),inputNbrBur.Text,decimal.Parse(inputSupBur.Text),inputNbrCave.Text,decimal.Parse(inputSuperficieCave.Text),inputNbrCC.Text,decimal.Parse(inputSuperficieCC.Text),inputNbrPlcS.Text,decimal.Parse(inputSuperficiePlcS.Text),inputRefProgramme.Text,inputNomProjet.Text);
             msh.LoadData("select * from permisdeconstruire", DataGridPConstruire);
+            inputNumPermisConstruire.Text = inputDatePermisConstruire.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrBur.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPlcS.Text = "";
+            inputFraisDivers.Text = "0.00";
+            inputFrais.Text = "0.00";
+            inputFraisPLotir.Text = "0.00";
+            inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
+
         }
 
         private void DataGridPConstruire_SelectionChanged(object sender, SelectionChangedEventArgs e)

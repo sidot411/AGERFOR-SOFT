@@ -60,17 +60,34 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void SupprimerCahierChargeFromProgramme(string tempNumCahierDeCharge)
+        public void SupprimerCahierChargefromProgramme(string tempRefProgramme)
         {
             try
             {
-                msh.ExecuteQuery("delete from cahierchargeprogramme where NumCahierCharge='" + tempNumCahierDeCharge + "'");
-                MessageBox.Show("Le cahier de charge à été bien supprimer");
+                msh.ExecuteQuery("delete from cahierchargeprogramme where RefProgramme='" + tempRefProgramme + "'");
+
             }
             catch (Exception)
             {
-                MessageBox.Show("Le cahier de charge n'a pas été supprimer");
+
             }
         }
+
+        public void SupprimerCahierChargeFromProjet(string tempNomProjet)
+        {
+            try
+            {
+                msh.ExecuteQuery("delete from cahierchargeprogramme where NomProjet='" + tempNomProjet + "'");
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+
+
+
     }
 }

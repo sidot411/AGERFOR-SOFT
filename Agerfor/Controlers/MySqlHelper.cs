@@ -2,8 +2,12 @@
 using System.Data;
 using System.Windows.Controls;
 using MySql.Data.MySqlClient;
+
+
 using System.Windows;
 using DbConnection.Models;
+using System.Data.SqlClient;
+
 namespace Agerfor.Controlers
 {
     class MySqlHelper
@@ -13,22 +17,16 @@ namespace Agerfor.Controlers
 
         public void ExecuteQuery(string query)
         {
-            try
-            {
+           
                 MySqlConnection conn = new MySqlConnection(Database.ConnectionString);
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
                 conn.Close();
-                
-            }
-            catch (Exception)
-            {
-                
-               
-            }
-        }
+           
+
+        } 
 
         public void LoadData(string cmdTxt, DataGrid gridView)
         {

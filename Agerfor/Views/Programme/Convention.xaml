@@ -6,9 +6,19 @@
              xmlns:local="clr-namespace:Agerfor.Views.Programme"
              mc:Ignorable="d" Background="#E6EAED"
              Height="600" Width="1100"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+              xmlns:mydata="clr-namespace:SmarterDB.CodeProject.TestData;assembly=SmarterDB.CodeProject.TestData"    
+             xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
+      
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Loaded="Page_Loaded">
     <materialDesign:DialogHost>
         <Grid>
+            <Grid.Resources >
+                <myentry:NumericConverter x:Key="myconverter"/>
+                <myentry:NumericToValueTypeConverter x:Key="mytypeconverter"/>
+            </Grid.Resources>
+            <Grid.DataContext>
+                <mydata:TestDataModel></mydata:TestDataModel>
+            </Grid.DataContext>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100*" />
 
@@ -38,27 +48,27 @@
                                 <Label FontSize="18" FontWeight="Bold" Margin="0 0 0 10">Informations convention</Label>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Num décision calpiref</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputNumDC"  Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date décision calpiref
                                     </Label>
-                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                                    <DatePicker x:Name="inputDateDC"  Background="#FAFAFA" Height="35" FontSize="17"
                             VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
                             HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
                                     </DatePicker>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Num arreté du wali</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputNumAW"  Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date arreté du wali
                                     </Label>
-                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                                    <DatePicker x:Name="inputDateAW"  Background="#FAFAFA" Height="35" FontSize="17"
                             VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
                             HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
                                     </DatePicker>
@@ -66,31 +76,33 @@
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date convention
                                     </Label>
-                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                                    <DatePicker  x:Name="inputDateConv" Background="#FAFAFA" Height="35" FontSize="17"
                             VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
                             HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
                                     </DatePicker>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Nature d'activité</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputNatureA" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
 
 
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">superficie terain</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <TextBox x:Name="inputSupT"  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prix unitaire</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <TextBox x:Name="inputPrix"  Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Majoration</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputMajoration" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
 
@@ -103,16 +115,16 @@
                                         <Border.Effect>
                                             <DropShadowEffect BlurRadius="20" Opacity="0.2" />
                                         </Border.Effect>
-                                        <DataGrid x:Name="dataViewActeProjet" AutoGenerateColumns="False" BorderBrush="White"
+                                        <DataGrid x:Name="dataViewConvention" AutoGenerateColumns="False" BorderBrush="White"
                         BorderThickness="0" 
                         AlternatingRowBackground="#F3F3F3"
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
-                        Width="500" Height="220" RowDetailsVisibilityMode="VisibleWhenSelected">
+                        Width="500" Height="220" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewConvention_SelectionChanged">
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num décision" />
-                                                <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date décision" />
-                                                <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Num arreté" />
-                                                <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date arreté " />
+                                                <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumDec}" Header="Num décision" />
+                                                <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateDec}" Header="Date décision" />
+                                                <DataGridTextColumn  Width="*" Binding="{Binding NumAW}" Header="Num arreté" />
+                                                <DataGridTextColumn  Width="*" Binding="{Binding DateAW}" Header="Date arreté " />
                                               
 
                                             </DataGrid.Columns>
@@ -124,11 +136,11 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                                <Button Background="#007CC3" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button Background="#007CC3" Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button Background="#007CC3" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button Background="#007CC3" Content="Ouvrir Acte" Height="35" Width="105" />
+                                <Button x:Name="BtnAjouter" Background="#007CC3" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouter_Click" />
+                                <Button x:Name="BtnModifier" Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifier_Click" />
+                                <Button x:Name="BtnSupprimer" Background="#007CC3" Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" Click="BtnSupprimer_Click" />
+                                <Button x:Name="Joindre" Background="#007CC3" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="Joindre_Click" />
+                                <Button x:Name="Ouvrir" Background="#007CC3" Content="Ouvrir Acte" Height="35" Width="105" Click="Ouvrir_Click" />
                             </StackPanel>
                            
 

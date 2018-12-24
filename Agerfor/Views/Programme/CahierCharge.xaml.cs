@@ -111,6 +111,8 @@ namespace Agerfor.Views.Programme
 
         private void BtnSupprimerCC_Click(object sender, RoutedEventArgs e)
         {
+            DirectoryCreator DC = new DirectoryCreator();
+            DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + RefProgramme + @"\Cahier des charges\" + tempNumCahierDeCharge);
             CCPC.SupprimerCahierCharge(tempNumCahierDeCharge);
             msh.LoadData("select * from cahierchargeprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewCahierCharge);
         }

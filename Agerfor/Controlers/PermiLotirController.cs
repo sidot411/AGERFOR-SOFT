@@ -55,11 +55,11 @@ namespace Agerfor.Controlers
             try
             {
                 msh.ExecuteQuery("delete from permilotir where RefProgramme='" + refprogramme + "'");
-                MessageBox.Show("Le permi de lotir a été bien supprimé");
+                
             }
             catch (Exception)
             {
-                MessageBox.Show("Le permi de lotir n'a pas été supprimé");
+               
             }
         }
 
@@ -68,11 +68,11 @@ namespace Agerfor.Controlers
             try
             {
                 msh.ExecuteQuery("delete from permilotir where NomProjet='" + NomProjet + "'");
-                MessageBox.Show("Le permi de lotir a été bien supprimé");
+                
             }
             catch (Exception)
             {
-                MessageBox.Show("Le permi de lotir n'a pas été supprimé");
+                
             }
         }
 

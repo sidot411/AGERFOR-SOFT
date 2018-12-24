@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Agerfor.Views.Programme"
              mc:Ignorable="d" Background="#E6EAED"
              Height="900" Width="1100"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Loaded="Page_Loaded">
     <materialDesign:DialogHost>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -38,56 +38,56 @@
                                 <Label FontSize="18" FontWeight="Bold" Margin="0 0 0 10">Informations EDD</Label>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Num EDD</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputNumEdd" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date EDD
                                     </Label>
-                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                                    <DatePicker x:Name="inputDateEdd"  Background="#FAFAFA" Height="35" FontSize="17"
                             VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
                             HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
                                     </DatePicker>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Num enregistremrent</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox  x:Name="inputNumEnreg" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date enregistrement
                                     </Label>
-                                    <DatePicker   Background="#FAFAFA" Height="35" FontSize="17"
+                                    <DatePicker x:Name="inputDateEnreg"  Background="#FAFAFA" Height="35" FontSize="17"
                             VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
                             HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
                                     </DatePicker>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Volume</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputVolume" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Conservation</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputConservation" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
                                
                                 
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Notaire</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputNotaire" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Tel Notaire</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputTelNotaire" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Adresse Notaire</Label>
-                                    <TextBox  Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputAdresseNotaire" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
 
@@ -101,7 +101,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Adresse géomètre</Label>
-                                    <TextBox x:Name="inputAddressGeo" Background="#FAFAFA" Width="360" FontSize="18"
+                                    <TextBox x:Name="inputAddresseGeo" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
@@ -111,62 +111,62 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre logement</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                                    <TextBox x:Name="inputNbrLog" Background="#FAFAFA" Width="120" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <TextBox x:Name="inputSupLog" Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre locaux</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                                    <TextBox x:Name="inputNbrLoc" Background="#FAFAFA" Width="120" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <TextBox x:Name="inputSupLoc" Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre bureau</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                                    <TextBox x:Name="inputNbrBur"  Background="#FAFAFA" Width="120" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <TextBox x:Name="inputSupBur" Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre de cave</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                                    <TextBox x:Name="inputNbrCave" Background="#FAFAFA" Width="120" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <TextBox x:Name="inputSupCave" Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre centre commercial</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <TextBox x:Name="inputNbrCC" Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <TextBox x:Name="inputSupCC" Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre plc stationnement</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
+                                    <TextBox x:Name="inputNbrPS" Background="#FAFAFA" Width="120" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                     <Label FontSize="16" Foreground="Red" Margin="0 0 18 0">Superfice</Label>
-                                    <TextBox  Background="#FAFAFA" Width="120" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    <TextBox x:Name="inputSupPS" Background="#FAFAFA" Width="120" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="0"/>
                                 </StackPanel>
 
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                                <Button Background="#007CC3" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button Background="#007CC3" Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button Background="#007CC3" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" />
-                                <Button Background="#007CC3" Content="Ouvrir Acte" Height="35" Width="105" />
+                                <Button x:Name="BtnAjouterEdd" Background="#007CC3" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterEdd_Click" />
+                                <Button x:Name="BtnModifierEdd" Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierEdd_Click" />
+                                <Button x:Name="BtnSupprimmerEdd" Background="#007CC3" Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" Click="BtnSupprimmerEdd_Click" />
+                                <Button x:Name="BtnJoindreEdd" Background="#007CC3" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindreEdd_Click" />
+                                <Button x:Name="BtnOuvrirEdd" Background="#007CC3" Content="Ouvrir EDD" Height="35" Width="105" Click="BtnOuvrirEdd_Click"/>
                             </StackPanel>
                             <Label FontSize="18" FontWeight="Bold" Margin="0 10 0 0">Liste EDD</Label>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0">
@@ -174,18 +174,18 @@
                                     <Border.Effect>
                                         <DropShadowEffect BlurRadius="20" Opacity="0.2" />
                                     </Border.Effect>
-                                    <DataGrid x:Name="dataViewActeProjet" AutoGenerateColumns="False" BorderBrush="White"
+                                    <DataGrid x:Name="dataViewListeEdd" AutoGenerateColumns="False" BorderBrush="White"
                         BorderThickness="0" 
                         AlternatingRowBackground="#F3F3F3"
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
-                        Width="1000" Height="220" RowDetailsVisibilityMode="VisibleWhenSelected">
+                        Width="1000" Height="220" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewListeEdd_SelectionChanged">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num EDD" />
-                                            <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date EDD" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Num enregistrement" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date enregistrement" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Volume" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Conservation" />
+                                            <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumEdd}" Header="Num EDD" />
+                                            <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateEdd}" Header="Date EDD" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding NumEnrg}" Header="Num enregistrement" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DateEnrg}" Header="Date enregistrement" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding Volume}" Header="Volume" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding Conservation}" Header="Conservation" />
                                            
                                         </DataGrid.Columns>
                                     </DataGrid>

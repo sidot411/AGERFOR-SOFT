@@ -7,8 +7,7 @@ namespace Agerfor.Controlers
     {
         MySqlHelper msh = new MySqlHelper();
 
-        public void AjouterActeProgramme(string NumActe, string DateActe, string DateEnrgActe, string DatePubliActe, string Conservation, decimal FraisEnrg, string RefProgramme, string NomProjet
-            )
+        public void AjouterActeProgramme(string NumActe, string DateActe, string DateEnrgActe, string DatePubliActe, string Conservation, decimal FraisEnrg, string RefProgramme, string NomProjet)
         {
             try
             {
@@ -48,24 +47,24 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("delete from acteprogramme where RefProjet = '" + NomProjet + "'");
-                MessageBox.Show("L'Acte à était bien supprimé");
+                msh.ExecuteQuery("delete from acteprogramme where NomProjet = '" + NomProjet + "'");
+                
             }
             catch (Exception)
             {
-                MessageBox.Show("L'Acte n'à pas était supprimé");
+                
             }
         }
         public void SupprimerActeFromProgramme(string RefProgramme)
         {
             try
             {
-                msh.ExecuteQuery("delete from acteprogramme where RefProjet = '" + RefProgramme + "'");
-                MessageBox.Show("L'Acte à était bien supprimé");
+                msh.ExecuteQuery("delete from acteprogramme where RefProgramme = '" + RefProgramme + "'");
+              
             }
             catch (Exception)
             {
-                MessageBox.Show("L'Acte n'à pas était supprimé");
+               
             }
         }
       
