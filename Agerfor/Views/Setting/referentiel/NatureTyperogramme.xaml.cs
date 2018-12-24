@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace Agerfor.Views.Setting.referentiel
 {
     /// <summary>
-    /// Interaction logic for Ref.xaml
+    /// Interaction logic for NatureTyperogramme.xaml
     /// </summary>
-    public partial class Ref : Page
+    public partial class NatureTyperogramme : Page
     {
-        public Ref()
+        public NatureTyperogramme()
         {
             InitializeComponent();
         }
-
-
     }
 }

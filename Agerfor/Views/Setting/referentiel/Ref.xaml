@@ -7,23 +7,26 @@
       mc:Ignorable="d" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
-         Background="#E6EAED"
-      d:DesignHeight="530" d:DesignWidth="590" Height="560" Width="840"
+      
+      Background="#E6EAED"
+       Height="560" Width="840"
       Title="Ref">
 
- 
         <Grid>
             <dragablz:TabablzControl FixedHeaderCount="3">
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController />
                 </dragablz:TabablzControl.InterTabController>
                 <TabItem Header="Wilaya-Daira-Commune">
+
+                <ScrollViewer>
                     <Frame Source="/Views/Setting/referentiel/WilayaDairaCommune.xaml" />
+                </ScrollViewer>
+            </TabItem>
+                <TabItem Header="Nature et type Programme">
+                    <Frame Source="/Views/Setting/referentiel/NatureTyperogramme.xaml" />
                 </TabItem>
-                <TabItem Header="Nature Programme">
-                </TabItem>
-                <TabItem Header="Type programme">
-                </TabItem>
+               
             </dragablz:TabablzControl>
         </Grid>
    

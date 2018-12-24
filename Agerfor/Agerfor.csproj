@@ -138,6 +138,9 @@
     <Compile Include="Views\Setting\Database.xaml.cs">
       <DependentUpon>Database.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Setting\referentiel\NatureTyperogramme.xaml.cs">
+      <DependentUpon>NatureTyperogramme.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Setting\referentiel\Ref.xaml.cs">
       <DependentUpon>Ref.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Setting\referentiel\NatureTyperogramme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Setting\referentiel\Ref.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -269,6 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CurrencyTextBoxControl.dll" />
+    <Content Include="Dragablz.dll" />
     <Content Include="MaterialDesignColors.dll" />
     <Content Include="MaterialDesignThemes.Wpf.dll" />
     <Content Include="MySql.Data.dll" />
