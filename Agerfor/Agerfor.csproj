@@ -99,6 +99,7 @@
     <Compile Include="Controlers\DemandeController.cs" />
     <Compile Include="Controlers\DirectoryCreator.cs" />
     <Compile Include="Controlers\EddController.cs" />
+    <Compile Include="Controlers\LotController.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
     <Compile Include="Controlers\PermiLotirController.cs" />
     <Compile Include="Controlers\PermisDeConstruireController.cs" />
@@ -124,6 +125,9 @@
     </Compile>
     <Compile Include="Views\Programme\Convention.xaml.cs">
       <DependentUpon>Convention.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\CreationListeLots.xaml.cs">
+      <DependentUpon>CreationListeLots.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Programme\EDD.xaml.cs">
       <DependentUpon>EDD.xaml</DependentUpon>
@@ -192,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Programme\Convention.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\CreationListeLots.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

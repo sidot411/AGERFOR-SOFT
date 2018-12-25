@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Client :  127.0.0.1
--- Généré le :  Lun 17 Décembre 2018 à 13:07
--- Version du serveur :  5.7.14
--- Version de PHP :  5.6.25
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  mar. 25 déc. 2018 à 14:20
+-- Version du serveur :  5.7.23
+-- Version de PHP :  7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -26,13 +28,14 @@ SET time_zone = "+00:00";
 -- Structure de la table `acteprogramme`
 --
 
-CREATE TABLE `acteprogramme` (
+DROP TABLE IF EXISTS `acteprogramme`;
+CREATE TABLE IF NOT EXISTS `acteprogramme` (
   `NumActe` varchar(50) NOT NULL,
   `DateActe` varchar(50) NOT NULL,
   `DateEnrgActe` varchar(50) NOT NULL,
   `DatePubliActe` varchar(50) NOT NULL,
   `Conservation` varchar(50) NOT NULL,
-  `FraisEnrg` decimal(50,4) DEFAULT NULL,
+  `FraisEnrg` decimal(50,2) DEFAULT NULL,
   `RefProgramme` varchar(50) NOT NULL,
   `NomProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -43,7 +46,8 @@ CREATE TABLE `acteprogramme` (
 -- Structure de la table `acteprojet`
 --
 
-CREATE TABLE `acteprojet` (
+DROP TABLE IF EXISTS `acteprojet`;
+CREATE TABLE IF NOT EXISTS `acteprojet` (
   `NumActe` varchar(50) NOT NULL,
   `DateActe` varchar(50) NOT NULL,
   `DateEnrgActe` varchar(50) NOT NULL,
@@ -58,7 +62,8 @@ CREATE TABLE `acteprojet` (
 -- Structure de la table `cahierchargeprogramme`
 --
 
-CREATE TABLE `cahierchargeprogramme` (
+DROP TABLE IF EXISTS `cahierchargeprogramme`;
+CREATE TABLE IF NOT EXISTS `cahierchargeprogramme` (
   `NomProjet` varchar(50) NOT NULL,
   `RefProgramme` varchar(50) NOT NULL,
   `NumCahierCharge` varchar(50) NOT NULL,
@@ -80,22 +85,15 @@ CREATE TABLE `cahierchargeprogramme` (
   `TelGeo` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `cahierchargeprogramme`
---
-
-INSERT INTO `cahierchargeprogramme` (`NomProjet`, `RefProgramme`, `NumCahierCharge`, `DateEnre`, `Volume`, `NumPubli`, `DatePubli`, `Conservation`, `Notaire`, `TelNotaire`, `AdresseNotaire`, `SuperficieCessible`, `SuperficieVoirie`, `SuperficieEv`, `SuperficieEq`, `AutreSuperficie`, `NomPreomGeo`, `AdresseGeo`, `TelGeo`) VALUES
-('LPA', '000002', '0000001', '16/12/2018', '12222366', '22366666', '16/12/2018', '12336366', 'mabrouk', '02369988555', 'bt 23 n)1 usto', '100.22', '300.36', '30.00', '660.30', '600.00', '', '', ''),
-('LPA', '000002', '00003', '16/12/2018', '0333669', '122336', '16/12/2018', 'oran', 'mabrouk', '055169874', 'bt 2365 N°23', '200.00', '150.00', '120.00', '110.00', '256.00', 'mabrouk', 'bt23 usto', '0556369877');
-
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `client`
 --
 
-CREATE TABLE `client` (
-  `ID` int(50) NOT NULL,
+DROP TABLE IF EXISTS `client`;
+CREATE TABLE IF NOT EXISTS `client` (
+  `ID` int(50) NOT NULL AUTO_INCREMENT,
   `NumClient` varchar(50) NOT NULL,
   `DateCreation` varchar(50) DEFAULT NULL,
   `Nom` varchar(50) DEFAULT NULL,
@@ -127,11 +125,12 @@ CREATE TABLE `client` (
   `PrenomConjAR` varchar(50) DEFAULT NULL,
   `DateNaissanceConj` varchar(50) DEFAULT NULL,
   `LieuNaissanceConj` varchar(50) DEFAULT NULL,
-  `ProfessionConj` varchar(50) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `ProfessionConj` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `client`
+-- Déchargement des données de la table `client`
 --
 
 INSERT INTO `client` (`ID`, `NumClient`, `DateCreation`, `Nom`, `Prenom`, `NomAr`, `PrenomAr`, `Sexe`, `DateNaissance`, `LieuNaissance`, `PrenomPere`, `PrenomPereAr`, `NomMere`, `PrenomMere`, `NomMereAr`, `PrenomMereAr`, `Cni`, `DateCni`, `LieuCni`, `Ville`, `Adress`, `Proffession`, `Tel`, `NomContact`, `TelContact`, `Situation`, `NomConj`, `PrénomConj`, `NomConjAR`, `PrenomConjAR`, `DateNaissanceConj`, `LieuNaissanceConj`, `ProfessionConj`) VALUES
@@ -144,7 +143,8 @@ INSERT INTO `client` (`ID`, `NumClient`, `DateCreation`, `Nom`, `Prenom`, `NomAr
 -- Structure de la table `cliententreprise`
 --
 
-CREATE TABLE `cliententreprise` (
+DROP TABLE IF EXISTS `cliententreprise`;
+CREATE TABLE IF NOT EXISTS `cliententreprise` (
   `NomEntreprise` varchar(50) NOT NULL,
   `NomGérant` varchar(50) NOT NULL,
   `Ville` varchar(50) NOT NULL,
@@ -163,14 +163,15 @@ CREATE TABLE `cliententreprise` (
 -- Structure de la table `commune`
 --
 
-CREATE TABLE `commune` (
+DROP TABLE IF EXISTS `commune`;
+CREATE TABLE IF NOT EXISTS `commune` (
   `IdCommune` varchar(50) NOT NULL,
   `NomCommune` varchar(50) NOT NULL,
   `IdDaira` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `commune`
+-- Déchargement des données de la table `commune`
 --
 
 INSERT INTO `commune` (`IdCommune`, `NomCommune`, `IdDaira`) VALUES
@@ -207,13 +208,15 @@ INSERT INTO `commune` (`IdCommune`, `NomCommune`, `IdDaira`) VALUES
 -- Structure de la table `conservation`
 --
 
-CREATE TABLE `conservation` (
-  `IdConservation` int(5) NOT NULL,
-  `NomConservation` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `conservation`;
+CREATE TABLE IF NOT EXISTS `conservation` (
+  `IdConservation` int(5) NOT NULL AUTO_INCREMENT,
+  `NomConservation` varchar(50) NOT NULL,
+  KEY `IdConservation` (`IdConservation`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `conservation`
+-- Déchargement des données de la table `conservation`
 --
 
 INSERT INTO `conservation` (`IdConservation`, `NomConservation`) VALUES
@@ -229,17 +232,39 @@ INSERT INTO `conservation` (`IdConservation`, `NomConservation`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `convention`
+--
+
+DROP TABLE IF EXISTS `convention`;
+CREATE TABLE IF NOT EXISTS `convention` (
+  `NomProjet` varchar(50) NOT NULL,
+  `RefProgramme` varchar(50) NOT NULL,
+  `NumDec` varchar(50) NOT NULL,
+  `DateDec` varchar(50) NOT NULL,
+  `NumAW` varchar(50) NOT NULL,
+  `DateAW` varchar(50) NOT NULL,
+  `DateConv` varchar(50) NOT NULL,
+  `NatureA` varchar(50) NOT NULL,
+  `SupT` decimal(50,2) NOT NULL,
+  `PrixU` decimal(50,2) NOT NULL,
+  `Majoration` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `daira`
 --
 
-CREATE TABLE `daira` (
+DROP TABLE IF EXISTS `daira`;
+CREATE TABLE IF NOT EXISTS `daira` (
   `IdDaira` varchar(50) NOT NULL,
   `NomDaira` varchar(50) NOT NULL,
   `IdWilaya` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `daira`
+-- Déchargement des données de la table `daira`
 --
 
 INSERT INTO `daira` (`IdDaira`, `NomDaira`, `IdWilaya`) VALUES
@@ -259,17 +284,19 @@ INSERT INTO `daira` (`IdDaira`, `NomDaira`, `IdWilaya`) VALUES
 -- Structure de la table `demande`
 --
 
-CREATE TABLE `demande` (
-  `NumDemande` int(11) NOT NULL,
+DROP TABLE IF EXISTS `demande`;
+CREATE TABLE IF NOT EXISTS `demande` (
+  `NumDemande` int(11) NOT NULL AUTO_INCREMENT,
   `DateDemande` varchar(50) NOT NULL,
   `RefClient` varchar(50) NOT NULL,
   `Motif` text NOT NULL,
   `TypeDemande` varchar(50) NOT NULL,
-  `StatutDemande` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `StatutDemande` varchar(50) NOT NULL,
+  PRIMARY KEY (`NumDemande`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `demande`
+-- Déchargement des données de la table `demande`
 --
 
 INSERT INTO `demande` (`NumDemande`, `DateDemande`, `RefClient`, `Motif`, `TypeDemande`, `StatutDemande`) VALUES
@@ -280,16 +307,76 @@ INSERT INTO `demande` (`NumDemande`, `DateDemande`, `RefClient`, `Motif`, `TypeD
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `edd`
+--
+
+DROP TABLE IF EXISTS `edd`;
+CREATE TABLE IF NOT EXISTS `edd` (
+  `NomProjet` varchar(50) NOT NULL,
+  `RefProgramme` varchar(50) NOT NULL,
+  `NumEdd` varchar(50) NOT NULL,
+  `DateEdd` varchar(50) NOT NULL,
+  `NumEnrg` varchar(50) NOT NULL,
+  `DateEnrg` varchar(50) NOT NULL,
+  `Volume` varchar(50) NOT NULL,
+  `Conservation` varchar(50) NOT NULL,
+  `Notaire` varchar(50) NOT NULL,
+  `TelNotaire` varchar(50) NOT NULL,
+  `AdresseNotaire` varchar(50) NOT NULL,
+  `NomPrenomGeo` varchar(50) NOT NULL,
+  `AdresseGeo` varchar(50) NOT NULL,
+  `TelGeo` varchar(50) NOT NULL,
+  `NbrLog` varchar(50) NOT NULL,
+  `SuperficieLog` decimal(50,2) NOT NULL,
+  `NbrLoc` varchar(50) NOT NULL,
+  `SuperficeiLoc` decimal(50,2) NOT NULL,
+  `NbrBur` varchar(50) NOT NULL,
+  `SuperficieBur` decimal(50,2) NOT NULL,
+  `NbrCave` varchar(50) NOT NULL,
+  `SuperficieCave` decimal(50,2) NOT NULL,
+  `NbrCC` varchar(50) NOT NULL,
+  `SuperficieCC` decimal(50,2) NOT NULL,
+  `NbrPS` varchar(50) NOT NULL,
+  `SuperficiePS` decimal(50,2) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `lot`
+--
+
+DROP TABLE IF EXISTS `lot`;
+CREATE TABLE IF NOT EXISTS `lot` (
+  `RefProgramme` varchar(50) NOT NULL,
+  `NomProjet` varchar(50) NOT NULL,
+  `NumIlot` varchar(50) NOT NULL,
+  `NumLot` varchar(50) NOT NULL,
+  `Sup` decimal(50,2) NOT NULL,
+  `PrixHT` decimal(50,2) NOT NULL,
+  `Tva` int(2) NOT NULL,
+  `PrixTTC` decimal(50,2) NOT NULL,
+  `LimiteNord` varchar(50) NOT NULL,
+  `LimiteSud` varchar(50) NOT NULL,
+  `LimiteEst` varchar(50) NOT NULL,
+  `LimiteOuest` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `natureprogramme`
 --
 
-CREATE TABLE `natureprogramme` (
-  `ID` int(11) NOT NULL,
-  `NatureProgramme` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `natureprogramme`;
+CREATE TABLE IF NOT EXISTS `natureprogramme` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NatureProgramme` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `natureprogramme`
+-- Déchargement des données de la table `natureprogramme`
 --
 
 INSERT INTO `natureprogramme` (`ID`, `NatureProgramme`) VALUES
@@ -305,7 +392,8 @@ INSERT INTO `natureprogramme` (`ID`, `NatureProgramme`) VALUES
 -- Structure de la table `permilotir`
 --
 
-CREATE TABLE `permilotir` (
+DROP TABLE IF EXISTS `permilotir`;
+CREATE TABLE IF NOT EXISTS `permilotir` (
   `NumPL` varchar(50) NOT NULL,
   `DatePL` varchar(50) NOT NULL,
   `FraisDiver` decimal(50,2) NOT NULL,
@@ -327,7 +415,8 @@ CREATE TABLE `permilotir` (
 -- Structure de la table `permisdeconstruire`
 --
 
-CREATE TABLE `permisdeconstruire` (
+DROP TABLE IF EXISTS `permisdeconstruire`;
+CREATE TABLE IF NOT EXISTS `permisdeconstruire` (
   `NumPermis` varchar(50) NOT NULL,
   `DatePermisC` varchar(50) NOT NULL,
   `FraisDivers` decimal(50,2) NOT NULL,
@@ -353,7 +442,8 @@ CREATE TABLE `permisdeconstruire` (
 -- Structure de la table `programme`
 --
 
-CREATE TABLE `programme` (
+DROP TABLE IF EXISTS `programme`;
+CREATE TABLE IF NOT EXISTS `programme` (
   `NomProjet` varchar(50) NOT NULL,
   `RefProgramme` varchar(50) NOT NULL,
   `NomProgramme` varchar(50) NOT NULL,
@@ -363,16 +453,17 @@ CREATE TABLE `programme` (
   `NatureProgramme` varchar(50) NOT NULL,
   `TypeProgramme` varchar(50) NOT NULL,
   `NombreBiens` varchar(50) NOT NULL,
-  `Superficie` decimal(50,4) NOT NULL
+  `Superficie` decimal(50,4) NOT NULL,
+  PRIMARY KEY (`RefProgramme`),
+  KEY `RefProgramme` (`RefProgramme`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `programme`
+-- Déchargement des données de la table `programme`
 --
 
 INSERT INTO `programme` (`NomProjet`, `RefProgramme`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`) VALUES
-('LPA', '000001', '200 logement', 'oran', 'ORAN', 'Oran', 'Logement', 'Lpa', '90', '12223336.3300'),
-('LPA', '000002', '260 LOTISSEMENT', 'ORAN', 'Es Sénia', 'Es Senia', 'Lotissement', 'Promoionnel', '260', '1666988777.3300');
+('LPA', '0000001', '200 Logement', 'oran', 'Es Sénia', 'Es Senia', 'Logement', 'Lpa', '30', '2000.3300');
 
 -- --------------------------------------------------------
 
@@ -380,7 +471,8 @@ INSERT INTO `programme` (`NomProjet`, `RefProgramme`, `NomProgramme`, `Site`, `D
 -- Structure de la table `projet`
 --
 
-CREATE TABLE `projet` (
+DROP TABLE IF EXISTS `projet`;
+CREATE TABLE IF NOT EXISTS `projet` (
   `RefProjet` varchar(50) NOT NULL,
   `NomProjet` varchar(50) NOT NULL,
   `VolProjet` varchar(50) NOT NULL,
@@ -403,11 +495,11 @@ CREATE TABLE `projet` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `projet`
+-- Déchargement des données de la table `projet`
 --
 
 INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
-('0000001', 'LPA', '0023336', 'Oran ouest', 'MABROUK', 'ORAN', 'ORAN', 'Oran', '1223366.6600', 'MABRUK', 'BT36 N°6 USTO ', '0556987412', 'USTO', 'USTO', 'USTO', 'USTO', '122669933.3300', '122366998', '16/12/2018');
+('0000001', 'LPA', '000001', 'Oran est', 'MABROUK', 'ORAN', 'Es Sénia', 'Es Senia', '2000.3600', 'MABROUK', 'BT 23 N° 2 USTO ORAN', '0552 63 96 85', 'USTO', 'USTO', 'USTO', 'USTO', '123000.3600', '00000002', '25/12/2018');
 
 -- --------------------------------------------------------
 
@@ -415,14 +507,16 @@ INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Ve
 -- Structure de la table `typeprogramme`
 --
 
-CREATE TABLE `typeprogramme` (
-  `ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `typeprogramme`;
+CREATE TABLE IF NOT EXISTS `typeprogramme` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `TypeProgramme` varchar(50) NOT NULL,
-  `NatureProgramme` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `NatureProgramme` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `typeprogramme`
+-- Déchargement des données de la table `typeprogramme`
 --
 
 INSERT INTO `typeprogramme` (`ID`, `TypeProgramme`, `NatureProgramme`) VALUES
@@ -454,83 +548,22 @@ INSERT INTO `typeprogramme` (`ID`, `TypeProgramme`, `NatureProgramme`) VALUES
 -- Structure de la table `wilaya`
 --
 
-CREATE TABLE `wilaya` (
+DROP TABLE IF EXISTS `wilaya`;
+CREATE TABLE IF NOT EXISTS `wilaya` (
   `NumWilaya` varchar(50) NOT NULL,
   `NomWilaya` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `wilaya`
+-- Déchargement des données de la table `wilaya`
 --
 
 INSERT INTO `wilaya` (`NumWilaya`, `NomWilaya`) VALUES
 ('31', 'ORAN'),
 ('16', 'ALGER'),
 ('22', 'SIDI BEL ABBES');
+COMMIT;
 
---
--- Index pour les tables exportées
---
-
---
--- Index pour la table `client`
---
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Index pour la table `conservation`
---
-ALTER TABLE `conservation`
-  ADD KEY `IdConservation` (`IdConservation`);
-
---
--- Index pour la table `demande`
---
-ALTER TABLE `demande`
-  ADD PRIMARY KEY (`NumDemande`);
-
---
--- Index pour la table `natureprogramme`
---
-ALTER TABLE `natureprogramme`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Index pour la table `typeprogramme`
---
-ALTER TABLE `typeprogramme`
-  ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `client`
---
-ALTER TABLE `client`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT pour la table `conservation`
---
-ALTER TABLE `conservation`
-  MODIFY `IdConservation` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT pour la table `demande`
---
-ALTER TABLE `demande`
-  MODIFY `NumDemande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT pour la table `natureprogramme`
---
-ALTER TABLE `natureprogramme`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT pour la table `typeprogramme`
---
-ALTER TABLE `typeprogramme`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

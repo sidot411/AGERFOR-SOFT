@@ -417,6 +417,18 @@
                                 <TextBlock TextAlignment="Center">Conformité</TextBlock>
                             </StackPanel>
                         </Button>
+                        <Button x:Name="BtnCreationListeLots" Background="#007CC3" Height="60" Width="150" Margin="0 0 20 0" Click="BtnCreationListeLots_Click" >
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>Création/Liste des</TextBlock>
+                                <TextBlock TextAlignment="Center">Lots</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Background="#007CC3" Height="60" Width="150" Margin="0 0 20 0" >
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>Création/Liste des</TextBlock>
+                                <TextBlock TextAlignment="Center">Logements</TextBlock>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </StackPanel>
             

@@ -236,6 +236,12 @@ namespace Agerfor.Views.Programme
             DialogHost.Show(convention);
         }
 
+        private void BtnCreationListeLots_Click(object sender, RoutedEventArgs e)
+        {
+            CreationListeLots Lots = new CreationListeLots(inputNomProjet.Text, inputRefProgramme.Text);
+            DialogHost.Show(Lots);
+        }
+
         private void inputDairaProgramme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -697,6 +703,8 @@ namespace Agerfor.Views.Programme
         {
             SelectFile4("Document Permis de construire");
         }
+
+      
     }
 }
     
