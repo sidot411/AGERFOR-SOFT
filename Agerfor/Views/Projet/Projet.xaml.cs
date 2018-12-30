@@ -87,7 +87,8 @@ namespace Agerfor.Views.Projet
                 }
                 else
                 {
-                    
+                    BiensController BC = new BiensController();
+                    BC.SupprimerLogFromProjet(tempnomprojet);  
                     ProjetController PC = new ProjetController();
                     DirectoryCreator DC = new DirectoryCreator();   
                     ActeController AC = new ActeController();
@@ -98,8 +99,6 @@ namespace Agerfor.Views.Projet
                     CahierChargeProgrammeController CCPC = new CahierChargeProgrammeController();
                     EddController EC = new EddController();
                     ConventionController CC = new ConventionController();
-                   
-
                     DC.DeleteDirectory(@"Projet\" + tempRefProjet);
                     CC.SupprimerConventionFromProjet(tempnomprojet);
                     EC.SupprimerEddFromProjet(tempnomprojet);

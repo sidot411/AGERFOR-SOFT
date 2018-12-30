@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 25 déc. 2018 à 14:20
+-- Généré le :  Dim 30 déc. 2018 à 12:54
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -54,6 +54,35 @@ CREATE TABLE IF NOT EXISTS `acteprojet` (
   `DatePubliActe` varchar(50) NOT NULL,
   `Conservation` varchar(50) NOT NULL,
   `RefProjet` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `biens`
+--
+
+DROP TABLE IF EXISTS `biens`;
+CREATE TABLE IF NOT EXISTS `biens` (
+  `RefProgramme` varchar(50) NOT NULL,
+  `NomProjet` varchar(50) NOT NULL,
+  `NumEdd` varchar(50) NOT NULL,
+  `NumIlot` varchar(50) NOT NULL,
+  `TypeBien` varchar(50) NOT NULL,
+  `NumBien` varchar(50) NOT NULL,
+  `Numlot` varchar(50) NOT NULL,
+  `NumBloc` varchar(50) NOT NULL,
+  `Niveau` varchar(50) NOT NULL,
+  `NbrPiece` varchar(50) NOT NULL,
+  `Sup` decimal(50,2) NOT NULL,
+  `PrixHT` decimal(50,2) NOT NULL,
+  `Tva` int(2) NOT NULL,
+  `PrixTTC` decimal(50,2) NOT NULL,
+  `LimiteNord` varchar(50) NOT NULL,
+  `LimiteSud` varchar(50) NOT NULL,
+  `LimiteEst` varchar(50) NOT NULL,
+  `LimiteOuest` varchar(50) NOT NULL,
+  `Etat` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -362,6 +391,13 @@ CREATE TABLE IF NOT EXISTS `lot` (
   `LimiteOuest` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `lot`
+--
+
+INSERT INTO `lot` (`RefProgramme`, `NomProjet`, `NumIlot`, `NumLot`, `Sup`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`) VALUES
+('0000001', 'LPA', '2', '1', '200.00', '1300000.00', 19, '1547000.00', '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -458,13 +494,6 @@ CREATE TABLE IF NOT EXISTS `programme` (
   KEY `RefProgramme` (`RefProgramme`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `programme`
---
-
-INSERT INTO `programme` (`NomProjet`, `RefProgramme`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`) VALUES
-('LPA', '0000001', '200 Logement', 'oran', 'Es Sénia', 'Es Senia', 'Logement', 'Lpa', '30', '2000.3300');
-
 -- --------------------------------------------------------
 
 --
@@ -493,13 +522,6 @@ CREATE TABLE IF NOT EXISTS `projet` (
   `NumRecu` varchar(50) NOT NULL,
   `DateRecu` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `projet`
---
-
-INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
-('0000001', 'LPA', '000001', 'Oran est', 'MABROUK', 'ORAN', 'Es Sénia', 'Es Senia', '2000.3600', 'MABROUK', 'BT 23 N° 2 USTO ORAN', '0552 63 96 85', 'USTO', 'USTO', 'USTO', 'USTO', '123000.3600', '00000002', '25/12/2018');
 
 -- --------------------------------------------------------
 

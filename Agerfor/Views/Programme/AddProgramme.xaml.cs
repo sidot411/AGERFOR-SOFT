@@ -228,6 +228,7 @@ namespace Agerfor.Views.Programme
         {
             EDD EDD = new EDD(inputNomProjet.Text, inputRefProgramme.Text);
             DialogHost.Show(EDD);
+            
         }
 
         private void BtnConvention_Click(object sender, RoutedEventArgs e)
@@ -241,6 +242,8 @@ namespace Agerfor.Views.Programme
             CreationListeLots Lots = new CreationListeLots(inputNomProjet.Text, inputRefProgramme.Text);
             DialogHost.Show(Lots);
         }
+
+        
 
         private void inputDairaProgramme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -704,7 +707,10 @@ namespace Agerfor.Views.Programme
             SelectFile4("Document Permis de construire");
         }
 
-      
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
     

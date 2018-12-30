@@ -93,6 +93,7 @@
     </ApplicationDefinition>
     <Compile Include="Controlers\ActeController.cs" />
     <Compile Include="Controlers\ActeProgrammeController.cs" />
+    <Compile Include="Controlers\BiensController.cs" />
     <Compile Include="Controlers\CahierChargeProgrammeController.cs" />
     <Compile Include="Controlers\ClientController.cs" />
     <Compile Include="Controlers\ConventionController.cs" />
@@ -125,6 +126,9 @@
     </Compile>
     <Compile Include="Views\Programme\Convention.xaml.cs">
       <DependentUpon>Convention.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\CreationListeLog.xaml.cs">
+      <DependentUpon>CreationListeLog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Programme\CreationListeLots.xaml.cs">
       <DependentUpon>CreationListeLots.xaml</DependentUpon>
@@ -196,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Programme\Convention.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\CreationListeLog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

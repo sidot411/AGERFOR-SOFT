@@ -411,7 +411,7 @@
                                 <TextBlock TextAlignment="Center">Convention</TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Background="#007CC3" Height="60" Width="150" Margin="0 0 20 0" >
+                        <Button Background="#007CC3" Height="60" Width="150" Margin="0 0 20 0" Click="Button_Click" >
                             <StackPanel Orientation="Vertical">
                                 <TextBlock>Ajouter/Afficher</TextBlock>
                                 <TextBlock TextAlignment="Center">Conformité</TextBlock>
@@ -421,12 +421,6 @@
                             <StackPanel Orientation="Vertical">
                                 <TextBlock>Création/Liste des</TextBlock>
                                 <TextBlock TextAlignment="Center">Lots</TextBlock>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#007CC3" Height="60" Width="150" Margin="0 0 20 0" >
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock>Création/Liste des</TextBlock>
-                                <TextBlock TextAlignment="Center">Logements</TextBlock>
                             </StackPanel>
                         </Button>
                     </StackPanel>

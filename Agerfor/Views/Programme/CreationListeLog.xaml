@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="Agerfor.Views.Programme.CreationListeLog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Agerfor.Views.Programme"
+             mc:Ignorable="d" 
+             xmlns:mydata="clr-namespace:SmarterDB.CodeProject.TestData;assembly=SmarterDB.CodeProject.TestData"    
+             xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
+             Background="#E6EAED"
+             Height="900" Width="1100"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Loaded="Page_Loaded">
+   
+        <Grid Margin="20">
+            <Grid.Resources >
+                <myentry:NumericConverter x:Key="myconverter"/>
+                <myentry:NumericToValueTypeConverter x:Key="mytypeconverter"/>
+            </Grid.Resources>
+        <Grid.DataContext>
+            <mydata:TestDataModel></mydata:TestDataModel>
+        </Grid.DataContext>
+            
+        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0" VerticalAlignment="Top" >
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 5 0 0">
+                                <Label FontSize="18" FontWeight="Bold" Margin="0 -10 0 10">Création des biens</Label>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">N° ILOT</Label>
+                                    <TextBox x:Name="inputNumIlot" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Type de bien</Label>
+                                    <ComboBox x:Name="inputTypeBien" Background="#FAFAFA" Width="147" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Margin="0 0 10 0">
+                                        <ComboBoxItem>Terrain</ComboBoxItem>
+                                        <ComboBoxItem>Logement</ComboBoxItem>
+                                        <ComboBoxItem>Bureau</ComboBoxItem>
+                                        <ComboBoxItem>Cave</ComboBoxItem>
+                                        
+                                    </ComboBox>
+                                    
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">N° bien</Label>
+                                    <TextBox x:Name="inputNumBien" Background="#FAFAFA" Width="130" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">N° LOT</Label>
+                                    <TextBox x:Name="inputNumLot" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">N° Bloc</Label>
+                                    <TextBox x:Name="inputNumBloc" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Niveau</Label>
+                                    <TextBox x:Name="inputNiveau" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Nombre de pièce</Label>
+                                    <TextBox x:Name="inputNbrPiece" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Superficie</Label>
+                                    <TextBox  x:Name="inputSup" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+
+                               
+
+
+
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Vertical" Margin="0 -6 0 0">
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prix M² HT (D.A.)</Label>
+                                    <TextBox  x:Name="inputPrixHT" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">TVA</Label>
+                                    <TextBox x:Name="inputTva" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prix TTC (D.A.)</Label>
+                                    <TextBox x:Name="inputPrixTTC" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Limite Nord</Label>
+                                    <TextBox x:Name="inputLimiteNord" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Limite Sud</Label>
+                                    <TextBox x:Name="inputLimiteSud" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Limite Est</Label>
+                                    <TextBox x:Name="inputLimiteEst" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Limite Ouest</Label>
+                                    <TextBox  x:Name="inputLimiteOuest" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Etat Bien</Label>
+                                    <ComboBox  x:Name="inputEtat" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red">
+                                        <ComboBoxItem IsSelected="True">Libre</ComboBoxItem>
+                                        <ComboBoxItem>Réservé</ComboBoxItem>
+                                        <ComboBoxItem>Vendu</ComboBoxItem>
+                                       
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 -160 0">
+                                        <Button x:Name="BtnAjouterBien" Background="#007CC3" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterBien_Click" />
+                                        <Button x:Name="BtnModifierBien" Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierBien_Click"/>
+                                        <Button x:Name="BtnSupprimmerBien" Background="#007CC3" Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" />
+
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label FontSize="18" FontWeight="Bold" Margin="0 10 0 0">Liste des biens</Label>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <Border BorderThickness="1">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="20" Opacity="0.2" />
+                                    </Border.Effect>
+                                    <DataGrid x:Name="dataViewListeBien" AutoGenerateColumns="False" BorderBrush="White"
+                        BorderThickness="0" 
+                        AlternatingRowBackground="#F3F3F3"
+                        CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
+                        Width="1000" Height="380" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewListeBien_SelectionChanged">
+                                        <DataGrid.Columns>
+                
+                                            <DataGridTextColumn  Width="20*" Binding="{Binding NumIlot}" Header="N° ILOT" />
+                                            <DataGridTextColumn  Width="20*" Binding="{Binding TypeBien}" Header="Type de bien" />
+                                            <DataGridTextColumn  Width="20*" Binding="{Binding NumBien}" Header="N° bien" />
+                                            <DataGridTextColumn  Width="20*" Binding="{Binding PrixHT}" Header="Prix M² HT (D.A.)" />
+                                            <DataGridTextColumn  Width="10*" Binding="{Binding Tva}" Header="TVA" />
+                                            <DataGridTextColumn  Width="30*" Binding="{Binding PrixTTC}" Header="Prix TTC (D.A.)" />
+
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Border>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </StackPanel>
+
+    </Grid>
+
+</UserControl>

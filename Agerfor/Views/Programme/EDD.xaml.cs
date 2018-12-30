@@ -7,6 +7,9 @@ using DbConnection.Models;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
+using MaterialDesignThemes.Wpf;
+using System.Windows.Media.Imaging;
+using System.Data;
 
 namespace Agerfor.Views.Programme
 {
@@ -21,14 +24,17 @@ namespace Agerfor.Views.Programme
         string NomProjet = "";
         string tempnumprojet = "";
         string tempNumEdd = "";
+        string tempPrevNumEDD = "";
+        
         public EDD(string NomProjet, string refprogramme)
         {
             InitializeComponent();
             title.Text = "EDD";
             this.RefProgramme = refprogramme;
             this.NomProjet = NomProjet;
-        }
+           
 
+        }
         private void getrefprojet()
         {
             string query2 = "select RefProjet from projet where NomProjet ='" + NomProjet + "'";
@@ -57,14 +63,25 @@ namespace Agerfor.Views.Programme
         private void Page_Loaded(object sender, RoutedEventArgs e)
 
         {
-
             msh.LoadData("select * from edd where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewListeEdd);
         }
+
+
 
         private void dataViewListeEdd_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGridCellInfo cell0 = dataViewListeEdd.SelectedCells[0];
             tempNumEdd = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+            
+              /*
+            DataRowView row = dataViewListeEdd.SelectedItem as DataRowView;
+            System.Windows.MessageBox.Show(row.Row.ItemArray[2].ToString());
+            string tempNumEdd2 = "";
+            
+            int idx =  dataViewListeEdd.SelectedIndex -1;
+            dataViewListeEdd.*/
+            
+
 
             string query = "select * from edd where NumEdd =" + tempNumEdd;
             MySqlDataReader rdr = null;
@@ -119,6 +136,8 @@ namespace Agerfor.Views.Programme
 
     private void BtnAjouterEdd_Click(object sender, RoutedEventArgs e)
         {
+           if (dataViewListeEdd.Items.Count==0)
+            { 
             string Edd = "Edd";
             getrefprojet();
             DirectoryCreator DC = new DirectoryCreator();
@@ -127,28 +146,49 @@ namespace Agerfor.Views.Programme
             msh.LoadData("select * from edd where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewListeEdd);
             inputNumEdd.Text = inputDateEdd.Text = inputNumEnreg.Text = inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text= inputNbrLog.Text=inputNbrLoc.Text=inputNbrCave.Text=inputNbrCC.Text=inputNbrPS.Text=inputNbrBur.Text= "";
             inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSupCave.Text = inputSupCC.Text = inputSupPS.Text = "0";
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Vous ne pouvez pas ajouter un nouveau EDD car il existe déja un !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+
 
         }
 
         private void BtnModifierEdd_Click(object sender, RoutedEventArgs e)
         {
-
-             EC.ModifierEdd(NomProjet, RefProgramme, inputNumEdd.Text, inputDateEdd.Text, inputNumEnreg.Text, inputDateEnreg.Text, inputVolume.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrCC.Text, decimal.Parse(inputSupCC.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text),tempNumEdd);
+            if (tempNumEdd == "" && inputNumEdd.Text == "")
+            {
+                System.Windows.MessageBox.Show("Veuillez selectionner un EDD pour le modifié", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else { 
+            EC.ModifierEdd(NomProjet, RefProgramme, inputNumEdd.Text, inputDateEdd.Text, inputNumEnreg.Text, inputDateEnreg.Text, inputVolume.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrCC.Text, decimal.Parse(inputSupCC.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text),tempNumEdd);
              msh.LoadData("select * from edd where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewListeEdd);
              inputNumEdd.Text = inputDateEdd.Text = inputNumEnreg.Text = inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPS.Text = inputNbrBur.Text = "";
              inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSupCave.Text = inputSupCC.Text = inputSupPS.Text = "0";
+            }
 
         }
 
         private void BtnSupprimmerEdd_Click(object sender, RoutedEventArgs e)
         {
-            DirectoryCreator DC = new DirectoryCreator();
-            DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + RefProgramme + @"\Edd \" + tempNumEdd);
-            EC.SupprimerEdd(tempNumEdd);
-            msh.LoadData("select * from edd where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewListeEdd);
-            inputNumEdd.Text = inputDateEdd.Text = inputNumEnreg.Text = inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPS.Text = inputNbrBur.Text = "";
-            inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSupCave.Text = inputSupCC.Text = inputSupPS.Text = "0";
-
+            if (tempNumEdd == "" && inputNumEdd.Text == "")
+            {
+                System.Windows.MessageBox.Show("Veuillez selectionner un EDD pour le supprimé", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                BiensController BC = new BiensController();
+                DirectoryCreator DC = new DirectoryCreator();
+                
+                DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + RefProgramme + @"\Edd \" + tempNumEdd);
+                BC.SupprimerLogFromEDD(tempNumEdd, RefProgramme, NomProjet);
+                EC.SupprimerEdd(tempNumEdd);
+                msh.LoadData("select * from edd where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewListeEdd);
+                inputNumEdd.Text = inputDateEdd.Text = inputNumEnreg.Text = inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPS.Text = inputNbrBur.Text = "";
+                inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSupCave.Text = inputSupCC.Text = inputSupPS.Text = "0";
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -213,6 +253,52 @@ namespace Agerfor.Views.Programme
             else
             {
                 System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
+        }
+
+        private void BtnCreationListeBiens_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            Window win = new Window();
+            CreationListeLog bien = new 
+            win.Content = bien;
+            win.Title = "Biens";
+            win.Show();*/
+            Window window = new Window
+
+            {
+                
+                Title = "Ajouter/Liste biens",
+                Content = new CreationListeLog(NomProjet, RefProgramme, tempNumEdd),
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                
+        };
+            window.ShowDialog();
+           
+
+        }
+
+        private void BtnEddmodificatif_Click(object sender, RoutedEventArgs e)
+        {
+            if (tempNumEdd == "" && inputNumEdd.Text==tempNumEdd && inputNumEdd.Text=="")
+            {
+                System.Windows.MessageBox.Show("Veuillez selectionner un EDD pour créer un EDD modificatif","information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                 BiensController BS = new BiensController();
+                 string Edd = "Edd";
+                 getrefprojet();
+                 DirectoryCreator DC = new DirectoryCreator();
+                 DC.CreateDirectoryProgramme(tempnumprojet, RefProgramme + "/" + Edd + "/" + inputNumEdd.Text);
+                 EC.AjouterEdd(NomProjet, RefProgramme, inputNumEdd.Text, inputDateEdd.Text, inputNumEnreg.Text, inputDateEnreg.Text, inputVolume.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrCC.Text, decimal.Parse(inputSupCC.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text));
+                 BS.BiensEddModificatif(tempNumEdd, inputNumEdd.Text,RefProgramme,NomProjet);
+                 msh.LoadData("select * from edd where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewListeEdd);
+                 inputNumEdd.Text = inputDateEdd.Text = inputNumEnreg.Text = inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPS.Text = inputNbrBur.Text = "";
+                 inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSupCave.Text = inputSupCC.Text = inputSupPS.Text = "0";
+
             }
         }
     }
