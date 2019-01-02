@@ -345,17 +345,23 @@ namespace Agerfor.Views.Programme
         private void BtnAjouterActeProgramme_Click(object sender, RoutedEventArgs e)
 
         {
-            
-            string Acte = "Acte";
-            getrefprojet();
-            DirectoryCreator DC = new DirectoryCreator();
-            DC.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text + "/" + Acte + "/" + NumActeProgramme.Text);
-            APC.AjouterActeProgramme(NumActeProgramme.Text, inputDateActeProgramme.Text, DateEnrgActeP.Text, DatePubliActeP.Text, inputConservation.Text, decimal.Parse(inputFrais.Text),inputRefProgramme.Text,inputNomProjet.Text);
-            msh.LoadData("select * from acteprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", datagridActeProgramme);
-            NumActeProgramme.Text = inputDateActeProgramme.Text = DateEnrgActeP.Text = DatePubliActeP.Text = inputConservation.Text = "";
-            inputFrais.Text = "0.00";
-            inputFraisDivers.Text = "0.00";
-            inputFraisPLotir.Text = "0.00";
+            if (NumActeProgramme.Text != "")
+            {
+                string Acte = "Acte";
+                getrefprojet();
+                DirectoryCreator DC = new DirectoryCreator();
+                DC.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text + "/" + Acte + "/" + NumActeProgramme.Text);
+                APC.AjouterActeProgramme(NumActeProgramme.Text, inputDateActeProgramme.Text, DateEnrgActeP.Text, DatePubliActeP.Text, inputConservation.Text, decimal.Parse(inputFrais.Text), inputRefProgramme.Text, inputNomProjet.Text);
+                msh.LoadData("select * from acteprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", datagridActeProgramme);
+                NumActeProgramme.Text = inputDateActeProgramme.Text = DateEnrgActeP.Text = DatePubliActeP.Text = inputConservation.Text = "";
+                inputFrais.Text = "0.00";
+                inputFraisDivers.Text = "0.00";
+                inputFraisPLotir.Text = "0.00";
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez remplir tous les champs pour ajouter un acte", "Acte programme", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 
         }
 
@@ -499,18 +505,24 @@ namespace Agerfor.Views.Programme
 
         private void BtnAjouterPLotir_Click(object sender, RoutedEventArgs e)
         {
-    
-            getrefprojet();
-            DirectoryCreator DC = new DirectoryCreator();
-            DC.CreateDirectoryPermisLotir(tempnumprojet, inputRefProgramme.Text, inputNumLotir.Text);
-            PLC.AjouterPL(inputNumLotir.Text, inputDatePLotir.Text, decimal.Parse(inputFraisPLotir.Text),inputNbrIlot.Text,inputNbrLots.Text,decimal.Parse(inputSuperficieGlobal.Text),decimal.Parse(inputSuperficieVoiries.Text),decimal.Parse(inputSuperficieEspaceVert.Text),decimal.Parse(inputSuperficieEquipements.Text),decimal.Parse(inputSuperficieAmenagement.Text),decimal.Parse(inputAutresSuperficie.Text),inputRefProgramme.Text,inputNomProjet.Text);
-            msh.LoadData("select * from permilotir where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPLotir);
-            inputNumLotir.Text = inputDatePLotir.Text = inputNbrLots.Text = inputNbrIlot.Text = "";
-            inputFraisPLotir.Text = "0.00";
-            inputFrais.Text = "0.00";
-            inputFraisDivers.Text = "0.00";
-            inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
-        }
+            if (inputNumLotir.Text!="")
+            {
+                getrefprojet();
+                DirectoryCreator DC = new DirectoryCreator();
+                DC.CreateDirectoryPermisLotir(tempnumprojet, inputRefProgramme.Text, inputNumLotir.Text);
+                PLC.AjouterPL(inputNumLotir.Text, inputDatePLotir.Text, decimal.Parse(inputFraisPLotir.Text), inputNbrIlot.Text, inputNbrLots.Text, decimal.Parse(inputSuperficieGlobal.Text), decimal.Parse(inputSuperficieVoiries.Text), decimal.Parse(inputSuperficieEspaceVert.Text), decimal.Parse(inputSuperficieEquipements.Text), decimal.Parse(inputSuperficieAmenagement.Text), decimal.Parse(inputAutresSuperficie.Text), inputRefProgramme.Text, inputNomProjet.Text);
+                msh.LoadData("select * from permilotir where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPLotir);
+                inputNumLotir.Text = inputDatePLotir.Text = inputNbrLots.Text = inputNbrIlot.Text = "";
+                inputFraisPLotir.Text = "0.00";
+                inputFrais.Text = "0.00";
+                inputFraisDivers.Text = "0.00";
+                inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez remplir tous les champs pour ajouter un permi de lotir", "Permi lotir programme", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            }
 
         private void BtnModifierPLotir_Click(object sender, RoutedEventArgs e)
         {
@@ -573,7 +585,7 @@ namespace Agerfor.Views.Programme
                 DirectoryCreator DC = new DirectoryCreator();
                 DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\PermisLotir\" + inputNumLotir.Text);
                 PLC.SupprimerPL(tempNumPL);
-                msh.LoadData("select * from permilotir where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPLotir);
+                msh.LoadData("select * from permilotir where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text  + "'", DataGridPLotir);
                 inputNumLotir.Text = inputDatePLotir.Text = inputNbrIlot.Text = inputNbrLots.Text="";
                 inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
                 inputFraisPLotir.Text = "0.00";
@@ -634,18 +646,24 @@ namespace Agerfor.Views.Programme
 
         private void BtnAjouterPC_Click(object sender, RoutedEventArgs e)
         {
-          
-            getrefprojet();
-            DirectoryCreator DC = new DirectoryCreator();
-            DC.CreateDirectoryPermisConstruire(tempnumprojet, inputRefProgramme.Text,inputNumPermisConstruire.Text);
-            PermisDeConstruireController PDCC = new PermisDeConstruireController();
-            PDCC.AjouterPermisConstruire(inputNumPermisConstruire.Text,inputDatePermisConstruire.Text,decimal.Parse(inputFraisDivers.Text),inputNbrLog.Text,decimal.Parse(inputSupLog.Text),inputNbrLoc.Text,decimal.Parse(inputSupLoc.Text),inputNbrBur.Text,decimal.Parse(inputSupBur.Text),inputNbrCave.Text,decimal.Parse(inputSuperficieCave.Text),inputNbrCC.Text,decimal.Parse(inputSuperficieCC.Text),inputNbrPlcS.Text,decimal.Parse(inputSuperficiePlcS.Text),inputRefProgramme.Text,inputNomProjet.Text);
-            msh.LoadData("select * from permisdeconstruire where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPConstruire);
-            inputNumPermisConstruire.Text = inputDatePermisConstruire.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrBur.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPlcS.Text = "";
-            inputFraisDivers.Text = "0.00";
-            inputFrais.Text = "0.00";
-            inputFraisPLotir.Text = "0.00";
-            inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
+            if (inputNumPermisConstruire.Text != "")
+            {
+                getrefprojet();
+                DirectoryCreator DC = new DirectoryCreator();
+                DC.CreateDirectoryPermisConstruire(tempnumprojet, inputRefProgramme.Text, inputNumPermisConstruire.Text);
+                PermisDeConstruireController PDCC = new PermisDeConstruireController();
+                PDCC.AjouterPermisConstruire(inputNumPermisConstruire.Text, inputDatePermisConstruire.Text, decimal.Parse(inputFraisDivers.Text), inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSuperficieCave.Text), inputNbrCC.Text, decimal.Parse(inputSuperficieCC.Text), inputNbrPlcS.Text, decimal.Parse(inputSuperficiePlcS.Text), inputRefProgramme.Text, inputNomProjet.Text);
+                msh.LoadData("select * from permisdeconstruire where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPConstruire);
+                inputNumPermisConstruire.Text = inputDatePermisConstruire.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrBur.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPlcS.Text = "";
+                inputFraisDivers.Text = "0.00";
+                inputFrais.Text = "0.00";
+                inputFraisPLotir.Text = "0.00";
+                inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez remplir tous les champs pour ajouter un permis de construire", "Permis de construire", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 
         }
 

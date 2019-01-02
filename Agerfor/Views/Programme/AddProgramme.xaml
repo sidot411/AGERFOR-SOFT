@@ -385,7 +385,7 @@
                         Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected" x:Name="DataGridPConstruire" SelectionChanged="DataGridPConstruire_SelectionChanged" >
                                         <DataGrid.Columns>
                                             <DataGridTextColumn  Width="*" Binding="{Binding NumPermis}" Header="Num Permis construire" />
-                                           
+                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePermisC}" Header="Date Permis construire" />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Border>

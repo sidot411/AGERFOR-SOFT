@@ -37,16 +37,16 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void SupprimerLot(string NumLot)
+        public void SupprimerBien(string tempNumBien, string tempTypeBien, string RefProgramme, string NomProjet, string NumEdd)
         {
             try
             {
-                msh.ExecuteQuery("delete from lot where NumLot='" + NumLot + "'");
-                MessageBox.Show("Le lot numéro " + NumLot + " à été bien supprimé");
+                msh.ExecuteQuery("delete from biens  where TypeBien='" + tempTypeBien + "' and  NumBien='" + tempNumBien + "' and RefProgramme=+'" + RefProgramme + "' and NomProjet='" + NomProjet + "' and NumEdd='" + NumEdd + "'");
+                MessageBox.Show("Le bien numéro " + tempNumBien + " à été bien supprimé");
             }
             catch (Exception)
             {
-                MessageBox.Show("Le lot numéro " + NumLot + " n'a pas été supprimé");
+                MessageBox.Show("Le bien numéro " + tempNumBien + " n'a pas été supprimé");
             }
 
         }

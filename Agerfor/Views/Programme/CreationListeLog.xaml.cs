@@ -39,8 +39,7 @@ namespace Agerfor.Views.Programme
         private void BtnAjouterBien_Click(object sender, RoutedEventArgs e)
         {
             BC.AjouterBiens(RefProgramme, NomProjet,NumEdd,inputNumIlot.Text,inputTypeBien.Text,inputNumBien.Text,inputNumLot.Text,inputNumBloc.Text,inputNiveau.Text,inputNbrPiece.Text, decimal.Parse(inputSup.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text,inputEtat.Text);
-            msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewListeBien);
-            inputNumIlot.Text = inputNumLot.Text = inputLimiteNord.Text = inputLimiteOuest.Text = inputLimiteSud.Text = inputLimiteEst.Text = "";
+            msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "' and NumEdd='"+NumEdd+"'", dataViewListeBien);  
             inputPrixHT.Text = inputPrixTTC.Text = "0.00";
             inputSup.Text = inputTva.Text = "0";
         }
@@ -50,11 +49,11 @@ namespace Agerfor.Views.Programme
             DataGridCellInfo cell1 = dataViewListeBien.SelectedCells[1];
             tempTypeBien = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
             DataGridCellInfo cell2 = dataViewListeBien.SelectedCells[2];
-            tempTypeBien = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
+            tempNumBien = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
 
 
 
-            string query = "select * from biens where NumEdd='"+NumEdd+"' and RefProgramme='"+RefProgramme+"' and NomProjet='"+NomProjet+"'";
+            string query = "select * from biens where NumEdd='"+NumEdd+"' and RefProgramme='"+RefProgramme+"' and NomProjet='"+NomProjet+"' and TypeBien='"+tempTypeBien+"' and NumBien='"+tempNumBien+"'";
             MySqlDataReader rdr = null;
             MySqlConnection con = null;
             MySqlCommand cmd = null;
@@ -93,11 +92,48 @@ namespace Agerfor.Views.Programme
 
         private void BtnModifierBien_Click(object sender, RoutedEventArgs e)
         {
-            BC.ModifierBien(RefProgramme,NomProjet,NumEdd,inputNumIlot.Text, inputTypeBien.Text, inputNumBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSup.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text,tempNumBien,tempTypeBien);
-            msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewListeBien);
-            inputNumIlot.Text = inputNumLot.Text = inputLimiteNord.Text = inputLimiteOuest.Text = inputLimiteSud.Text = inputLimiteEst.Text = "";
+            BC.ModifierBien(RefProgramme, NomProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text, inputNumBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSup.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text, tempNumBien, tempTypeBien);
+            msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "' and NumEdd='" + NumEdd + "'", dataViewListeBien);
+            inputNumIlot.Text = inputNumLot.Text = inputLimiteNord.Text = inputLimiteOuest.Text = inputLimiteSud.Text = inputLimiteEst.Text = inputTypeBien.Text = inputNumBien.Text = inputNumBloc.Text = inputNiveau.Text = inputNbrPiece.Text = "";
             inputPrixHT.Text = inputPrixTTC.Text = "0.00";
             inputSup.Text = inputTva.Text = "0";
+
+
+        }
+        private void inputPrixHT_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            try
+            {
+                inputPrixTTC.Text = (decimal.Parse(inputPrixHT.Text) + (decimal.Parse(inputPrixHT.Text) * (decimal.Parse(inputTva.Text)) / 100)).ToString();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void inputTva_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            try
+            {
+                inputPrixTTC.Text = (decimal.Parse(inputPrixHT.Text) + (decimal.Parse(inputPrixHT.Text) * (decimal.Parse(inputTva.Text)) / 100)).ToString();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void BtnSupprimmerBien_Click(object sender, RoutedEventArgs e)
+        {
+            BC.SupprimerBien(tempNumBien, tempTypeBien, RefProgramme, NomProjet, NumEdd);
+            msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "' and NumEdd='" + NumEdd + "'", dataViewListeBien);
+            inputNumIlot.Text = inputNumLot.Text = inputLimiteNord.Text = inputLimiteOuest.Text = inputLimiteSud.Text = inputLimiteEst.Text = inputTypeBien.Text = inputNumBien.Text= inputNumBloc.Text=inputNiveau.Text=inputNbrPiece.Text="";
+            inputPrixHT.Text = inputPrixTTC.Text = "0.00";
+            inputSup.Text = inputTva.Text = "0";
+            
         }
     }
 }
