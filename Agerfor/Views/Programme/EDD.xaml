@@ -70,7 +70,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Conservation</Label>
-                                    <TextBox x:Name="inputConservation" Background="#FAFAFA" Width="360" FontSize="18"
+                                    <ComboBox x:Name="inputConservation" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
                                

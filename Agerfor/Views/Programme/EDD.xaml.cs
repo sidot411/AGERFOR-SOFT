@@ -32,6 +32,7 @@ namespace Agerfor.Views.Programme
             title.Text = "EDD";
             this.RefProgramme = refprogramme;
             this.NomProjet = NomProjet;
+            msh.FillDropDownList("select NomConservation from conservation", inputConservation, "NomConservation");
            
 
         }
@@ -198,9 +199,16 @@ namespace Agerfor.Views.Programme
 
         private void BtnOuvrirEdd_Click(object sender, RoutedEventArgs e)
         {
-            getrefprojet();
-            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + RefProgramme + @"\Edd\" + inputNumEdd.Text;
-            OpenFolder(folderPath);
+            if (tempNumEdd == "" && inputNumEdd.Text == "")
+            {
+                System.Windows.MessageBox.Show("Veuillez selectionner un EDD pour ouvrir dossier", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                getrefprojet();
+                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + RefProgramme + @"\Edd\" + inputNumEdd.Text;
+                OpenFolder(folderPath);
+            }
         }
 
         private void OpenFolder(string folderPath)
@@ -229,7 +237,14 @@ namespace Agerfor.Views.Programme
 
         private void BtnJoindreEdd_Click(object sender, RoutedEventArgs e)
         {
-            SelectFile("Document Edd");
+            if (tempNumEdd == "" && inputNumEdd.Text == "")
+            {
+                System.Windows.MessageBox.Show("Veuillez selectionner un EDD pour joindre des fichier", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                SelectFile("Document Edd");
+            }
         }
         public void SelectFile(string theDirectory)
         {

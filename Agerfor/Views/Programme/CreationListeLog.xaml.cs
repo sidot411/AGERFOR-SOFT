@@ -28,9 +28,7 @@ namespace Agerfor.Views.Programme
             this.RefProgramme = refprogramme;
             this.NomProjet = NomProjet;
             this.NumEdd = NumEdd;
-            MessageBox.Show(NomProjet);
-            MessageBox.Show(refprogramme);
-            MessageBox.Show(NumEdd);
+            
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
 

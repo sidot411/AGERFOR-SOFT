@@ -74,6 +74,7 @@ namespace Agerfor.Views.Projet
 
         private void BtnSuppProjet_Click(object sender, RoutedEventArgs e)
         {
+
             if (tempRefProjet != "")
             {
 

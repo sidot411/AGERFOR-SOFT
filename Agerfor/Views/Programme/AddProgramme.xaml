@@ -176,7 +176,7 @@
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
                         Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewActeProgramme_SelectionChanged">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num Acte" />
+                                    <DataGridTextColumn x:Name="NumActe" Width="*" Binding="{Binding NumActe}" Header="Num Acte" />
                                     <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date Acte" />
                                     <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Date Enrigistrement Acte" />
                                     <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date Publication Acte" />
