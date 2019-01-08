@@ -104,6 +104,12 @@
     <Compile Include="Controlers\PermisDeConstruireController.cs" />
     <Compile Include="Controlers\ProgrammeController.cs" />
     <Compile Include="Controlers\ProjetController.cs" />
+    <Compile Include="Views\Attribution\Attribution.xaml.cs">
+      <DependentUpon>Attribution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attribution\addAttribution.xaml.cs">
+      <DependentUpon>addAttribution.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Clients\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
@@ -167,6 +173,14 @@
       <DependentUpon>Agerfor.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Attribution\Attribution.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Attribution\addAttribution.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Clients\AddClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
