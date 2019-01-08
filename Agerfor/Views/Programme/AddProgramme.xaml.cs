@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Windows.Data;
 using System.ComponentModel;
+using System.Text;
 
 namespace Agerfor.Views.Programme
 {
@@ -276,9 +277,17 @@ namespace Agerfor.Views.Programme
         private void BtnOuvrirprogramme_Click(object sender, RoutedEventArgs e)
         {
             getrefprojet();
-            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text;
+            string ip = "192.168.3.101";
+            string folderPath = @"\\"+ip+@"\"+ AppDomain.CurrentDomain.BaseDirectory+""+ @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text;
+            if (ip.Length == 13)
+            {
+                StringBuilder sb = new StringBuilder(folderPath);
+                sb.Remove(17, 1);
+                folderPath = sb.ToString();
+            }
 
-            OpenFolder(folderPath);
+            System.Windows.MessageBox.Show(folderPath);
+            /*OpenFolder(folderPath);*/
         }
         private void OpenFolder(string folderPath)
         {

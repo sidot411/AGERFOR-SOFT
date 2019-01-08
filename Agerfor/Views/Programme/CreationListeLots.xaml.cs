@@ -34,25 +34,15 @@ namespace Agerfor.Views.Programme
             this.RefProgramme = refprogramme;
             this.NomProjet = NomProjet;
             this.NumCahierCharge = NumCahierCharge;
-
-
-
         }
-
-
-
+        
         private void Page_Loaded(object sender, RoutedEventArgs e)
 
         {
            
-
             msh.LoadData("select * from lot where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "' and NumCC='" + NumCahierCharge + "'", dataViewListeLot);
-
-
+            
         }
-
-
-
 
         private void BtnAjouterLots_Click(object sender, RoutedEventArgs e)
         {
