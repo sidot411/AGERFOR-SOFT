@@ -106,6 +106,9 @@
     <Compile Include="Controlers\PermisDeConstruireController.cs" />
     <Compile Include="Controlers\ProgrammeController.cs" />
     <Compile Include="Controlers\ProjetController.cs" />
+    <Compile Include="Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Clients\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
@@ -163,7 +166,7 @@
     <Compile Include="Views\Setting\SocieteInformation.xaml.cs">
       <DependentUpon>SocieteInformation.xaml</DependentUpon>
     </Compile>
-    <Page Include="Agerfor.xaml">
+    <Page Include="AgerforApp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -171,10 +174,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Agerfor.xaml.cs">
-      <DependentUpon>Agerfor.xaml</DependentUpon>
+    <Compile Include="AgerforApp.xaml.cs">
+      <DependentUpon>AgerforApp.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Clients\AddClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -301,6 +308,7 @@
     <Content Include="Notifications.Wpf.dll" />
     <Content Include="SmarterDB.CodeProject.DataEntry.dll" />
     <Content Include="SmarterDB.CodeProject.TestData.dll" />
+    <Resource Include="Source\Loading.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

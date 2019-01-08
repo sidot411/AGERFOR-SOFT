@@ -241,14 +241,7 @@ namespace Agerfor.Views.Programme
             DialogHost.Show(convention);
         }
 
-        private void BtnCreationListeLots_Click(object sender, RoutedEventArgs e)
-        {
-            CreationListeLots Lots = new CreationListeLots(inputNomProjet.Text, inputRefProgramme.Text);
-            DialogHost.Show(Lots);
-        }
-
-        
-
+  
         private void inputDairaProgramme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

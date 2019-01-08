@@ -38,6 +38,7 @@ namespace Agerfor.Views.Programme
             title.Text = "Cahier de charge";
             this.RefProgramme = refprogramme;
             this.NomProjet = NomProjet;
+            inputSuperficieCessible.Text = inputSuperficieEq.Text = inputSuperficieEv.Text = inputSuperficieVoirie.Text = inputAutreSuperficie.Text = "0";
 
         }
 
@@ -50,12 +51,25 @@ namespace Agerfor.Views.Programme
 
         private void BtnAjouterCC_Click(object sender, RoutedEventArgs e)
         {
-            string CC = "Cahier des charges";
-            getrefprojet();
-            DirectoryCreator DC = new DirectoryCreator();
-            DC.CreateDirectoryProgramme(tempnumprojet, RefProgramme + "/" + CC + "/" + inputNumCahierCharge.Text);
-            CCPC.AjouterCahierCharge(NomProjet,RefProgramme,inputNumCahierCharge.Text,inputDateEnreg.Text,inputVolume.Text,inputNumPubli.Text,inputDatePubli.Text,inputConservation.Text,inputNotaire.Text,inputTelNotaire.Text,inputAdresseNotaire.Text,decimal.Parse(inputSuperficieCessible.Text),decimal.Parse(inputSuperficieVoirie.Text),decimal.Parse(inputSuperficieEv.Text),decimal.Parse(inputSuperficieEq.Text),decimal.Parse(inputAutreSuperficie.Text),inputNomGeo.Text,inputAddressGeo.Text,inputTelGeo.Text);
-            msh.LoadData("select * from cahierchargeprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewCahierCharge);
+            if (inputNumCahierCharge.Text=="" && inputSuperficieCessible.Text=="" && inputSuperficieEq.Text=="" && inputSuperficieEv.Text=="" && inputSuperficieVoirie.Text==""&& inputAutreSuperficie.Text=="")
+            {
+                System.Windows.MessageBox.Show("Veuillez entrer les informations nécessaire!", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           else if (dataViewCahierCharge.Items.Count == 0)
+            {
+                string CC = "Cahier des charges";
+                getrefprojet();
+                DirectoryCreator DC = new DirectoryCreator();
+                DC.CreateDirectoryProgramme(tempnumprojet, RefProgramme + "/" + CC + "/" + inputNumCahierCharge.Text);
+                CCPC.AjouterCahierCharge(NomProjet, RefProgramme, inputNumCahierCharge.Text, inputDateEnreg.Text, inputVolume.Text, inputNumPubli.Text, inputDatePubli.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, decimal.Parse(inputSuperficieCessible.Text), decimal.Parse(inputSuperficieVoirie.Text), decimal.Parse(inputSuperficieEv.Text), decimal.Parse(inputSuperficieEq.Text), decimal.Parse(inputAutreSuperficie.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text);
+                msh.LoadData("select * from cahierchargeprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewCahierCharge);
+                inputNumCahierCharge.Text = inputDateEnreg.Text = inputVolume.Text = inputNumPubli.Text = inputDatePubli.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputAddressGeo.Text = inputTelGeo.Text = "";
+                inputSuperficieCessible.Text = inputSuperficieEq.Text = inputSuperficieEv.Text = inputSuperficieVoirie.Text = inputAutreSuperficie.Text = "0";
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Vous ne pouvez pas ajouter un nouveau cahier de charge car il existe déja un !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void dataViewCahierCharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -200,6 +214,55 @@ namespace Agerfor.Views.Programme
             else
             {
                 System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
+        }
+
+        private void BtnCreationListeLots_Click(object sender, RoutedEventArgs e)
+        {
+            if (tempNumCahierDeCharge != "")
+            {
+                Window window = new Window
+
+                {
+
+                    Title = "Ajouter/Liste Lots",
+                    Content = new CreationListeLots(NomProjet, RefProgramme, tempNumCahierDeCharge),
+                    SizeToContent = SizeToContent.WidthAndHeight,
+                    ResizeMode = ResizeMode.NoResize,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+
+                };
+                window.ShowDialog();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez selectionner un Cahier des charges pour créer des lots", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+        }
+
+        private void BtnCCmodificatif_Click(object sender, RoutedEventArgs e)
+        {
+            if (tempNumCahierDeCharge == "" )
+            {
+                System.Windows.MessageBox.Show("Veuillez selectionner un Cahier de charge pour créer un cahier de charge modificatif", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (inputNumCahierCharge.Text == tempNumCahierDeCharge)
+            {
+                System.Windows.MessageBox.Show("Le numéro de cahier de charge existe déja veuillez introduire un nouveau numéro", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                LotController LC = new LotController();
+                string CC = "Cahier des charges";
+                getrefprojet();
+                DirectoryCreator DC = new DirectoryCreator();
+                DC.CreateDirectoryProgramme(tempnumprojet, RefProgramme + "/" + CC + "/" + inputNumCahierCharge.Text);
+                CCPC.AjouterCahierCharge(NomProjet, RefProgramme, inputNumCahierCharge.Text, inputDateEnreg.Text, inputVolume.Text, inputNumPubli.Text, inputDatePubli.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, decimal.Parse(inputSuperficieCessible.Text), decimal.Parse(inputSuperficieVoirie.Text), decimal.Parse(inputSuperficieEv.Text), decimal.Parse(inputSuperficieEq.Text), decimal.Parse(inputAutreSuperficie.Text), inputNomGeo.Text, inputAddressGeo.Text, inputTelGeo.Text);
+                LC.LotsModificatif(tempNumCahierDeCharge, inputNumCahierCharge.Text, RefProgramme, NomProjet);
+                msh.LoadData("select * from cahierchargeprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "'", dataViewCahierCharge);
+                inputNumCahierCharge.Text = inputDateEnreg.Text = inputVolume.Text = inputNumPubli.Text = inputDatePubli.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputAddressGeo.Text = inputTelGeo.Text = "";
+                inputSuperficieCessible.Text = inputSuperficieEq.Text = inputSuperficieEv.Text = inputSuperficieVoirie.Text = inputAutreSuperficie.Text = "0";
             }
         }
     }

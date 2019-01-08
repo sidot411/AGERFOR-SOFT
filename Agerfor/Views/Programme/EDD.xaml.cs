@@ -279,19 +279,24 @@ namespace Agerfor.Views.Programme
             win.Content = bien;
             win.Title = "Biens";
             win.Show();*/
-            Window window = new Window
-
+            if (tempNumEdd !="")
             {
-                
-                Title = "Ajouter/Liste biens",
-                Content = new CreationListeLog(NomProjet, RefProgramme, tempNumEdd),
-                SizeToContent = SizeToContent.WidthAndHeight,
-                ResizeMode = ResizeMode.NoResize,
-                WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                
-        };
-            window.ShowDialog();
-           
+                Window window = new Window
+
+                {
+                    Title = "Ajouter/Liste biens",
+                    Content = new CreationListeLog(NomProjet, RefProgramme, tempNumEdd),
+                    SizeToContent = SizeToContent.WidthAndHeight,
+                    ResizeMode = ResizeMode.NoResize,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+
+                };
+                window.ShowDialog();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez selectionner un EDD pour créer des biens", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 
         }
 

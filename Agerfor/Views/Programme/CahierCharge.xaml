@@ -139,11 +139,23 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                                <Button Background="#007CC3" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" x:Name="BtnAjouterCC" Click="BtnAjouterCC_Click" />
-                                <Button Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" x:Name="BtnModifierCC" Click="BtnModifierCC_Click" />
-                                <Button Background="#007CC3" Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" x:Name="BtnSupprimerCC" Click="BtnSupprimerCC_Click"/>
-                                <Button Background="#007CC3" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" x:Name="BtnJoindreCC" Click="BtnJoindreCC_Click"/>
-                                <Button Background="#007CC3" Content="Ouvrir Acte" Height="35" Width="105" x:Name="BtnOuvrirCC" Click="BtnOuvrirCC_Click" />    
+                                <Button Background="#007CC3" Content="Ajouter" Height="50" Width="105" Margin="0 0 20 0" x:Name="BtnAjouterCC" Click="BtnAjouterCC_Click" />
+                                <Button x:Name="BtnCCmodificatif" Background="#007CC3" Height="50" Width="150" Margin="0 0 20 0" Click="BtnCCmodificatif_Click" >
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock>Ajouter Cahier de </TextBlock>
+                                        <TextBlock TextAlignment="Center">Charge Modificatif</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button Background="#007CC3" Content="Modifier" Height="50" Width="105" Margin="0 0 20 0" x:Name="BtnModifierCC" Click="BtnModifierCC_Click" />
+                                <Button Background="#007CC3" Content="Supprimer" Height="50" Width="105" Margin="0 0 20 0" x:Name="BtnSupprimerCC" Click="BtnSupprimerCC_Click"/>
+                                <Button Background="#007CC3" Content="Joindre" Height="50" Width="105" Margin="0 0 20 0" x:Name="BtnJoindreCC" Click="BtnJoindreCC_Click"/>
+                                <Button Background="#007CC3" Content="Ouvrir Acte" Height="50" Width="105" x:Name="BtnOuvrirCC" Click="BtnOuvrirCC_Click" Margin="0 0 20 0"/>
+                                <Button x:Name="BtnCreationListeLots" Background="#007CC3" Height="50" Width="150" Margin="0 0 20 0" Click="BtnCreationListeLots_Click"  >
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock>Création/Liste des</TextBlock>
+                                        <TextBlock TextAlignment="Center">Lots</TextBlock>
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
                             <Label FontSize="18" FontWeight="Bold" Margin="0 10 0 0">Informations cahier de charge</Label>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0">
