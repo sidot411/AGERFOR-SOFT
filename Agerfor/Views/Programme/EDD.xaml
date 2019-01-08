@@ -70,7 +70,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                     <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Conservation</Label>
-                                    <TextBox x:Name="inputConservation" Background="#FAFAFA" Width="360" FontSize="18"
+                                    <ComboBox x:Name="inputConservation" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                 </StackPanel>
                                
@@ -162,11 +162,23 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                                <Button x:Name="BtnAjouterEdd" Background="#007CC3" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterEdd_Click" />
-                                <Button x:Name="BtnModifierEdd" Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierEdd_Click" />
-                                <Button x:Name="BtnSupprimmerEdd" Background="#007CC3" Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" Click="BtnSupprimmerEdd_Click" />
-                                <Button x:Name="BtnJoindreEdd" Background="#007CC3" Content="Joindre" Height="35" Width="105" Margin="0 0 20 0" Click="BtnJoindreEdd_Click" />
-                                <Button x:Name="BtnOuvrirEdd" Background="#007CC3" Content="Ouvrir EDD" Height="35" Width="105" Click="BtnOuvrirEdd_Click"/>
+                                <Button x:Name="BtnAjouterEdd" Background="#007CC3" Content="Ajouter" Height="50" Width="105" Margin="0 0 20 0" Click="BtnAjouterEdd_Click" />
+                                <Button x:Name="BtnEddmodificatif" Background="#007CC3" Height="50" Width="150" Margin="0 0 20 0" Click="BtnEddmodificatif_Click" >
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock>Ajouter EDD</TextBlock>
+                                        <TextBlock TextAlignment="Center">Modificatif</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="BtnModifierEdd" Background="#007CC3" Content="Modifier" Height="50" Width="105" Margin="0 0 20 0" Click="BtnModifierEdd_Click" />
+                                <Button x:Name="BtnSupprimmerEdd" Background="#007CC3" Content="Supprimer" Height="50" Width="105" Margin="0 0 20 0" Click="BtnSupprimmerEdd_Click" />
+                                <Button x:Name="BtnJoindreEdd" Background="#007CC3" Content="Joindre" Height="50" Width="105" Margin="0 0 20 0" Click="BtnJoindreEdd_Click" />
+                                <Button x:Name="BtnOuvrirEdd" Background="#007CC3" Content="Ouvrir EDD" Height="50" Width="105" Click="BtnOuvrirEdd_Click" Margin="0 0 20 0"/>
+                                <Button x:Name="BtnCreationListeBiens" Background="#007CC3" Height="50" Width="150" Margin="0 0 20 0" Click="BtnCreationListeBiens_Click"  >
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock>Création/Liste des</TextBlock>
+                                        <TextBlock TextAlignment="Center">Biens</TextBlock>
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
                             <Label FontSize="18" FontWeight="Bold" Margin="0 10 0 0">Liste EDD</Label>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0">

@@ -100,8 +100,10 @@ namespace Agerfor.Views.Programme
                     CahierChargeProgrammeController CCPC = new CahierChargeProgrammeController();
                     EddController EC = new EddController();
                     ConventionController CC = new ConventionController();
-                    
-                    DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + temprefprogramme);   
+                    BiensController BC = new BiensController();
+
+                    DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + temprefprogramme);
+                    BC.SupprimerLogFromProgramme(temprefprogramme, tempNomProjet);  
                     APC.SupprimerActeFromProgramme(temprefprogramme);
                     PLC.SupprimerPLFromProgramme(temprefprogramme);
                     PDCC.SupprimerPermisConstruireFromProgramme(temprefprogramme);
