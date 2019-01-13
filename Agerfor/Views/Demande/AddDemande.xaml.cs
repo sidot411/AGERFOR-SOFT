@@ -36,7 +36,7 @@ namespace Agerfor.Views.Demande
                 MySqlConnection con = null;
                 MySqlCommand cmd = null;
 
-                con = new MySqlConnection(Database.ConnectionString);
+                con = new MySqlConnection(Database.ConnectionString());
                 con.Open();
                 cmd = new MySqlCommand(query);
                 cmd.Connection = con;

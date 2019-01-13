@@ -18,7 +18,7 @@ namespace Agerfor.Controlers
         public void ExecuteQuery(string query)
         {
            
-                MySqlConnection conn = new MySqlConnection(Database.ConnectionString);
+                MySqlConnection conn = new MySqlConnection(Database.ConnectionString());
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = query;
@@ -81,7 +81,7 @@ namespace Agerfor.Controlers
                 MySqlConnection con = null;
                 MySqlCommand cmd = null;
 
-                con = new MySqlConnection(Database.ConnectionString);
+                con = new MySqlConnection(Database.ConnectionString());
                 con.Open();
                 cmd = new MySqlCommand(Query);
                 cmd.Connection = con;

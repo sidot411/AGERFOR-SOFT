@@ -69,7 +69,7 @@ namespace Agerfor.Views.Programme
                 MySqlConnection con = null;
                 MySqlCommand cmd = null;
 
-                con = new MySqlConnection(Database.ConnectionString);
+                con = new MySqlConnection(Database.ConnectionString());
                 con.Open();
                 cmd = new MySqlCommand(query);
 
@@ -391,7 +391,7 @@ namespace Agerfor.Views.Programme
             MySqlConnection con = null;
             MySqlCommand cmd = null;
 
-            con = new MySqlConnection(Database.ConnectionString);
+            con = new MySqlConnection(Database.ConnectionString());
             con.Open();
             cmd = new MySqlCommand(query);
             cmd.Connection = con;
@@ -439,7 +439,7 @@ namespace Agerfor.Views.Programme
             MySqlConnection con2 = null;
             MySqlCommand cmd2 = null;
 
-            con2 = new MySqlConnection(Database.ConnectionString);
+            con2 = new MySqlConnection(Database.ConnectionString());
             con2.Open();
             cmd2 = new MySqlCommand(query2);
             cmd2.Connection = con2;
@@ -549,7 +549,7 @@ namespace Agerfor.Views.Programme
             MySqlConnection con = null;
             MySqlCommand cmd = null;
 
-            con = new MySqlConnection(Database.ConnectionString);
+            con = new MySqlConnection(Database.ConnectionString());
             con.Open();
             cmd = new MySqlCommand(query);
             cmd.Connection = con;
@@ -681,7 +681,7 @@ namespace Agerfor.Views.Programme
             MySqlConnection con = null;
             MySqlCommand cmd = null;
 
-            con = new MySqlConnection(Database.ConnectionString);
+            con = new MySqlConnection(Database.ConnectionString());
             con.Open();
             cmd = new MySqlCommand(query);
             cmd.Connection = con;

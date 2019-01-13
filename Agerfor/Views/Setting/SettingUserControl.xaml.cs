@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Agerfor.Views;
 using Agerfor.Views.Setting.referentiel;
+using DbConnection.Models;
 
 
 namespace Agerfor.Views.Setting
@@ -41,7 +42,7 @@ namespace Agerfor.Views.Setting
         private void BtnDatabase_Click(object sender, RoutedEventArgs e)
         {
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            Frame.Navigate(new Database());
+            Frame.Navigate(new BDD());
             title.Text = "base de donnée";
 
         }
