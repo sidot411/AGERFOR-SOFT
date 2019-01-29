@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Agerfor.Controlers;
 
 namespace Agerfor.Views.Attribution
 {
@@ -20,9 +10,157 @@ namespace Agerfor.Views.Attribution
     /// </summary>
     public partial class Attribution : Page
     {
-        public Attribution()
+        MySqlHelper msh = new MySqlHelper();
+        string query = "";
+        public Attribution(string query)
         {
             InitializeComponent();
+            this.query = query;
+
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+
+        }
+
+        private void IdClient_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where CodeClient like '" + IdClient.Text + "%' and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+        }
+
+
+
+        private void Nom_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where Nom like '" + inputNom.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+
+
+        private void CNI_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where Cni like '" + inputCNI.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputDateNaissance_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where DateNaissance like '" + inputDateNaissance.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputDateNaissance_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where DateNaissance like '" + inputDateNaissance.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+
+        }
+
+        private void inputNomProjet_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where projet.NomProjet like '" + inputNomProjet.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputNumProgramme_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where programme.RefProgramme like '" + inputNumProgramme.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputnumbien_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where Biens.NumBien like '" + inputnumbien.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+
+        private void inputDateAttri_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where DateAttribution like '" + inputDateAttri.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputDateAttri_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where DateAttribution like '" + inputDateAttri.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void IdClient_GotFocus(object sender, RoutedEventArgs e)
+        {
+            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputNom_GotFocus(object sender, RoutedEventArgs e)
+        {
+            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputCNI_GotFocus(object sender, RoutedEventArgs e)
+        {
+            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputDateNaissance_GotFocus(object sender, RoutedEventArgs e)
+        {
+            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputNomProjet_GotFocus(object sender, RoutedEventArgs e)
+        {
+            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputNumProgramme_GotFocus(object sender, RoutedEventArgs e)
+        {
+            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputnumbien_GotFocus(object sender, RoutedEventArgs e)
+        {
+            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void inputDateAttri_GotFocus(object sender, RoutedEventArgs e)
+        {
+            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+
+        }
+
+        private void BtnAfficherAttribution_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AddAttribution addat = new AddAttribution();
+                this.NavigationService.Navigate(addat);
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

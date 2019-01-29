@@ -5,6 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Agerfor.Views.Attribution"
       mc:Ignorable="d" 
+      xml:lang="fr-FR"
+      xmlns:encoding="UTF-8"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      d:DesignHeight="740" d:DesignWidth="1024"
       
@@ -23,21 +26,21 @@
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2">
             <StackPanel Orientation="Vertical" Margin="0 0 0 10" VerticalAlignment="Bottom">
-                <Button Background="#007CC3" x:Name="BtnAfficherProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnAfficherProgramme_Click">
+                <Button Background="#007CC3" x:Name="BtnAfficherAttribution" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnAfficherAttribution_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="Bookmark" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
                         <TextBlock Text="Afficher" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button Background="#007CC3" x:Name="BtnAjouterProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnAjouterProgramme_Click">
+                <Button Background="#007CC3" x:Name="BtnAjouterProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkPlus" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
                         <TextBlock Text="Ajouter" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button Background="#007CC3" x:Name="BtnModifierProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnModifierProgramme_Click">
+                <Button Background="#007CC3" x:Name="BtnModifierProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10">
 
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"
@@ -45,7 +48,7 @@
                         <TextBlock Text="Modifier" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button Background="#007CC3" x:Name="BtnSuppProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnSuppProgramme_Click" >
+                <Button Background="#007CC3" x:Name="BtnSuppProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10"  >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
@@ -63,54 +66,50 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <StackPanel Orientation="Vertical" Margin="0 10 0 0">
                         <TextBox x:Name="IdClient" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Code client" Margin="0 0 0 10" KeyUp="inputRefProgramme_KeyUp" GotFocus="inputRefProgramme_GotFocus"/>
-                        <TextBox x:Name="Nom" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom" Margin="0 0 0 10" KeyUp="inputNomProgramme_KeyUp" GotFocus="inputNomProgramme_GotFocus" />
-                        <TextBox x:Name="Prenom" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Prénom" Margin="0 0 0 10" KeyUp="Site_KeyUp" GotFocus="Site_GotFocus"/>
-                        <TextBox x:Name="DateNaissance" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="date de Naissance" Margin="0 0 0 10" KeyUp="Daira_KeyUp" GotFocus="Daira_GotFocus" />
-                        <TextBox x:Name="CNI" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="N° CNI" Margin="0 0 0 10" KeyUp="Daira_KeyUp" GotFocus="Daira_GotFocus" />
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Code client" Margin="0 0 0 10" KeyUp="IdClient_KeyUp" GotFocus="IdClient_GotFocus" />
+                        <TextBox x:Name="inputNom" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom" Margin="0 0 0 10" KeyUp="Nom_KeyUp" GotFocus="inputNom_GotFocus" />
+                             <TextBox x:Name="inputCNI" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="N° CNI" Margin="0 0 0 10" KeyUp="CNI_KeyUp" GotFocus="inputCNI_GotFocus"  />
+                        <DatePicker  x:Name="inputDateNaissance" Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="300" SelectedDateFormat="Short" SelectedDateChanged="inputDateNaissance_SelectedDateChanged" KeyUp="inputDateNaissance_KeyUp" GotFocus="inputDateNaissance_GotFocus"
+                            HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Date de naissance" >
+                        </DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="30 10 0 0">
-                        <TextBox x:Name="Commune" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Projet" Margin="0 0 0 10" KeyUp="Commune_KeyUp" GotFocus="Commune_GotFocus"/>
-                        <TextBox x:Name="Natureprogramme" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Programme" Margin="0 0 0 10" KeyUp="Natureprogramme_KeyUp" GotFocus="Natureprogramme_GotFocus" />
-                        <TextBox x:Name="Typeprogramme" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="N°Ilot" Margin="0 0 0 10" KeyUp="Typeprogramme_KeyUp" GotFocus="Typeprogramme_GotFocus"/>
-                        <TextBox x:Name="Nombredebien" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="N°Lot" Margin="0 0 0 10" KeyUp="Nombredebien_KeyUp" GotFocus="Nombredebien_GotFocus"/>
-                        <TextBox x:Name="NLgmt" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="N° Logement" Margin="0 0 0 10" KeyUp="Nombredebien_KeyUp" GotFocus="Nombredebien_GotFocus"/>
+                        <TextBox x:Name="inputNomProjet" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom Projet" Margin="0 0 0 10" KeyUp="inputNomProjet_KeyUp" GotFocus="inputNomProjet_GotFocus" />
+                        <TextBox x:Name="inputNumProgramme" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Num Programme" Margin="0 0 0 10" KeyUp="inputNumProgramme_KeyUp" GotFocus="inputNumProgramme_GotFocus"/>
+                        <TextBox x:Name="inputnumbien" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Num bien" Margin="0 0 0 10" KeyUp="inputnumbien_KeyUp" GotFocus="inputnumbien_GotFocus"/>
+                        <DatePicker x:Name="inputDateAttri"  Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="300" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Date attribution" SelectedDateChanged="inputDateAttri_SelectedDateChanged" KeyUp="inputDateAttri_KeyUp" GotFocus="inputDateAttri_GotFocus">
+                        </DatePicker>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <Border BorderThickness="1">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" Opacity="0.2" />
-                </Border.Effect>
+
+          
+               
                 <DataGrid HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="dataGridView2"
                   AutoGenerateColumns="False" BorderBrush="White" BorderThickness="0"
                   CanUserAddRows="False" AlternatingRowBackground="#F3F3F3"
-                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30,264,10,15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" SelectionChanged="dataGridView2_SelectionChanged" >
+                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30,220,10,15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" >
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="*" Binding="{Binding N}" Header="N°" />
-                        <DataGridTextColumn Width="*" Binding="{Binding Nom}" Header="Nom" />
-                        <DataGridTextColumn Width="*" Binding="{Binding Prenom}" Header="Prenom" />
-                        <DataGridTextColumn Width="*" Binding="{Binding DateNaissance}" Header="Date Naissance " />
-                        <DataGridTextColumn Width="*" Binding="{Binding Cni}" Header="CNI" />
-                        <DataGridTextColumn Width="*" Binding="{Binding NomProjet}" Header="Projet" />
-                        <DataGridTextColumn Width="*" Binding="{Binding NomProgramme}" Header="Programme" />
-                        <DataGridTextColumn Width="*" Binding="{Binding Nilot }" Header="N° ILOT" />
-                        <DataGridTextColumn Width="*" Binding="{Binding Nlot}" Header="N° Lot" />
-                        <DataGridTextColumn Width="*" Binding="{Binding Nlogement}" Header="N° Logement" />
-
+                        <DataGridTextColumn Width="*" Binding="{Binding NumAttribution}" Header="Num Attribution" />
+                        <DataGridTextColumn Width="*" Binding="{Binding DateAttribution}" Header="Date Attribution" />
+                        <DataGridTextColumn Width="*" Binding="{Binding CodeClient}" Header="Code Client" />
+                        <DataGridTextColumn Width="*" Binding="{Binding Nom}" Header="Nom Client" />
+                        <DataGridTextColumn Width="*" Binding="{Binding DateNaissance}" Header="Date naissance" />
+                        <DataGridTextColumn Width="*" Binding="{Binding NomProjet}" Header="Nom Projet" />
+                        <DataGridTextColumn Width="*" Binding="{Binding NumProgramme}" Header="Num Programme" />
+                        <DataGridTextColumn Width="*" Binding="{Binding NumBien}" Header="Num bien" />
                     </DataGrid.Columns>
                 </DataGrid>
-            </Border>
+           
         </Grid>
     </Grid>
 </Page>

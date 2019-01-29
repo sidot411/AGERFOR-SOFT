@@ -19,6 +19,7 @@ using Agerfor.Views.Programme;
 using Agerfor.Views.Setting;
 using System.Windows.Forms;
 using MaterialDesignThemes.Wpf;
+using Agerfor.Views.Attribution;
 
 namespace Agerfor
 {
@@ -132,6 +133,16 @@ namespace Agerfor
         {
             SettingUserControl SUC = new SettingUserControl();
             DialogHost.Show(SUC);
+        }
+
+        private void BtnAttribution_Click(object sender, RoutedEventArgs e)
+        {
+
+            BtnClient.BorderThickness = BtnDemande.BorderThickness = BtnProjet.BorderThickness = BtnTableauDeBord.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness = BtnVerssement.BorderThickness = BtnProgramme.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
+            BtnAttribution.BorderThickness = new Thickness(5, 0, 0, 0);
+            Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            Frame.Navigate(new Attribution(""));
+            currentWindow.Text = "Attribution";
         }
     }
 }

@@ -20,6 +20,8 @@ namespace Agerfor.Views.Programme
         string tempnumprojet = "";
         string tempTypeBien = "";
         string tempNumBien = "";
+        string tempNumIlot = "";
+      
    
         public CreationListeLog(string NomProjet, string refprogramme,string NumEdd)
         {
@@ -46,6 +48,8 @@ namespace Agerfor.Views.Programme
 
         private void dataViewListeBien_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DataGridCellInfo cell0 = dataViewListeBien.SelectedCells[0];
+            tempNumIlot = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
             DataGridCellInfo cell1 = dataViewListeBien.SelectedCells[1];
             tempTypeBien = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
             DataGridCellInfo cell2 = dataViewListeBien.SelectedCells[2];
@@ -128,12 +132,24 @@ namespace Agerfor.Views.Programme
 
         private void BtnSupprimmerBien_Click(object sender, RoutedEventArgs e)
         {
-            BC.SupprimerBien(tempNumBien, tempTypeBien, RefProgramme, NomProjet, NumEdd);
+            BC.SupprimerBien(tempNumIlot,inputNumLot.Text,inputNumBloc.Text,inputNiveau.Text,tempNumBien, tempTypeBien, RefProgramme, NomProjet, NumEdd);
             msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and NomProjet='" + NomProjet + "' and NumEdd='" + NumEdd + "'", dataViewListeBien);
             inputNumIlot.Text = inputNumLot.Text = inputLimiteNord.Text = inputLimiteOuest.Text = inputLimiteSud.Text = inputLimiteEst.Text = inputTypeBien.Text = inputNumBien.Text= inputNumBloc.Text=inputNiveau.Text=inputNbrPiece.Text="";
             inputPrixHT.Text = inputPrixTTC.Text = "0.00";
             inputSup.Text = inputTva.Text = "0";
             
+        }
+
+        private void SearchSwitch_Click(object sender, RoutedEventArgs e)
+        {
+           if(SearchSwitch.IsChecked==true)
+            {
+                inputPrixHT.IsEnabled = inputPrixTTC.IsEnabled = inputTva.IsEnabled = inputLimiteEst.IsEnabled = inputLimiteNord.IsEnabled = inputLimiteOuest.IsEnabled = inputLimiteSud.IsEnabled = false;
+            }
+           else
+            {
+                inputPrixHT.IsEnabled = inputPrixTTC.IsEnabled = inputTva.IsEnabled = inputLimiteEst.IsEnabled = inputLimiteNord.IsEnabled = inputLimiteOuest.IsEnabled = inputLimiteSud.IsEnabled = true;
+            }
         }
     }
 }

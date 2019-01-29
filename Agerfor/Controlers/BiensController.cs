@@ -37,11 +37,11 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void SupprimerBien(string tempNumBien, string tempTypeBien, string RefProgramme, string NomProjet, string NumEdd)
+        public void SupprimerBien(string NumILot, string NumLot, string NumBloc, string Niveau , string tempNumBien, string tempTypeBien, string RefProgramme, string NomProjet, string NumEdd)
         {
             try
             {
-                msh.ExecuteQuery("delete from biens  where TypeBien='" + tempTypeBien + "' and  NumBien='" + tempNumBien + "' and RefProgramme=+'" + RefProgramme + "' and NomProjet='" + NomProjet + "' and NumEdd='" + NumEdd + "'");
+                msh.ExecuteQuery("delete from biens  where NumIlot='"+NumILot+"' and NumLot='"+NumLot+"' and NumBloc='"+NumBloc+"' and Niveau='"+Niveau+"' and TypeBien='" + tempTypeBien + "' and  NumBien='" + tempNumBien + "' and RefProgramme=+'" + RefProgramme + "' and NomProjet='" + NomProjet + "' and NumEdd='" + NumEdd + "'");
                 MessageBox.Show("Le bien numéro " + tempNumBien + " à été bien supprimé");
             }
             catch (Exception)

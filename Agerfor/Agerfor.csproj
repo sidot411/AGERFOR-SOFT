@@ -115,6 +115,7 @@
     </ApplicationDefinition>
     <Compile Include="Controlers\ActeController.cs" />
     <Compile Include="Controlers\ActeProgrammeController.cs" />
+    <Compile Include="Controlers\AttributionController.cs" />
     <Compile Include="Controlers\Bdd.cs" />
     <Compile Include="Controlers\BiensController.cs" />
     <Compile Include="Controlers\CahierChargeProgrammeController.cs" />
@@ -131,6 +132,12 @@
     <Compile Include="Controlers\ProjetController.cs" />
     <Compile Include="Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attribution\AddAttribution.xaml.cs">
+      <DependentUpon>AddAttribution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attribution\Attribution.xaml.cs">
+      <DependentUpon>Attribution.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Clients\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
@@ -201,6 +208,14 @@
     <Page Include="Loading.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Attribution\AddAttribution.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Attribution\Attribution.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Clients\AddClient.xaml">
       <SubType>Designer</SubType>

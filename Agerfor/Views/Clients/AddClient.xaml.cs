@@ -140,9 +140,9 @@ namespace Agerfor.Views.Clients
                             inputProffession.Text = rdr["Proffession"].ToString();
                             inputNomAutreCntacte.Text = rdr["NomContact"].ToString();
                             inputTelphoneContact.Text = rdr["TelContact"].ToString();
-                            inputDateCration.SelectedDate = DateTime.ParseExact(rdr["DateCreation"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                            inputDateNaissance.SelectedDate = DateTime.ParseExact(rdr["DateNaissance"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                            inputDateCni.SelectedDate = DateTime.ParseExact(rdr["DateCni"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                            inputDateCration.SelectedDate = DateTime.ParseExact(rdr["DateCreation"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            inputDateNaissance.SelectedDate = DateTime.ParseExact(rdr["DateNaissance"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            inputDateCni.SelectedDate = DateTime.ParseExact(rdr["DateCni"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
                             oneTime = false;
                         }

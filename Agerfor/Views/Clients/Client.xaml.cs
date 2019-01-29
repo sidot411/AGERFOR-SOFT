@@ -72,7 +72,7 @@ namespace Agerfor.Views.Clients
            if (tempNumClient !="")
             { 
                 AddClient AC = new AddClient(tempNumClient, tempSituation);
-                AC.BtnAjouter.IsEnabled = false; 
+               /* AC.BtnAjouter.IsEnabled = false; */
                 this.NavigationService.Navigate(AC);
             }
             else

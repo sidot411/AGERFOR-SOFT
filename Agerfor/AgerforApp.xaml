@@ -83,7 +83,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="BtnAttribution" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White">
+                    <Button x:Name="BtnAttribution" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White" Click="BtnAttribution_Click">
 
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="assignment" Width="35" Height="35"

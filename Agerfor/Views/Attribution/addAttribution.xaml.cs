@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Agerfor.Views.Attribution
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for AddAttribution.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class AddAttribution : Page
     {
-        public Page1()
+        public AddAttribution()
         {
             InitializeComponent();
         }
