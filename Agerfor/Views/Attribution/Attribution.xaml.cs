@@ -12,6 +12,7 @@ namespace Agerfor.Views.Attribution
     {
         MySqlHelper msh = new MySqlHelper();
         string query = "";
+        string tempNumAttribution = "";
         public Attribution(string query)
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace Agerfor.Views.Attribution
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select DISTINCT * from client, projet, programme, biens, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND attribution.NumBien = biens.NumBien AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.NomProjet=biens.NomPRojet and programme.RefProgramme)", dataGridView2);
 
 
         }
@@ -154,10 +155,36 @@ namespace Agerfor.Views.Attribution
         {
             try
             {
-                AddAttribution addat = new AddAttribution();
+                AddAttribution addat = new AddAttribution(tempNumAttribution);
                 this.NavigationService.Navigate(addat);
             }
             catch (Exception)
+            {
+
+            }
+        }
+
+        private void BtnAjouterAttribution_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AddAttribution addat = new AddAttribution(tempNumAttribution);
+                this.NavigationService.Navigate(addat);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                DataGridCellInfo cell0 = dataGridView2.SelectedCells[0];
+                tempNumAttribution = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+            }
+            catch(Exception)
             {
 
             }

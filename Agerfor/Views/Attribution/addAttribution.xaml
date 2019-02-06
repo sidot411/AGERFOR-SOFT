@@ -3,11 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Agerfor.Views.Attribution"
+      xmlns:inputlocal="clr-namespace:Agerfor.Views.Attribution"
       xmlns:mydata="clr-namespace:SmarterDB.CodeProject.TestData;assembly=SmarterDB.CodeProject.TestData"    
       xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
-   
+      xmlns:local="clr-namespace:WPFAutoCompleteTextbox"
       mc:Ignorable="d" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:encoding="UTF-8"
+      xml:lang="fr-FR"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="800" d:DesignWidth="1100" Background="#E6EAED"
       Title="AddAttribution">
@@ -26,59 +29,63 @@
                     <StackPanel Orientation="Vertical"  >
                         <StackPanel Orientation="Horizontal"  >
                             <Label FontSize="18">Num Attribution</Label>
-                            <TextBox FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+                            <TextBox x:Name="inputNumAttri" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="70 0 0 0">
                         <StackPanel Orientation="Horizontal">
                             <Label FontSize="16"  >Date attribution</Label>
-                            <DatePicker Width="300" Height="35" Background="White" FontSize="18"></DatePicker>
+                            <DatePicker x:Name="inputDateAttribution" Width="300" Height="35" Background="White" FontSize="18" SelectedDate="{x:Static sys:DateTime.Now}"></DatePicker>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                     <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical" Margin="20 10 50 20" Width="400" >
+                        <StackPanel Orientation="Vertical" Margin="20 10 50 20">
                             <Label FontSize="18" FontWeight="Bold">Selectionner un client</Label>
                             <StackPanel Orientation="Horizontal" Margin="0 10 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Num Client</Label>
-                                <ComboBox FontSize="18" Width="300" Height="35" Background="White"></ComboBox>
+                                <local:AutoCompleteTextBox x:Name="inputNumClient" Background="#FAFAFA" Width="300"
+                   Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumClient_MouseLeave"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Nom Client</Label>
-                                <TextBox FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+                                <TextBox x:Name="inputNomClient" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Prénom Client</Label>
-                                <TextBox FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+                                <TextBox x:Name="inputPrenomClient" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Date naissance</Label>
-                                <DatePicker FontSize="18" Width="300" Height="35" Background="White"></DatePicker>
+                                <DatePicker x:Name="inputDateNaissance" FontSize="18" Width="300" Height="35" Background="White"></DatePicker>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Num CNI</Label>
-                                <TextBox Width="300" Height="35" Background="White"></TextBox>
+                                <TextBox x:Name="inputNumCNI" Width="300" Height="35" Background="White" FontSize="18"></TextBox>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Margin="20 10 0 20" Width="400" >
                             <Label FontSize="18" FontWeight="Bold">Selectionner Projet/Programme</Label>
                             <StackPanel Orientation="Horizontal" Margin="0 10 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Num Projet</Label>
-                                <ComboBox FontSize="18" Width="300" Height="35" Background="White"></ComboBox>
-                            </StackPanel>
+                                <local:AutoCompleteTextBox x:Name="inputNumProjet" Background="#FAFAFA" Width="300"
+                   Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumProjet_MouseLeave" /> </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Nom Projet</Label>
-                                <TextBox FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+                                <TextBox   x:Name="inputNomProjet" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Num Programme</Label>
-                                <ComboBox FontSize="18" Width="300" Height="35" Background="White"></ComboBox>
+                                <local:AutoCompleteTextBox x:Name="inputNumProgramme" Background="#FAFAFA" Width="300"
+                   Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumProgramme_MouseLeave" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Num Bien</Label>
-                                <ComboBox FontSize="18" Width="300" Height="35" Background="White"></ComboBox>
+                                <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Nom P 
+                                    rg</Label>
+                                <TextBox x:Name="inputNomProgramme" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
                             </StackPanel>
+
                         </StackPanel>
                     </StackPanel>
 
@@ -89,36 +96,32 @@
                             <Label FontSize="18" FontWeight="Bold" Margin="0 -10 0 10">Séléctionner un bien</Label>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° ILOT</Label>
-                                <ComboBox x:Name="inputNumIlot" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="black"/>
+                                <local:AutoCompleteTextBox x:Name="inputNumIlot" Background="#FAFAFA" Width="360"
+                   Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumIlot_MouseLeave"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° LOT</Label>
-                                <ComboBox x:Name="inputNumLot" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="black"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                                <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° Bloc</Label>
-                                <ComboBox x:Name="inputNumBloc" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="black"/>
+                                <local:AutoCompleteTextBox x:Name="inputNumLot" Background="#FAFAFA" Width="360"
+                   Height="30"  HorizontalAlignment="Right"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Foreground="black" Margin="0 0 10 0">Type de bien</Label>
                                 <ComboBox x:Name="inputTypeBien" Background="#FAFAFA" Width="147" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="black" Margin="0 0 10 0">
-                                    <ComboBoxItem>Terrain</ComboBoxItem>
-                                    <ComboBoxItem>Logement</ComboBoxItem>
-                                    <ComboBoxItem>Bureau</ComboBoxItem>
-                                    <ComboBoxItem>Cave</ComboBoxItem>
-
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="black" Margin="0 0 10 0" SelectionChanged="inputTypeBien_SelectionChanged">
+                                    
                                 </ComboBox>
 
-                                <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° bien</Label>
-                                <ComboBox x:Name="inputNumBien" Background="#FAFAFA" Width="130" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="black"/>
+                                <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° Bloc</Label>
+                                <local:AutoCompleteTextBox x:Name="inputNumBloc" Background="#FAFAFA" Width="130"
+                   Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumBloc_MouseLeave" />
                             </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° Bien</Label>
+                                <local:AutoCompleteTextBox x:Name="inputNumBien" Background="#FAFAFA" Width="360"
+                   Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumBien_MouseLeave" />
+                            </StackPanel>
+                           
 
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Foreground="black" Margin="0 0 10 0">Niveau</Label>
@@ -198,7 +201,7 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 20">
-                    <Button x:Name="BtnAjouterLots" Background="#007CC3" Content="Attribuer le bien" Height="35" Width="150" Margin="0 0 20 0"/>
+                    <Button x:Name="BtnAttribuerBien" Background="#007CC3" Content="Attribuer le bien" Height="35" Width="150" Margin="0 0 20 0" Click="BtnAttribuerBien_Click"/>
                     <Button x:Name="BtnSupprimmerLots" Background="#007CC3" Content="OV" Height="35" Width="105" Margin="0 0 20 0"/>
                 </StackPanel>
             </StackPanel>

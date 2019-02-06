@@ -38,8 +38,23 @@ namespace Agerfor.Views.Clients
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieuNaissance, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieuNaissanceConj, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya", inputVille, "NomWilaya");
+            string query2 = "select MAX(Numclient)+1 AS Num from client  ;";
+            MySqlDataReader rdr2 = null;
+            MySqlConnection con2 = null;
+            MySqlCommand cmd2 = null;
+            con2 = new MySqlConnection(Database.ConnectionString());
+            con2.Open();
+            cmd2 = new MySqlCommand(query2);
+            cmd2.Connection = con2;
+            rdr2 = cmd2.ExecuteReader();
+            bool oneTime2 = true;
+            while (rdr2.Read())
+            {
+                inputNumClient.Text = rdr2["Num"].ToString();
+            }
+            inputNumClient.IsEnabled = false;
 
-            if (NumClient != "" && Situation == "Marié(e)")
+                if (NumClient != "" && Situation == "Marié(e)")
             {
                 string query = "select * from client where NumClient =" + NumClient;
                 MySqlDataReader rdr = null;

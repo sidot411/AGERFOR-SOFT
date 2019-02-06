@@ -104,7 +104,7 @@ namespace Agerfor.Views.Programme
 
         private void inputNatureProgramme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+           
             try
             {
                 inputTypeProgramme.Items.Clear();

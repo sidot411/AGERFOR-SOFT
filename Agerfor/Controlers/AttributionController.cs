@@ -11,16 +11,16 @@ namespace Agerfor.Controlers
     {
         MySqlHelper msh = new MySqlHelper();
 
-        public void AjouterAttribution(string NumAttri, string DateAttri, string CodeClient, string NumProjet, string NumProgramme, string NumBien)
+        public void AjouterAttribution(int NumAttri, string DateAttri, string NumClient, string NumProjet, string NumProgramme,string NumIlot, string Numlot, string TypeBien, string NumBloc, string NumBien)
         {
             try
             {
-                msh.ExecuteQuery("insert into attribution values '" + NumAttri + "','" + DateAttri + "','" + CodeClient + "','" + NumProjet + "','" + NumProgramme + "','" + NumBien + "'");
+                msh.ExecuteQuery("INSERT INTO attribution(NumA,DateAttribution,NumClient,NumProjet,NumProgramme,NumIlot,Numlot,TypeBien,NumBloc,NumBien) VALUES ('"+NumAttri+"', '"+DateAttri+"', '"+NumClient+"', '"+NumProjet+"', '"+NumProgramme+"', '"+NumIlot+"', '"+Numlot+"', '"+TypeBien+"', '"+NumBloc+"', '"+NumBien+"')");
                 MessageBox.Show("L'attribution a était bien ajouté");   
                     }
-            catch(Exception)
+            catch(Exception ex)
             {
-                MessageBox.Show("L'attribution n'a pas était ajouté");
+                MessageBox.Show(ex.Message);
             }
 
         }

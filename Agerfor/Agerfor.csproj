@@ -145,6 +145,10 @@
     <Compile Include="Views\Clients\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\AutoCompleteEntry.cs" />
+    <Compile Include="Views\Controls\AutoCompleteTextBox.xaml.cs">
+      <DependentUpon>AutoCompleteTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Demande\AddDemande.xaml.cs">
       <DependentUpon>AddDemande.xaml</DependentUpon>
     </Compile>
@@ -224,6 +228,10 @@
     <Page Include="Views\Clients\Client.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AutoCompleteTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Demande\AddDemande.xaml">
       <SubType>Designer</SubType>

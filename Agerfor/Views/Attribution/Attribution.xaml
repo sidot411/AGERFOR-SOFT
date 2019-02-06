@@ -33,7 +33,7 @@
                         <TextBlock Text="Afficher" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button Background="#007CC3" x:Name="BtnAjouterProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" >
+                <Button Background="#007CC3" x:Name="BtnAjouterAttribution" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnAjouterAttribution_Click" >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkPlus" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
@@ -96,12 +96,12 @@
                 <DataGrid HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="dataGridView2"
                   AutoGenerateColumns="False" BorderBrush="White" BorderThickness="0"
                   CanUserAddRows="False" AlternatingRowBackground="#F3F3F3"
-                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30,220,10,15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" >
+                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30,220,10,15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" SelectionChanged="dataGridView2_SelectionChanged" >
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="*" Binding="{Binding NumAttribution}" Header="Num Attribution" />
+                        <DataGridTextColumn Width="*" Binding="{Binding NumA}" Header="Num Attribution" />
                         <DataGridTextColumn Width="*" Binding="{Binding DateAttribution}" Header="Date Attribution" />
-                        <DataGridTextColumn Width="*" Binding="{Binding CodeClient}" Header="Code Client" />
+                        <DataGridTextColumn Width="*" Binding="{Binding NumClient}" Header="Code Client" />
                         <DataGridTextColumn Width="*" Binding="{Binding Nom}" Header="Nom Client" />
                         <DataGridTextColumn Width="*" Binding="{Binding DateNaissance}" Header="Date naissance" />
                         <DataGridTextColumn Width="*" Binding="{Binding NomProjet}" Header="Nom Projet" />
