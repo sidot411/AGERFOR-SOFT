@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 13 jan. 2019 à 07:33
+-- Généré le :  mar. 12 fév. 2019 à 09:54
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -66,6 +66,36 @@ CREATE TABLE IF NOT EXISTS `acteprojet` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `attribution`
+--
+
+DROP TABLE IF EXISTS `attribution`;
+CREATE TABLE IF NOT EXISTS `attribution` (
+  `NumA` int(11) NOT NULL AUTO_INCREMENT,
+  `DateAttribution` varchar(50) NOT NULL,
+  `NumClient` varchar(50) NOT NULL,
+  `NumProjet` varchar(50) NOT NULL,
+  `NumProgramme` varchar(50) NOT NULL,
+  `NatureProgramme` varchar(50) NOT NULL,
+  `NumIlot` varchar(50) NOT NULL,
+  `Numlot` varchar(50) NOT NULL,
+  `TypeBien` varchar(50) NOT NULL,
+  `NumBloc` varchar(50) NOT NULL,
+  `NumBien` varchar(50) NOT NULL,
+  PRIMARY KEY (`NumA`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `attribution`
+--
+
+INSERT INTO `attribution` (`NumA`, `DateAttribution`, `NumClient`, `NumProjet`, `NumProgramme`, `NatureProgramme`, `NumIlot`, `Numlot`, `TypeBien`, `NumBloc`, `NumBien`) VALUES
+(1, '12/02/2019', '7', '000001', '000001', 'Logement', '1', '1', 'Logement', '1', '1'),
+(2, '12/02/2019', '6', '000001', '0000002', 'Lotissement', '1', '1', '', '', '');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `bdd`
 --
 
@@ -112,7 +142,8 @@ CREATE TABLE IF NOT EXISTS `biens` (
 --
 
 INSERT INTO `biens` (`RefProgramme`, `NomProjet`, `NumEdd`, `NumIlot`, `TypeBien`, `NumBien`, `Numlot`, `NumBloc`, `Niveau`, `NbrPiece`, `Sup`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`) VALUES
-('000001', 'LPA', '1', '1', 'Logement', '1', '', '2', '1', '3', '200.00', '12222.00', 19, '14544.18', 'USTO', 'USTO', 'USTO', 'USTO', 'Libre');
+('000001', 'LPA', '1', '1', 'Logement', '1', '1', '1', '1', '5', '200.00', '1200.00', 19, '1428.00', '', '', '', '', 'Libre'),
+('000001', 'LPA', '1', '1', 'Logement', '1', '1', '2', '1', '5', '200.00', '1200.00', 19, '1428.00', '', '', '', '', 'Libre');
 
 -- --------------------------------------------------------
 
@@ -148,8 +179,8 @@ CREATE TABLE IF NOT EXISTS `cahierchargeprogramme` (
 --
 
 INSERT INTO `cahierchargeprogramme` (`NomProjet`, `RefProgramme`, `NumCahierCharge`, `DateEnre`, `Volume`, `NumPubli`, `DatePubli`, `Conservation`, `Notaire`, `TelNotaire`, `AdresseNotaire`, `SuperficieCessible`, `SuperficieVoirie`, `SuperficieEv`, `SuperficieEq`, `AutreSuperficie`, `NomPreomGeo`, `AdresseGeo`, `TelGeo`) VALUES
-('LPA', '0000002', '000002', '06/01/2019', '223366', '223366', '06/01/2019', 'ORAN', 'MABROUK', '0552698574', 'ORAN', '110.00', '110.00', '110.00', '0.00', '0.00', 'MABROUK', 'ORAN', '0552698963'),
-('LPA', '0000002', '000001', '06/01/2019', '223366', '223366', '06/01/2019', 'ORAN', 'MABROUK', '0552698574', 'ORAN', '110.00', '110.00', '110.00', '0.00', '0.00', 'MABROUK', 'ORAN', '0552698963');
+('LPA', '0000002', '000001', '06/01/2019', '223366', '223366', '06/01/2019', 'ORAN', 'MABROUK', '0552698574', 'ORAN', '110.00', '110.00', '110.00', '0.00', '0.00', 'MABROUK', 'ORAN', '0552698963'),
+('LPA', '0000002', '000002', '06/01/2019', '223366', '223366', '06/01/2019', 'ORAN', 'MABROUK', '0552698574', 'ORAN', '110.00', '110.00', '110.00', '0.00', '0.00', 'MABROUK', 'ORAN', '0552698963');
 
 -- --------------------------------------------------------
 
@@ -193,15 +224,15 @@ CREATE TABLE IF NOT EXISTS `client` (
   `LieuNaissanceConj` varchar(50) DEFAULT NULL,
   `ProfessionConj` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
 --
 
 INSERT INTO `client` (`ID`, `NumClient`, `DateCreation`, `Nom`, `Prenom`, `NomAr`, `PrenomAr`, `Sexe`, `DateNaissance`, `LieuNaissance`, `PrenomPere`, `PrenomPereAr`, `NomMere`, `PrenomMere`, `NomMereAr`, `PrenomMereAr`, `Cni`, `DateCni`, `LieuCni`, `Ville`, `Adress`, `Proffession`, `Tel`, `NomContact`, `TelContact`, `Situation`, `NomConj`, `PrénomConj`, `NomConjAR`, `PrenomConjAR`, `DateNaissanceConj`, `LieuNaissanceConj`, `ProfessionConj`) VALUES
-(6, '000002', '13-12-2018', 'KHIAT', 'MOUNIR', 'خياط', 'منير', 'Homme', '13-12-2018', 'ORAN', 'MOUNIR', 'منير', 'TEST', 'TEST', 'تست', 'تست', '1223666', '13-12-2018', 'ORAN', 'ORAN', 'ORAN', 'INFORMATIQUE', '053698741', 'TEST', 'TEST', 'Célibataire', '', '', '', '', '', '', ''),
-(5, '00000001', '28-11-2018', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '28-11-2018', 'ORAN', 'MOUNIR', 'منير', 'FRIOUI', 'ZOULIKHA', 'فريوي', 'زليخة', '213518132', '28-11-2018', 'ORAN', 'ORAN', 'BT233 N°2 SENIA', 'INFORMATICIEN', '0661934408', 'MOUNIR', '0773201236', 'Célibataire', '', '', '', '', '', '', '');
+(6, '6', '13/12/2018', 'KHIAT', 'MOUNIR', 'خياط', 'منير', 'Homme', '17/10/2018', 'ORAN', 'MOUNIR', 'منير', 'TEST', 'TEST', 'تست', 'تست', '1223666', '13/12/2018', 'ORAN', 'ORAN', 'ORAN', 'INFORMATIQUE', '053698741', 'TEST', 'TEST', 'Célibataire', '', '', '', '', '', '', ''),
+(7, '7', '13/12/2018', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '17/08/1993', 'ORAN', 'MOUNIR', 'منير', 'TEST', 'TEST', 'تست', 'تست', '1223666', '13/12/2018', 'ORAN', 'ORAN', 'ORAN', 'INFORMATIQUE', '053698741', 'TEST', 'TEST', 'Célibataire', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -411,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `edd` (
 --
 
 INSERT INTO `edd` (`NomProjet`, `RefProgramme`, `NumEdd`, `DateEdd`, `NumEnrg`, `DateEnrg`, `Volume`, `Conservation`, `Notaire`, `TelNotaire`, `AdresseNotaire`, `NomPrenomGeo`, `AdresseGeo`, `TelGeo`, `NbrLog`, `SuperficieLog`, `NbrLoc`, `SuperficeiLoc`, `NbrBur`, `SuperficieBur`, `NbrCave`, `SuperficieCave`, `NbrCC`, `SuperficieCC`, `NbrPS`, `SuperficiePS`) VALUES
-('LPA', '000001', '1', '02/01/2019', '000001', '02/01/2019', '1', 'ES senia', 'MABROUK', '0552 23 65 14', 'BT 23 N°2 USTO', 'MABROUK', 'BT 23 N° 250 USTO', '0556 23 54 47', '20', '100.00', '30', '250.00', '20', '300.00', '30', '200.00', '0', '0.00', '0', '0.00');
+('LPA', '000001', '1', '07/02/2019', '122336644', '07/02/2019', '1223', 'Oran ouest', 'MABROUK', '0663258741', 'ES-SENIA', 'MABROUK SOUMIA', 'HASSI BOUNIF', '05536987415', '168', '1600.00', '60', '2400.00', '23', '1600.00', '20', '6000.00', '2', '3000.00', '3', '8000.00');
 
 -- --------------------------------------------------------
 
@@ -436,6 +467,15 @@ CREATE TABLE IF NOT EXISTS `lot` (
   `LimiteOuest` varchar(50) NOT NULL,
   `Etat` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `lot`
+--
+
+INSERT INTO `lot` (`RefProgramme`, `NomProjet`, `NumCC`, `NumIlot`, `NumLot`, `Sup`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`) VALUES
+('0000002', 'LPA', '000002', '1', '1', '200.00', '1200.00', 19, '1428.00', 'USTO', 'USTO', 'USTO', 'USTO', 'Libre'),
+('0000002', 'LPA', '000002', '1', '2', '200.00', '1200.00', 19, '1428.00', 'USTO', 'USTO', 'USTO', 'USTO', 'Reserve'),
+('0000002', 'LPA', '000002', '1', '3', '200.00', '1200.00', 19, '1428.00', 'USTO', 'USTO', 'USTO', 'USTO', 'Libre');
 
 -- --------------------------------------------------------
 
@@ -590,6 +630,29 @@ CREATE TABLE IF NOT EXISTS `projet` (
 
 INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
 ('000001', 'LPA', '000001', 'ES senia', 'MABROUK', 'ORAN', 'Es Sénia', 'Es Senia', '1200.0000', 'MABROUK', 'CITE 1245 LOG BT1 N°2 USTO', '0552 36 98 57', 'USTO Nord', 'USTO Est', 'USTO Ouest', 'USTO Sud', '12236.0000', '0000001', '31/12/2018');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `typebiens`
+--
+
+DROP TABLE IF EXISTS `typebiens`;
+CREATE TABLE IF NOT EXISTS `typebiens` (
+  `Id` int(50) NOT NULL AUTO_INCREMENT,
+  `Type` varchar(50) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `typebiens`
+--
+
+INSERT INTO `typebiens` (`Id`, `Type`) VALUES
+(1, 'Terrain'),
+(2, 'Logement'),
+(3, 'Bureau'),
+(4, 'Cave');
 
 -- --------------------------------------------------------
 

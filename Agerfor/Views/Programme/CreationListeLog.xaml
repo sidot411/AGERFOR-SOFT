@@ -34,32 +34,29 @@
                         <TextBox x:Name="inputNumLot" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                     </StackPanel>
-
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Type de bien</Label>
+                        <ComboBox x:Name="inputTypeBien" Background="#FAFAFA" Width="147" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Margin="0 0 10 0" SelectionChanged="inputTypeBien_SelectionChanged">
+                           
+                        </ComboBox>
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">N° Bloc</Label>
-                        <TextBox x:Name="inputNumBloc" Background="#FAFAFA" Width="360" FontSize="18"
+                        <TextBox x:Name="inputNumBloc" Background="#FAFAFA" Width="130" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">N° bien</Label>
+                        <TextBox x:Name="inputNumBien" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                       
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Niveau</Label>
                         <TextBox x:Name="inputNiveau" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Type de bien</Label>
-                                    <ComboBox x:Name="inputTypeBien" Background="#FAFAFA" Width="147" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Margin="0 0 10 0">
-                                        <ComboBoxItem>Terrain</ComboBoxItem>
-                                        <ComboBoxItem>Logement</ComboBoxItem>
-                                        <ComboBoxItem>Bureau</ComboBoxItem>
-                                        <ComboBoxItem>Cave</ComboBoxItem>
-                                        
-                                    </ComboBox>
-                                    
-                                    <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">N° bien</Label>
-                                    <TextBox x:Name="inputNumBien" Background="#FAFAFA" Width="130" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
-                                </StackPanel>
+                   
 
                               
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
