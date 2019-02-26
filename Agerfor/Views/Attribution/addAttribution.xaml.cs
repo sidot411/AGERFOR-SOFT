@@ -326,11 +326,7 @@ namespace Agerfor.Views.Attribution
                 }
                 else 
                 {
-                    inputTypeBien.IsEnabled = false;
-                    inputNumBloc.IsEnabled = false;
-                    inputNiveau.IsEnabled = false;
-                    inputNbrPiece.IsEnabled = false;
-                    inputNumBien.IsEnabled = false;
+                    
                     string query4 = "select DISTINCT NumIlot as NI from lot WHERE NomProjet='" + inputNomProjet.Text + "' and RefProgramme='" + inputNumProgramme.Text + "' and NumCC=(SELECT MAX(NumCC) from lot WHERE NomProjet = '" + inputNomProjet.Text + "' and RefProgramme = '" + inputNumProgramme.Text + "')";
                     MySqlDataReader rdr4 = null;
                     MySqlConnection con4 = null;
@@ -344,6 +340,13 @@ namespace Agerfor.Views.Attribution
                     while (rdr4.Read())
                     {
                         inputNumIlot.AddItem(new AutoCompleteEntry(rdr4["NI"].ToString(), null));
+                        inputTypeBien.IsEnabled = false;
+                        inputNumBloc.IsEnabled = false;
+                        inputNiveau.IsEnabled = false;
+                        inputNbrPiece.IsEnabled = false;      
+                        inputNumBien.IsEnabled = false; 
+
+
                     }
                 }
             }
@@ -563,6 +566,7 @@ namespace Agerfor.Views.Attribution
         {
             AttributionController AC = new AttributionController();
             AC.AjouterAttribution(int.Parse(inputNumAttri.Text), inputDateAttribution.Text, inputNumClient.Text, inputNumProjet.Text, inputNumProgramme.Text,NatureProgramme,inputNumIlot.Text, inputNumLot.Text, inputTypeBien.Text, inputNumBloc.Text, inputNumBien.Text);
+
         }
 
         private void inputNumLot_MouseLeave(object sender, MouseEventArgs e)

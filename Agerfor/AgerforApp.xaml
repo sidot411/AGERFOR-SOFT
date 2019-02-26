@@ -91,12 +91,12 @@
                             <TextBlock Text="Attributions" VerticalAlignment="Center" Height="18" />
                         </StackPanel>
                     </Button>
-                    <Button x:Name="BtnVerssement" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White">
+                    <Button x:Name="BtnVerssement" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White" Click="BtnVerssement_Click">
 
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="Cash" Width="35" Height="35"
                                        VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 -3" />
-                            <TextBlock Text="Versements" VerticalAlignment="Center" Height="18" />
+                            <TextBlock Text="Payement" VerticalAlignment="Center" Height="18" />
                         </StackPanel>
                     </Button>
                     <Button x:Name="BtnRembourssement" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White"

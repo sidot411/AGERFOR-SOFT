@@ -115,6 +115,7 @@
     </ApplicationDefinition>
     <Compile Include="Controlers\ActeController.cs" />
     <Compile Include="Controlers\ActeProgrammeController.cs" />
+    <Compile Include="Controlers\AddPayementController.cs" />
     <Compile Include="Controlers\AttributionController.cs" />
     <Compile Include="Controlers\Bdd.cs" />
     <Compile Include="Controlers\BiensController.cs" />
@@ -154,6 +155,15 @@
     </Compile>
     <Compile Include="Views\Demande\Demande.xaml.cs">
       <DependentUpon>Demande.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\AddPayement.xaml.cs">
+      <DependentUpon>AddPayement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\ListeVersement.xaml.cs">
+      <DependentUpon>ListeVersement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\Payement.xaml.cs">
+      <DependentUpon>Payement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Programme\AddProgramme.xaml.cs">
       <DependentUpon>AddProgramme.xaml</DependentUpon>
@@ -238,6 +248,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Demande\Demande.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\AddPayement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\ListeVersement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\Payement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
