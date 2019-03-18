@@ -41,6 +41,9 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CurrencyTextBoxControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CurrencyTextBox.1.4.3\lib\CurrencyTextBoxControl.dll</HintPath>
       <Private>True</Private>
@@ -146,6 +149,12 @@
     <Compile Include="Views\Clients\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Clients\fiche client .cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>fiche client .rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Views\Controls\AutoCompleteEntry.cs" />
     <Compile Include="Views\Controls\AutoCompleteTextBox.xaml.cs">
       <DependentUpon>AutoCompleteTextBox.xaml</DependentUpon>
@@ -156,11 +165,41 @@
     <Compile Include="Views\Demande\Demande.xaml.cs">
       <DependentUpon>Demande.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Demande\FICHE DEMANDE.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FICHE DEMANDE.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Views\Payement\AddPayement.xaml.cs">
       <DependentUpon>AddPayement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Payement\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Payement\DemandeAttestation.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DemandeAttestation.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Views\Payement\ListeVersement.xaml.cs">
       <DependentUpon>ListeVersement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\main levée.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>main levée.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Payement\OrdreVerssement.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrdreVerssement.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Views\Payement\Payement.xaml.cs">
       <DependentUpon>Payement.xaml</DependentUpon>
@@ -338,6 +377,30 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Clients\fiche client .rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>fiche client .cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Demande\FICHE DEMANDE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FICHE DEMANDE.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Payement\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Payement\DemandeAttestation.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DemandeAttestation.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Payement\main levée.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>main levée.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Payement\OrdreVerssement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OrdreVerssement.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Drapper.Settings.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -374,7 +437,9 @@
     <Content Include="SmarterDB.CodeProject.TestData.dll" />
     <Resource Include="Source\Loading.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
