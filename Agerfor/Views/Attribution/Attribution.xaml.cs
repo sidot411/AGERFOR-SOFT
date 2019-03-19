@@ -199,6 +199,7 @@ namespace Agerfor.Views.Attribution
 
                 DataGridCellInfo cell0 = dataGridView2.SelectedCells[0];
                 tempNumAttribution = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+
                 string querytest = "select * from attribution where NumA='"+tempNumAttribution+"'";
                 MySqlDataReader rdrt = null;
                 MySqlConnection cont = null;
@@ -278,6 +279,14 @@ namespace Agerfor.Views.Attribution
             {
 
             }
+        }
+
+        private void BtnSuppProgramme_Click(object sender, RoutedEventArgs e)
+        {
+            AttributionController AC = new AttributionController();
+            AC.SupprimerAttribution(tempNumAttribution);
+            Attribution A = new Attribution("");
+            this.NavigationService.Navigate(A);
         }
     }
 }

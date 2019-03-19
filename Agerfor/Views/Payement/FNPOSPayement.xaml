@@ -1,0 +1,111 @@
+﻿<Window x:Class="Agerfor.Views.Payement.FNPOSPayement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Agerfor.Views.Payement"
+        mc:Ignorable="d"
+        xmlns:mydata="clr-namespace:SmarterDB.CodeProject.TestData;assembly=SmarterDB.CodeProject.TestData"    
+        xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
+        xml:lang="fr-FR"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="FNPOSPayement" Height="350" Width="1100" Background="#E6EAED" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Resources >
+            <myentry:NumericConverter x:Key="myconverter"/>
+            <myentry:NumericToValueTypeConverter x:Key="mytypeconverter"/>
+        </Grid.Resources>
+        <Grid.DataContext>
+            <mydata:TestDataModel></mydata:TestDataModel>
+        </Grid.DataContext>
+        <StackPanel Orientation="Vertical">
+           
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <Label FontSize="18">N° décision aide FNPOS</Label>
+                        <TextBox x:Name="inputDeciF" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <Label FontSize="18" >Date décision FNPOS</Label>
+                        <DatePicker x:Name="inputDateDeciF" Width="300" Height="35" Background="White" FontSize="18" SelectedDate="{x:Static sys:DateTime.Now}"></DatePicker>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <TextBlock FontSize="18" FontStyle="Normal" FontStretch="SemiExpanded" FontWeight="Bold" Margin="0 0 10 0" VerticalAlignment="Center">Montant FNPOS</TextBlock>
+                        <TextBox x:Name="inputMontantFNPOS" FontSize="18" HorizontalAlignment="Right" Background="White" Width="300"  Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##" ></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <Label FontSize="18"  >Date Reçu</Label>
+                        <DatePicker x:Name="inputDateRecu" Width="300" Height="35" Background="White" FontSize="18"></DatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <Label FontSize="18">Num reçu</Label>
+                        <TextBox x:Name="inputNumRecu" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                    <StackPanel Orientation="Vertical">
+
+                        <Button Background="#007CC3" x:Name="BtnOV" VerticalAlignment="Top" Height="100" BorderThickness="0" Margin="20 0 0 20" >
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="FileDocumentOutline"                         
+                                     Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Généré Décision" VerticalAlignment="Center" Height="25" />
+                                <TextBlock Text="de réservation" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" />
+
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Button Background="Green" x:Name="BtnValiderFNPOS" VerticalAlignment="Top" Width="100" Height="100" BorderThickness="0" Margin="20 0 0 20" Click="BtnValiderFNPOS_Click">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="CheckAll"  Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Valider" VerticalAlignment="Center" Height="25" HorizontalAlignment="Center" Margin="0 0 0 -10"/>
+                                <TextBlock Text="FNPOS" VerticalAlignment="Center" Height="25" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Background="Red" x:Name="BtnAnnuleOv" VerticalAlignment="Top" Width="100" Height="100" BorderThickness="0" Margin="20 0 0 0">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="Cancel"  Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Annuler" VerticalAlignment="Center" Height="25" HorizontalAlignment="Center" Margin="0 0 0 -10"/>
+                                <TextBlock Text="FNPOS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="20 0 0 0 ">
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="110" BorderThickness="0" Margin="0 0 0 20"
+                       x:Name="BtnUploadFiles" HorizontalAlignment="center">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="AttachFile" Width="35" Height="35" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Joindre" VerticalAlignment="Center" Height="25" />
+                            </StackPanel>
+                        </Button>
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="110" BorderThickness="0" 
+                       x:Name="BtnOpenFolder" HorizontalAlignment="center">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="FolderOpen" Width="35" Height="35" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Ouvrir" VerticalAlignment="Center" Height="25" HorizontalAlignment="Center" Margin="0 0 0 -10"/>
+                                <TextBlock Text="FNPOS" VerticalAlignment="Center" Height="25" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>

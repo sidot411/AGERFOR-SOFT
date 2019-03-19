@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Agerfor.Controlers;
 
 namespace Agerfor.Controlers
 {
@@ -16,7 +17,8 @@ namespace Agerfor.Controlers
             try
             {
                 msh.ExecuteQuery("INSERT INTO attribution(NumA,DateAttribution,NumClient,NumProjet,NumProgramme,NatureProgramme, NumIlot,Numlot,TypeBien,NumBloc,NumBien) VALUES ('" + NumAttri+"', '"+DateAttri+"', '"+NumClient+"', '"+NumProjet+"', '"+NumProgramme+"','"+NatureProgramme+"', '"+NumIlot+"', '"+Numlot+"', '"+TypeBien+"', '"+NumBloc+"', '"+NumBien+"')");
-                MessageBox.Show("L'attribution a était bien ajouté");   
+                MessageBox.Show("L'attribution a était bien ajouté");
+              
                     }
             catch(Exception ex)
             {
@@ -41,7 +43,7 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("delete from attribution where NumAttribution='" + NumAttribution + "'");
+                msh.ExecuteQuery("delete from attribution where NumA='" + NumAttribution + "'");
                 MessageBox.Show("L'attribution a était bien supprimé");
             }
             catch(Exception)

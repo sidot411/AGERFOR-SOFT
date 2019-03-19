@@ -277,17 +277,9 @@ namespace Agerfor.Views.Programme
         private void BtnOuvrirprogramme_Click(object sender, RoutedEventArgs e)
         {
             getrefprojet();
-            string ip = "192.168.3.101";
+            string ip = "localhost";
             string folderPath = @"\\"+ip+@"\"+ AppDomain.CurrentDomain.BaseDirectory+""+ @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text;
-            if (ip.Length == 13)
-            {
-                StringBuilder sb = new StringBuilder(folderPath);
-                sb.Remove(17, 1);
-                folderPath = sb.ToString();
-            }
-
-            System.Windows.MessageBox.Show(folderPath);
-            /*OpenFolder(folderPath);*/
+            OpenFolder(ipPatchController.getpath(folderPath, ip));
         }
         private void OpenFolder(string folderPath)
         {
@@ -321,22 +313,26 @@ namespace Agerfor.Views.Programme
         }
         public void SelectFile(string theDirectory)
         {
+            string ip = "localhost";
             getrefprojet();
             string destinationFolder;
+            string destinationFolderf;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             DirectoryCreator dcr = new DirectoryCreator();
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 var fileName = openFileDialog1.FileName;
-                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
+                destinationFolder = @"\\" + ip + @"\" + AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
+                destinationFolderf = ipPatchController.getpath(destinationFolder, ip);
+
                 dcr.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text + "/" + theDirectory + "/");
                 System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
-                if (File.Exists(destinationFolder))
+                if (File.Exists(destinationFolderf))
                 {
-                    File.Delete(destinationFolder);
+                    File.Delete(destinationFolderf);
                 }
 
-                File.Copy(fileName, Path.Combine(Path.GetDirectoryName(fileName), destinationFolder));
+                File.Copy(fileName, Path.Combine(Path.GetDirectoryName(fileName), destinationFolderf));
             }
             else
             {

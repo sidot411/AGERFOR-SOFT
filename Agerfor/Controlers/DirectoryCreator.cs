@@ -60,6 +60,34 @@ namespace Agerfor.Controlers
             return path;
         }
 
+        public string CreateDirectory3(string name)
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"Attribution\" + name+ @"\Payements\";
+
+            try
+            {
+                // Determine whether the directory exists.
+                if (Directory.Exists(path))
+                {
+                    Console.WriteLine("That path exists already.");
+                    return "";
+                }
+
+                // Try to create the directory.
+                DirectoryInfo di = Directory.CreateDirectory(path);
+                Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
+            finally
+            {
+            }
+
+            return path;
+        }
+
         public string CreateDirectoryProgramme(string refprojet, string refprogramme)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + refprojet + @"\Programme\" + refprogramme;

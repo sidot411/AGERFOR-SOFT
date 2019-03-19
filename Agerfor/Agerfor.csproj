@@ -121,12 +121,17 @@
     <Compile Include="Controlers\BiensController.cs" />
     <Compile Include="Controlers\CahierChargeProgrammeController.cs" />
     <Compile Include="Controlers\ClientController.cs" />
+    <Compile Include="Controlers\CNLController.cs" />
     <Compile Include="Controlers\ConventionController.cs" />
+    <Compile Include="Controlers\CreditBancaireController.cs" />
     <Compile Include="Controlers\DemandeController.cs" />
     <Compile Include="Controlers\DirectoryCreator.cs" />
     <Compile Include="Controlers\EddController.cs" />
+    <Compile Include="Controlers\FNPOSController.cs" />
+    <Compile Include="Controlers\ipPatchController.cs" />
     <Compile Include="Controlers\LotController.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
+    <Compile Include="Controlers\OrdreVerssementController.cs" />
     <Compile Include="Controlers\PermiLotirController.cs" />
     <Compile Include="Controlers\PermisDeConstruireController.cs" />
     <Compile Include="Controlers\ProgrammeController.cs" />
@@ -159,8 +164,17 @@
     <Compile Include="Views\Payement\AddPayement.xaml.cs">
       <DependentUpon>AddPayement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Payement\ListeVersement.xaml.cs">
-      <DependentUpon>ListeVersement.xaml</DependentUpon>
+    <Compile Include="Views\Payement\CBPayement.xaml.cs">
+      <DependentUpon>CBPayement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\CNLPayement.xaml.cs">
+      <DependentUpon>CNLPayement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\FNPOSPayement.xaml.cs">
+      <DependentUpon>FNPOSPayement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\ListeVers.xaml.cs">
+      <DependentUpon>ListeVers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Payement\Payement.xaml.cs">
       <DependentUpon>Payement.xaml</DependentUpon>
@@ -255,7 +269,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Payement\ListeVersement.xaml">
+    <Page Include="Views\Payement\CBPayement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\CNLPayement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\FNPOSPayement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\ListeVers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

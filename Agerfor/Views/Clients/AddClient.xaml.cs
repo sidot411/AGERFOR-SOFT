@@ -50,7 +50,14 @@ namespace Agerfor.Views.Clients
             bool oneTime2 = true;
             while (rdr2.Read())
             {
-                inputNumClient.Text = rdr2["Num"].ToString();
+                if (rdr2["Num"].ToString() == "")
+                {
+                    inputNumClient.Text="1";
+                }
+                else
+                {
+                    inputNumClient.Text = rdr2["Num"].ToString();
+                }
             }
             inputNumClient.IsEnabled = false;
 

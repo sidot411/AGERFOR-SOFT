@@ -564,8 +564,14 @@ namespace Agerfor.Views.Attribution
 
         private void BtnAttribuerBien_Click(object sender, RoutedEventArgs e)
         {
+            DirectoryCreator dcr = new DirectoryCreator();
+            dcr.CreateDirectory3(inputNumAttri.Text);
             AttributionController AC = new AttributionController();
             AC.AjouterAttribution(int.Parse(inputNumAttri.Text), inputDateAttribution.Text, inputNumClient.Text, inputNumProjet.Text, inputNumProgramme.Text,NatureProgramme,inputNumIlot.Text, inputNumLot.Text, inputTypeBien.Text, inputNumBloc.Text, inputNumBien.Text);
+            AddPayementController APC = new AddPayementController();
+            APC.AjouterPayement(inputDateAttribution.Text,int.Parse(inputNumAttri.Text),inputNumClient.Text,inputNomClient.Text,inputPrenomClient.Text,inputDateNaissance.Text,inputNumCNI.Text,inputNomProjet.Text,inputNomProgramme.Text,inputNumIlot.Text,inputNumLot.Text,inputTypeBien.Text,inputNumBloc.Text,inputNumBien.Text,inputNiveau.Text,inputNbrPiece.Text ,decimal.Parse(inputSup.Text), decimal.Parse(inputPrixTTC.Text),0, decimal.Parse(inputPrixTTC.Text));
+            Attribution A = new Attribution("");
+            this.NavigationService.Navigate(A);
 
         }
 

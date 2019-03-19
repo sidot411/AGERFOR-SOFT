@@ -87,15 +87,16 @@
             <DataGrid HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="dataGridView2"
                   AutoGenerateColumns="False" BorderBrush="White" BorderThickness="0"
                   CanUserAddRows="False" AlternatingRowBackground="#F3F3F3"
-                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30,220,10,15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True">
+                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30,220,10,15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" SelectionChanged="dataGridView2_SelectionChanged">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Binding="{Binding NumA}" Header="N° Payement" />
-                    <DataGridTextColumn Width="*" Binding="{Binding DateAttribution}" Header="N° Attribution" />
-                    <DataGridTextColumn Width="*" Binding="{Binding NumClient}" Header="Total a payé" />
-                    <DataGridTextColumn Width="*" Binding="{Binding Nom}" Header="Total versé" />
-                    <DataGridTextColumn Width="*" Binding="{Binding DateNaissance}" Header="Reste a payé" />
-                    <DataGridTextColumn Width="*" Binding="{Binding NomProjet}" Header="Crédit" />
+                    <DataGridTextColumn Width="*" Binding="{Binding NumPayement}" Header="N° Payement" />
+                    <DataGridTextColumn Width="*" Binding="{Binding DatePayement}" Header="Date Payement" />
+                    <DataGridTextColumn Width="*" Binding="{Binding NumClient}" Header="NumClient" />
+                    <DataGridTextColumn Width="*" Binding="{Binding NomClient}" Header="NomClient" />
+                    <DataGridTextColumn Width="*" Binding="{Binding MontantTotal}" Header="Montant Total" />
+                    <DataGridTextColumn Width="*" Binding="{Binding MontantVerse}" Header="Montant versé" />
+                    <DataGridTextColumn Width="*" Binding="{Binding Reste}" Header="Reste à payer" />
                 </DataGrid.Columns>
             </DataGrid>
 

@@ -40,7 +40,7 @@
                         <TextBlock Text="Ajouter" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button Background="#007CC3" x:Name="BtnModifierProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10">
+                <Button Background="#007CC3" x:Name="BtnModifierAttribution" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10">
 
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"
@@ -48,7 +48,7 @@
                         <TextBlock Text="Modifier" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button Background="#007CC3" x:Name="BtnSuppProgramme" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10"  >
+                <Button Background="#007CC3" x:Name="BtnSuppAttribution" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnSuppProgramme_Click"  >
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkRemove" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
