@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       xml:lang="fr-FR"
       xmlns:encoding="UTF-8"
-      xmlns:sys="clr-namespace:System;assembly=msC:\GitHub\AGERFOR-SOFT\Agerfor\Views\Clients\AddClient.xamlcorlib"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="1900" d:DesignWidth="1100"
       Background="#E6EAED" Title="AddClient" Loaded="Page_Loaded">

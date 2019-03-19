@@ -9,6 +9,7 @@ using MaterialDesignThemes.Wpf;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using Agerfor.OVReporting;
 
 namespace Agerfor.Views.Payement
 {
@@ -202,6 +203,12 @@ namespace Agerfor.Views.Payement
                 };
                 Process.Start(startInfo);
             }
+        }
+
+        private void BtnImpriOv_Click(object sender, RoutedEventArgs e)
+        {
+            OrdreVerssementR OVR = new OrdreVerssementR();
+            OVR.Show();
         }
     }
 }

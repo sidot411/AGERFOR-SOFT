@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 12 fév. 2019 à 09:54
+-- Généré le :  mar. 19 mars 2019 à 09:49
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `acteprojet` (
 
 DROP TABLE IF EXISTS `attribution`;
 CREATE TABLE IF NOT EXISTS `attribution` (
-  `NumA` int(11) NOT NULL AUTO_INCREMENT,
+  `NumA` int(255) NOT NULL AUTO_INCREMENT,
   `DateAttribution` varchar(50) NOT NULL,
   `NumClient` varchar(50) NOT NULL,
   `NumProjet` varchar(50) NOT NULL,
@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `attribution` (
 --
 
 INSERT INTO `attribution` (`NumA`, `DateAttribution`, `NumClient`, `NumProjet`, `NumProgramme`, `NatureProgramme`, `NumIlot`, `Numlot`, `TypeBien`, `NumBloc`, `NumBien`) VALUES
-(1, '12/02/2019', '7', '000001', '000001', 'Logement', '1', '1', 'Logement', '1', '1'),
-(2, '12/02/2019', '6', '000001', '0000002', 'Lotissement', '1', '1', '', '', '');
+(1, '14/03/2019', '1', '000001', '000001', 'Logement', '1', '1', 'Logement', '1', '1'),
+(2, '18/03/2019', '1', '000001', '000001', 'Logement', '1', '1', 'Logement', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -224,15 +224,14 @@ CREATE TABLE IF NOT EXISTS `client` (
   `LieuNaissanceConj` varchar(50) DEFAULT NULL,
   `ProfessionConj` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
 --
 
 INSERT INTO `client` (`ID`, `NumClient`, `DateCreation`, `Nom`, `Prenom`, `NomAr`, `PrenomAr`, `Sexe`, `DateNaissance`, `LieuNaissance`, `PrenomPere`, `PrenomPereAr`, `NomMere`, `PrenomMere`, `NomMereAr`, `PrenomMereAr`, `Cni`, `DateCni`, `LieuCni`, `Ville`, `Adress`, `Proffession`, `Tel`, `NomContact`, `TelContact`, `Situation`, `NomConj`, `PrénomConj`, `NomConjAR`, `PrenomConjAR`, `DateNaissanceConj`, `LieuNaissanceConj`, `ProfessionConj`) VALUES
-(6, '6', '13/12/2018', 'KHIAT', 'MOUNIR', 'خياط', 'منير', 'Homme', '17/10/2018', 'ORAN', 'MOUNIR', 'منير', 'TEST', 'TEST', 'تست', 'تست', '1223666', '13/12/2018', 'ORAN', 'ORAN', 'ORAN', 'INFORMATIQUE', '053698741', 'TEST', 'TEST', 'Célibataire', '', '', '', '', '', '', ''),
-(7, '7', '13/12/2018', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '17/08/1993', 'ORAN', 'MOUNIR', 'منير', 'TEST', 'TEST', 'تست', 'تست', '1223666', '13/12/2018', 'ORAN', 'ORAN', 'ORAN', 'INFORMATIQUE', '053698741', 'TEST', 'TEST', 'Célibataire', '', '', '', '', '', '', '');
+(1, '1', '14/03/2019', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '01/03/2019', 'ORAN', 'MOUNIR', 'منير', 'FRIOUI', 'ZOULIKHA', 'فريوي', 'زليخة', '112233667', '14/03/2019', 'ORAN', 'ORAN', 'N°265 SIDI EL KHIAR ES-SENIA', 'INFORMATICIEN', '0661934408', 'MOUNIR', '0661934408', 'Célibataire', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -253,6 +252,24 @@ CREATE TABLE IF NOT EXISTS `cliententreprise` (
   `Nif` varchar(50) NOT NULL,
   `Na` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cnl`
+--
+
+DROP TABLE IF EXISTS `cnl`;
+CREATE TABLE IF NOT EXISTS `cnl` (
+  `NumCNL` int(11) NOT NULL AUTO_INCREMENT,
+  `NumPayement` int(255) NOT NULL,
+  `NumDeci` varchar(50) NOT NULL,
+  `DateDeci` date NOT NULL,
+  `MontantCNL` decimal(50,2) NOT NULL,
+  `DateRecu` date NOT NULL,
+  `NumRecu` varchar(50) NOT NULL,
+  PRIMARY KEY (`NumCNL`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -346,6 +363,24 @@ CREATE TABLE IF NOT EXISTS `convention` (
   `PrixU` decimal(50,2) NOT NULL,
   `Majoration` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `creditb`
+--
+
+DROP TABLE IF EXISTS `creditb`;
+CREATE TABLE IF NOT EXISTS `creditb` (
+  `NumCB` int(11) NOT NULL AUTO_INCREMENT,
+  `NumPayement` int(255) NOT NULL,
+  `NumConvBan` varchar(50) NOT NULL,
+  `DateConv` date NOT NULL,
+  `NomBanque` varchar(50) NOT NULL,
+  `BIC` varchar(50) NOT NULL,
+  `MontantCb` decimal(50,2) NOT NULL,
+  PRIMARY KEY (`NumCB`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -447,6 +482,24 @@ INSERT INTO `edd` (`NomProjet`, `RefProgramme`, `NumEdd`, `DateEdd`, `NumEnrg`, 
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `fnpos`
+--
+
+DROP TABLE IF EXISTS `fnpos`;
+CREATE TABLE IF NOT EXISTS `fnpos` (
+  `NumFNPOS` int(11) NOT NULL AUTO_INCREMENT,
+  `NumPayement` int(255) NOT NULL,
+  `NumDeciF` varchar(50) NOT NULL,
+  `DateDeciF` date NOT NULL,
+  `MontantFNPOS` decimal(50,2) NOT NULL,
+  `DateRecu` date NOT NULL,
+  `NumRecu` varchar(50) NOT NULL,
+  PRIMARY KEY (`NumFNPOS`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `lot`
 --
 
@@ -500,6 +553,66 @@ INSERT INTO `natureprogramme` (`ID`, `NatureProgramme`) VALUES
 (3, 'Logement'),
 (4, 'RHP'),
 (5, 'Terrain Industriel');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ov`
+--
+
+DROP TABLE IF EXISTS `ov`;
+CREATE TABLE IF NOT EXISTS `ov` (
+  `NumVerssement` int(255) NOT NULL AUTO_INCREMENT,
+  `NumPayement` int(255) NOT NULL,
+  `NumOV` varchar(50) NOT NULL,
+  `DateOV` varchar(50) NOT NULL,
+  `DateEcheance` varchar(50) NOT NULL,
+  `MontantAV` decimal(50,2) NOT NULL,
+  `Etat` varchar(50) NOT NULL,
+  `DateRecu` varchar(50) NOT NULL,
+  `NumRecu` varchar(50) NOT NULL,
+  PRIMARY KEY (`NumVerssement`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `payement`
+--
+
+DROP TABLE IF EXISTS `payement`;
+CREATE TABLE IF NOT EXISTS `payement` (
+  `NumPayement` int(255) NOT NULL AUTO_INCREMENT,
+  `DatePayement` varchar(50) NOT NULL,
+  `NumAttribution` int(255) NOT NULL,
+  `NumClient` varchar(50) NOT NULL,
+  `NomClient` varchar(50) NOT NULL,
+  `PrenomClient` varchar(50) NOT NULL,
+  `DateNaissance` varchar(50) NOT NULL,
+  `NumCni` varchar(50) NOT NULL,
+  `NomProjet` varchar(50) NOT NULL,
+  `NomProgramme` varchar(50) NOT NULL,
+  `NumIlot` varchar(50) NOT NULL,
+  `NumLot` varchar(50) NOT NULL,
+  `TypeBien` varchar(50) NOT NULL,
+  `NumBloc` varchar(50) NOT NULL,
+  `NumBien` varchar(50) NOT NULL,
+  `Niveau` varchar(50) NOT NULL,
+  `NbrP` varchar(50) NOT NULL,
+  `Superficie` decimal(50,2) NOT NULL,
+  `MontantTotal` decimal(50,2) NOT NULL,
+  `MontantVerse` decimal(50,2) NOT NULL,
+  `Reste` decimal(50,2) NOT NULL,
+  PRIMARY KEY (`NumPayement`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `payement`
+--
+
+INSERT INTO `payement` (`NumPayement`, `DatePayement`, `NumAttribution`, `NumClient`, `NomClient`, `PrenomClient`, `DateNaissance`, `NumCni`, `NomProjet`, `NomProgramme`, `NumIlot`, `NumLot`, `TypeBien`, `NumBloc`, `NumBien`, `Niveau`, `NbrP`, `Superficie`, `MontantTotal`, `MontantVerse`, `Reste`) VALUES
+(3, '14/03/2019', 1, '1', 'KHIAT', 'SIDAHMED', '01/03/2019', '112233667', 'LPA', 'LPA', '1', '1', 'Logement', '1', '1', '1', '5', '200.00', '1428.00', '0.00', '1428.00'),
+(4, '18/03/2019', 2, '1', 'KHIAT', 'SIDAHMED', '01/03/2019', '112233667', 'LPA', 'LPA', '1', '1', 'Logement', '1', '1', '1', '5', '200.00', '1428.00', '0.00', '1428.00');
 
 -- --------------------------------------------------------
 

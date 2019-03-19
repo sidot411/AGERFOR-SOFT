@@ -86,7 +86,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Background="#007CC3" x:Name="BtnImpriOv"  VerticalAlignment="Top" Height="100" BorderThickness="0" Margin="20 0 0 20" Click="BtnOV_Click">
+                        <Button Background="#007CC3" x:Name="BtnImpriOv"  VerticalAlignment="Top" Height="100" BorderThickness="0" Margin="20 0 0 20" Click="BtnImpriOv_Click" >
                             <StackPanel Orientation="Vertical">
                                 <materialDesign:PackIcon Kind="FilePdf"                         
                                      Width="35" Height="35" VerticalAlignment="Center"

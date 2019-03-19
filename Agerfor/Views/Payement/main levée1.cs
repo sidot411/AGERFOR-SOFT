@@ -16,14 +16,14 @@ namespace Agerfor.Views.Payement {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class OrdreVerssement : ReportClass {
+    public class main_levée : ReportClass {
         
-        public OrdreVerssement() {
+        public main_levée() {
         }
         
         public override string ResourceName {
             get {
-                return "OrdreVerssement.rpt";
+                return "main levée.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Agerfor.Views.Payement {
         
         public override string FullResourceName {
             get {
-                return "Agerfor.Views.Payement.OrdreVerssement.rpt";
+                return "Agerfor.Views.Payement.main levée.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace Agerfor.Views.Payement {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedOrdreVerssement : Component, ICachedReport {
+    public class Cachedmain_levée : Component, ICachedReport {
         
-        public CachedOrdreVerssement() {
+        public Cachedmain_levée() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace Agerfor.Views.Payement {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            OrdreVerssement rpt = new OrdreVerssement();
+            main_levée rpt = new main_levée();
             rpt.Site = this.Site;
             return rpt;
         }
