@@ -11,11 +11,11 @@ namespace Agerfor.Controlers
     {
         MySqlHelper msh = new MySqlHelper();
 
-        public void AjouterActe(string NumActe, string DateActe, string DateEnrgActe, string DatePubliActe,string Conservation, string RefProjet)
+        public void AjouterActe(string DateActe, string Volume,string RefPubli,decimal FraisPubli,string Pos,string Conservation,int RefProjet)
         {
             try
             {
-                msh.ExecuteQuery("insert into acteprojet values('" + NumActe + "','" + DateActe + "','" + DateEnrgActe + "','" + DatePubliActe + "','"+Conservation+"','" + RefProjet+"')");
+                msh.ExecuteQuery("INSERT INTO `acteprojet` (`DatePubliActe`, `Volume`, `RefPubli`, `FraisPubli`, `Pos`, `Conservation`, `RefProjet`) VALUES (STR_TO_DATE('" + DateActe + "', '%d/%m/%Y'), '"+Volume+"', '"+RefPubli+"', '"+FraisPubli+"', '"+Pos+"','"+Conservation+"', '"+RefProjet+"')");
                 MessageBox.Show("L'Acte à était bien ajouté");
             }
             catch(Exception)
@@ -23,11 +23,11 @@ namespace Agerfor.Controlers
                 MessageBox.Show("L'Acte n'à pas était ajouté");
             }
         }
-        public void EditerActe(string NumActe, string DateActe, string DateEnrgActe, string DatePubliActe, string RefProjet, string Conservation, string tempNumActe)
+        public void EditerActe(string DateActe, string Volume,string RefPubli,decimal FraisPubli,string Pos,string Conservation,int RefProjet, int tempNumActe)
         {
             try
             {
-                msh.ExecuteQuery("update acteprojet set NumActe='" + NumActe + "',DateActe='" + DateActe + "',DateEnrgActe='" + DateEnrgActe + "',DatePubliActe='" + DatePubliActe + "',Conservation='"+Conservation+"' where RefProjet='"+RefProjet+"' and NumActe='"+tempNumActe+"'");
+                msh.ExecuteQuery("update acteprojet set DatePubliActe=STR_TO_DATE('" + DateActe + "', '%d/%m/%Y') ,Volume='" + Volume+"',RefPubli='"+RefPubli+"',FraisPubli='"+FraisPubli+"',Pos='"+Pos+"',Conservation='"+Conservation+"' where RefProjet='"+RefProjet+"' and NumActe='"+tempNumActe+"'");
                 MessageBox.Show("L'Acte à était bien modifié");
             }
             catch (Exception)

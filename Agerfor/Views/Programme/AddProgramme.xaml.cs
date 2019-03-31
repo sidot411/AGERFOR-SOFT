@@ -29,7 +29,7 @@ namespace Agerfor.Views.Programme
         PermiLotirController PLC = new PermiLotirController();
      
 
-        string RefProgramme = "";
+        int RefProgramme = 0;
         string Query = "";
         string tempNumActeProgramme = "";
         string tempnumprojet = "";
@@ -44,26 +44,50 @@ namespace Agerfor.Views.Programme
         private readonly NotificationManager _notificationManager = new NotificationManager();
         private readonly Random _random = new Random();
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public AddProgramme(string refprogramme, string NomProgramme)
+        public AddProgramme(int refprogramme, string NomProgramme)
         {
             this.RefProgramme = refprogramme;
             InitializeComponent();
-          /*  
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");*/
-            msh.FillDropDownList("select NatureProgramme from natureprogramme", inputNatureProgramme, "NatureProgramme");
+
+            string query2 = "select MAX(RefProgramme)+1 AS Num from programme;";
+            MySqlDataReader rdr2 = null;
+            MySqlConnection con2 = null;
+            MySqlCommand cmd2 = null;
+            con2 = new MySqlConnection(Database.ConnectionString());
+            con2.Open();
+            cmd2 = new MySqlCommand(query2);
+            cmd2.Connection = con2;
+            rdr2 = cmd2.ExecuteReader();
+            bool oneTime2 = true;
+            while (rdr2.Read())
+            {
+                if (rdr2["Num"].ToString() == "")
+                {
+                    inputRefProgramme.Text = "1";
+                }
+                else
+                {
+                    inputRefProgramme.Text = rdr2["Num"].ToString();
+                }
+                inputRefProgramme.IsEnabled = false;
+            }
+        
+        /*  
+          Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+          Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");*/
+        msh.FillDropDownList("select NatureProgramme from natureprogramme", inputNatureProgramme, "NatureProgramme");
             msh.FillDropDownList("select NomDaira from daira", inputDairaProgramme, "NomDaira");
-            msh.FillDropDownList("select NomProjet from projet", inputNomProjet, "NomProjet");
-            msh.FillDropDownList("select NomConservation from conservation", inputConservation, "NomConservation");
-            inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
+            msh.FillDropDownList("select RefProjet from projet", inputRefProjet, "RefProjet");
+          
+           // inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
             inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
 
 
             var timer = new System.Timers.Timer { Interval = 3000 };
             timer.Start();
-            if (refprogramme != "")
+            if (refprogramme != 0)
             {
-                string query = "select * from programme where RefProgramme =" + refprogramme;
+                string query = "select * from programme,projet where RefProgramme ='" + refprogramme+"' and programme.RefProjet=projet.RefProjet";
 
                 MySqlDataReader rdr = null;
                 MySqlConnection con = null;
@@ -81,6 +105,7 @@ namespace Agerfor.Views.Programme
 
                     if (oneTime)
                     {
+                        inputRefProjet.Text = rdr["RefProjet"].ToString();
                         inputNomProjet.Text = rdr["NomProjet"].ToString();
                         inputRefProgramme.Text = rdr["RefProgramme"].ToString();
                         inputNomProgramme.Text = rdr["NomProgramme"].ToString();
@@ -91,9 +116,6 @@ namespace Agerfor.Views.Programme
                         inputTypeProgramme.Text = rdr["TypeProgramme"].ToString();
                         inputNombredebien.Text = rdr["NombreBiens"].ToString();
                         inputSuperficie.Text = rdr["Superficie"].ToString();
-
-
-
 
                         oneTime = false;
                     }
@@ -109,18 +131,18 @@ namespace Agerfor.Views.Programme
             {
                 inputTypeProgramme.Items.Clear();
                 msh.FillDropDownList("select TypeProgramme from typeprogramme where typeprogramme.NatureProgramme='" + inputNatureProgramme.SelectedValue.ToString() + "'", inputTypeProgramme, "TypeProgramme");
-                if (inputNatureProgramme.SelectedValue.ToString() == "Lotissement" || inputNatureProgramme.SelectedValue.ToString() == "Terrain Industriel" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
+                if (inputNatureProgramme.SelectedValue.ToString() == "Terrain" || inputNatureProgramme.SelectedValue.ToString() == "Terrain Industriel" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
                 {
-                    PermiLotir.IsEnabled = true;
+                //    PermiLotir.IsEnabled = true;
                     Permisconstruire.IsEnabled = false;
 
                 }
                 else
                 {
-                    PermiLotir.IsEnabled = true;
+                   // PermiLotir.IsEnabled = true;
                     Permisconstruire.IsEnabled = true;
                 }
-                if (inputNatureProgramme.SelectedValue.ToString() == "Lotissement" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
+                if (inputNatureProgramme.SelectedValue.ToString() == "Terrain" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
                 {
                     BtnCahiercharge.IsEnabled = true;
                     BtnEDD.IsEnabled = BtnConvention.IsEnabled = false;
@@ -171,32 +193,24 @@ namespace Agerfor.Views.Programme
             */
             
 
-            if (Query == "")
-            {
-                msh.LoadData("select * from acteprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='"+inputNomProjet.Text+"'", datagridActeProgramme);
-            }
-            else
-            {
-                msh.LoadData(Query, datagridActeProgramme);
-            }
-            msh.LoadData("select * from permilotir where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPLotir);
+          //  msh.LoadData("select * from permilotir where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPLotir);
             msh.LoadData("select * from permisdeconstruire where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPConstruire);
 
 
-            if (RefProgramme != "" && inputNatureProgramme.Text != "" && inputTypeProgramme.Text != "")
+            if (RefProgramme != 0 && inputNatureProgramme.Text != "" && inputTypeProgramme.Text != "")
             {
-                if (inputNatureProgramme.SelectedValue.ToString() == "Lotissement" || inputNatureProgramme.SelectedValue.ToString() == "Terrain Industriel" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
+                if (inputNatureProgramme.SelectedValue.ToString() == "Terrain" || inputNatureProgramme.SelectedValue.ToString() == "Terrain Industriel" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
                 {
-                    PermiLotir.IsEnabled = true;
+                  //  PermiLotir.IsEnabled = true;
                     Permisconstruire.IsEnabled = false;
 
                 }
                 else
                 {
-                    PermiLotir.IsEnabled = true;
+                //    PermiLotir.IsEnabled = true;
                     Permisconstruire.IsEnabled = true;
                 }
-                if (inputNatureProgramme.SelectedValue.ToString() == "Lotissement" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
+                if (inputNatureProgramme.SelectedValue.ToString() == "Terrain" || inputNatureProgramme.SelectedValue.ToString() == "RHP")
                 {
                     BtnCahiercharge.IsEnabled = true;
                     BtnEDD.IsEnabled = BtnConvention.IsEnabled = false;
@@ -215,7 +229,7 @@ namespace Agerfor.Views.Programme
             }
             else
             {
-                PermiLotir.IsEnabled = Permisconstruire.IsEnabled = false;
+              //  PermiLotir.IsEnabled = Permisconstruire.IsEnabled = false;
                 BtnCahiercharge.IsEnabled = BtnEDD.IsEnabled = BtnConvention.IsEnabled = false;
 
             }
@@ -231,7 +245,7 @@ namespace Agerfor.Views.Programme
 
         private void BtnEDD_Click(object sender, RoutedEventArgs e)
         {
-            EDD EDD = new EDD(inputNomProjet.Text, inputRefProgramme.Text);
+            EDD EDD = new EDD(int.Parse(inputRefProjet.Text), inputRefProgramme.Text);
             DialogHost.Show(EDD);
             
         }
@@ -255,16 +269,17 @@ namespace Agerfor.Views.Programme
             getrefprojet();
             DirectoryCreator DC = new DirectoryCreator();
             DC.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text);
-            PC.AjouterProgramme(inputNomProjet.Text, inputRefProgramme.Text, inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text));
-            AddProgramme AP = new AddProgramme("","");
+            PC.AjouterProgramme(int.Parse(inputRefProjet.Text)
+                ,inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text));
+            AddProgramme AP = new AddProgramme(0,"");
             NavigationService.Navigate(AP);
            
         }
         //Modifier Programme//
         private void BtnModifierProgramme_Click(object sender, RoutedEventArgs e)
         {
-            PC.Editprogramme(inputNomProjet.Text, inputRefProgramme.Text, inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text));
-            AddProgramme AP = new AddProgramme("","");
+            PC.Editprogramme(int.Parse(inputRefProjet.Text), inputNomProjet.Text,  inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text),RefProgramme);
+            AddProgramme AP = new AddProgramme(0,"");
             NavigationService.Navigate(AP);
         }
         //Annuler Programme//
@@ -340,93 +355,7 @@ namespace Agerfor.Views.Programme
             }
         }
 
-        private void BtnAjouterActeProgramme_Click(object sender, RoutedEventArgs e)
-
-        {
-            if (NumActeProgramme.Text != "")
-            {
-                string Acte = "Acte";
-                getrefprojet();
-                DirectoryCreator DC = new DirectoryCreator();
-                DC.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text + "/" + Acte + "/" + NumActeProgramme.Text);
-                APC.AjouterActeProgramme(NumActeProgramme.Text, inputDateActeProgramme.Text, DateEnrgActeP.Text, DatePubliActeP.Text, inputConservation.Text, decimal.Parse(inputFrais.Text), inputRefProgramme.Text, inputNomProjet.Text);
-                msh.LoadData("select * from acteprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", datagridActeProgramme);
-                NumActeProgramme.Text = inputDateActeProgramme.Text = DateEnrgActeP.Text = DatePubliActeP.Text = inputConservation.Text = "";
-                inputFrais.Text = "0.00";
-                inputFraisDivers.Text = "0.00";
-                inputFraisPLotir.Text = "0.00";
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("Veuillez remplir tous les champs pour ajouter un acte", "Acte programme", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-
-        }
-
-        private void BtnModifierActeProgramme_Click(object sender, RoutedEventArgs e)
-        {
-            if (tempNumActeProgramme == "")
-            {
-                System.Windows.MessageBox.Show("Veuillez selectionné un Acte pour le modifier", "Acte programme", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                APC.EditerActe(NumActeProgramme.Text, inputDateActeProgramme.Text, DateEnrgActeP.Text, DatePubliActeP.Text, inputConservation.Text, decimal.Parse(inputFrais.Text), inputRefProgramme.Text, inputNomProjet.Text, tempNumActeProgramme);
-                msh.LoadData("select * from acteprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", datagridActeProgramme);
-            }
-        }
-        private void dataViewActeProgramme_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-
-            DataGridCellInfo cell0 = datagridActeProgramme.SelectedCells[0];
-            tempNumActeProgramme = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
-
-            string query = "select * from acteprogramme where NumActe =" + tempNumActeProgramme;
-            MySqlDataReader rdr = null;
-            MySqlConnection con = null;
-            MySqlCommand cmd = null;
-
-            con = new MySqlConnection(Database.ConnectionString());
-            con.Open();
-            cmd = new MySqlCommand(query);
-            cmd.Connection = con;
-            rdr = cmd.ExecuteReader();
-            bool oneTime = true;
-            while (rdr.Read())
-            {
-
-                if (oneTime)
-                {
-                    NumActeProgramme.Text = rdr["NumActe"].ToString();
-                    inputDateActeProgramme.Text = rdr["DateActe"].ToString();
-                    DateEnrgActeP.Text = rdr["DateEnrgActe"].ToString();
-                    DatePubliActeP.Text = rdr["DatePubliActe"].ToString();
-                    inputConservation.Text = rdr["Conservation"].ToString();
-                    inputFrais.Text = rdr["FraisEnrg"].ToString();
-                    oneTime = false;
-                }
-            }
-        }
-
-        private void BtnSupprimerActeProgramme_Click(object sender, RoutedEventArgs e)
-        {
-            if (tempNumActeProgramme == "")
-            {
-                System.Windows.MessageBox.Show("Veuillez selectionné un Acte pour le supprimé", "Acte programme", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                DirectoryCreator DC = new DirectoryCreator();
-                DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\Acte\" + tempNumActeProgramme);
-                APC.SupprimerActe(tempNumActeProgramme);
-                msh.LoadData("select * from acteprogramme where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", datagridActeProgramme);
-                NumActeProgramme.Text = inputDateActeProgramme.Text = DateEnrgActeP.Text = DatePubliActeP.Text = inputConservation.Text = "";
-                inputFrais.Text = "0.00";
-            }
-        }
-
-
+    
         //Référence Projet//
         private void getrefprojet()
         {
@@ -452,91 +381,22 @@ namespace Agerfor.Views.Programme
             }
         }
 
-        private void BtnOuvrirActeProgramme_Click(object sender, RoutedEventArgs e)
-        {
-            if (tempNumActeProgramme == "")
-            {
-                System.Windows.MessageBox.Show("Veuillez selectionné un Acte pour ouvrir le dossier", "Acte programme", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else { 
-            getrefprojet();
-            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\Acte\" + NumActeProgramme.Text;
-      
-            OpenFolder(folderPath);
-            }
-        }
-
-        private void BtnJoindreActeProgramme_Click(object sender, RoutedEventArgs e)
-        {
-            if (tempNumActeProgramme == "")
-            {
-                System.Windows.MessageBox.Show("Veuillez selectionné un Acte pour joindre des fichiers", "Acte programme", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else { 
-            SelectFile2("Document-Acte");
-            }
-        }
-        public void SelectFile2(string theDirectory)
-        {
-            getrefprojet();
-            string destinationFolder;
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            DirectoryCreator dcr = new DirectoryCreator();
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                var fileName = openFileDialog1.FileName;
-                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\Acte\" + NumActeProgramme.Text + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
-                dcr.CreateDirectoryActe(tempnumprojet,inputRefProgramme.Text,NumActeProgramme.Text+ "/"+theDirectory);
-                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
-                if (File.Exists(destinationFolder))
-                {
-                    File.Delete(destinationFolder);
-                }
-
-                File.Copy(fileName, Path.Combine(Path.GetDirectoryName(fileName), destinationFolder));
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("aucun fichier selectionner");
-            }
-            }
-
-        private void BtnAjouterPLotir_Click(object sender, RoutedEventArgs e)
-        {
-            if (inputNumLotir.Text!="")
-            {
-                getrefprojet();
-                DirectoryCreator DC = new DirectoryCreator();
-                DC.CreateDirectoryPermisLotir(tempnumprojet, inputRefProgramme.Text, inputNumLotir.Text);
-                PLC.AjouterPL(inputNumLotir.Text, inputDatePLotir.Text, decimal.Parse(inputFraisPLotir.Text), inputNbrIlot.Text, inputNbrLots.Text, decimal.Parse(inputSuperficieGlobal.Text), decimal.Parse(inputSuperficieVoiries.Text), decimal.Parse(inputSuperficieEspaceVert.Text), decimal.Parse(inputSuperficieEquipements.Text), decimal.Parse(inputSuperficieAmenagement.Text), decimal.Parse(inputAutresSuperficie.Text), inputRefProgramme.Text, inputNomProjet.Text);
-                msh.LoadData("select * from permilotir where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPLotir);
-                inputNumLotir.Text = inputDatePLotir.Text = inputNbrLots.Text = inputNbrIlot.Text = "";
-                inputFraisPLotir.Text = "0.00";
-                inputFrais.Text = "0.00";
-                inputFraisDivers.Text = "0.00";
-                inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("Veuillez remplir tous les champs pour ajouter un permi de lotir", "Permi lotir programme", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            }
-
+    
         private void BtnModifierPLotir_Click(object sender, RoutedEventArgs e)
-        {
+        {/*
             if (tempNumPL == "")
             {
                 System.Windows.MessageBox.Show("Veuillez selectionné un Permis de lotir pour le modifié", "Permis lotir", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                PLC.EditerPL(inputNumLotir.Text, inputDatePLotir.Text, decimal.Parse(inputFraisPLotir.Text), inputNbrIlot.Text, inputNbrLots.Text, decimal.Parse(inputSuperficieGlobal.Text), decimal.Parse(inputSuperficieVoiries.Text), decimal.Parse(inputSuperficieEspaceVert.Text), decimal.Parse(inputSuperficieEquipements.Text), decimal.Parse(inputSuperficieAmenagement.Text), decimal.Parse(inputAutresSuperficie.Text), inputRefProgramme.Text, inputNomProjet.Text, tempNumPL);
+               // PLC.EditerPL(inputNumLotir.Text, inputDatePLotir.Text, decimal.Parse(inputFraisPLotir.Text), inputNbrIlot.Text, inputNbrLots.Text, decimal.Parse(inputSuperficieGlobal.Text), decimal.Parse(inputSuperficieVoiries.Text), decimal.Parse(inputSuperficieEspaceVert.Text), decimal.Parse(inputSuperficieEquipements.Text), decimal.Parse(inputSuperficieAmenagement.Text), decimal.Parse(inputAutresSuperficie.Text), inputRefProgramme.Text, inputNomProjet.Text, tempNumPL);
                 msh.LoadData("select * from permilotir where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet + "'", DataGridPLotir);
-            }
+            }*/
         }
 
         private void DataGridPLotir_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {/*
             DataGridCellInfo cell0 = DataGridPLotir.SelectedCells[0];
             tempNumPL = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
 
@@ -569,11 +429,11 @@ namespace Agerfor.Views.Programme
                     inputAutresSuperficie.Text = rdr["AutreSupercie"].ToString();
                     oneTime = false;
                 }
-            }
+            }*/
         }
 
         private void BtnSupprimerPLotir_Click(object sender, RoutedEventArgs e)
-        {
+        {/*
             if (tempNumPL == "")
             {
                 System.Windows.MessageBox.Show("Veuillez selectionné un Permis de lotir pour le supprimé", "Permis lotir", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -587,13 +447,13 @@ namespace Agerfor.Views.Programme
                 inputNumLotir.Text = inputDatePLotir.Text = inputNbrIlot.Text = inputNbrLots.Text="";
                 inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
                 inputFraisPLotir.Text = "0.00";
-            }
+            }*/
 
         }
 
         private void BtnOuvrirPLotir_Click(object sender, RoutedEventArgs e)
         {
-            if (tempNumPL == "")
+          /*  if (tempNumPL == "")
             {
                 System.Windows.MessageBox.Show("Veuillez selectionné un Permis de lotir pour ouvrir le dossier", "Permis lotir", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -603,11 +463,11 @@ namespace Agerfor.Views.Programme
                 string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\PermisLotir\" + inputNumLotir.Text;
 
                 OpenFolder(folderPath);
-            }
+            }*/
         }
 
         private void BtnJoindrePLotir_Click(object sender, RoutedEventArgs e)
-        {
+        {/*
             if (tempNumPL == "")
             {
                 System.Windows.MessageBox.Show("Veuillez selectionné un Permis de lotir pour joindre des fichies", "Permis lotir", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -615,9 +475,9 @@ namespace Agerfor.Views.Programme
             else
             {
                 SelectFile3("Document Permis lotir");
-            }
+            }*/
         }
-        public void SelectFile3(string theDirectory)
+   /*     public void SelectFile3(string theDirectory)
         {
             getrefprojet();
             string destinationFolder;
@@ -641,7 +501,7 @@ namespace Agerfor.Views.Programme
                 System.Windows.MessageBox.Show("aucun fichier selectionné");
             }
         }
-
+        */
         private void BtnAjouterPC_Click(object sender, RoutedEventArgs e)
         {
             if (inputNumPermisConstruire.Text != "")
@@ -654,8 +514,8 @@ namespace Agerfor.Views.Programme
                 msh.LoadData("select * from permisdeconstruire where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPConstruire);
                 inputNumPermisConstruire.Text = inputDatePermisConstruire.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrBur.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPlcS.Text = "";
                 inputFraisDivers.Text = "0.00";
-                inputFrais.Text = "0.00";
-                inputFraisPLotir.Text = "0.00";
+           
+              //  inputFraisPLotir.Text = "0.00";
                 inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
             }
             else
@@ -795,6 +655,32 @@ namespace Agerfor.Views.Programme
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void inputRefProjet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string query = "select NomProjet from projet where RefProjet ="+inputRefProjet.SelectedItem.ToString()+"";
+            MySqlDataReader rdr = null;
+            MySqlConnection con = null;
+            MySqlCommand cmd = null;
+
+            con = new MySqlConnection(Database.ConnectionString());
+            con.Open();
+            cmd = new MySqlCommand(query);
+
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            bool oneTime = true;
+            while (rdr.Read())
+            {
+
+                if (oneTime)
+                {
+                    inputNomProjet.Text = rdr["NomProjet"].ToString();
+                    
+                    oneTime = false;
+                }
+            }
         }
     }
 }

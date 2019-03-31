@@ -108,11 +108,13 @@ namespace Agerfor
 
         private void BtnProjet_Click(object sender, RoutedEventArgs e)
         {
-            BtnClient.BorderThickness = BtnDemande.BorderThickness = BtnProgramme.BorderThickness = BtnTableauDeBord.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness = BtnVerssement.BorderThickness = BtnAttribution.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
-            BtnProjet.BorderThickness = new Thickness(5, 0, 0, 0);
-            Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            Frame.Navigate(new Projet(""));
-            currentWindow.Text = "Projet";
+            
+                BtnClient.BorderThickness = BtnDemande.BorderThickness = BtnProgramme.BorderThickness = BtnTableauDeBord.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness = BtnVerssement.BorderThickness = BtnAttribution.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
+                BtnProjet.BorderThickness = new Thickness(5, 0, 0, 0);
+                Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+                Frame.Navigate(new Projet(""));
+                currentWindow.Text = "Projet";
+           
         }
 
         private void BtnProgramme_Click(object sender, RoutedEventArgs e)

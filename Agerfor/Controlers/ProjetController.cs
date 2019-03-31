@@ -5,11 +5,11 @@ namespace Agerfor.Controlers
     class ProjetController
     {
         MySqlHelper msh = new MySqlHelper();
-        public void AjouterProjet(string RefProjet, string NomProjet, string VolProjet, string Conservation, string Vendeur, string Wilaya, string Daira, string Commune, decimal Superficie, string NomGeometre, string AdresseGeometre, string NumGeometre, string LimiteNord, string LimiteEst, string LimiteOuest, string LimiteSud, decimal PrixVente, string NumRecu, string DateRecu)
+        public void AjouterProjet(string NomProjet,string projetmaitre, string Vendeur, string Wilaya, string Daira, string Commune,string Payement, decimal Superficie, string LimiteNord, string LimiteEst, string LimiteOuest, string LimiteSud, decimal MontantCessionB,decimal MontantCession, string NumRecu, string DateRecu)
         {
             try
             {
-                msh.ExecuteQuery("insert into projet values('" + RefProjet + "','" + NomProjet + "','" + VolProjet + "','" + Conservation + "','" + Vendeur + "','" + Wilaya + "','" + Daira + "','" + Commune + "','" + Superficie + "','" + NomGeometre + "','" + AdresseGeometre + "','" + NumGeometre + "','" + LimiteNord + "','" + LimiteEst + "','" + LimiteOuest + "','" + LimiteSud + "','" + PrixVente + "','" + NumRecu + "','" + DateRecu + "')");
+                msh.ExecuteQuery("INSERT INTO `projet` (`NomProjet`, `ProjetMaitre`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Payement`, `Superficie`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `MontantCessionB`, `MontantCession`, `NumRecu`, `DateRecu`) VALUES ('" + NomProjet+"', '"+projetmaitre+"', '"+Vendeur+"','"+Wilaya+"','"+Daira+"','"+Commune+"','"+Payement+"','"+Superficie+"','"+LimiteNord+"','"+LimiteEst+"','"+LimiteOuest+"','"+LimiteSud+"','"+MontantCessionB+"','"+MontantCession+"','"+NumRecu+ "',STR_TO_DATE('" + DateRecu + "', '%d/%m/%Y') )");
                 MessageBox.Show("Le projet a était ajouter avec succès");
             }
 
@@ -18,11 +18,11 @@ namespace Agerfor.Controlers
                 MessageBox.Show("Le projet n'a pas était ajouté !");
             }
         }
-        public void Editprojet(string RefProjet, string NomProjet, string VolProjet, string Conservation, string Vendeur, string Wilaya, string Daira, string Commune, decimal Superficie, string NomGeometre, string AdresseGeometre, string NumGeometre, string LimiteNord, string LimiteEst, string LimiteOuest, string LimiteSud, decimal PrixVente, string NumRecu, string DateRecu)
+        public void Editprojet(string NomProjet, string projetmaitre, string Vendeur, string Wilaya, string Daira, string Commune, string Payement, decimal Superficie, string LimiteNord, string LimiteEst, string LimiteOuest, string LimiteSud, decimal MontantCessionB, decimal MontantCession, string NumRecu, string DateRecu,int RefProjet)
         {
             try
             {
-                msh.ExecuteQuery("update projet set RefProjet='" + RefProjet + "',NomProjet='" + NomProjet + "',VolProjet='" + VolProjet + "',Conservation='" + Conservation + "',Vendeur='" + Vendeur + "',Wilaya='" + Wilaya + "',Daira='" + Daira + "',Commune='" + Commune + "',Superficie='" + Superficie + "',NomGeometre='" + NomGeometre + "',AdresseGeometre='" + AdresseGeometre + "',NumGeometre='" + NumGeometre + "',LimiteNord='" + LimiteNord + "',LimiteEst='" + LimiteEst + "',LimiteOuest='" + LimiteOuest + "',LimiteSud='" + LimiteSud + "',PrixVente='" + PrixVente + "',NumRecu='" + NumRecu + "',DateRecu='" + DateRecu + "' where RefProjet");
+                msh.ExecuteQuery("update projet set NomProjet='" + NomProjet + "',ProjetMaitre='" + projetmaitre + "', Vendeur='" + Vendeur + "', Wilaya='" + Wilaya + "', Daira='" + Daira + "',Commune='" + Commune + "',Payement='" + Payement + "',Superficie='" + Superficie + "',LimiteNord='" + LimiteNord + "',LimiteEst='" + LimiteEst + "',LimiteOuest='" + LimiteOuest + "',LimiteSud='" + LimiteSud + "',MontantCessionB='" + MontantCessionB + "',MontantCession='" + MontantCession + "',NumRecu='" + NumRecu + "',DateRecu=STR_TO_DATE('" + DateRecu + "', '%d/%m/%Y') where RefProjet='" + RefProjet + "'");
                 MessageBox.Show("Le projet a était modifié avec succès");
             }
 

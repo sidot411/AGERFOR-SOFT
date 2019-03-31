@@ -10,12 +10,12 @@ namespace Agerfor.Controlers
     class EddController
     {
         MySqlHelper msh = new MySqlHelper();
-        public void AjouterEdd(string NomProjet, string RefProgramme, string NumEdd, string DateEdd, string NumEnrg, string DateEnrg, string Volume, string Conservation, string Notaire, string TelNotaire, string AdresseNotaire, string NomPrenomGeo, string AdresseGeo, string TelGeo, string NbrLog, decimal SupLog, string NbrLoc, decimal SupLoc, string NbrBur, decimal SupBur, string NbrCave, decimal SupCave, string NbrCC, decimal SuperficieCC, string NbrPS, decimal SuperficiePS)
+        public void AjouterEdd(int RefProjet, string RefProgramme, string DatePubli, string Volume, string Conservation, string Notaire, string TelNotaire, string AdresseNotaire, string NomPrenomGeo, string AdresseGeo, string TelGeo, string NbrLog, decimal SupLog, string NbrLoc, decimal SupLoc, string NbrBur, decimal SupBur, string NbrCave, decimal SupCave, string NbrEQ, decimal SuperficieEQ, string NbrPS, decimal SuperficiePS)
         {
             try
             {
-                msh.ExecuteQuery("insert into edd values ('" + NomProjet + "','" + RefProgramme + "', '" + NumEdd + "','" + DateEdd + "','" + NumEnrg + "','" + DateEnrg + "','" + Volume + "','" + Conservation + "','" + Notaire + "','" + TelNotaire + "','" + AdresseNotaire + "','" + NomPrenomGeo + "','" + AdresseGeo + "','" + TelGeo + "','" + NbrLog + "','" + SupLog + "','" + NbrLoc + "','" + SupLoc + "','" + NbrBur + "','" + SupBur + "','" + NbrCave + "','" + SupCave + "','" + NbrCC + "','" + SuperficieCC + "','" + NbrPS + "','" + SuperficiePS + "')");
-                MessageBox.Show("Le EDD à été bien ajouté");
+                msh.ExecuteQuery("INSERT INTO `edd` (`RefProjet`, `RefProgramme`, `DatePubli`, `Volume`, `Conservation`, `Notaire`, `TelNotaire`, `AdresseNotaire`, `NomPrenomGeo`, `AdresseGeo`, `TelGeo`, `NbrLog`, `SuperficieLog`, `NbrLoc`, `SuperficeiLoc`, `NbrBur`, `SuperficieBur`, `NbrCave`, `SuperficieCave`, `NbrEQ`, `SuperficieEQ`, `NbrPS`, `SuperficiePS`) VALUES('"+RefProjet+"', '"+RefProgramme+ "',STR_TO_DATE('" + DatePubli + "', '%d/%m/%Y') , '" + Volume+"', '"+Conservation+"', '"+Notaire+"', '"+TelNotaire+"', '"+AdresseNotaire+"', '"+NomPrenomGeo+"', '"+AdresseGeo+"', '"+TelGeo+"', '"+NbrLog+"', '"+SupLog+"', '"+NbrLoc+"', '"+SupLoc+"', '"+NbrBur+"', '"+SupBur+"', '"+NbrCave+"', '"+SupCave+"', '"+NbrEQ+"', '"+SuperficieEQ+"', '"+NbrPS+"', '"+SuperficiePS+"')");
+                    MessageBox.Show("Le EDD à été bien ajouté");
             }
             catch (Exception)
             {
@@ -23,12 +23,12 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void ModifierEdd(string NomProjet, string RefProgramme, string NumEdd, string DateEdd, string NumEnrg, string DateEnrg, string Volume, string Conservation, string Notaire, string TelNotaire, string AdresseNotaire, string NomPrenomGeo, string AdresseGeo, string TelGeo, string NbrLog, decimal SupLog, string NbrLoc, decimal SupLoc, string NbrBur, decimal SupBur, string NbrCave, decimal SupCave, string NbrCC, decimal SuperficieCC, string NbrPS, decimal SuperficiePS, string tempNumEDD)
+        public void ModifierEdd(int RefProjet, string RefProgramme, string DatePubli, string Volume, string Conservation, string Notaire, string TelNotaire, string AdresseNotaire, string NomPrenomGeo, string AdresseGeo, string TelGeo, string NbrLog, decimal SupLog, string NbrLoc, decimal SupLoc, string NbrBur, decimal SupBur, string NbrCave, decimal SupCave, string NbrCC, decimal SuperficieCC, string NbrPS, decimal SuperficiePS, string tempNumEDD)
 
         {
             try
             {
-                msh.ExecuteQuery("update edd set NomProjet='" + NomProjet + "',RefProgramme='" + RefProgramme + "',NumEdd='" + NumEdd + "',DateEdd='" + DateEdd + "',NumEnrg='" + NumEnrg + "',DateEnrg='" + DateEnrg + "',Volume='" + Volume + "',Conservation='" + Conservation + "',Notaire='" + Notaire + "',TelNotaire='" + TelNotaire + "',AdresseNotaire='" + AdresseNotaire + "',NomPrenomGeo='" + NomPrenomGeo + "',AdresseGeo='" + AdresseGeo + "',TelGeo='" + TelGeo + "',NbrLog='" + NbrLog + "',SuperficieLog='" + SupLog + "',NbrLoc='" + NbrLoc + "',SuperficeiLoc='" + SupLoc + "',NbrBur='" + NbrBur + "',SuperficieBur='" + SupBur + "',NbrCave='" + NbrCave + "',SuperficieCave='" + SupCave + "',NbrCC='" + NbrCC + "',SuperficieCC='" + SuperficieCC + "',NbrPS='" + NbrPS + "',SuperficiePS='" + SuperficiePS + "' where NumEdd = '" + tempNumEDD + "' and NomProjet = '" + NomProjet + "' and RefProgramme = '" + RefProgramme + "'");
+                msh.ExecuteQuery("update edd set RefProjet='" + RefProjet + "',RefProgramme='" + RefProgramme + "',DatePubli=STR_TO_DATE('" + DatePubli+ "', '%d/%m/%Y'),Volume='" + Volume + "',Conservation='" + Conservation + "',Notaire='" + Notaire + "',TelNotaire='" + TelNotaire + "',AdresseNotaire='" + AdresseNotaire + "',NomPrenomGeo='" + NomPrenomGeo + "',AdresseGeo='" + AdresseGeo + "',TelGeo='" + TelGeo + "',NbrLog='" + NbrLog + "',SuperficieLog='" + SupLog + "',NbrLoc='" + NbrLoc + "',SuperficeiLoc='" + SupLoc + "',NbrBur='" + NbrBur + "',SuperficieBur='" + SupBur + "',NbrCave='" + NbrCave + "',SuperficieCave='" + SupCave + "',NbrEQ='" + NbrCC + "',SuperficieEQ='" + SuperficieCC + "',NbrPS='" + NbrPS + "',SuperficiePS='" + SuperficiePS + "' where NumEdd = '" + tempNumEDD + "'");
                 MessageBox.Show("Le EDD à été bien modifier");
             }
             catch (Exception)

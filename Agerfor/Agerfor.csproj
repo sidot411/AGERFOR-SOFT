@@ -143,6 +143,27 @@
     <Compile Include="Controlers\PermisDeConstruireController.cs" />
     <Compile Include="Controlers\ProgrammeController.cs" />
     <Compile Include="Controlers\ProjetController.cs" />
+    <Compile Include="Controlers\ProjetMaitreController.cs" />
+    <Compile Include="ListeProjetReporting\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ListeProjetReporting\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ListeProjetReporting\ListeProjet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListeProjet.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListeProjetReporting\ListeProjetViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListeProjetReporting\ListeProjetViwer.Designer.cs">
+      <DependentUpon>ListeProjetViwer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
     </Compile>
@@ -157,6 +178,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OrdreVerssements.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjetReporting\DataSetProjet.cs">
+      <DependentUpon>DataSetProjet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProjetReporting\DataSetProjet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetProjet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProjetReporting\FicheProjet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FicheProjet.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjetReporting\ProjetViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjetReporting\ProjetViwer.Designer.cs">
+      <DependentUpon>ProjetViwer.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Attribution\AddAttribution.xaml.cs">
       <DependentUpon>AddAttribution.xaml</DependentUpon>
@@ -222,8 +263,14 @@
     <Compile Include="Views\Projet\AddProjet.xaml.cs">
       <DependentUpon>AddProjet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Projet\PermisLotir.xaml.cs">
+      <DependentUpon>PermisLotir.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Projet\Projet.xaml.cs">
       <DependentUpon>Projet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projet\ProjetMaitre.xaml.cs">
+      <DependentUpon>ProjetMaitre.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\referentiel\NatureTyperogramme.xaml.cs">
       <DependentUpon>NatureTyperogramme.xaml</DependentUpon>
@@ -340,7 +387,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Projet\PermisLotir.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Projet\Projet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Projet\ProjetMaitre.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -379,6 +434,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="ListeProjetReporting\ListeProjet.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListeProjet.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListeProjetReporting\ListeProjetViwer.resx">
+      <DependentUpon>ListeProjetViwer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OVReporting\OrdreVerssementR.resx">
       <DependentUpon>OrdreVerssementR.cs</DependentUpon>
     </EmbeddedResource>
@@ -386,12 +448,41 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OrdreVerssements.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjetReporting\FicheProjet.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FicheProjet.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjetReporting\ProjetViwer.resx">
+      <DependentUpon>ProjetViwer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Drapper.Settings.json" />
+    <None Include="ListeProjetReporting\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ListeProjetReporting\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ListeProjetReporting\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
+    <None Include="ProjetReporting\DataSetProjet.xsc">
+      <DependentUpon>DataSetProjet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjetReporting\DataSetProjet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetProjet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjetReporting\DataSetProjet.xss">
+      <DependentUpon>DataSetProjet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -418,6 +509,8 @@
   <ItemGroup>
     <Content Include="CurrencyTextBoxControl.dll" />
     <Content Include="Dragablz.dll" />
+    <Content Include="EO.Base.dll" />
+    <Content Include="EO.Wpf.dll" />
     <Content Include="MaterialDesignColors.dll" />
     <Content Include="MaterialDesignThemes.Wpf.dll" />
     <Content Include="MySql.Data.dll" />

@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Agerfor.Views.Projet"
       mc:Ignorable="d" 
-      xml:lang="en-IN" 
+      xml:lang="fr-FR" 
       xmlns:mydata="clr-namespace:SmarterDB.CodeProject.TestData;assembly=SmarterDB.CodeProject.TestData"    
       xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      d:DesignHeight="1020" d:DesignWidth="1120" 
+      d:DesignHeight="1060" d:DesignWidth="1120" 
       Title="AddProjet" Background="#E6EAED" Loaded="Page_Loaded">
     <ScrollViewer>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -34,12 +34,16 @@
                             <TextBox x:Name="inputNomProjet" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Volume Projet</Label>
-                            <TextBox x:Name="inputVolProjet" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
-                        </StackPanel>
-                       
+
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Projet Maitre</Label>
+                        <ComboBox x:Name="inputProjetMaitre" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner un projet maitre"
+                          Height="35" BorderBrush="Red">
+                        </ComboBox>
+                    </StackPanel>
+
+
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Vendeur</Label>
                         <TextBox x:Name="inputVendeurProjet" Background="#FAFAFA" Width="360" FontSize="18"
@@ -66,26 +70,22 @@
                           Height="35" BorderBrush="Red">
                             </ComboBox>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Superficie (m²)</Label>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Payement</Label>
+                        <ComboBox x:Name="inputPayement" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner un payement"
+                          Height="35" BorderBrush="Red">
+                            <ComboBoxItem>Effectué</ComboBoxItem>
+                            <ComboBoxItem>Par tranche</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Superficie Brut (m²)</Label>
                             <TextBox x:Name="inputSuperficieProjet" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Nom/Prénom géomètre</Label>
-                            <TextBox x:Name="inputNomGeo" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Adresse géomètre</Label>
-                            <TextBox x:Name="inputAddressGeo" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Téléphone géomètre</Label>
-                            <TextBox x:Name="inputTelGeo" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
-                        </StackPanel>
+                      
+                        
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                             <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Limite Nord</Label>
                             <TextBox x:Name="inputLimitNord" Background="#FAFAFA" Width="360" FontSize="18"
@@ -107,12 +107,20 @@
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                         </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Prix(D.A.)</Label>
-                        <TextBox x:Name="inputPrix" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Montant cess Brut (D.A.)</Label>
+                        <TextBox x:Name="inputMontantCB" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=OneWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" KeyUp="inputMontantCB_KeyUp" />
+                        
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Montant cession (D.A.)</Label>
+                        <TextBox x:Name="inputMontantC" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=OneWay}" 
                          myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
                          myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" />
-                        
+
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Num Reçu</Label>
@@ -126,6 +134,30 @@
                             HorizontalAlignment="Right" BorderBrush="Red" xml:lang="fr-FR">
                         </DatePicker>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 40 0 40">
+                        <StackPanel Orientation="Vertical">
+                            <Button Background="#007CC3" x:Name="BtnAjouterProjet" Content="Ajouter projet" Height="35" Width="140" Margin="0 0 0 10" Click="BtnAjouterProjet_Click"/>
+                            <Button Background="#007CC3" x:Name="BtnModifierProjet" Content="Modifier projet" Height="35" Width="140" Margin="0 0 0 10" Click="BtnModifierProjet_Click"/>
+                            <Button Background="#007CC3" x:Name="BtnAnnulerProjet" Content="Anuuler" Height="35" Width="140" Margin="0 0 0 10" Click="BtnAnnulerProjet_Click"/>
+                            <Button Background="#007CC3" x:Name="BtnimprimerProjet" Content="Imprimer" Height="35" Width="140" Click="BtnimprimerProjet_Click"/>
+                        </StackPanel>
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 40 0 0"
+                       x:Name="BtnUploadFiles" HorizontalAlignment="center" Click="BtnUploadFiles_Click">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="FileDocument" Width="35" Height="35" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Joindre" VerticalAlignment="Center" Height="25" />
+                            </StackPanel>
+                        </Button>
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 40 0 0"
+                       x:Name="BtnOpenFolder" HorizontalAlignment="center" Click="BtnOpenFolder_Click">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="FolderOpen" Width="35" Height="35" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Ouvrir projet" VerticalAlignment="Center" Height="25" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
                     <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Informations Acte</Label>
@@ -134,20 +166,7 @@
                         <TextBox x:Name="inputNumAct" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Date Acte</Label>
-                        <DatePicker  x:Name="inputDateActe" Background="#FAFAFA" Height="35" FontSize="17"
-                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
-                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
-                        </DatePicker>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Date Enrigistrement Acte</Label>
-                        <DatePicker  x:Name="inputEnrgActe" Background="#FAFAFA" Height="35" FontSize="17"
-                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
-                            HorizontalAlignment="Right" BorderBrush="Red" xml:lang="fr-FR">
-                        </DatePicker>
-                    </StackPanel>
+                  
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Date Publication Acte</Label>
                         <DatePicker  x:Name="inputDatepubliActe" Background="#FAFAFA" Height="35" FontSize="17"
@@ -155,9 +174,31 @@
                             HorizontalAlignment="Right" BorderBrush="Red" xml:lang="fr-FR">
                         </DatePicker>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Volume</Label>
+                        <TextBox x:Name="inputVolume" Background="#FAFAFA" Width="138" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Margin="0 0 10 0"/>
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Ref Publi</Label>
+                        <TextBox x:Name="inputRefPub" Background="#FAFAFA" Width="130" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                    </StackPanel>
+                  
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Frais publication (D.A.)</Label>
+                        <TextBox x:Name="inputFraisActe" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" KeyUp="inputMontantCB_KeyUp" />
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">POS N°</Label>
+                        <TextBox x:Name="inputPOS" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                         <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Conservation</Label>
-                        <ComboBox x:Name="inputConservProjet" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                        <ComboBox x:Name="inputConserv" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner une conservation"
                           Height="35" BorderBrush="Red">
                         </ComboBox>
@@ -186,37 +227,24 @@
                         Width="500" Height="350" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewActeProjet_SelectionChanged" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num Acte" />
-                                    <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateActe}" Header="Date Acte" />
-                                    <DataGridTextColumn  Width="*" Binding="{Binding DateEnrgActe}" Header="Date Enrigistrement Acte" />
-                                    <DataGridTextColumn  Width="*" Binding="{Binding DatePubliActe}" Header="Date Publication Acte" />
+                                    <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding Date}" Header="Date Publication" />
+                                    <DataGridTextColumn  Width="*" Binding="{Binding Volume}" Header="Volume" />
+                                    <DataGridTextColumn  Width="*" Binding="{Binding RefPubli}" Header="RefPubli" />
+                                    <DataGridTextColumn x:Name="Frais" Width="*" Binding="{Binding FraisPubli}" Header="Frais" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Border>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 40 0 40">
-                        <StackPanel Orientation="Vertical">
-                            <Button Background="#007CC3" x:Name="BtnAjouterProjet" Content="Ajouter projet" Height="35" Width="140" Margin="0 0 0 10" Click="BtnAjouterProjet_Click"/>
-                            <Button Background="#007CC3" x:Name="BtnModifierProjet" Content="Modifier projet" Height="35" Width="140" Margin="0 0 0 10" Click="BtnModifierProjet_Click"/>
-                            <Button Background="#007CC3" x:Name="BtnAnnulerProjet" Content="Anuuler" Height="35" Width="140" Click="BtnAnnulerProjet_Click"/>
-                        </StackPanel>
-                        <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 10 0 0"
-                       x:Name="BtnUploadFiles" HorizontalAlignment="center" Click="BtnUploadFiles_Click">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0 57 0 0">
+                        <Button Background="#007CC3" VerticalAlignment="Bottom" Height="100" Width="140" BorderThickness="0" Margin="20 40 0 0"
+                       x:Name="BtnPermiLotir" HorizontalAlignment="center" Click="BtnPermiLotir_Click">
                             <StackPanel Orientation="Vertical">
-                                <materialDesign:PackIcon Kind="FileDocument" Width="35" Height="35" VerticalAlignment="Center"
+                                <materialDesign:PackIcon Kind="PermMedia" Width="35" Height="35" VerticalAlignment="Center"
                                            HorizontalAlignment="Center" Margin="0 0 0 5" />
-                                <TextBlock Text="Joindre" VerticalAlignment="Center" Height="25" />
-                            </StackPanel>
-                        </Button>
-                        <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 10 0 0"
-                       x:Name="BtnOpenFolder" HorizontalAlignment="center" Click="BtnOpenFolder_Click">
-                            <StackPanel Orientation="Vertical">
-                                <materialDesign:PackIcon Kind="FolderOpen" Width="35" Height="35" VerticalAlignment="Center"
-                                           HorizontalAlignment="Center" Margin="0 0 0 5" />
-                                <TextBlock Text="Ouvrir projet" VerticalAlignment="Center" Height="25" />
+                                <TextBlock Text="Permis Lotir" VerticalAlignment="Center" Height="25" />
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    
                 </StackPanel>
             </StackPanel>
             </Grid>

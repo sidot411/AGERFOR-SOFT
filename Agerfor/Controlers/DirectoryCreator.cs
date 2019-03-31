@@ -148,9 +148,9 @@ namespace Agerfor.Controlers
 
         }
 
-        public string CreateDirectoryPermisLotir(string refprojet, string refprogramme, string numpermislotir)
+        public string CreateDirectoryPermisLotir(string refprojet, string numpermislotir)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + refprojet + @"\Programme\" + refprogramme + @"\PermisLotir\" + numpermislotir;
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + refprojet + @"\PermisLotir\" + numpermislotir;
 
             try
             {
@@ -300,7 +300,7 @@ namespace Agerfor.Controlers
         public void DeleteDirectory(string name)
     {
         string path = Directory.GetCurrentDirectory()+@"\" + name;
-        
+            MessageBox.Show(path);
         try
         {
             

@@ -11,12 +11,12 @@ namespace Agerfor.Controlers
     class PermiLotirController
     {
         MySqlHelper msh = new MySqlHelper();
-        public void AjouterPL(string NumPL, string DatePL,decimal FraisDivers, string NbrIlos, string NbrLots, decimal SuperficieCG, decimal SuperficieVoiries, decimal SuperficieEV, decimal SuperficieEquip, decimal SuperficieAmenag, decimal AutreSuperficie, string RefProgramme, string NomProjet) 
+        public void AjouterPL(string DatePL, string NbrIlos, string NbrLots,decimal SurfaceB, decimal SuperficieCG, decimal SuperficieVoiries, decimal SuperficieEV, decimal SuperficieEquip, decimal SuperficieAmenag, decimal AutreSuperficie,int refProjet) 
         {
             try
 
             {
-               msh.ExecuteQuery("INSERT INTO permilotir VALUES('"+NumPL+"','"+DatePL+"','"+FraisDivers+"','"+NbrIlos+"','"+NbrLots+"','"+SuperficieCG+"','"+SuperficieVoiries+"','"+SuperficieEV+"','"+SuperficieEquip+"','"+SuperficieAmenag+"','"+AutreSuperficie+"','"+RefProgramme+"','"+NomProjet+"')");    
+               msh.ExecuteQuery("INSERT INTO `permilotir` (`DatePL`, `NbrIlot`, `NbrLots`,`SurfaceBrute`, `SuperficieCG`, `SuperficieVoiries`, `SuperficieEV`, `SuperficieEquip`, `SuperficieAmenag`, `AutreSupercie`, `RefProjet`) VALUES ('" + DatePL+"','"+NbrIlos+"', '"+NbrLots+"','"+SurfaceB+"', '"+SuperficieCG+"', '"+SuperficieVoiries+"', '"+SuperficieEV+"', '"+SuperficieEquip+"', '"+SuperficieAmenag+"', '"+AutreSuperficie+"', '"+refProjet+"')");    
                MessageBox.Show("Le permi de lotir a été bien ajouté");
             }
             catch(Exception)
@@ -26,11 +26,11 @@ namespace Agerfor.Controlers
 
         }
 
-        public void EditerPL(string NumPL, string DatePL, decimal FraisDivers, string NbrIlos, string NbrLots, decimal SuperficieCG, decimal SuperficieVoiries, decimal SuperficieEV, decimal SuperficieEquip, decimal SuperficieAmenag, decimal AutreSuperficie, string RefProgramme, string NomProjet, string tempNumPL) 
+        public void EditerPL(string DatePL, string NbrIlos, string NbrLots, decimal SurfaceB, decimal SuperficieCG, decimal SuperficieVoiries, decimal SuperficieEV, decimal SuperficieEquip, decimal SuperficieAmenag, decimal AutreSuperficie, int RefProjet, string tempNumPL) 
         { 
             try
             {
-                msh.ExecuteQuery("update permilotir set NumPL='" + NumPL + "',DatePL='" + DatePL + "',FraisDiver='" + FraisDivers + "',NbrIlot='" + NbrIlos + "',NbrLots='" + NbrLots + "',SuperficieCG='" + SuperficieCG + "',SuperficieVoiries='" + SuperficieVoiries + "',SuperficieEV='" + SuperficieEV + "',SuperficieEquip='" + SuperficieEquip + "',SuperficieAmenag='" + SuperficieAmenag + "',AutreSupercie='" +AutreSuperficie+ "',RefProgramme='" +RefProgramme+ "',NomProjet='" +NomProjet+"' where NumPL='"+tempNumPL+"' and NomProjet='"+NomProjet+"'");
+                msh.ExecuteQuery("update permilotir set DatePL='" + DatePL + "',NbrIlot='" + NbrIlos + "',NbrLots='" + NbrLots + "',SurfaceBrute='"+SurfaceB+"', SuperficieCG='" + SuperficieCG + "',SuperficieVoiries='" + SuperficieVoiries + "',SuperficieEV='" + SuperficieEV + "',SuperficieEquip='" + SuperficieEquip + "',SuperficieAmenag='" + SuperficieAmenag + "',AutreSupercie='" +AutreSuperficie+ "',RefProjet='" +RefProjet+"' where NumPL='"+tempNumPL+"' and RefProjet='"+RefProjet+"'");
                 MessageBox.Show("Le permi de lotir a été bien modifié");
             }
             catch(Exception)

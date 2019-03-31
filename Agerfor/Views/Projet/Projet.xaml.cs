@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Agerfor.Controlers;
 using Agerfor.Views.Projet;
+using MaterialDesignThemes.Wpf;
+using Agerfor.ListeProjetReporting;
 
 namespace Agerfor.Views.Projet
 {
@@ -36,11 +38,18 @@ namespace Agerfor.Views.Projet
 
         private void BtnAfficherProjet_Click(object sender, RoutedEventArgs e)
         {
-            try
+           
+        try
             {
-                if (tempnomprojet != "") { 
-                AddProjet AP = new AddProjet(tempRefProjet);
-                AP.inputRefProjet.IsEnabled = AP.inputNomProjet.IsEnabled = AP.inputVolProjet.IsEnabled = AP.inputConservProjet.IsEnabled = AP.inputVendeurProjet.IsEnabled = AP.inputWilayaProjet.IsEnabled = AP.inputDairaProjet.IsEnabled = AP.inputCommuneProjet.IsEnabled = AP.inputSuperficieProjet.IsEnabled = AP.inputNomGeo.IsEnabled = AP.inputAddressGeo.IsEnabled = AP.inputTelGeo.IsEnabled = AP.inputLimitEst.IsEnabled = AP.inputLimitNord.IsEnabled = AP.inputLimitOuest.IsEnabled = AP.inputLimitSud.IsEnabled = AP.inputPrix.IsEnabled = AP.inputNumReçu.IsEnabled = AP.inputDateRecu.IsEnabled =AP.BtnAjouterProjet.IsEnabled =AP.BtnModifierProjet.IsEnabled= AP.BtnUploadFiles.IsEnabled=AP.inputNumAct.IsEnabled=AP.inputDateActe.IsEnabled=AP.inputEnrgActe.IsEnabled=AP.inputDatepubliActe.IsEnabled=AP.BtnAjouterActe.IsEnabled=AP.BtnModifierActe.IsEnabled=AP.BtnSupprimerActe.IsEnabled=AP.BtnJoindre.IsEnabled=AP.BtnOuvrirActe.IsEnabled= false;
+                if (tempnomprojet !="") { 
+                AddProjet AP = new AddProjet(int.Parse(tempRefProjet));
+                AP.inputRefProjet.IsEnabled = AP.inputNomProjet.IsEnabled = AP.inputConserv.IsEnabled = AP.inputVendeurProjet.IsEnabled =
+                AP.inputWilayaProjet.IsEnabled = AP.inputDairaProjet.IsEnabled = AP.inputCommuneProjet.IsEnabled = AP.inputSuperficieProjet.IsEnabled = 
+                AP.inputLimitEst.IsEnabled = AP.inputLimitNord.IsEnabled = AP.inputLimitOuest.IsEnabled = AP.inputLimitSud.IsEnabled = AP.inputNumReçu.IsEnabled =
+                AP.inputDateRecu.IsEnabled =AP.BtnAjouterProjet.IsEnabled =AP.BtnModifierProjet.IsEnabled= AP.BtnUploadFiles.IsEnabled=AP.inputNumAct.IsEnabled=
+                AP.inputDatepubliActe.IsEnabled=AP.BtnAjouterActe.IsEnabled=AP.BtnModifierActe.IsEnabled=AP.BtnSupprimerActe.IsEnabled=AP.BtnJoindre.IsEnabled=
+                AP.BtnOuvrirActe.IsEnabled = AP.inputProjetMaitre.IsEnabled=AP.inputPayement.IsEnabled=AP.inputMontantC.IsEnabled=AP.inputMontantCB.IsEnabled=
+                AP.inputVolume.IsEnabled=AP.inputRefPub.IsEnabled=AP.inputFraisActe.IsEnabled=AP.inputPOS.IsEnabled= false;
                 this.NavigationService.Navigate(AP);
                 }
                 else
@@ -63,6 +72,7 @@ namespace Agerfor.Views.Projet
                 tempRefProjet = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
                 DataGridCellInfo cell1 = dataGridView2.SelectedCells[1];
                 tempnomprojet = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
+                
 
             }
             catch (Exception)
@@ -89,7 +99,7 @@ namespace Agerfor.Views.Projet
                 else
                 {
                     BiensController BC = new BiensController();
-                    BC.SupprimerLogFromProjet(tempnomprojet);  
+                    BC.SupprimerLogFromProjet(int.Parse(tempRefProjet));  
                     ProjetController PC = new ProjetController();
                     DirectoryCreator DC = new DirectoryCreator();   
                     ActeController AC = new ActeController();
@@ -130,9 +140,20 @@ namespace Agerfor.Views.Projet
         {
             try
             {
-                AddProjet AP = new AddProjet("");
-                AP.BtnModifierProjet.IsEnabled = AP.BtnUploadFiles.IsEnabled=AP.BtnOpenFolder.IsEnabled= false;
-                NavigationService.Navigate(AP);
+                if (System.Windows.MessageBox.Show("Voulez-vous ajouter un projet maitre ?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    AddProjet AP = new AddProjet(0);
+                    AP.BtnModifierProjet.IsEnabled = AP.BtnUploadFiles.IsEnabled = AP.BtnOpenFolder.IsEnabled = false;
+                    NavigationService.Navigate(AP);
+                }
+                else
+                {
+                    AddProjet AP = new AddProjet(0);
+                    ProjetMaitre PM = new ProjetMaitre(AP);
+                    DialogHost.Show(PM);
+                }
+
+               
             }
             catch (Exception)
             {
@@ -144,7 +165,7 @@ namespace Agerfor.Views.Projet
         {
             if (tempnomprojet != "")
             {
-                    AddProjet AP = new AddProjet(tempRefProjet);
+                    AddProjet AP = new AddProjet(int.Parse(tempRefProjet));
                     AP.BtnAjouterProjet.IsEnabled = false;
                     this.NavigationService.Navigate(AP);
         
@@ -154,6 +175,12 @@ namespace Agerfor.Views.Projet
                 MessageBox.Show("Veuillez selectioner un projet", "Projet", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
+        }
+
+        private void BtnImprimeliste_Click(object sender, RoutedEventArgs e)
+        {
+            ListeProjetViwer LPV = new ListeProjetViwer();
+            LPV.Show();
         }
     }
 }

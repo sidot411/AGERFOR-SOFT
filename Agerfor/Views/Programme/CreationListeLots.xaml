@@ -9,7 +9,7 @@
              xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
    
              Background="#E6EAED"
-             Height="900" Width="1100"
+             Height="300" Width="1100"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Loaded="Page_Loaded" >
     <materialDesign:DialogHost>
         <Grid>
@@ -129,7 +129,7 @@
                                     <DataGridTextColumn  Width="20*" Binding="{Binding PrixHT}" Header="Prix M² HT (D.A.)" />
                                     <DataGridTextColumn  Width="10*" Binding="{Binding Tva}" Header="TVA" />
                                     <DataGridTextColumn  Width="30*" Binding="{Binding PrixTTC}" Header="Prix TTC (D.A.)"  />
-                                    <DataGridTextColumn x:Name="Etat2" Width="30*" Binding="{Binding Etat}" Header="Etat" />
+                                    <DataGridTextColumn  Width="30*" Binding="{Binding Etat}" Header="Etat" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Border>

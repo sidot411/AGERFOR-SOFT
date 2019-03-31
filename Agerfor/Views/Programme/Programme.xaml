@@ -94,9 +94,11 @@
                   IsReadOnly="True" ItemsSource="{Binding}"  Margin="30,234,10,15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" SelectionChanged="dataGridView2_SelectionChanged" >
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="*" Binding="{Binding NomProjet}" Header="NomProjet" />
+        
                         <DataGridTextColumn Width="*" Binding="{Binding RefProgramme}" Header="Réf programme" />
                         <DataGridTextColumn Width="*" Binding="{Binding NomProgramme}" Header="Nom programme" />
+                        <DataGridTextColumn Width="*" Binding="{Binding RefProjet}" Header="Ref Projet" />
+                        <DataGridTextColumn Width="*" Binding="{Binding NomProjet}" Header="NomProjet" />
                         <DataGridTextColumn Width="*" Binding="{Binding Site}" Header="Site" />
                         <DataGridTextColumn Width="*" Binding="{Binding Daira}" Header="Daira" />
                         <DataGridTextColumn Width="*" Binding="{Binding Commune}" Header="Commune" />

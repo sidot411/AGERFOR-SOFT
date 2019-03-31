@@ -23,6 +23,7 @@ namespace Agerfor.Views.Programme
         string temprefprogramme = "";
         string tempNomProgramme = "";
         string tempNomProjet = "";
+        string tempRefProjet = "";
         string tempnumprojet = "";
         string query = "";
         
@@ -35,7 +36,7 @@ namespace Agerfor.Views.Programme
         {
             if (query == "")
             {
-                msh.LoadData("select * from programme", dataGridView2);
+                msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet", dataGridView2);
             }
             else
             {
@@ -48,32 +49,38 @@ namespace Agerfor.Views.Programme
         private void dataGridView2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGridCellInfo cell0 = dataGridView2.SelectedCells[0];
-            tempNomProjet = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+            temprefprogramme = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
             DataGridCellInfo cell1 = dataGridView2.SelectedCells[1];
-            temprefprogramme = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
+            tempNomProgramme = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
             DataGridCellInfo cell2 = dataGridView2.SelectedCells[2];
-            tempNomProgramme = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
+            tempRefProjet  = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
              
         
 
     }
     private void BtnAfficherProgramme_Click(object sender, RoutedEventArgs e)
         {
-
-            AddProgramme AP = new AddProgramme(temprefprogramme,tempNomProgramme);
-            AP.GridProgramme.IsEnabled = false;
-            NavigationService.Navigate(AP);
+            if (temprefprogramme != "")
+            {
+                AddProgramme AP = new AddProgramme(int.Parse(temprefprogramme), tempNomProgramme);
+                AP.GridProgramme.IsEnabled = false;
+                NavigationService.Navigate(AP);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez selectioner un programme");
+            }
 
         }
         private void BtnAjouterProgramme_Click(object sender, RoutedEventArgs e)
         {
-            AddProgramme AP = new AddProgramme("",""); 
+            AddProgramme AP = new AddProgramme(0,""); 
             NavigationService.Navigate(AP);
         }
 
         private void BtnModifierProgramme_Click(object sender, RoutedEventArgs e)
         {
-            AddProgramme AP = new AddProgramme(temprefprogramme,tempNomProgramme);
+            AddProgramme AP = new AddProgramme(int.Parse(temprefprogramme),tempNomProgramme);
             AP.BtnAjouterProgramme.IsEnabled = false;
             NavigationService.Navigate(AP);
         }
@@ -103,7 +110,7 @@ namespace Agerfor.Views.Programme
                     BiensController BC = new BiensController();
 
                     DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + temprefprogramme);
-                    BC.SupprimerLogFromProgramme(temprefprogramme, tempNomProjet);  
+                    BC.SupprimerLogFromProgramme(int.Parse(temprefprogramme),int.Parse(tempRefProjet));  
                     APC.SupprimerActeFromProgramme(temprefprogramme);
                     PLC.SupprimerPLFromProgramme(temprefprogramme);
                     PDCC.SupprimerPermisConstruireFromProgramme(temprefprogramme);

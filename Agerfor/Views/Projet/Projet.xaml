@@ -5,8 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Agerfor.Views.Projet"
       mc:Ignorable="d" 
-      xml:lang="en-IN"
+      xml:lang="fr-FR"
+      xmlns:mydata="clr-namespace:SmarterDB.CodeProject.TestData;assembly=SmarterDB.CodeProject.TestData"    
+      xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      
       d:DesignHeight="740" d:DesignWidth="1024"
       Title="Projet"  Background="#E6EAED" Loaded="Page_Loaded">
 
@@ -16,29 +19,34 @@
             <ColumnDefinition Width="52*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*" />
+            <RowDefinition Height="110*" />
             <RowDefinition Height="250*" />
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="0">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="30 0 0 0" >
+            <StackPanel Orientation="Vertical" Margin="30 10 0 0 ">
+                <TextBlock FontFamily="Arial" FontSize="16" FontWeight="Bold">Recherche rapide</TextBlock>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                        <TextBox x:Name="inputCodeProjet" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Code Projet" Margin="0 0 0 10"/>
+                        <TextBox x:Name="inputNomProjetMaitre" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom Projet Maitre" Margin="0 0 0 10" />
+                        <TextBox x:Name="Site" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom Projet" Margin="0 0 0 10" />
+                        <TextBox x:Name="inputDatePublication" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Année Publication" Margin="0 0 0 10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="30 10 0 0">
+                        <TextBox x:Name="wilaya" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="wilaya" Margin="0 0 0 10" />
+                        <TextBox x:Name="Daira" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Daira" Margin="0 0 0 10"  />
+                        <TextBox x:Name="Commune" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Commune" Margin="0 0 0 10" />
+                        <TextBox x:Name="Conservation" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Conservation" Margin="0 0 0 10" />
 
-                    <TextBox  x:Name="inputrecherche" Foreground="#262626" Width="230" VerticalContentAlignment="Center"
-                 FontSize="18" Height="40"
-                 Background="#FAFAFA" Margin="0 0 10 0" />
-
-                    <ComboBox x:Name="SelectTypeRecherche" HorizontalContentAlignment="Center" Foreground="#797979" Height="40"
-                  FontSize="16"
-                  VerticalContentAlignment="Center" Background="#FAFAFA" Width="160" Margin="0 0 10 0">
-                        <ComboBoxItem>NumClient</ComboBoxItem>
-                        <ComboBoxItem IsSelected="True">Nom</ComboBoxItem>
-                    </ComboBox>
-                    <Button Background="#007CC3" x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="10">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center" Margin="0 2 4 0" />
-                        </StackPanel>
-                    </Button>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Grid>
@@ -63,6 +71,13 @@
                         <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
                         <TextBlock Text="Modifier" VerticalAlignment="Center" Height="25" />
+                    </StackPanel>
+                </Button>
+                <Button Background="#007CC3" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" x:Name="BtnImprimeliste" Click="BtnImprimeliste_Click">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Printer" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                        <TextBlock Text="Imprimer" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
 
@@ -90,12 +105,11 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="NumClient" Width="*" Binding="{Binding RefProjet}" Header="Référence projet" />
                         <DataGridTextColumn x:Name="Nom" Width="*" Binding="{Binding NomProjet}" Header="Nom projet" />
-                        <DataGridTextColumn x:Name="Prenom" Width="*" Binding="{Binding VolProjet}" Header="Volume projet" />
                         <DataGridTextColumn x:Name="Sexe" Width="*" Binding="{Binding Wilaya}" Header="Wilaya" />
                         <DataGridTextColumn x:Name="Cni" Width="*" Binding="{Binding Daira}" Header="Daira" />
                         <DataGridTextColumn x:Name="Ville" Width="*" Binding="{Binding Commune}" Header="Commune" />
                         <DataGridTextColumn x:Name="Tel" Width="*" Binding="{Binding Superficie}" Header="Superficie" />
-                        <DataGridTextColumn x:Name="Situaton" Width="*" Binding="{Binding PrixVente}" Header="Prix" />
+                        <DataGridTextColumn x:Name="Situaton" Width="*" Binding="{Binding MontantCession}" Header="Prix" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
