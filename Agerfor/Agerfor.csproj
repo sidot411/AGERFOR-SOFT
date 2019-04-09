@@ -135,6 +135,7 @@
     <Compile Include="Controlers\DirectoryCreator.cs" />
     <Compile Include="Controlers\EddController.cs" />
     <Compile Include="Controlers\FNPOSController.cs" />
+    <Compile Include="Controlers\IlotController.cs" />
     <Compile Include="Controlers\ipPatchController.cs" />
     <Compile Include="Controlers\LotController.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
@@ -509,8 +510,6 @@
   <ItemGroup>
     <Content Include="CurrencyTextBoxControl.dll" />
     <Content Include="Dragablz.dll" />
-    <Content Include="EO.Base.dll" />
-    <Content Include="EO.Wpf.dll" />
     <Content Include="MaterialDesignColors.dll" />
     <Content Include="MaterialDesignThemes.Wpf.dll" />
     <Content Include="MySql.Data.dll" />

@@ -31,10 +31,11 @@ namespace Agerfor.Views.Programme
 
         int RefProgramme = 0;
         string Query = "";
-        string tempNumActeProgramme = "";
-        string tempnumprojet = "";
-        string tempNumPL = "";
-        string tempNumPC = "";
+        //string tempNumActeProgramme = "";
+       // string tempnumprojet = "";
+        //string tempNumPL = "";
+        int tempNumPC = 0;
+        
         /*string tempDateActeProgramme = "";
         string tempDateEnregActe = "";
         string tempDatePubliActe = "";
@@ -44,11 +45,15 @@ namespace Agerfor.Views.Programme
         private readonly NotificationManager _notificationManager = new NotificationManager();
         private readonly Random _random = new Random();
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public AddProgramme(int refprogramme, string NomProgramme)
+        public AddProgramme(int refprogramme)
         {
-            this.RefProgramme = refprogramme;
+          
+          
             InitializeComponent();
-
+            inputNumPermisConstruire.IsEnabled = false;
+            inputTva.Text = "0";
+            
+            this.RefProgramme = refprogramme;
             string query2 = "select MAX(RefProgramme)+1 AS Num from programme;";
             MySqlDataReader rdr2 = null;
             MySqlConnection con2 = null;
@@ -69,17 +74,49 @@ namespace Agerfor.Views.Programme
                 {
                     inputRefProgramme.Text = rdr2["Num"].ToString();
                 }
+
+                oneTime2 = false;
                 inputRefProgramme.IsEnabled = false;
             }
-        
-        /*  
-          Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
-          Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");*/
-        msh.FillDropDownList("select NatureProgramme from natureprogramme", inputNatureProgramme, "NatureProgramme");
+            con2.Close();
+
+
+            string query3 = "select MAX(NumPermis)+1 AS Num2 from permisdeconstruire;";
+            MySqlDataReader rdr3 = null;
+            MySqlConnection con3 = null;
+            MySqlCommand cmd3 = null;
+            con3 = new MySqlConnection(Database.ConnectionString());
+            con3.Open();
+            cmd3 = new MySqlCommand(query3);
+            cmd3.Connection = con3;
+            rdr3 = cmd3.ExecuteReader();
+            bool oneTime3 = true;
+            while (rdr3.Read())
+            {
+                if (rdr3["Num2"].ToString() == "")
+                {
+                    inputNumPermisConstruire.Text = "1";
+                }
+                else
+                {
+                    inputNumPermisConstruire.Text = rdr3["Num2"].ToString();
+                }
+
+                oneTime3 = false;
+
+            }
+ 
+
+            /*  
+              Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+              Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");*/
+            msh.FillDropDownList("select NatureProgramme from natureprogramme", inputNatureProgramme, "NatureProgramme");
             msh.FillDropDownList("select NomDaira from daira", inputDairaProgramme, "NomDaira");
             msh.FillDropDownList("select RefProjet from projet", inputRefProjet, "RefProjet");
-          
-           // inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
+            msh.FillDropDownList("select ValeurTva from tva", inputTva, "ValeurTva");
+      
+
+            // inputSuperficieGlobal.Text = inputSuperficieVoiries.Text = inputSuperficieEspaceVert.Text = inputSuperficieEquipements.Text = inputSuperficieAmenagement.Text = inputAutresSuperficie.Text = "0";
             inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
 
 
@@ -116,10 +153,18 @@ namespace Agerfor.Views.Programme
                         inputTypeProgramme.Text = rdr["TypeProgramme"].ToString();
                         inputNombredebien.Text = rdr["NombreBiens"].ToString();
                         inputSuperficie.Text = rdr["Superficie"].ToString();
+                       
+                        inputTypevente.Text = rdr["TypeVente"].ToString();
+                        inputCoutF.Text = rdr["CoutFoncier"].ToString();
+                        inputTva.Text = rdr["TVA"].ToString();
+                        inputCoutFTTC.Text = rdr["CoutFoncierTTC"].ToString();
+                        inputM2.Text = rdr["PrixM2"].ToString();
+                   
 
                         oneTime = false;
                     }
                 }
+                con.Close();
             }
         }
 
@@ -194,7 +239,7 @@ namespace Agerfor.Views.Programme
             
 
           //  msh.LoadData("select * from permilotir where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPLotir);
-            msh.LoadData("select * from permisdeconstruire where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPConstruire);
+            msh.LoadData("select *,DATE_FORMAT(DatePermisC,'%d/%m/%y') AS Date from permisdeconstruire where RefProgramme='" + RefProgramme + "' and RefProjet='" + inputRefProjet.Text + "'", DataGridPConstruire);
 
 
             if (RefProgramme != 0 && inputNatureProgramme.Text != "" && inputTypeProgramme.Text != "")
@@ -245,7 +290,7 @@ namespace Agerfor.Views.Programme
 
         private void BtnEDD_Click(object sender, RoutedEventArgs e)
         {
-            EDD EDD = new EDD(int.Parse(inputRefProjet.Text), inputRefProgramme.Text);
+            EDD EDD = new EDD(int.Parse(inputRefProjet.Text), inputRefProgramme.Text,inputTypeProgramme.Text,inputTypevente.Text,decimal.Parse(inputCoutFTTC.Text),decimal.Parse(inputM2.Text));
             DialogHost.Show(EDD);
             
         }
@@ -266,20 +311,20 @@ namespace Agerfor.Views.Programme
         //Ajouter Programme//
         private void BtnAjouterProgramme_Click(object sender, RoutedEventArgs e)
         {
-            getrefprojet();
+           
+          
             DirectoryCreator DC = new DirectoryCreator();
-            DC.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text);
-            PC.AjouterProgramme(int.Parse(inputRefProjet.Text)
-                ,inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text));
-            AddProgramme AP = new AddProgramme(0,"");
+            DC.CreateDirectoryProgramme(inputRefProjet.Text, inputRefProgramme.Text);
+            PC.AjouterProgramme(int.Parse(inputRefProjet.Text),inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text),inputTypevente.Text, decimal.Parse(inputCoutF.Text),decimal.Parse(inputTva.Text),decimal.Parse(inputCoutFTTC.Text),decimal.Parse(inputM2.Text));
+            AddProgramme AP = new AddProgramme(0);
             NavigationService.Navigate(AP);
            
         }
         //Modifier Programme//
         private void BtnModifierProgramme_Click(object sender, RoutedEventArgs e)
         {
-            PC.Editprogramme(int.Parse(inputRefProjet.Text), inputNomProjet.Text,  inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text),RefProgramme);
-            AddProgramme AP = new AddProgramme(0,"");
+            PC.Editprogramme(int.Parse(inputRefProjet.Text), inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text), inputTypevente.Text, decimal.Parse(inputCoutF.Text), decimal.Parse(inputTva.Text), decimal.Parse(inputCoutFTTC.Text), decimal.Parse(inputM2.Text),RefProgramme);
+            AddProgramme AP = new AddProgramme(0);
             NavigationService.Navigate(AP);
         }
         //Annuler Programme//
@@ -291,9 +336,9 @@ namespace Agerfor.Views.Programme
         //Ouvrir Programme//
         private void BtnOuvrirprogramme_Click(object sender, RoutedEventArgs e)
         {
-            getrefprojet();
+          
             string ip = "localhost";
-            string folderPath = @"\\"+ip+@"\"+ AppDomain.CurrentDomain.BaseDirectory+""+ @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text;
+            string folderPath = @"\\"+ip+@"\"+ AppDomain.CurrentDomain.BaseDirectory+""+ @"Projet\" + inputRefProjet.Text + @"\Programme\" + inputRefProgramme.Text;
             OpenFolder(ipPatchController.getpath(folderPath, ip));
         }
         private void OpenFolder(string folderPath)
@@ -310,7 +355,7 @@ namespace Agerfor.Views.Programme
             else
             {
                 DirectoryCreator dcr = new DirectoryCreator();
-                dcr.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text + "/");
+                dcr.CreateDirectoryProgramme(inputRefProjet.Text, inputRefProgramme.Text + "/");
                 ProcessStartInfo startInfo = new ProcessStartInfo
                 {
                     Arguments = folderPath,
@@ -329,7 +374,7 @@ namespace Agerfor.Views.Programme
         public void SelectFile(string theDirectory)
         {
             string ip = "localhost";
-            getrefprojet();
+        
             string destinationFolder;
             string destinationFolderf;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -337,10 +382,10 @@ namespace Agerfor.Views.Programme
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 var fileName = openFileDialog1.FileName;
-                destinationFolder = @"\\" + ip + @"\" + AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
+                destinationFolder = @"\\" + ip + @"\" + AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text + @"\Programme\" + inputRefProgramme.Text + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
                 destinationFolderf = ipPatchController.getpath(destinationFolder, ip);
 
-                dcr.CreateDirectoryProgramme(tempnumprojet, inputRefProgramme.Text + "/" + theDirectory + "/");
+                dcr.CreateDirectoryProgramme(inputRefProjet.Text, inputRefProgramme.Text + "/" + theDirectory + "/");
                 System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
                 if (File.Exists(destinationFolderf))
                 {
@@ -357,7 +402,7 @@ namespace Agerfor.Views.Programme
 
     
         //Référence Projet//
-        private void getrefprojet()
+     /*   private void getrefprojet()
         {
             string query2 = "select RefProjet from projet where NomProjet ='" + inputNomProjet.Text + "'";
             MySqlDataReader rdr2 = null;
@@ -380,7 +425,7 @@ namespace Agerfor.Views.Programme
                 }
             }
         }
-
+        */
     
         private void BtnModifierPLotir_Click(object sender, RoutedEventArgs e)
         {/*
@@ -506,17 +551,17 @@ namespace Agerfor.Views.Programme
         {
             if (inputNumPermisConstruire.Text != "")
             {
-                getrefprojet();
+           
                 DirectoryCreator DC = new DirectoryCreator();
-                DC.CreateDirectoryPermisConstruire(tempnumprojet, inputRefProgramme.Text, inputNumPermisConstruire.Text);
+                DC.CreateDirectoryPermisConstruire(inputRefProjet.Text, inputRefProgramme.Text, inputNumPermisConstruire.Text);
                 PermisDeConstruireController PDCC = new PermisDeConstruireController();
-                PDCC.AjouterPermisConstruire(inputNumPermisConstruire.Text, inputDatePermisConstruire.Text, decimal.Parse(inputFraisDivers.Text), inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSuperficieCave.Text), inputNbrCC.Text, decimal.Parse(inputSuperficieCC.Text), inputNbrPlcS.Text, decimal.Parse(inputSuperficiePlcS.Text), inputRefProgramme.Text, inputNomProjet.Text);
+                PDCC.AjouterPermisConstruire( inputDatePermisConstruire.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSuperficieCave.Text), inputNbrCC.Text, decimal.Parse(inputSuperficieCC.Text), inputNbrPlcS.Text, decimal.Parse(inputSuperficiePlcS.Text), RefProgramme,int.Parse(inputRefProjet.Text));
                 msh.LoadData("select * from permisdeconstruire where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPConstruire);
                 inputNumPermisConstruire.Text = inputDatePermisConstruire.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrBur.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPlcS.Text = "";
-                inputFraisDivers.Text = "0.00";
            
               //  inputFraisPLotir.Text = "0.00";
                 inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
+                msh.LoadData("select *,DATE_FORMAT(DatePermisC,'%d/%m/%y') AS Date from permisdeconstruire where RefProgramme='" + RefProgramme + "' and RefProjet='" + inputRefProjet.Text + "'", DataGridPConstruire);
             }
             else
             {
@@ -530,7 +575,7 @@ namespace Agerfor.Views.Programme
 
 
             DataGridCellInfo cell0 = DataGridPConstruire.SelectedCells[0];
-            tempNumPC = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
+            tempNumPC = int.Parse(((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text);
 
             string query = "select * from permisdeconstruire where NumPermis =" + tempNumPC;
             MySqlDataReader rdr = null;
@@ -550,7 +595,6 @@ namespace Agerfor.Views.Programme
                 {
                     inputNumPermisConstruire.Text = rdr["NumPermis"].ToString();
                     inputDatePermisConstruire.Text = rdr["DatePermisC"].ToString();
-                    inputFraisDivers.Text = rdr["FraisDivers"].ToString();
                     inputNbrLog.Text = rdr["NbrLog"].ToString();
                     inputSupLog.Text = rdr["SupLog"].ToString();
                     inputNbrLoc.Text = rdr["NbrLoc"].ToString();
@@ -563,8 +607,6 @@ namespace Agerfor.Views.Programme
                     inputSuperficieCC.Text = rdr["SupCC"].ToString();
                     inputNbrPlcS.Text = rdr["NbrPS"].ToString();
                     inputSuperficiePlcS.Text = rdr["SupPS"].ToString();
-
-
                     oneTime = false;
                 }
             }
@@ -572,46 +614,50 @@ namespace Agerfor.Views.Programme
 
         private void BtnModifierPC_Click(object sender, RoutedEventArgs e)
         {
-            if (tempNumPC == "")
+            if (tempNumPC == 0)
             {
                 System.Windows.MessageBox.Show("Veuillez selectionné un Permis de construire pour le modifié", "Permis de construire", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
                 PermisDeConstruireController PDCC = new PermisDeConstruireController();
-                PDCC.ModifierPermisConstruire(inputNumPermisConstruire.Text, inputDatePermisConstruire.Text, decimal.Parse(inputFraisDivers.Text), inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSuperficieCave.Text), inputNbrCC.Text, decimal.Parse(inputSuperficieCC.Text), inputNbrPlcS.Text, decimal.Parse(inputSuperficiePlcS.Text), inputRefProgramme.Text, inputNomProjet.Text, tempNumPC);
-                msh.LoadData("select * from permisdeconstruire where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPConstruire);
+                PDCC.ModifierPermisConstruire( inputDatePermisConstruire.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSuperficieCave.Text), inputNbrCC.Text, decimal.Parse(inputSuperficieCC.Text), inputNbrPlcS.Text, decimal.Parse(inputSuperficiePlcS.Text), RefProgramme,int.Parse(inputRefProjet.Text), tempNumPC);
+                msh.LoadData("select *,DATE_FORMAT(DatePermisC,'%d/%m/%y') AS Date from permisdeconstruire where RefProgramme='" + RefProgramme + "' and RefProjet='" + inputRefProjet.Text + "'", DataGridPConstruire);
+                inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
+                inputNumPermisConstruire.Text = inputDatePermisConstruire.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPlcS.Text = inputNbrBur.Text = string.Empty;
             }
         }
 
         private void BtnSupprimerPC_Click(object sender, RoutedEventArgs e)
         {
-            if (tempNumPC == "")
+            if (tempNumPC == 0)
             {
                 System.Windows.MessageBox.Show("Veuillez selectionné un Permis de construire pour le supprimé", "Permis de construire", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
                 DirectoryCreator DC = new DirectoryCreator();
-                DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\Permis de construire\" + inputNumPermisConstruire.Text);
+                DC.DeleteDirectory(@"Projet\" + inputRefProjet.Text + @"\Programme\" + inputRefProgramme.Text + @"\Permis de construire\" + inputNumPermisConstruire.Text);
                 PermisDeConstruireController PDCC = new PermisDeConstruireController();
                 PDCC.SupprimerPermisConstruire(tempNumPC);
-                msh.LoadData("select * from permisdeconstruire where RefProgramme='" + RefProgramme + "' and NomProjet='" + inputNomProjet.Text + "'", DataGridPConstruire);
+                msh.LoadData("select *,DATE_FORMAT(DatePermisC,'%d/%m/%y') AS Date from permisdeconstruire where RefProgramme='" + RefProgramme + "' and RefProjet='" + inputRefProjet.Text + "'", DataGridPConstruire);
+                inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSuperficieCave.Text = inputSuperficieCC.Text = inputSuperficiePlcS.Text = "0";
+                inputNumPermisConstruire.Text = inputDatePermisConstruire.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrCC.Text = inputNbrPlcS.Text = inputNbrBur.Text = string.Empty;
             }
             
         }
 
         public void SelectFile4(string theDirectory)
         {
-            getrefprojet();
+           
             string destinationFolder;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             DirectoryCreator dcr = new DirectoryCreator();
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 var fileName = openFileDialog1.FileName;
-                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\Permis de construire\" + inputNumPermisConstruire.Text + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
-                dcr.CreateDirectoryPermisConstruire(tempnumprojet, inputRefProgramme.Text, inputNumPermisConstruire.Text + "/" + theDirectory);
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text + @"\Programme\" + inputRefProgramme.Text + @"\Permis de construire\" + inputNumPermisConstruire.Text + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
+                dcr.CreateDirectoryPermisConstruire(inputRefProjet.Text, inputRefProgramme.Text, inputNumPermisConstruire.Text + "/" + theDirectory);
                 System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
                 if (File.Exists(destinationFolder))
                 {
@@ -628,21 +674,21 @@ namespace Agerfor.Views.Programme
 
         private void BtnOuvrirPC_Click(object sender, RoutedEventArgs e)
         {
-            if (tempNumPC == "")
+            if (tempNumPC == 0)
             {
                 System.Windows.MessageBox.Show("Veuillez selectionné un Permis de construire pour ouvrir le dossier", "Permis de construire", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                getrefprojet();
-                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + tempnumprojet + @"\Programme\" + inputRefProgramme.Text + @"\Permis de construire\" + inputNumPermisConstruire.Text;
+             
+                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text + @"\Programme\" + inputRefProgramme.Text + @"\Permis de construire\" + inputNumPermisConstruire.Text;
                 OpenFolder(folderPath);
             }
         }
 
         private void BtnJoindrePC_Click(object sender, RoutedEventArgs e)
         {
-            if (tempNumPC == "")
+            if (tempNumPC == 0)
             {
                 System.Windows.MessageBox.Show("Veuillez selectionné un Permis de construire pour joindre des fichiers", "Permis de construire", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -652,10 +698,6 @@ namespace Agerfor.Views.Programme
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void inputRefProjet_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -677,10 +719,31 @@ namespace Agerfor.Views.Programme
                 if (oneTime)
                 {
                     inputNomProjet.Text = rdr["NomProjet"].ToString();
-                    
                     oneTime = false;
                 }
             }
+        }
+
+        private void inputTypevente_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+         
+            if(inputTypevente.SelectedValue.ToString()== "Vente par unité")
+            {
+                inputCoutF.Text = inputCoutFTTC.Text = inputM2.Text = "0";
+                inputCoutF.IsEnabled = inputTva.IsEnabled = inputCoutFTTC.IsEnabled = inputM2.IsEnabled = false;
+               
+            }
+            else
+            {
+                inputCoutF.IsEnabled = inputTva.IsEnabled = inputCoutFTTC.IsEnabled = inputM2.IsEnabled = true;
+               
+            }
+        }
+
+        private void inputTva_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+               inputCoutFTTC.Text = (decimal.Parse(inputCoutF.Text) + (decimal.Parse(inputCoutF.Text) * decimal.Parse(inputTva.SelectedValue.ToString())/100)).ToString();
+           
         }
     }
 }

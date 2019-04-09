@@ -14,9 +14,11 @@ namespace Agerfor.ListeProjetReporting
 {
     public partial class ListeProjetViwer : Form
     {
-        public ListeProjetViwer()
+        string query;
+        public ListeProjetViwer(string query)
         {
             InitializeComponent();
+            this.query = query;
         }
 
         private void report_Load(object sender, EventArgs e)
@@ -27,7 +29,7 @@ namespace Agerfor.ListeProjetReporting
                     MySqlConnection con = new MySqlConnection(Database.ConnectionString());
                     ListeProjet FP = new ListeProjet();
 
-                    string query = @"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.RefProjet=acteprojet.RefProjet";
+                    //string query = @"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.RefProjet=acteprojet.RefProjet";
                     MySqlDataAdapter dab = new MySqlDataAdapter(query, con);
                     DataSet1 DS = new DataSet1();
                     dab.Fill(DS.DataTable1);

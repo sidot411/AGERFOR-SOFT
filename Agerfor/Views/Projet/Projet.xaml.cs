@@ -112,12 +112,11 @@ namespace Agerfor.Views.Projet
                     ConventionController CC = new ConventionController();
                     DC.DeleteDirectory(@"Projet\" + tempRefProjet);
                     CC.SupprimerConventionFromProjet(tempnomprojet);
-                    EC.SupprimerEddFromProjet(tempnomprojet);
+                    EC.SupprimerEddFromProjet(int.Parse(tempRefProjet));
                     CCPC.SupprimerCahierChargeFromProjet(tempnomprojet);
-                    APC.SupprimerActeFromProjet(tempnomprojet);
-                    PDCC.SupprimerPermisConstruireFromProjet(tempnomprojet);
-                    PLC.SupprimerPLFromProjet(tempnomprojet);
-                    PRC.DeleteProgrammeFromProjet(tempnomprojet);
+                    PDCC.SupprimerPermisConstruireFromProjet(int.Parse(tempRefProjet));
+                    PLC.SupprimerPLFromProjet(int.Parse(tempRefProjet));
+                    PRC.DeleteProgrammeFromProjet(int.Parse(tempRefProjet));
                     AC.SupprimerActe2(tempRefProjet);
                     PC.DeleteProjet(tempRefProjet);  
                     MessageBox.Show("Le projet " + tempRefProjet + " à était bien supprimer");
@@ -179,8 +178,108 @@ namespace Agerfor.Views.Projet
 
         private void BtnImprimeliste_Click(object sender, RoutedEventArgs e)
         {
-            ListeProjetViwer LPV = new ListeProjetViwer();
+            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.RefProjet=acteprojet.RefProjet");
             LPV.Show();
+        }
+
+        private void inputCodeProjet_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("select * from projet where RefProjet = '"+inputCodeProjet.Text+ "'", dataGridView2);
+        }
+
+        private void inputNomProjetMaitre_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("select * from projet where ProjetMaitre = '" + inputNomProjetMaitre.Text + "'", dataGridView2);
+        }
+
+
+        private void inputNomProjet_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("select * from projet where NomProjet = '" + inputNomProjet.Text +"'", dataGridView2);
+        }
+
+        private void inputDatePublication_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("SELECT * FROM projet, acteprojet WHERE year(acteprojet.DatePubliActe) like '"+inputDatePublication.Text+"%' and acteprojet.RefProjet = projet.RefProjet", dataGridView2);
+        }
+
+        private void wilaya_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("select * from projet where Wilaya like '" + wilaya.Text + "%'", dataGridView2);
+        }
+
+        private void Daira_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("select * from projet where Daira like '" + Daira.Text + "%'", dataGridView2);
+        }
+
+        private void Commune_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("select * from projet where Commune like '" + Commune.Text + "%'", dataGridView2);
+        }
+
+        private void Conservation_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            msh.LoadData("SELECT * FROM projet, acteprojet WHERE acteprojet.Conservation like '" +Conservation.Text + "%' and acteprojet.RefProjet = projet.RefProjet", dataGridView2);
+        }
+
+        private void btnimprim1_Click(object sender, RoutedEventArgs e)
+        {
+            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.RefProjet = '" + inputCodeProjet.Text + "' and projet.RefProjet=acteprojet.RefProjet");
+            LPV.Show();
+        }
+
+        private void Btnimprim2_Click(object sender, RoutedEventArgs e)
+        {
+            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.ProjetMaitre = '" + inputNomProjetMaitre.Text + "' and projet.RefProjet=acteprojet.RefProjet");
+            LPV.Show();
+        }
+
+        private void Btnimprim3_Click(object sender, RoutedEventArgs e)
+        {
+            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.NomProjet = '" + inputNomProjet.Text + "' and projet.RefProjet=acteprojet.RefProjet");
+            LPV.Show();
+        }
+
+        private void Btnimprim4_Click(object sender, RoutedEventArgs e)
+        {
+            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where year(acteprojet.DatePubliActe) like '" + inputDatePublication.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
+            LPV.Show();
+        }
+
+        private void Btnimprim5_Click(object sender, RoutedEventArgs e)
+        {
+            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.Wilaya like '" + wilaya.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
+            LPV.Show();
+        }
+
+        private void Btnimprim6_Click(object sender, RoutedEventArgs e)
+        {
+            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.Daira like '" + Daira.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
+            LPV.Show();
+        }
+
+        private void Btnimprim7_Click(object sender, RoutedEventArgs e)
+        {
+            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.Commune like '" + Commune.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
+            LPV.Show();
+        }
+
+        private void Btnimprim8_Click(object sender, RoutedEventArgs e)
+        {
+            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where acteprojet.Conservation like '" + Conservation.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
+            LPV.Show();
+        }
+
+        private void inputCodeProjet_GotFocus(object sender, RoutedEventArgs e)
+        {
+            inputNomProjet.Text = inputNomProjetMaitre.Text = inputCodeProjet.Text = inputDatePublication.Text = wilaya.Text = Daira.Text = Commune.Text = Conservation.Text = string.Empty;
+            msh.LoadData("select * from projet", dataGridView2);
+        }
+
+        private void Conservation_GotFocus(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

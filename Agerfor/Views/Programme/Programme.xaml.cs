@@ -62,7 +62,7 @@ namespace Agerfor.Views.Programme
         {
             if (temprefprogramme != "")
             {
-                AddProgramme AP = new AddProgramme(int.Parse(temprefprogramme), tempNomProgramme);
+                AddProgramme AP = new AddProgramme(int.Parse(temprefprogramme));
                 AP.GridProgramme.IsEnabled = false;
                 NavigationService.Navigate(AP);
             }
@@ -74,13 +74,13 @@ namespace Agerfor.Views.Programme
         }
         private void BtnAjouterProgramme_Click(object sender, RoutedEventArgs e)
         {
-            AddProgramme AP = new AddProgramme(0,""); 
+            AddProgramme AP = new AddProgramme(0); 
             NavigationService.Navigate(AP);
         }
 
         private void BtnModifierProgramme_Click(object sender, RoutedEventArgs e)
         {
-            AddProgramme AP = new AddProgramme(int.Parse(temprefprogramme),tempNomProgramme);
+            AddProgramme AP = new AddProgramme(int.Parse(temprefprogramme));
             AP.BtnAjouterProgramme.IsEnabled = false;
             NavigationService.Navigate(AP);
         }
@@ -98,26 +98,22 @@ namespace Agerfor.Views.Programme
                 }
                 else
                 {
-                    getrefprojet();
-                    ActeProgrammeController APC = new ActeProgrammeController();
+                 
+                    
                     ProgrammeController PC = new ProgrammeController();
                     DirectoryCreator DC = new DirectoryCreator();
-                    PermiLotirController PLC = new PermiLotirController();
                     PermisDeConstruireController PDCC = new PermisDeConstruireController();
                     CahierChargeProgrammeController CCPC = new CahierChargeProgrammeController();
                     EddController EC = new EddController();
                     ConventionController CC = new ConventionController();
                     BiensController BC = new BiensController();
-
-                    DC.DeleteDirectory(@"Projet\" + tempnumprojet + @"\Programme\" + temprefprogramme);
+                    DC.DeleteDirectory(@"Projet\" + tempRefProjet + @"\Programme\" + temprefprogramme);
                     BC.SupprimerLogFromProgramme(int.Parse(temprefprogramme),int.Parse(tempRefProjet));  
-                    APC.SupprimerActeFromProgramme(temprefprogramme);
-                    PLC.SupprimerPLFromProgramme(temprefprogramme);
                     PDCC.SupprimerPermisConstruireFromProgramme(temprefprogramme);
                     CCPC.SupprimerCahierChargefromProgramme(temprefprogramme);
                     EC.SupprimerEddFromProgramme(temprefprogramme);
                     CC.SupprimerConventionFromProgramme(temprefprogramme);
-                    PC.DeleteProgramme(temprefprogramme);
+                    PC.DeleteProgramme(int.Parse(temprefprogramme));
                     Programme P = new Programme("");
                     NavigationService.Navigate(P);
                 }
@@ -157,98 +153,94 @@ namespace Agerfor.Views.Programme
         }
 
 
-
-
-
-
         private void inputRefProgramme_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("select * from programme where RefProgramme like '" + inputRefProgramme.Text + "%'", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet and RefProgramme like '" + inputRefProgramme.Text + "%'", dataGridView2);
 
         }
 
         private void inputNomProgramme_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("select * from programme where NomProgramme like '" + inputNomProgramme.Text + "%'", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet and NomProgramme like '" + inputNomProgramme.Text + "%'", dataGridView2);
         }
 
         private void Site_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("select * from programme where Site like '" + Site.Text + "%'", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet and Site like '" + Site.Text + "%'", dataGridView2);
         }
 
         private void Daira_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("select * from programme where Daira like '" +Daira.Text+"%'", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet and Daira like '" + Daira.Text+"%'", dataGridView2);
 
         }
 
         private void Commune_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("select * from programme where Commune like '" + Commune.Text + "%'", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet and Commune like '" + Commune.Text + "%'", dataGridView2);
         }
 
         private void Natureprogramme_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("select * from programme where NatureProgramme	 like '" + Natureprogramme.Text + "%'", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet and NatureProgramme	 like '" + Natureprogramme.Text + "%'", dataGridView2);
         }
 
         private void Typeprogramme_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("select * from programme where TypeProgramme like '" + Typeprogramme.Text + "%'", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet and TypeProgramme like '" + Typeprogramme.Text + "%'", dataGridView2);
         }
 
         private void Nombredebien_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("select * from programme where NombreBiens like '" + Nombredebien.Text + "%'", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet and NombreBiens like '" + Nombredebien.Text + "%'", dataGridView2);
         }
 
         private void inputRefProgramme_GotFocus(object sender, RoutedEventArgs e)
         {
             inputRefProgramme.Text = inputNomProgramme.Text=Site.Text= Daira.Text= Commune.Text=Natureprogramme.Text=Typeprogramme.Text=Nombredebien.Text= string.Empty;
-            msh.LoadData("select * from programme", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet", dataGridView2);
         }
 
         private void inputNomProgramme_GotFocus(object sender, RoutedEventArgs e)
         {
             inputRefProgramme.Text = inputNomProgramme.Text = Site.Text = Daira.Text = Commune.Text = Natureprogramme.Text = Typeprogramme.Text = Nombredebien.Text = string.Empty;
-            msh.LoadData("select * from programme", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet", dataGridView2);
         }
 
         private void Site_GotFocus(object sender, RoutedEventArgs e)
         {
             inputRefProgramme.Text = inputNomProgramme.Text = Site.Text = Daira.Text = Commune.Text = Natureprogramme.Text = Typeprogramme.Text = Nombredebien.Text = string.Empty;
-            msh.LoadData("select * from programme", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet", dataGridView2);
         }
 
         private void Daira_GotFocus(object sender, RoutedEventArgs e)
         {
             inputRefProgramme.Text = inputNomProgramme.Text = Site.Text = Daira.Text = Commune.Text = Natureprogramme.Text = Typeprogramme.Text = Nombredebien.Text = string.Empty;
-            msh.LoadData("select * from programme", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet", dataGridView2);
         }
 
         private void Commune_GotFocus(object sender, RoutedEventArgs e)
         {
             inputRefProgramme.Text = inputNomProgramme.Text = Site.Text = Daira.Text = Commune.Text = Natureprogramme.Text = Typeprogramme.Text = Nombredebien.Text = string.Empty;
-            msh.LoadData("select * from programme", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet", dataGridView2);
         }
 
         private void Natureprogramme_GotFocus(object sender, RoutedEventArgs e)
         {
             inputRefProgramme.Text = inputNomProgramme.Text = Site.Text = Daira.Text = Commune.Text = Natureprogramme.Text = Typeprogramme.Text = Nombredebien.Text = string.Empty;
-            msh.LoadData("select * from programme", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet", dataGridView2);
         }
 
         private void Typeprogramme_GotFocus(object sender, RoutedEventArgs e)
         {
             inputRefProgramme.Text = inputNomProgramme.Text = Site.Text = Daira.Text = Commune.Text = Natureprogramme.Text = Typeprogramme.Text = Nombredebien.Text = string.Empty;
-            msh.LoadData("select * from programme", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet", dataGridView2);
         }
 
         private void Nombredebien_GotFocus(object sender, RoutedEventArgs e)
         {
             inputRefProgramme.Text = inputNomProgramme.Text = Site.Text = Daira.Text = Commune.Text = Natureprogramme.Text = Typeprogramme.Text = Nombredebien.Text = string.Empty;
-            msh.LoadData("select * from programme", dataGridView2);
+            msh.LoadData("select * from programme,projet where programme.RefProjet=projet.RefProjet", dataGridView2);
         }
     }
 }

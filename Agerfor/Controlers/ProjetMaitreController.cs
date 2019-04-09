@@ -20,8 +20,7 @@ namespace Agerfor.Controlers
             }
             catch (Exception)
             {
-                MessageBox.Show("Le projet maitre '" + NomProjet + "' n'a pas été ajouté");
-
+                MessageBox.Show("Le projet maitre "+NomProjet+" existe déja veuillez introduire un nouveau");
             }
         }
 

@@ -58,8 +58,12 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                         <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Volume</Label>
-                                        <TextBox x:Name="inputVolume" Background="#FAFAFA" Width="360" FontSize="18"
+                                        <TextBox x:Name="inputVolume" Background="#FAFAFA" Width="147" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Ref Publi</Label>
+                                        <TextBox x:Name="inputRefPub" Background="#FAFAFA" Width="130" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
                                         <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Conservation</Label>
@@ -100,6 +104,19 @@
                                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Téléphone géomètre</Label>
                                         <TextBox x:Name="inputTelGeo" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date Etablissement
+                                        </Label>
+                                        <DatePicker x:Name="inputDateGeo"  Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right" BorderBrush="Red"  xml:lang="fr-FR">
+                                        </DatePicker>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Redicte</Label>
+                                        <TextBox x:Name="inputRedicte" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">

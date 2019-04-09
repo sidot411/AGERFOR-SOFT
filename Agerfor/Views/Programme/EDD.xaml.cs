@@ -25,13 +25,22 @@ namespace Agerfor.Views.Programme
         string tempnumprojet = "";
         string tempNumEdd = "";
         string tempPrevNumEDD = "";
+        string TypeProgramme;
+        string typevente;
+        decimal coutFoncier;
+        decimal Prixm2;
         
-        public EDD(int RefProjet, string refprogramme)
+        public EDD(int RefProjet, string refprogramme,string TypeProgramme,string typevente, decimal Coufoncier,decimal Prixm2)
         {
             InitializeComponent();
             title.Text = "EDD";
+            this.Prixm2 = Prixm2;
+            this.coutFoncier = Coufoncier;
+            this.typevente = typevente;
+            this.TypeProgramme = TypeProgramme;
             this.RefProgramme = refprogramme;
             this.RefProjet = RefProjet;
+           
             msh.FillDropDownList("select NomConservation from conservation", inputConservation, "NomConservation");
             string query3 = "select MAX(NumEdd)+1 AS Num from edd;";
             MySqlDataReader rdr3 = null;
@@ -108,6 +117,7 @@ namespace Agerfor.Views.Programme
                     inputNumEnreg.Text = rdr["NumEnrg"].ToString();*/
                     inputDateEnreg.Text = rdr["Date"].ToString();
                     inputVolume.Text = rdr["Volume"].ToString();
+                    inputRefPub.Text = rdr["RefPubli"].ToString();
                     inputConservation.Text = rdr["Conservation"].ToString();
                     inputNotaire.Text = rdr["Notaire"].ToString();
                     inputTelNotaire.Text = rdr["TelNotaire"].ToString();
@@ -145,7 +155,7 @@ namespace Agerfor.Views.Programme
             string Edd = "Edd";
             DirectoryCreator DC = new DirectoryCreator();
             DC.CreateDirectoryProgramme(RefProjet.ToString(), RefProgramme + "/" + Edd + "/" + inputNumEDD.Text);
-            EC.AjouterEdd(RefProjet, RefProgramme, inputDateEnreg.Text, inputVolume.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrEQ.Text, decimal.Parse(inputSupEQ.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text));
+            EC.AjouterEdd(RefProjet, RefProgramme, inputDateEnreg.Text, inputVolume.Text,inputRefPub.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text,inputDateGeo.Text,inputRedicte.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrEQ.Text, decimal.Parse(inputSupEQ.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text));
             msh.LoadData("select *,DATE_FORMAT(DatePubli,'%d/%m/%y') AS Date from edd where RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "'", dataViewListeEdd);
             inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text= inputNbrLog.Text=inputNbrLoc.Text=inputNbrCave.Text=inputNbrEQ.Text=inputNbrPS.Text=inputNbrBur.Text= "";
             inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSupCave.Text = inputSupEQ.Text = inputSupPS.Text = "0";
@@ -166,7 +176,7 @@ namespace Agerfor.Views.Programme
                 System.Windows.MessageBox.Show("Veuillez selectionner un EDD pour le modifié", "information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else { 
-                EC.ModifierEdd(RefProjet, RefProgramme, inputDateEnreg.Text, inputVolume.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrEQ.Text, decimal.Parse(inputSupEQ.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text),tempNumEdd);
+                EC.ModifierEdd(RefProjet, RefProgramme, inputDateEnreg.Text, inputVolume.Text,inputRefPub.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text, inputDateGeo.Text, inputRedicte.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrEQ.Text, decimal.Parse(inputSupEQ.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text),tempNumEdd);
                 msh.LoadData("select *,DATE_FORMAT(DatePubli,'%d/%m/%y') AS Date from edd where RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "'", dataViewListeEdd);
                 inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrEQ.Text = inputNbrPS.Text = inputNbrBur.Text = "";
                 inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSupCave.Text = inputSupEQ.Text = inputSupPS.Text = "0";
@@ -269,7 +279,7 @@ namespace Agerfor.Views.Programme
             }
             else
             {
-                System.Windows.MessageBox.Show("aucun fichier selectionner");
+                System.Windows.MessageBox.Show("aucun fichier selectionner");  
             }
         }
 
@@ -281,18 +291,21 @@ namespace Agerfor.Views.Programme
             win.Content = bien;
             win.Title = "Biens";
             win.Show();*/
+
+
             if (tempNumEdd !="")
             {
                 Window window = new Window
 
                 {
                     Title = "Ajouter/Liste biens",
-                    Content = new CreationListeLog(RefProjet, int.Parse(RefProgramme), int.Parse(tempNumEdd)),
+                    Content = new CreationListeLog(RefProjet, int.Parse(RefProgramme), int.Parse(tempNumEdd),TypeProgramme,typevente,coutFoncier,Prixm2),
                     SizeToContent = SizeToContent.WidthAndHeight,
                     ResizeMode = ResizeMode.NoResize,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
 
                 };
+
                 window.ShowDialog();
             }
             else
@@ -316,7 +329,7 @@ namespace Agerfor.Views.Programme
               
                  DirectoryCreator DC = new DirectoryCreator();
                  DC.CreateDirectoryProgramme(RefProjet.ToString(), RefProgramme + "/" + Edd + "/" + NumEddModif);
-                 EC.AjouterEdd(RefProjet, RefProgramme, inputDateEnreg.Text, inputVolume.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrEQ.Text, decimal.Parse(inputSupEQ.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text));
+                 EC.AjouterEdd(RefProjet, RefProgramme, inputDateEnreg.Text, inputVolume.Text,inputRefPub.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text, inputDateGeo.Text, inputRedicte.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrEQ.Text, decimal.Parse(inputSupEQ.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text));
                  BS.BiensEddModificatif(int.Parse(tempNumEdd),int.Parse(NumEddModif),int.Parse(RefProgramme),RefProjet);
                  msh.LoadData("select *,DATE_FORMAT(DatePubli,'%d/%m/%y') AS Date from edd where RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "'", dataViewListeEdd);
                  inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrEQ.Text = inputNbrPS.Text = inputNbrBur.Text = "";

@@ -11,11 +11,11 @@ namespace Agerfor.Controlers
     {
         MySqlHelper msh = new MySqlHelper();
 
-        public void AjouterPermisConstruire(string NumPermisConstruire, string DatePermisC, decimal FraisDivers, string NbrLog, decimal SupLog, string NbrLoc, decimal SupLoc, string NbrBur, decimal SupBur, string NbrCave, decimal SupCave, string NbrCC, decimal SupCC, string NbrPS, decimal SupPS,string RefProgramme, string NomProjet)
+        public void AjouterPermisConstruire(string DatePermisC,  string NbrLog, decimal SupLog, string NbrLoc, decimal SupLoc, string NbrBur, decimal SupBur, string NbrCave, decimal SupCave, string NbrCC, decimal SupCC, string NbrPS, decimal SupPS,int RefProgramme, int RefProjet)
         {
             try
             {
-                msh.ExecuteQuery("insert into permisdeconstruire values ('" + NumPermisConstruire + "','"+DatePermisC+"','"+FraisDivers+"','"+NbrLog+"','"+SupLog+"','"+NbrLoc+"','"+SupLoc+"','"+NbrBur+"','"+SupBur+"','"+NbrCave+"','"+SupCave+"','"+NbrCC+"','"+SupCC+"','"+NbrPS+"','"+SupPS+"','"+RefProgramme+"','"+NomProjet+"')");
+                msh.ExecuteQuery("INSERT INTO `permisdeconstruire` (`DatePermisC`, `NbrLog`, `SupLog`, `NbrLoc`, `SupLoc`, `NbrBur`, `SupBur`, `NbrCave`, `SupCave`, `NbrCC`, `SupCC`, `NbrPS`, `SupPS`, `RefProgramme`, `RefProjet`) VALUES (STR_TO_DATE('" + DatePermisC + "', '%d/%m/%Y'),'" + NbrLog + "','" + SupLog + "','" + NbrLoc + "','" + SupLoc + "','" + NbrBur + "','" + SupBur + "','" + NbrCave + "','" + SupCave + "','" + NbrCC + "','" + SupCC + "','" + NbrPS + "','" + SupPS + "','" + RefProgramme + "','" + RefProjet + "')");
                 MessageBox.Show("Le permis de construire à été bien ajouté");
 
             }
@@ -26,11 +26,11 @@ namespace Agerfor.Controlers
 
         }
 
-        public void ModifierPermisConstruire(string NumPermisConstruire,string DatePermisC,decimal FraisDivers, string NbrLog, decimal SupLog, string NbrLoc, decimal SupLoc, string NbrBur, decimal SupBur, string NbrCave, decimal SupCave, string NbrCC, decimal SupCC, string NbrPS, decimal SupPS , string RefProgramme, string NomProjet ,string tempNumPC )
+        public void ModifierPermisConstruire(string DatePermisC,string NbrLog, decimal SupLog, string NbrLoc, decimal SupLoc, string NbrBur, decimal SupBur, string NbrCave, decimal SupCave, string NbrCC, decimal SupCC, string NbrPS, decimal SupPS , int RefProgramme, int NomProjet ,int tempNumPC )
         {
             try
             {
-                msh.ExecuteQuery("update permisdeconstruire set NumPermis='" + NumPermisConstruire + "',DatePermisC='"+DatePermisC+"',FraisDivers='"+FraisDivers+"',NbrLog='"+NbrLog+"',SupLog='"+SupLog+"',NbrLoc='"+NbrLoc+"',SupLoc='"+SupLoc+"',NbrBur='"+NbrBur+"',SupBur='"+SupBur+"',NbrCave='"+NbrCave+"',SupCave='"+SupCave+"',NbrCC='"+NbrCC+"',SupCC='"+SupCC+"',NbrPS='"+NbrPS+"',SupPS='"+SupPS+"',RefProgramme='"+RefProgramme+"',NomProjet='"+NomProjet+"' where NumPermis='"+tempNumPC+"'");
+                msh.ExecuteQuery("update permisdeconstruire set DatePermisC=STR_TO_DATE('" + DatePermisC + "', '%d/%m/%Y'),NbrLog='" + NbrLog+"',SupLog='"+SupLog+"',NbrLoc='"+NbrLoc+"',SupLoc='"+SupLoc+"',NbrBur='"+NbrBur+"',SupBur='"+SupBur+"',NbrCave='"+NbrCave+"',SupCave='"+SupCave+"',NbrCC='"+NbrCC+"',SupCC='"+SupCC+"',NbrPS='"+NbrPS+"',SupPS='"+SupPS+"',RefProgramme='"+RefProgramme+"',NomProjet='"+NomProjet+"' where NumPermis='"+tempNumPC+"'");
                 MessageBox.Show("Le permis de construire à été bien modifié");
             }
             catch(Exception)
@@ -39,7 +39,7 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void SupprimerPermisConstruire (string NumPermisConstruire)
+        public void SupprimerPermisConstruire (int NumPermisConstruire)
         {
             try
             {
@@ -65,11 +65,11 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void SupprimerPermisConstruireFromProjet(string tempNomProjet)
+        public void SupprimerPermisConstruireFromProjet(int RefProjet)
         {
             try
             {
-                msh.ExecuteQuery("delete from permisdeconstruire where NomProjet='" + tempNomProjet + "'");
+                msh.ExecuteQuery("delete from permisdeconstruire where RefProjet='" + RefProjet + "'");
                 
             }
             catch (Exception)

@@ -24,7 +24,7 @@
                     <StackPanel Orientation="Vertical" >
                         <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Informations Projet</Label>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                            <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Réf Projet</Label>
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Code Projet</Label>
                             <TextBox x:Name="inputRefProjet" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                         </StackPanel>
@@ -141,7 +141,8 @@
                             <Button Background="#007CC3" x:Name="BtnAnnulerProjet" Content="Anuuler" Height="35" Width="140" Margin="0 0 0 10" Click="BtnAnnulerProjet_Click"/>
                             <Button Background="#007CC3" x:Name="BtnimprimerProjet" Content="Imprimer" Height="35" Width="140" Click="BtnimprimerProjet_Click"/>
                         </StackPanel>
-                        <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 40 0 0"
+                        <StackPanel Orientation="Vertical">
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="80" Width="140" BorderThickness="0" Margin="20 0 0 10"
                        x:Name="BtnUploadFiles" HorizontalAlignment="center" Click="BtnUploadFiles_Click">
                             <StackPanel Orientation="Vertical">
                                 <materialDesign:PackIcon Kind="FileDocument" Width="35" Height="35" VerticalAlignment="Center"
@@ -149,12 +150,21 @@
                                 <TextBlock Text="Joindre" VerticalAlignment="Center" Height="25" />
                             </StackPanel>
                         </Button>
-                        <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="140" BorderThickness="0" Margin="20 40 0 0"
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="80" Width="140" BorderThickness="0" Margin="20 0 0 0"
                        x:Name="BtnOpenFolder" HorizontalAlignment="center" Click="BtnOpenFolder_Click">
                             <StackPanel Orientation="Vertical">
                                 <materialDesign:PackIcon Kind="FolderOpen" Width="35" Height="35" VerticalAlignment="Center"
                                            HorizontalAlignment="Center" Margin="0 0 0 5" />
                                 <TextBlock Text="Ouvrir projet" VerticalAlignment="Center" Height="25" />
+                            </StackPanel>
+                        </Button>
+                        </StackPanel>
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="80" Width="140" BorderThickness="0" Margin="20 0 0 0"
+                       x:Name="BtnPermiLotir" HorizontalAlignment="center" Click="BtnPermiLotir_Click">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="PermMedia" Width="35" Height="35" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Permis Lotir" VerticalAlignment="Center" Height="25" />
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -224,7 +234,7 @@
                         BorderThickness="0" 
                         AlternatingRowBackground="#F3F3F3"
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
-                        Width="500" Height="350" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewActeProjet_SelectionChanged" >
+                        Width="500" Height="200" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewActeProjet_SelectionChanged" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumActe}" Header="Num Acte" />
                                     <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding Date}" Header="Date Publication" />
@@ -235,15 +245,36 @@
                             </DataGrid>
                         </Border>
                     </StackPanel>
+                    <Label FontSize="18" FontWeight="Bold" Margin="10 20 0 10">Ajouter Ilot</Label>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Num Ilot</Label>
+                        <TextBox x:Name="inputIlot" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Button Background="#007CC3" x:Name="BtnAjouterIlot" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterIlot_Click"   />
+                        <Button Background="#007CC3" x:Name="BtnModifierIlot" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierIlot_Click"  />
+                        <Button Background="#007CC3" x:Name="BtnSupprimerIlot" Content="Supprimer" Height="35" Width="105" Click="BtnSupprimerIlot_Click" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="30 15 0 0">
+                        <Border BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="20" Opacity="0.2" />
+                            </Border.Effect>
+                            <DataGrid x:Name="dataViewIlot" AutoGenerateColumns="False" BorderBrush="White"
+                        BorderThickness="0" 
+                        AlternatingRowBackground="#F3F3F3"
+                        CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
+                        Width="500" Height="200" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewIlot_SelectionChanged"  >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn  Width="10*" Binding="{Binding Id}" Header="Id" />
+                                    <DataGridTextColumn  Width="90*" Binding="{Binding NumIlot}" Header="Num Ilot" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </StackPanel>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0 57 0 0">
-                        <Button Background="#007CC3" VerticalAlignment="Bottom" Height="100" Width="140" BorderThickness="0" Margin="20 40 0 0"
-                       x:Name="BtnPermiLotir" HorizontalAlignment="center" Click="BtnPermiLotir_Click">
-                            <StackPanel Orientation="Vertical">
-                                <materialDesign:PackIcon Kind="PermMedia" Width="35" Height="35" VerticalAlignment="Center"
-                                           HorizontalAlignment="Center" Margin="0 0 0 5" />
-                                <TextBlock Text="Permis Lotir" VerticalAlignment="Center" Height="25" />
-                            </StackPanel>
-                        </Button>
+                       
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

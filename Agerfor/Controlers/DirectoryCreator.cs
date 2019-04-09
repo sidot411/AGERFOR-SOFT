@@ -300,7 +300,7 @@ namespace Agerfor.Controlers
         public void DeleteDirectory(string name)
     {
         string path = Directory.GetCurrentDirectory()+@"\" + name;
-            MessageBox.Show(path);
+          
         try
         {
             

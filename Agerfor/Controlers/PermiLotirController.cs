@@ -63,11 +63,11 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void SupprimerPLFromProjet(string NomProjet)
+        public void SupprimerPLFromProjet(int RefProjet)
         {
             try
             {
-                msh.ExecuteQuery("delete from permilotir where NomProjet='" + NomProjet + "'");
+                msh.ExecuteQuery("delete from permilotir where RefProjet='" +RefProjet + "'");
                 
             }
             catch (Exception)

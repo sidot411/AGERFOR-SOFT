@@ -12,11 +12,11 @@ namespace Agerfor.Controlers
     class ProgrammeController
     {
         MySqlHelper msh = new MySqlHelper();
-        public void AjouterProgramme(int RefProjet, string NomProgramme, string Site, string Daira, string Commune, string NatureProgramme, string TypeProgramme, string NombreBiens, decimal Superficie)
+        public void AjouterProgramme(int RefProjet, string NomProgramme, string Site, string Daira, string Commune, string NatureProgramme, string TypeProgramme, string NombreBiens, decimal Superficie, string TypeVente, decimal CoutFoncier, decimal Tva, decimal CoutFoncierTTC, decimal PrixM2)
         {
             try
             {
-                msh.ExecuteQuery("INSERT INTO `programme` (`RefProjet`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`) VALUES ('"+RefProjet+"','"+NomProgramme+"', '"+Site+"', '"+Daira+"', '"+Commune+"', '"+NatureProgramme+"', '"+TypeProgramme+"', '"+NombreBiens+"', '"+Superficie+"')");
+                msh.ExecuteQuery("INSERT INTO `programme` (`RefProjet`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`,`TypeVente`,`CoutFoncier`,`TVA`,`CoutFoncierTTC`,`PrixM2`) VALUES ('" + RefProjet+"','"+NomProgramme+"', '"+Site+"', '"+Daira+"', '"+Commune+"', '"+NatureProgramme+"', '"+TypeProgramme+"', '"+NombreBiens+"', '"+Superficie+"','"+TypeVente+"','"+CoutFoncier+"','"+Tva+"','"+CoutFoncierTTC+"','"+PrixM2+"')");
                     MessageBox.Show("Le programme a était ajouter avec succès");
             }
             catch (MySqlException myException)
@@ -27,11 +27,11 @@ namespace Agerfor.Controlers
 
 
         }        
-        public void Editprogramme(int RefProjet, string NomProjet, string NomProgramme, string Site, string Daira, string Commune, string NatureProgramme, string TypeProgramme, string NombreBiens, decimal Superficie,int tempRefProgramme)
+        public void Editprogramme(int RefProjet, string NomProgramme, string Site, string Daira, string Commune, string NatureProgramme, string TypeProgramme, string NombreBiens, decimal Superficie,string TypeVente, decimal CoutFoncier, decimal Tva, decimal CoutFoncierTTC, decimal PrixM2, int tempRefProgramme)
         {
             try
             {
-                msh.ExecuteQuery("update programme set RefProjet='"+RefProjet+"', NomProjet='"+NomProjet+"', NomProgramme='" + NomProgramme + "',Site='" + Site + "',Daira='" + Daira + "',Commune='" + Commune + "',NatureProgramme='" + NatureProgramme + "',TypeProgramme='" + TypeProgramme + "',NombreBiens='" + NombreBiens + "',Superficie='" + Superficie + "' where RefProgramme='"+tempRefProgramme+"'");
+                msh.ExecuteQuery("update programme set RefProjet='"+RefProjet+"', NomProgramme='" + NomProgramme + "',Site='" + Site + "',Daira='" + Daira + "',Commune='" + Commune + "',NatureProgramme='" + NatureProgramme + "',TypeProgramme='" + TypeProgramme + "',NombreBiens='" + NombreBiens + "',Superficie='" + Superficie + "',TypeVente='"+TypeVente+"', CoutFocier ='"+CoutFoncier+"',TVA='"+Tva+"',CoutFocnierTTC='"+CoutFoncierTTC+"',PrixM2='"+PrixM2+"'  where RefProgramme='"+tempRefProgramme+"'");
                 MessageBox.Show("Le programme a était modifié avec succès");
             }
 
@@ -40,7 +40,7 @@ namespace Agerfor.Controlers
                 MessageBox.Show("Le pogramme n'a pas était modifié !");
             }
         }
-        public void DeleteProgramme(string RefProgramme)
+        public void DeleteProgramme(int RefProgramme)
         {
             try
             {
@@ -53,12 +53,12 @@ namespace Agerfor.Controlers
                 MessageBox.Show("Le programme n'a pas était supprimer", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        public void DeleteProgrammeFromProjet(string NomProjet)
+        public void DeleteProgrammeFromProjet(int RefProjet)
         {
             try
             {
-                msh.ExecuteQuery("delete from programme where NomProjet = '" +NomProjet+ "'");
-                MessageBox.Show("Le(s) programme(s) du projet "+NomProjet+" ont était bien supprimé");
+                msh.ExecuteQuery("delete from programme where RefProjet = '" +RefProjet+ "'");
+                MessageBox.Show("Le(s) programme(s) du projet "+RefProjet+" ont était bien supprimé");
             }
 
             catch (Exception)

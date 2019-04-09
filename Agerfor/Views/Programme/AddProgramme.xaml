@@ -9,7 +9,7 @@
       xmlns:mydata="clr-namespace:SmarterDB.CodeProject.TestData;assembly=SmarterDB.CodeProject.TestData"    
       xmlns:myentry="clr-namespace:SmarterDB.CodeProject.DataEntry;assembly=SmarterDB.CodeProject.DataEntry"    
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  
-      d:DesignHeight="2200" d:DesignWidth="1300" 
+      d:DesignHeight="1050" d:DesignWidth="1300" 
       xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
       Title="AddProgramme" Background="#E6EAED" Loaded="Page_Loaded" >
     
@@ -33,7 +33,7 @@
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
                             <Label FontSize="18" FontWeight="Bold" Margin="10 0 0 10">Informations programme</Label>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Ref Projet</Label>
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Code Projet</Label>
                                 <ComboBox x:Name="inputRefProjet" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15" materialDesign:HintAssist.Hint="Selectionner un projet"
                           Height="35" BorderBrush="Red" SelectionChanged="inputRefProjet_SelectionChanged">
@@ -46,7 +46,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Réf Programme</Label>
+                                <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Code Programme</Label>
                         <TextBox x:Name="inputRefProgramme" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                     </StackPanel>
@@ -103,6 +103,41 @@
                             <TextBox x:Name="inputSuperficie" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
                         </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Type de vente</Label>
+                                <ComboBox  x:Name="inputTypevente"  Background="#FAFAFA" Width="360" FontSize="18" SelectedValuePath="Content"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" SelectionChanged="inputTypevente_SelectionChanged">
+                                    <ComboBoxItem>Vente par unité</ComboBoxItem>
+                                    <ComboBoxItem>Vente par m²</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Cout foncier HT</Label>
+                                <TextBox  x:Name="inputCoutF" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=OneWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">TVA</Label>
+                                <ComboBox x:Name="inputTva" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" SelectionChanged="inputTva_SelectionChanged">
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Cout foncier TTC</Label>
+                                <TextBox  x:Name="inputCoutFTTC" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=OneWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prix du m²</Label>
+                                <TextBox  x:Name="inputM2" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=OneWay}" 
+                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
+                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}"/>
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 10 0 0">
                                 <Button Background="#007CC3"   x:Name="BtnAjouterProgramme" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterProgramme_Click"/>
                                 <Button Background="#007CC3"  x:Name="BtnModifierProgramme" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierProgramme_Click" />
@@ -127,7 +162,7 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                                <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date P construire
+                                <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Date publication P construire
                                 </Label>
                                 <DatePicker  x:Name="inputDatePermisConstruire" Background="#FAFAFA" Height="35" FontSize="17"
                             VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
@@ -135,14 +170,7 @@
                                 </DatePicker>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Frais Divers</Label>
-                                <TextBox x:Name="inputFraisDivers" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
-                         myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
-                         myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" SelectionOpacity="-6" />
-
-                            </StackPanel>
+                          
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Foreground="Red" Margin="0 0 20 0">Nombre logement</Label>
                                 <TextBox  x:Name="inputNbrLog" Background="#FAFAFA" Width="120" FontSize="18"
@@ -217,7 +245,7 @@
                         Width="500" Height="370" RowDetailsVisibilityMode="VisibleWhenSelected" x:Name="DataGridPConstruire" SelectionChanged="DataGridPConstruire_SelectionChanged" >
                                         <DataGrid.Columns>
                                             <DataGridTextColumn  Width="*" Binding="{Binding NumPermis}" Header="Num Permis construire" />
-                                            <DataGridTextColumn  Width="*" Binding="{Binding DatePermisC}" Header="Date Permis construire" />
+                                            <DataGridTextColumn  Width="*" Binding="{Binding Date}" Header="Date Permis construire" />
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </Border>
@@ -243,7 +271,7 @@
                                 <TextBlock TextAlignment="Center">Convention</TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Background="#007CC3" Height="60" Width="150" Margin="0 0 20 0" Click="Button_Click" >
+                        <Button Background="#007CC3" Height="60" Width="150" Margin="0 0 20 0"  >
                             <StackPanel Orientation="Vertical">
                                 <TextBlock>Ajouter/Afficher</TextBlock>
                                 <TextBlock TextAlignment="Center">Conformité</TextBlock>

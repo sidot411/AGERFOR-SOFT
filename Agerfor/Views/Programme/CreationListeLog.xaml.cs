@@ -23,18 +23,59 @@ namespace Agerfor.Views.Programme
         int RefProjet = 0;
         int NumEdd = 0;
         string tempnumprojet = "";
+        string TypeBien;
         string tempTypeBien = "";
-        string tempNumBien = "";
+        string tempNumLot = "";
         string tempNumIlot = "";
+        string typevente;
+        decimal CoutFoncierTTC;
+        decimal prixm2;
 
 
-        public CreationListeLog(int RefProjet, int refprogramme, int NumEdd)
+        public CreationListeLog(int RefProjet, int refprogramme, int NumEdd, string TypeBien,string typevente, decimal CoutFoncierTTC, decimal prixm2)
         {
             InitializeComponent();
-            msh.FillDropDownList("select Type from typebiens", inputTypeBien, "Type");
+
+            inputPrixHT.IsEnabled =  false;
+            msh.FillDropDownList("select ValeurTva from tva", inputTva, "ValeurTva");
             this.RefProgramme = refprogramme;
             this.RefProjet = RefProjet;
             this.NumEdd = NumEdd;
+            this.TypeBien = TypeBien;
+            this.typevente = typevente;
+            this.CoutFoncierTTC = CoutFoncierTTC;
+            this.prixm2 = prixm2;
+            msh.FillDropDownList("select NumIlot from listeilot where RefProjet='" + RefProjet + "'",inputNumIlot,"NumIlot");
+
+            if(TypeBien=="CNL" || TypeBien == "LPA" || TypeBien == "LSP" || TypeBien == "Promotionnel Semi Collectif" || TypeBien == "Promotionnel Individuel" || TypeBien == "Promotionnel Collectif")
+            {
+                inputTypeBien.Text = "Logement";
+                inputTypeBien.IsEnabled = false;
+            }
+            
+            if (inputTypeBien.Text == "Terrain")
+
+            {
+                inputNumBloc.IsEnabled = inputNiveau.IsEnabled = inputNbrPiece.IsEnabled = false;
+                inputLimiteEst.IsEnabled = inputLimiteNord.IsEnabled = inputLimiteOuest.IsEnabled = inputLimiteSud.IsEnabled = true;
+            }
+
+            else
+
+            {
+                inputNumBloc.IsEnabled = inputNiveau.IsEnabled = inputNbrPiece.IsEnabled = true;
+                inputLimiteEst.IsEnabled = inputLimiteNord.IsEnabled = inputLimiteOuest.IsEnabled = inputLimiteSud.IsEnabled = false;
+            }
+            if(typevente== "Vente par unité")
+            {
+                inputPrixHT.IsEnabled = inputTva.IsEnabled = false;
+            }
+            else
+            {
+                inputTva.IsEnabled = true;
+                inputPrixHT.Text = prixm2.ToString();
+
+            }
 
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -52,27 +93,27 @@ namespace Agerfor.Views.Programme
                 MySqlConnection con = null;
                 MySqlCommand cmd = null;
 
-                string Numbien = "";
+                string Numlot = "";
                 List<string> someStringList = new List<string>();
                 con = new MySqlConnection(Database.ConnectionString());
                 con.Open();
-                cmd = new MySqlCommand("select NumBien from biens WHERE RefProgramme='"+RefProgramme+"' and RefProjet='"+RefProjet+"' and NumEdd='"+NumEdd+"' and NumIlot='"+inputNumIlot.Text+"' and Numlot='"+inputNumLot.Text+"' and TypeBien = '"+inputTypeBien.Text+ "' and NumBloc='"+inputNumBloc.Text+"'" , con);
+                cmd = new MySqlCommand("select Numlot from biens WHERE RefProgramme='"+RefProgramme+"' and RefProjet='"+RefProjet+"' and NumEdd='"+NumEdd+"' and NumIlot='"+inputNumIlot.Text+"' and TypeBien = '"+inputTypeBien.Text+ "' and NumBloc='"+inputNumBloc.Text+"'" , con);
                 rdr = cmd.ExecuteReader();
                 {
                     while (rdr.Read())
                     {
-                      Numbien = rdr.GetString("NumBien");
-                      someStringList.Add(Numbien);
+                      Numlot = rdr.GetString("Numlot");
+                      someStringList.Add(Numlot);
                     }
                     con.Close();
                     int i;
                     for (i = 0; i < someStringList.Count; i++)
                     {
-                        if (inputNumBien.Text == someStringList[i])
+                        if (inputNumLot.Text == someStringList[i])
                         {
-                            MessageBox.Show("Le num de bien '" + inputNumBien.Text + "' existe déja veuillez introduire un nouveau");
-                            inputNumBien.Text = "";
-                            inputNumBien.Background = Brushes.LightYellow;
+                            MessageBox.Show("Le lot '" + inputNumLot.Text + "' existe déja veuillez introduire un nouveau");
+                            inputNumLot.Text = "";
+                            inputNumLot.Background = Brushes.LightYellow;
 
 
                         }
@@ -80,11 +121,11 @@ namespace Agerfor.Views.Programme
                     }
 
 
-                    if (inputNumBien.Text != "")
+                    if (inputNumLot.Text != "")
                     {
-                        BC.AjouterBiens(RefProgramme, RefProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text, inputNumBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSup.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text, inputEtat.Text);
-                        inputNumBien.Background = Brushes.White;
-                        inputNumIlot.Text = inputNumLot.Text = inputNumBloc.Text =inputNumBien.Text=inputNiveau.Text=inputNbrPiece.Text=inputSup.Text=inputLimiteEst.Text=inputLimiteNord.Text=inputLimiteOuest.Text=inputLimiteSud.Text="";
+                        BC.AjouterBiens(RefProgramme, RefProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text , inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSurH.Text),decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text, inputEtat.Text);
+                        inputNumLot.Background = Brushes.White;
+                        inputNumIlot.Text = inputNumLot.Text = inputNumBloc.Text = inputNiveau.Text=inputNbrPiece.Text=inputSurH.Text = inputSurU.Text = inputLimiteEst.Text=inputLimiteNord.Text=inputLimiteOuest.Text=inputLimiteSud.Text="";
                         inputPrixHT.Text = "0.00";
                         inputTva.Text = "0";
                         inputPrixTTC.Text = "0.00";
@@ -111,13 +152,13 @@ namespace Agerfor.Views.Programme
             DataGridCellInfo cell0 = dataViewListeBien.SelectedCells[0];
             tempNumIlot = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
             DataGridCellInfo cell1 = dataViewListeBien.SelectedCells[1];
-            tempTypeBien = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
+            tempNumLot = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
             DataGridCellInfo cell2 = dataViewListeBien.SelectedCells[2];
-            tempNumBien = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
+            tempTypeBien = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
 
 
 
-            string query = "select * from biens where NumEdd='" + NumEdd + "' and RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "' and TypeBien='" + tempTypeBien + "' and NumBien='" + tempNumBien + "'";
+            string query = "select * from biens where NumEdd='" + NumEdd + "' and RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "' and TypeBien='" + tempTypeBien + "' and Numlot='" + tempNumLot + "'";
             MySqlDataReader rdr = null;
             MySqlConnection con = null;
             MySqlCommand cmd = null;
@@ -135,12 +176,12 @@ namespace Agerfor.Views.Programme
                 {
                     inputNumIlot.Text = rdr["NumIlot"].ToString();
                     inputTypeBien.Text = rdr["TypeBien"].ToString();
-                    inputNumBien.Text = rdr["NumBien"].ToString();
-                    inputNumLot.Text = rdr["NumLot"].ToString();
+                    inputNumLot.Text = rdr["Numlot"].ToString();
                     inputNumBloc.Text = rdr["NumBloc"].ToString();
                     inputNiveau.Text = rdr["Niveau"].ToString();
                     inputNbrPiece.Text = rdr["NbrPiece"].ToString();
-                    inputSup.Text = rdr["Sup"].ToString();
+                    inputSurH.Text = rdr["SurH"].ToString();
+                    inputSurU.Text = rdr["SurU"].ToString();
                     inputPrixHT.Text = rdr["PrixHT"].ToString();
                     inputTva.Text = rdr["Tva"].ToString();
                     inputPrixTTC.Text = rdr["PrixTTC"].ToString();
@@ -156,24 +197,25 @@ namespace Agerfor.Views.Programme
 
         private void BtnModifierBien_Click(object sender, RoutedEventArgs e)
         {
-            BC.ModifierBien(RefProgramme, RefProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text, inputNumBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSup.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text, tempNumBien, tempTypeBien);
+            BC.ModifierBien(RefProgramme, RefProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSurH.Text), decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text,tempNumLot, tempTypeBien);
             msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "' and NumEdd='" + NumEdd + "'", dataViewListeBien);
           
 
         }
         private void inputPrixHT_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+/*
             try
             {
-                inputPrixTTC.Text = (decimal.Parse(inputPrixHT.Text) + (decimal.Parse(inputPrixHT.Text) * (decimal.Parse(inputTva.Text)) / 100)).ToString();
+                inputPrixTTC.Text = ((decimal.Parse(inputPrixHT.Text) * ((decimal.Parse(inputSurH.Text) + decimal.Parse(inputSurU.Text)))) + ((decimal.Parse(inputPrixHT.Text) * (decimal.Parse(inputSurH.Text) + decimal.Parse(inputSurU.Text))) * (decimal.Parse(inputTva.Text)) / 100) + CoutFoncierTTC).ToString();
+
             }
             catch (Exception)
             {
 
-            }
+            }*/
         }
-
+/*
         private void inputTva_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -185,12 +227,12 @@ namespace Agerfor.Views.Programme
             {
 
             }
-        }
+        }*/
 
         private void BtnSupprimmerBien_Click(object sender, RoutedEventArgs e)
         {
-            BC.SupprimerBien(tempNumIlot, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, tempNumBien, tempTypeBien, RefProgramme, RefProjet, NumEdd);
-            inputNumIlot.Text = inputNumLot.Text = inputNumBloc.Text = inputNumBien.Text = inputNiveau.Text = inputNbrPiece.Text = inputSup.Text = inputLimiteEst.Text = inputLimiteNord.Text = inputLimiteOuest.Text = inputLimiteSud.Text = "";
+            BC.SupprimerBien(tempNumIlot, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, tempNumLot, tempTypeBien, RefProgramme, RefProjet, NumEdd);
+            inputNumIlot.Text = inputNumLot.Text = inputNumBloc.Text = inputNiveau.Text = inputNbrPiece.Text = inputSurH.Text = inputSurU.Text =  inputLimiteEst.Text = inputLimiteNord.Text = inputLimiteOuest.Text = inputLimiteSud.Text = "";
             inputPrixHT.Text = "0.00";
             inputTva.Text = "0";
             inputPrixTTC.Text = "0.00";
@@ -213,23 +255,34 @@ namespace Agerfor.Views.Programme
             }
         }
 
-        private void inputTypeBien_SelectionChanged(object sender, SelectionChangedEventArgs e)
+     
+
+
+        private void inputTva_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (inputTypeBien.SelectedValue.ToString() == "Terrain")
-
+            try
             {
-                inputNumBloc.IsEnabled = inputNiveau.IsEnabled = inputNbrPiece.IsEnabled = false;
-                inputLimiteEst.IsEnabled = inputLimiteNord.IsEnabled = inputLimiteOuest.IsEnabled = inputLimiteSud.IsEnabled = true  ;
+                inputPrixTTC.Text = ((((decimal.Parse(inputSurH.Text) + decimal.Parse(inputSurU.Text)) * decimal.Parse(inputPrixHT.Text)) + (((decimal.Parse(inputSurH.Text) + decimal.Parse(inputSurU.Text)) * decimal.Parse(inputPrixHT.Text))*(decimal.Parse(inputTva.SelectedValue.ToString())/100)))+CoutFoncierTTC).ToString();
             }
-
-            else
-
+            catch (Exception)
             {
-                inputNumBloc.IsEnabled = inputNiveau.IsEnabled = inputNbrPiece.IsEnabled = true;
-                inputLimiteEst.IsEnabled = inputLimiteNord.IsEnabled = inputLimiteOuest.IsEnabled = inputLimiteSud.IsEnabled = false;
+
             }
         }
 
+        private void inputSurH_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+            try
+            {
+                inputPrixTTC.Text = ((((decimal.Parse(inputSurH.Text) + decimal.Parse(inputSurU.Text)) * decimal.Parse(inputPrixHT.Text)) + (((decimal.Parse(inputSurH.Text) + decimal.Parse(inputSurU.Text)) * decimal.Parse(inputPrixHT.Text)) * (decimal.Parse(inputTva.SelectedValue.ToString()) / 100))) + CoutFoncierTTC).ToString();
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
     }
 }
 

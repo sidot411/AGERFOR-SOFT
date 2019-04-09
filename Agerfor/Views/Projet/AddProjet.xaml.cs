@@ -25,7 +25,7 @@ namespace Agerfor.Views.Projet
         Agerfor.Controlers.MySqlHelper msh = new Agerfor.Controlers.MySqlHelper();
         int RefProjet = 0;
         string Query = "";
-      
+        int tempID;
         string tempNumActeProjet = "";
 
 
@@ -143,6 +143,7 @@ namespace Agerfor.Views.Projet
             if (Query =="")
             {
                 msh.LoadData("select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS Date from acteprojet where RefProjet='" + inputRefProjet.Text+"'", dataViewActeProjet);
+                msh.LoadData("select * from listeilot where RefProjet='" + RefProjet + "'",dataViewIlot);
             }
             else
             {
@@ -480,6 +481,40 @@ namespace Agerfor.Views.Projet
             PermisLotir PL = new PermisLotir(RefProjet);
             DialogHost.Show(PL);
             PL.title.Text="Permis Lotir";
+        }
+
+        private void BtnAjouterIlot_Click(object sender, RoutedEventArgs e)
+        {
+            IlotController IC = new IlotController();
+            IC.ajouterIlot(inputIlot.Text, int.Parse(inputRefProjet.Text));
+            msh.LoadData("select * from listeilot where RefProjet='" + RefProjet + "'", dataViewIlot);
+            inputIlot.Text = string.Empty;
+        }
+
+        private void dataViewIlot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGridCellInfo cell0 = dataViewIlot.SelectedCells[0];
+            tempID = int.Parse(((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text);
+            DataGridCellInfo cell1 = dataViewIlot.SelectedCells[1];
+            inputIlot.Text = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
+            
+        }
+
+        private void BtnModifierIlot_Click(object sender, RoutedEventArgs e)
+        {
+            IlotController IC = new IlotController();
+            IC.modifierIlot(inputIlot.Text, int.Parse(inputRefProjet.Text), tempID);
+            msh.LoadData("select * from listeilot where RefProjet='" + RefProjet + "'", dataViewIlot);
+            inputIlot.Text = string.Empty;
+            
+        }
+
+        private void BtnSupprimerIlot_Click(object sender, RoutedEventArgs e)
+        {
+            IlotController IC = new IlotController();
+            IC.SupprimerIlot(tempID);
+            msh.LoadData("select * from listeilot where RefProjet='" + RefProjet + "'", dataViewIlot);
+            inputIlot.Text = string.Empty;
         }
     }
 
