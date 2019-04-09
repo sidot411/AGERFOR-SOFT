@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 19 mars 2019 à 09:49
+-- Généré le :  mar. 09 avr. 2019 à 07:34
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -40,13 +40,6 @@ CREATE TABLE IF NOT EXISTS `acteprogramme` (
   `NomProjet` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `acteprogramme`
---
-
-INSERT INTO `acteprogramme` (`NumActe`, `DateActe`, `DateEnrgActe`, `DatePubliActe`, `Conservation`, `FraisEnrg`, `RefProgramme`, `NomProjet`) VALUES
-('000001', '02/01/2019', '02/01/2019', '02/01/2019', 'ES senia', '12000.50', '000001', 'LPA');
-
 -- --------------------------------------------------------
 
 --
@@ -55,13 +48,23 @@ INSERT INTO `acteprogramme` (`NumActe`, `DateActe`, `DateEnrgActe`, `DatePubliAc
 
 DROP TABLE IF EXISTS `acteprojet`;
 CREATE TABLE IF NOT EXISTS `acteprojet` (
-  `NumActe` varchar(50) NOT NULL,
-  `DateActe` varchar(50) NOT NULL,
-  `DateEnrgActe` varchar(50) NOT NULL,
-  `DatePubliActe` varchar(50) NOT NULL,
+  `NumActe` int(11) NOT NULL AUTO_INCREMENT,
+  `DatePubliActe` date NOT NULL,
+  `Volume` varchar(50) NOT NULL,
+  `RefPubli` varchar(50) NOT NULL,
+  `FraisPubli` decimal(50,2) NOT NULL,
+  `Pos` varchar(50) NOT NULL,
   `Conservation` varchar(50) NOT NULL,
-  `RefProjet` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `RefProjet` int(255) NOT NULL,
+  PRIMARY KEY (`NumActe`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `acteprojet`
+--
+
+INSERT INTO `acteprojet` (`NumActe`, `DatePubliActe`, `Volume`, `RefPubli`, `FraisPubli`, `Pos`, `Conservation`, `RefProjet`) VALUES
+(1, '2019-04-07', '20', '36', '3600.00', '30', 'Oran ouest', 1);
 
 -- --------------------------------------------------------
 
@@ -83,15 +86,7 @@ CREATE TABLE IF NOT EXISTS `attribution` (
   `NumBloc` varchar(50) NOT NULL,
   `NumBien` varchar(50) NOT NULL,
   PRIMARY KEY (`NumA`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `attribution`
---
-
-INSERT INTO `attribution` (`NumA`, `DateAttribution`, `NumClient`, `NumProjet`, `NumProgramme`, `NatureProgramme`, `NumIlot`, `Numlot`, `TypeBien`, `NumBloc`, `NumBien`) VALUES
-(1, '14/03/2019', '1', '000001', '000001', 'Logement', '1', '1', 'Logement', '1', '1'),
-(2, '18/03/2019', '1', '000001', '000001', 'Logement', '1', '1', 'Logement', '1', '1');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -116,17 +111,17 @@ CREATE TABLE IF NOT EXISTS `bdd` (
 
 DROP TABLE IF EXISTS `biens`;
 CREATE TABLE IF NOT EXISTS `biens` (
-  `RefProgramme` varchar(50) NOT NULL,
-  `NomProjet` varchar(50) NOT NULL,
-  `NumEdd` varchar(50) NOT NULL,
+  `RefProgramme` int(255) NOT NULL,
+  `RefProjet` int(255) NOT NULL,
+  `NumEdd` int(255) NOT NULL,
   `NumIlot` varchar(50) NOT NULL,
   `TypeBien` varchar(50) NOT NULL,
-  `NumBien` varchar(50) NOT NULL,
   `Numlot` varchar(50) NOT NULL,
   `NumBloc` varchar(50) NOT NULL,
   `Niveau` varchar(50) NOT NULL,
   `NbrPiece` varchar(50) NOT NULL,
-  `Sup` decimal(50,2) NOT NULL,
+  `SurH` decimal(50,2) NOT NULL,
+  `SurU` decimal(50,2) NOT NULL,
   `PrixHT` decimal(50,2) NOT NULL,
   `Tva` int(2) NOT NULL,
   `PrixTTC` decimal(50,2) NOT NULL,
@@ -136,14 +131,6 @@ CREATE TABLE IF NOT EXISTS `biens` (
   `LimiteOuest` varchar(50) NOT NULL,
   `Etat` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `biens`
---
-
-INSERT INTO `biens` (`RefProgramme`, `NomProjet`, `NumEdd`, `NumIlot`, `TypeBien`, `NumBien`, `Numlot`, `NumBloc`, `Niveau`, `NbrPiece`, `Sup`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`) VALUES
-('000001', 'LPA', '1', '1', 'Logement', '1', '1', '1', '1', '5', '200.00', '1200.00', 19, '1428.00', '', '', '', '', 'Libre'),
-('000001', 'LPA', '1', '1', 'Logement', '1', '1', '2', '1', '5', '200.00', '1200.00', 19, '1428.00', '', '', '', '', 'Libre');
 
 -- --------------------------------------------------------
 
@@ -173,14 +160,6 @@ CREATE TABLE IF NOT EXISTS `cahierchargeprogramme` (
   `AdresseGeo` varchar(50) NOT NULL,
   `TelGeo` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `cahierchargeprogramme`
---
-
-INSERT INTO `cahierchargeprogramme` (`NomProjet`, `RefProgramme`, `NumCahierCharge`, `DateEnre`, `Volume`, `NumPubli`, `DatePubli`, `Conservation`, `Notaire`, `TelNotaire`, `AdresseNotaire`, `SuperficieCessible`, `SuperficieVoirie`, `SuperficieEv`, `SuperficieEq`, `AutreSuperficie`, `NomPreomGeo`, `AdresseGeo`, `TelGeo`) VALUES
-('LPA', '0000002', '000001', '06/01/2019', '223366', '223366', '06/01/2019', 'ORAN', 'MABROUK', '0552698574', 'ORAN', '110.00', '110.00', '110.00', '0.00', '0.00', 'MABROUK', 'ORAN', '0552698963'),
-('LPA', '0000002', '000002', '06/01/2019', '223366', '223366', '06/01/2019', 'ORAN', 'MABROUK', '0552698574', 'ORAN', '110.00', '110.00', '110.00', '0.00', '0.00', 'MABROUK', 'ORAN', '0552698963');
 
 -- --------------------------------------------------------
 
@@ -279,42 +258,43 @@ CREATE TABLE IF NOT EXISTS `cnl` (
 
 DROP TABLE IF EXISTS `commune`;
 CREATE TABLE IF NOT EXISTS `commune` (
-  `IdCommune` varchar(50) NOT NULL,
+  `IdCommune` int(255) NOT NULL AUTO_INCREMENT,
   `NomCommune` varchar(50) NOT NULL,
-  `IdDaira` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `IdDaira` int(255) NOT NULL,
+  PRIMARY KEY (`IdCommune`)
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `commune`
 --
 
 INSERT INTO `commune` (`IdCommune`, `NomCommune`, `IdDaira`) VALUES
-('01', 'Oran', '01'),
-('02', 'Aïn El Turk', '02'),
-('03', 'Bousfer', '02'),
-('03', 'El Ançor', '02'),
-('04', 'Mers El Kébir', '02'),
-('05', 'Arzew', '03'),
-('06', 'Sidi Benyebka', '03'),
-('07', 'Bethioua', '04'),
-('08', 'Marsat El Hadjadj', '04'),
-('09', 'Aïn El Bia', '04'),
-('10', 'Es Senia', '05'),
-('12', 'El Kerma', '05'),
-('13', 'Sidi Chami', '05'),
-('14', 'Bir El Djir', '06'),
-('15', 'Hassi Ben Okba', '06'),
-('16', 'Hassi Bounif', '06'),
-('17', 'Boutlélis', '07'),
-('18', 'Aïn El Kerma', '07'),
-('19', 'Misserghin', '07'),
-('20', 'Oued Tlelat', '08'),
-('21', 'Boufatis', '08'),
-('22', 'El Braya', '08'),
-('23', 'Tafraoui', '08'),
-('24', 'Gdyel', '09'),
-('25', 'Ben Freha', '09'),
-('26', 'Hassi Mefsoukh', '09');
+(1, 'Oran', 1),
+(2, 'Aïn El Turk', 2),
+(3, 'Bousfer', 2),
+(4, 'El Ançor', 2),
+(5, 'Mers El Kébir', 2),
+(6, 'Arzew', 3),
+(7, 'Sidi Benyebka', 3),
+(8, 'Bethioua', 4),
+(9, 'Marsat El Hadjadj', 4),
+(10, 'Aïn El Bia', 4),
+(11, 'Es Senia', 5),
+(12, 'El Kerma', 5),
+(13, 'Sidi Chami', 5),
+(14, 'Bir El Djir', 6),
+(15, 'Hassi Ben Okba', 6),
+(16, 'Hassi Bounif', 6),
+(17, 'Boutlélis', 7),
+(18, 'Aïn El Kerma', 7),
+(19, 'Misserghin', 7),
+(20, 'Oued Tlelat', 8),
+(21, 'Boufatis', 8),
+(22, 'El Braya', 8),
+(23, 'Tafraoui', 8),
+(24, 'Gdyel', 9),
+(25, 'Ben Freha', 9),
+(26, 'Hassi Mefsoukh', 9);
 
 -- --------------------------------------------------------
 
@@ -390,25 +370,26 @@ CREATE TABLE IF NOT EXISTS `creditb` (
 
 DROP TABLE IF EXISTS `daira`;
 CREATE TABLE IF NOT EXISTS `daira` (
-  `IdDaira` varchar(50) NOT NULL,
+  `IdDaira` int(255) NOT NULL AUTO_INCREMENT,
   `NomDaira` varchar(50) NOT NULL,
-  `IdWilaya` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `IdWilaya` varchar(50) NOT NULL,
+  PRIMARY KEY (`IdDaira`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `daira`
 --
 
 INSERT INTO `daira` (`IdDaira`, `NomDaira`, `IdWilaya`) VALUES
-('01', 'ORAN', '31'),
-('02', 'Aïn El Turk', '31'),
-('03', 'Arzew', '31'),
-('04', 'Bethioua', '31'),
-('05', 'Es Sénia', '31'),
-('06', 'Bir El Djir', '31'),
-('07', 'Boutlélis', '31'),
-('08', 'Oued Tlelat', '31'),
-('09', 'Gdyel', '31');
+(1, 'ORAN', '31'),
+(2, 'Aïn El Turk', '31'),
+(3, 'Arzew', '31'),
+(4, 'Bethioua', '31'),
+(5, 'Es Sénia', '31'),
+(6, 'Bir El Djir', '31'),
+(7, 'Boutlélis', '31'),
+(8, 'Oued Tlelat', '31'),
+(9, 'Gdyel', '31');
 
 -- --------------------------------------------------------
 
@@ -425,16 +406,7 @@ CREATE TABLE IF NOT EXISTS `demande` (
   `TypeDemande` varchar(50) NOT NULL,
   `StatutDemande` varchar(50) NOT NULL,
   PRIMARY KEY (`NumDemande`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `demande`
---
-
-INSERT INTO `demande` (`NumDemande`, `DateDemande`, `RefClient`, `Motif`, `TypeDemande`, `StatutDemande`) VALUES
-(1, '21-11-2018', '0000002', 'Rien', 'Régularisation', 'Acceptée'),
-(4, '22-11-2018', '0000002', 'RIEN', 'Régularisation', 'En cours'),
-(5, '22-11-2018', '0000033', 'RIEN', 'Vente Libre', 'En cours');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -444,13 +416,12 @@ INSERT INTO `demande` (`NumDemande`, `DateDemande`, `RefClient`, `Motif`, `TypeD
 
 DROP TABLE IF EXISTS `edd`;
 CREATE TABLE IF NOT EXISTS `edd` (
-  `NomProjet` varchar(50) NOT NULL,
-  `RefProgramme` varchar(50) NOT NULL,
-  `NumEdd` varchar(50) NOT NULL,
-  `DateEdd` varchar(50) NOT NULL,
-  `NumEnrg` varchar(50) NOT NULL,
-  `DateEnrg` varchar(50) NOT NULL,
+  `NumEdd` int(255) NOT NULL AUTO_INCREMENT,
+  `RefProjet` int(255) NOT NULL,
+  `RefProgramme` int(255) NOT NULL,
+  `DatePubli` date NOT NULL,
   `Volume` varchar(50) NOT NULL,
+  `RefPubli` varchar(50) NOT NULL,
   `Conservation` varchar(50) NOT NULL,
   `Notaire` varchar(50) NOT NULL,
   `TelNotaire` varchar(50) NOT NULL,
@@ -458,6 +429,8 @@ CREATE TABLE IF NOT EXISTS `edd` (
   `NomPrenomGeo` varchar(50) NOT NULL,
   `AdresseGeo` varchar(50) NOT NULL,
   `TelGeo` varchar(50) NOT NULL,
+  `DateEtablis` date NOT NULL,
+  `Redicte` varchar(50) NOT NULL,
   `NbrLog` varchar(50) NOT NULL,
   `SuperficieLog` decimal(50,2) NOT NULL,
   `NbrLoc` varchar(50) NOT NULL,
@@ -466,18 +439,19 @@ CREATE TABLE IF NOT EXISTS `edd` (
   `SuperficieBur` decimal(50,2) NOT NULL,
   `NbrCave` varchar(50) NOT NULL,
   `SuperficieCave` decimal(50,2) NOT NULL,
-  `NbrCC` varchar(50) NOT NULL,
-  `SuperficieCC` decimal(50,2) NOT NULL,
+  `NbrEQ` varchar(50) NOT NULL,
+  `SuperficieEQ` decimal(50,2) NOT NULL,
   `NbrPS` varchar(50) NOT NULL,
-  `SuperficiePS` decimal(50,2) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `SuperficiePS` decimal(50,2) NOT NULL,
+  PRIMARY KEY (`NumEdd`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `edd`
 --
 
-INSERT INTO `edd` (`NomProjet`, `RefProgramme`, `NumEdd`, `DateEdd`, `NumEnrg`, `DateEnrg`, `Volume`, `Conservation`, `Notaire`, `TelNotaire`, `AdresseNotaire`, `NomPrenomGeo`, `AdresseGeo`, `TelGeo`, `NbrLog`, `SuperficieLog`, `NbrLoc`, `SuperficeiLoc`, `NbrBur`, `SuperficieBur`, `NbrCave`, `SuperficieCave`, `NbrCC`, `SuperficieCC`, `NbrPS`, `SuperficiePS`) VALUES
-('LPA', '000001', '1', '07/02/2019', '122336644', '07/02/2019', '1223', 'Oran ouest', 'MABROUK', '0663258741', 'ES-SENIA', 'MABROUK SOUMIA', 'HASSI BOUNIF', '05536987415', '168', '1600.00', '60', '2400.00', '23', '1600.00', '20', '6000.00', '2', '3000.00', '3', '8000.00');
+INSERT INTO `edd` (`NumEdd`, `RefProjet`, `RefProgramme`, `DatePubli`, `Volume`, `RefPubli`, `Conservation`, `Notaire`, `TelNotaire`, `AdresseNotaire`, `NomPrenomGeo`, `AdresseGeo`, `TelGeo`, `DateEtablis`, `Redicte`, `NbrLog`, `SuperficieLog`, `NbrLoc`, `SuperficeiLoc`, `NbrBur`, `SuperficieBur`, `NbrCave`, `SuperficieCave`, `NbrEQ`, `SuperficieEQ`, `NbrPS`, `SuperficiePS`) VALUES
+(1, 1, 1, '2019-04-07', '30', '20', 'Oran ouest', 'KHIAT', '0661857456', 'ORAN', 'KHIAT', 'USTO', '0552147896', '2019-04-07', '30', '30', '30.00', '30', '300.00', '30', '300.00', '30', '300.00', '30', '300.00', '30', '300.00');
 
 -- --------------------------------------------------------
 
@@ -496,6 +470,27 @@ CREATE TABLE IF NOT EXISTS `fnpos` (
   `NumRecu` varchar(50) NOT NULL,
   PRIMARY KEY (`NumFNPOS`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `listeilot`
+--
+
+DROP TABLE IF EXISTS `listeilot`;
+CREATE TABLE IF NOT EXISTS `listeilot` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `NumIlot` varchar(50) NOT NULL,
+  `RefProjet` int(255) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `listeilot`
+--
+
+INSERT INTO `listeilot` (`Id`, `NumIlot`, `RefProjet`) VALUES
+(1, 'A1', 1);
 
 -- --------------------------------------------------------
 
@@ -521,15 +516,6 @@ CREATE TABLE IF NOT EXISTS `lot` (
   `Etat` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `lot`
---
-
-INSERT INTO `lot` (`RefProgramme`, `NomProjet`, `NumCC`, `NumIlot`, `NumLot`, `Sup`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`) VALUES
-('0000002', 'LPA', '000002', '1', '1', '200.00', '1200.00', 19, '1428.00', 'USTO', 'USTO', 'USTO', 'USTO', 'Libre'),
-('0000002', 'LPA', '000002', '1', '2', '200.00', '1200.00', 19, '1428.00', 'USTO', 'USTO', 'USTO', 'USTO', 'Reserve'),
-('0000002', 'LPA', '000002', '1', '3', '200.00', '1200.00', 19, '1428.00', 'USTO', 'USTO', 'USTO', 'USTO', 'Libre');
-
 -- --------------------------------------------------------
 
 --
@@ -548,11 +534,8 @@ CREATE TABLE IF NOT EXISTS `natureprogramme` (
 --
 
 INSERT INTO `natureprogramme` (`ID`, `NatureProgramme`) VALUES
-(1, 'Lotissement'),
-(2, 'Local'),
-(3, 'Logement'),
-(4, 'RHP'),
-(5, 'Terrain Industriel');
+(1, 'Terrain'),
+(3, 'Logement');
 
 -- --------------------------------------------------------
 
@@ -604,15 +587,7 @@ CREATE TABLE IF NOT EXISTS `payement` (
   `MontantVerse` decimal(50,2) NOT NULL,
   `Reste` decimal(50,2) NOT NULL,
   PRIMARY KEY (`NumPayement`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `payement`
---
-
-INSERT INTO `payement` (`NumPayement`, `DatePayement`, `NumAttribution`, `NumClient`, `NomClient`, `PrenomClient`, `DateNaissance`, `NumCni`, `NomProjet`, `NomProgramme`, `NumIlot`, `NumLot`, `TypeBien`, `NumBloc`, `NumBien`, `Niveau`, `NbrP`, `Superficie`, `MontantTotal`, `MontantVerse`, `Reste`) VALUES
-(3, '14/03/2019', 1, '1', 'KHIAT', 'SIDAHMED', '01/03/2019', '112233667', 'LPA', 'LPA', '1', '1', 'Logement', '1', '1', '1', '5', '200.00', '1428.00', '0.00', '1428.00'),
-(4, '18/03/2019', 2, '1', 'KHIAT', 'SIDAHMED', '01/03/2019', '112233667', 'LPA', 'LPA', '1', '1', 'Logement', '1', '1', '1', '5', '200.00', '1428.00', '0.00', '1428.00');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -622,27 +597,20 @@ INSERT INTO `payement` (`NumPayement`, `DatePayement`, `NumAttribution`, `NumCli
 
 DROP TABLE IF EXISTS `permilotir`;
 CREATE TABLE IF NOT EXISTS `permilotir` (
-  `NumPL` varchar(50) NOT NULL,
+  `NumPL` int(255) NOT NULL AUTO_INCREMENT,
   `DatePL` varchar(50) NOT NULL,
-  `FraisDiver` decimal(50,2) NOT NULL,
   `NbrIlot` varchar(50) NOT NULL,
   `NbrLots` varchar(50) NOT NULL,
+  `SurfaceBrute` decimal(50,0) NOT NULL,
   `SuperficieCG` decimal(50,2) NOT NULL,
   `SuperficieVoiries` decimal(50,2) NOT NULL,
   `SuperficieEV` decimal(50,2) NOT NULL,
   `SuperficieEquip` decimal(50,2) NOT NULL,
   `SuperficieAmenag` decimal(50,2) NOT NULL,
   `AutreSupercie` decimal(50,2) NOT NULL,
-  `RefProgramme` varchar(50) NOT NULL,
-  `NomProjet` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `permilotir`
---
-
-INSERT INTO `permilotir` (`NumPL`, `DatePL`, `FraisDiver`, `NbrIlot`, `NbrLots`, `SuperficieCG`, `SuperficieVoiries`, `SuperficieEV`, `SuperficieEquip`, `SuperficieAmenag`, `AutreSupercie`, `RefProgramme`, `NomProjet`) VALUES
-('000001', '02/01/2019', '1233.00', '10', '20', '20.30', '220.00', '30.00', '30.00', '20.00', '100.00', '000001', 'LPA');
+  `RefProjet` int(255) NOT NULL,
+  PRIMARY KEY (`NumPL`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -652,9 +620,8 @@ INSERT INTO `permilotir` (`NumPL`, `DatePL`, `FraisDiver`, `NbrIlot`, `NbrLots`,
 
 DROP TABLE IF EXISTS `permisdeconstruire`;
 CREATE TABLE IF NOT EXISTS `permisdeconstruire` (
-  `NumPermis` varchar(50) NOT NULL,
-  `DatePermisC` varchar(50) NOT NULL,
-  `FraisDivers` decimal(50,2) NOT NULL,
+  `NumPermis` int(255) NOT NULL AUTO_INCREMENT,
+  `DatePermisC` date NOT NULL,
   `NbrLog` varchar(50) NOT NULL,
   `SupLog` decimal(50,2) NOT NULL,
   `NbrLoc` varchar(50) NOT NULL,
@@ -667,16 +634,10 @@ CREATE TABLE IF NOT EXISTS `permisdeconstruire` (
   `SupCC` decimal(50,2) NOT NULL,
   `NbrPS` varchar(50) NOT NULL,
   `SupPS` decimal(50,2) NOT NULL,
-  `RefProgramme` varchar(50) NOT NULL,
-  `NomProjet` varchar(50) NOT NULL
+  `RefProgramme` int(255) NOT NULL,
+  `RefProjet` int(255) NOT NULL,
+  PRIMARY KEY (`NumPermis`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `permisdeconstruire`
---
-
-INSERT INTO `permisdeconstruire` (`NumPermis`, `DatePermisC`, `FraisDivers`, `NbrLog`, `SupLog`, `NbrLoc`, `SupLoc`, `NbrBur`, `SupBur`, `NbrCave`, `SupCave`, `NbrCC`, `SupCC`, `NbrPS`, `SupPS`, `RefProgramme`, `NomProjet`) VALUES
-('000001', '02/01/2019', '30000.00', '30', '220.00', '5', '100.00', '6', '200.00', '1', '20.00', '0', '0.00', '0', '0.00', '000001', 'LPA');
 
 -- --------------------------------------------------------
 
@@ -686,8 +647,8 @@ INSERT INTO `permisdeconstruire` (`NumPermis`, `DatePermisC`, `FraisDivers`, `Nb
 
 DROP TABLE IF EXISTS `programme`;
 CREATE TABLE IF NOT EXISTS `programme` (
-  `NomProjet` varchar(50) NOT NULL,
-  `RefProgramme` varchar(50) NOT NULL,
+  `RefProgramme` int(255) NOT NULL AUTO_INCREMENT,
+  `RefProjet` int(255) NOT NULL,
   `NomProgramme` varchar(50) NOT NULL,
   `Site` varchar(50) NOT NULL,
   `Daira` varchar(50) NOT NULL,
@@ -696,17 +657,21 @@ CREATE TABLE IF NOT EXISTS `programme` (
   `TypeProgramme` varchar(50) NOT NULL,
   `NombreBiens` varchar(50) NOT NULL,
   `Superficie` decimal(50,4) NOT NULL,
+  `TypeVente` varchar(50) NOT NULL,
+  `CoutFoncier` decimal(50,2) NOT NULL,
+  `TVA` int(50) NOT NULL,
+  `CoutFoncierTTC` decimal(50,2) NOT NULL,
+  `PrixM2` decimal(50,2) NOT NULL,
   PRIMARY KEY (`RefProgramme`),
   KEY `RefProgramme` (`RefProgramme`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `programme`
 --
 
-INSERT INTO `programme` (`NomProjet`, `RefProgramme`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`) VALUES
-('LPA', '0000002', 'LPA LOT', 'ORAN', 'Aïn El Turk', 'Aïn El Turk', 'Lotissement', 'Promoionnel', '20', '600.0000'),
-('LPA', '000001', 'LPA', 'ORAN', 'Es Sénia', 'Es Senia', 'Logement', 'Lpa', '20', '200.0000');
+INSERT INTO `programme` (`RefProgramme`, `RefProjet`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`, `TypeVente`, `CoutFoncier`, `TVA`, `CoutFoncierTTC`, `PrixM2`) VALUES
+(1, 1, 'LPA200', 'ORAN', 'ORAN', 'Oran', 'Logement', 'LPA', '3000', '30000.0000', 'Vente par m²', '23000.00', 19, '27370.00', '20000.00');
 
 -- --------------------------------------------------------
 
@@ -716,33 +681,74 @@ INSERT INTO `programme` (`NomProjet`, `RefProgramme`, `NomProgramme`, `Site`, `D
 
 DROP TABLE IF EXISTS `projet`;
 CREATE TABLE IF NOT EXISTS `projet` (
-  `RefProjet` varchar(50) NOT NULL,
+  `RefProjet` int(255) NOT NULL AUTO_INCREMENT,
   `NomProjet` varchar(50) NOT NULL,
-  `VolProjet` varchar(50) NOT NULL,
-  `Conservation` varchar(50) NOT NULL,
+  `ProjetMaitre` varchar(50) NOT NULL,
   `Vendeur` varchar(50) NOT NULL,
   `Wilaya` varchar(50) NOT NULL,
   `Daira` varchar(50) NOT NULL,
   `Commune` varchar(50) NOT NULL,
-  `Superficie` decimal(50,4) NOT NULL,
-  `NomGeometre` varchar(50) NOT NULL,
-  `AdresseGeometre` varchar(50) NOT NULL,
-  `NumGeometre` varchar(50) NOT NULL,
+  `Payement` varchar(50) NOT NULL,
+  `Superficie` decimal(50,2) NOT NULL,
   `LimiteNord` varchar(50) NOT NULL,
   `LimiteEst` varchar(50) NOT NULL,
   `LimiteOuest` varchar(50) NOT NULL,
   `LimiteSud` varchar(50) NOT NULL,
-  `PrixVente` decimal(50,4) NOT NULL,
+  `MontantCessionB` decimal(50,2) NOT NULL,
+  `MontantCession` decimal(50,2) NOT NULL,
   `NumRecu` varchar(50) NOT NULL,
-  `DateRecu` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `DateRecu` date NOT NULL,
+  PRIMARY KEY (`RefProjet`),
+  KEY `RefProjet` (`RefProjet`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projet`
 --
 
-INSERT INTO `projet` (`RefProjet`, `NomProjet`, `VolProjet`, `Conservation`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Superficie`, `NomGeometre`, `AdresseGeometre`, `NumGeometre`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `PrixVente`, `NumRecu`, `DateRecu`) VALUES
-('000001', 'LPA', '000001', 'ES senia', 'MABROUK', 'ORAN', 'Es Sénia', 'Es Senia', '1200.0000', 'MABROUK', 'CITE 1245 LOG BT1 N°2 USTO', '0552 36 98 57', 'USTO Nord', 'USTO Est', 'USTO Ouest', 'USTO Sud', '12236.0000', '0000001', '31/12/2018');
+INSERT INTO `projet` (`RefProjet`, `NomProjet`, `ProjetMaitre`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Payement`, `Superficie`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `MontantCessionB`, `MontantCession`, `NumRecu`, `DateRecu`) VALUES
+(1, 'LPA', 'LPA', 'KHIAT', 'ORAN', 'ORAN', 'Oran', 'Effectué', '30000.00', 'ORAN', 'ORAN', 'ORAN', 'ORAN', '123669956.00', '123673556.00', '33669885', '2019-04-23');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `projetmaitre`
+--
+
+DROP TABLE IF EXISTS `projetmaitre`;
+CREATE TABLE IF NOT EXISTS `projetmaitre` (
+  `NomProjetM` varchar(50) NOT NULL,
+  UNIQUE KEY `NomProjetM` (`NomProjetM`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `projetmaitre`
+--
+
+INSERT INTO `projetmaitre` (`NomProjetM`) VALUES
+('LPA');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tva`
+--
+
+DROP TABLE IF EXISTS `tva`;
+CREATE TABLE IF NOT EXISTS `tva` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ValeurTva` int(50) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `tva`
+--
+
+INSERT INTO `tva` (`Id`, `ValeurTva`) VALUES
+(1, 19),
+(2, 17),
+(3, 21);
 
 -- --------------------------------------------------------
 
@@ -779,7 +785,7 @@ CREATE TABLE IF NOT EXISTS `typeprogramme` (
   `TypeProgramme` varchar(50) NOT NULL,
   `NatureProgramme` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `typeprogramme`
@@ -793,11 +799,11 @@ INSERT INTO `typeprogramme` (`ID`, `TypeProgramme`, `NatureProgramme`) VALUES
 (5, 'Professionnel', 'Local'),
 (6, 'Centre commercial', 'Local'),
 (7, 'Cave', 'Local'),
-(8, 'Promotionel', 'Logement'),
-(9, 'Lpa', 'Logement'),
-(10, 'Lsp', 'Logement'),
-(11, 'Cnl', 'Logement'),
-(12, 'Fonal', 'Logement'),
+(8, 'CNL', 'Logement'),
+(9, 'LPA', 'Logement'),
+(23, 'Cave/Sous-sol', 'Logement'),
+(22, 'Local', 'Logement'),
+(12, 'Bureau', 'Logement'),
 (13, 'Relogement', 'RHP'),
 (14, 'Restructuration', 'RHP'),
 (15, 'Prévention', 'RHP'),
@@ -806,7 +812,13 @@ INSERT INTO `typeprogramme` (`ID`, `TypeProgramme`, `NatureProgramme`) VALUES
 (18, 'Zone depot', 'Terrain Industriel'),
 (19, 'Zone touristique', 'Terrain Industriel'),
 (20, 'Zone des sièges', 'Terrain Industriel'),
-(21, 'Show room', 'Terrain Industriel');
+(21, 'Show room', 'Terrain Industriel'),
+(28, 'RHP Relogement', 'Logement'),
+(26, 'Equipement', 'Terrain'),
+(29, 'LSP', 'Logement'),
+(33, 'Promotionnel Semi Collectif', 'Logement'),
+(35, 'Promotionnel Individuel', 'Logement'),
+(36, 'Promotionnel Collectif', 'Logement');
 
 -- --------------------------------------------------------
 
