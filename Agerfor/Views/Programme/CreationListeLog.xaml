@@ -172,7 +172,8 @@
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
                         Width="1000" Height="380" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewListeBien_SelectionChanged">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn  Width="10*" Binding="{Binding NumIlot}" Header="N° ILOT" />
+                                    <DataGridTextColumn  Width="10*" Binding="{Binding Id}" Header="Id" />
+                                    <DataGridTextColumn  Width="20*" Binding="{Binding NumBloc}" Header="N° Bloc" />
                                     <DataGridTextColumn  Width="20*" Binding="{Binding Numlot}" Header="N° lot" />
                                     <DataGridTextColumn  Width="20*" Binding="{Binding TypeBien}" Header="Type de bien" />
                                     <DataGridTextColumn  Width="20*" Binding="{Binding PrixHT}" Header="Prix M² HT (D.A.)" />

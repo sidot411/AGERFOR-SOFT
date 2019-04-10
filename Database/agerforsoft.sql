@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 09 avr. 2019 à 07:34
+-- Généré le :  mer. 10 avr. 2019 à 13:52
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `acteprojet` (
 --
 
 INSERT INTO `acteprojet` (`NumActe`, `DatePubliActe`, `Volume`, `RefPubli`, `FraisPubli`, `Pos`, `Conservation`, `RefProjet`) VALUES
-(1, '2019-04-07', '20', '36', '3600.00', '30', 'Oran ouest', 1);
+(1, '1995-03-08', '88', '55', '544917.80', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS `bdd` (
 
 DROP TABLE IF EXISTS `biens`;
 CREATE TABLE IF NOT EXISTS `biens` (
+  `Id` int(255) NOT NULL AUTO_INCREMENT,
   `RefProgramme` int(255) NOT NULL,
   `RefProjet` int(255) NOT NULL,
   `NumEdd` int(255) NOT NULL,
@@ -120,17 +121,64 @@ CREATE TABLE IF NOT EXISTS `biens` (
   `NumBloc` varchar(50) NOT NULL,
   `Niveau` varchar(50) NOT NULL,
   `NbrPiece` varchar(50) NOT NULL,
-  `SurH` decimal(50,2) NOT NULL,
-  `SurU` decimal(50,2) NOT NULL,
-  `PrixHT` decimal(50,2) NOT NULL,
-  `Tva` int(2) NOT NULL,
-  `PrixTTC` decimal(50,2) NOT NULL,
+  `SurH` decimal(50,2) DEFAULT NULL,
+  `SurU` decimal(50,2) DEFAULT NULL,
+  `PrixHT` decimal(50,2) DEFAULT NULL,
+  `Tva` int(2) DEFAULT NULL,
+  `PrixTTC` decimal(50,2) DEFAULT NULL,
   `LimiteNord` varchar(50) NOT NULL,
   `LimiteSud` varchar(50) NOT NULL,
   `LimiteEst` varchar(50) NOT NULL,
   `LimiteOuest` varchar(50) NOT NULL,
-  `Etat` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `Etat` varchar(50) NOT NULL,
+  PRIMARY KEY (`Numlot`,`NumBloc`,`Niveau`),
+  UNIQUE KEY `UNIQUE` (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `biens`
+--
+
+INSERT INTO `biens` (`Id`, `RefProgramme`, `RefProjet`, `NumEdd`, `NumIlot`, `TypeBien`, `Numlot`, `NumBloc`, `Niveau`, `NbrPiece`, `SurH`, `SurU`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`) VALUES
+(1, 2, 1, 2, '1', 'Logement', '1', '1', '0', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
+(2, 2, 1, 2, '1', 'Logement', '2', '1', '0', 'F3', '70.44', '72.74', '37383.18', 17, '3343603.70', '', '', '', '', 'Libre'),
+(3, 2, 1, 2, '1', 'Logement', '3', '1', '0', 'F3', '70.64', '72.94', '37383.18', 17, '3353097.18', '', '', '', '', 'Libre'),
+(4, 2, 1, 2, '1', 'Logement', '4', '1', '0', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
+(5, 2, 1, 2, '1', 'Logement', '5', '1', '1', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
+(6, 2, 1, 2, '1', 'Logement', '6', '1', '1', 'F3', '70.44', '72.74', '37383.18', 17, '3343603.70', '', '', '', '', 'Libre'),
+(7, 2, 1, 2, '1', 'Logement', '7', '1', '1', 'F3', '70.64', '72.94', '37383.18', 17, '3353097.18', '', '', '', '', 'Libre'),
+(8, 2, 1, 2, '1', 'Logement', '8', '1', '1', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
+(9, 2, 1, 2, '1', 'Logement', '9', '1', '2', 'F3', '71.13', '78.21', '37383.18', 17, '3376356.20', '', '', '', '', 'Libre'),
+(10, 2, 1, 2, '1', 'Logement', '10', '1', '2', 'F3', '70.63', '75.24', '37383.18', 17, '3352622.50', '', '', '', '', 'Libre'),
+(11, 2, 1, 2, '1', 'Logement', '11', '1', '2', 'F3', '71.62', '76.23', '37383.18', 17, '3399615.23', '', '', '', '', 'Libre'),
+(12, 2, 1, 2, '1', 'Logement', '12', '1', '2', 'F3', '71.13', '78.21', '37383.18', 17, '3376356.20', '', '', '', '', 'Libre'),
+(13, 2, 1, 2, '1', 'Logement', '13', '1', '3', 'F3', '71.13', '78.21', '37383.18', 17, '3376356.20', '', '', '', '', 'Libre'),
+(14, 2, 1, 2, '1', 'Logement', '14', '1', '3', 'F3', '70.63', '75.24', '37383.18', 17, '3352622.50', '', '', '', '', 'Libre'),
+(15, 2, 1, 2, '1', 'Logement', '15', '1', '3', 'F3', '71.62', '76.23', '37383.18', 17, '3399615.23', '', '', '', '', 'Libre'),
+(16, 2, 1, 2, '1', 'Logement', '16', '1', '3', 'F3', '71.13', '78.21', '37383.18', 17, '3376356.20', '', '', '', '', 'Libre'),
+(17, 2, 1, 2, '1', 'Logement', '17', '1', '4', 'F3', '71.27', '78.35', '37383.18', 17, '3383001.64', '', '', '', '', 'Libre'),
+(18, 2, 1, 2, '1', 'Logement', '18', '1', '4', 'F3', '70.82', '75.43', '37383.18', 17, '3361641.31', '', '', '', '', 'Libre'),
+(19, 2, 1, 2, '1', 'Logement', '19', '1', '4', 'F3', '71.82', '81.05', '37383.18', 17, '3409108.71', '', '', '', '', 'Libre'),
+(20, 2, 1, 2, '1', 'Logement', '20', '1', '4', 'F3', '71.27', '78.35', '37383.18', 17, '3383001.64', '', '', '', '', 'Libre'),
+(21, 2, 1, 2, '1', 'Logement', '21', '1', '5', 'F3', '71.27', '81.79', '37383.18', 17, '3383001.64', '', '', '', '', 'Libre'),
+(22, 2, 1, 2, '1', 'Logement', '22', '1', '5', 'F3', '70.82', '77.85', '37383.18', 17, '3361641.31', '', '', '', '', 'Libre'),
+(23, 2, 1, 2, '1', 'Logement', '23', '1', '5', 'F3', '70.82', '77.85', '37383.18', 17, '3361641.31', '', '', '', '', 'Libre'),
+(24, 2, 1, 2, '1', 'Logement', '24', '1', '5', 'F3', '71.22', '81.74', '37383.18', 17, '3380628.27', '', '', '', '', 'Libre'),
+(25, 2, 1, 2, '1', 'Logement', '1', '2', '0', 'F3', '71.78', '74.17', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(26, 2, 1, 2, '1', 'Logement', '2', '2', '0', 'F3', '71.78', '74.17', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(27, 2, 1, 2, '1', 'Logement', '3', '2', '1', 'F3', '71.78', '74.17', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(28, 2, 1, 2, '1', 'Logement', '4', '2', '1', 'F3', '71.78', '74.17', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(29, 2, 1, 2, '1', 'Logement', '5', '2', '2', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(30, 2, 1, 2, '1', 'Logement', '6', '2', '2', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(31, 2, 1, 2, '1', 'Logement', '7', '2', '3', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(32, 2, 1, 2, '1', 'Logement', '8', '2', '3', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(33, 2, 1, 2, '1', 'Logement', '9', '2', '4', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(34, 2, 1, 2, '1', 'Logement', '10', '2', '4', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(35, 2, 1, 2, '1', 'Logement', '11', '2', '5', 'F3', '71.78', '79.58', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(36, 2, 1, 2, '1', 'Logement', '12', '2', '5', 'F3', '71.78', '79.58', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
+(37, 2, 1, 2, '1', 'Logement', '1', '3', '0', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
+(38, 2, 1, 2, '1', 'Logement', '2', '3', '0', 'F3', '70.64', '72.94', '37383.18', 17, '3353097.18', '', '', '', '', 'Libre'),
+(39, 2, 1, 2, '1', 'Logement', '3', '3', '0', 'F3', '70.44', '72.74', '37383.18', 17, '3343603.70', '', '', '', '', 'Libre');
 
 -- --------------------------------------------------------
 
@@ -425,9 +473,9 @@ CREATE TABLE IF NOT EXISTS `edd` (
   `Conservation` varchar(50) NOT NULL,
   `Notaire` varchar(50) NOT NULL,
   `TelNotaire` varchar(50) NOT NULL,
-  `AdresseNotaire` varchar(50) NOT NULL,
+  `AdresseNotaire` text NOT NULL,
   `NomPrenomGeo` varchar(50) NOT NULL,
-  `AdresseGeo` varchar(50) NOT NULL,
+  `AdresseGeo` text NOT NULL,
   `TelGeo` varchar(50) NOT NULL,
   `DateEtablis` date NOT NULL,
   `Redicte` varchar(50) NOT NULL,
@@ -444,14 +492,14 @@ CREATE TABLE IF NOT EXISTS `edd` (
   `NbrPS` varchar(50) NOT NULL,
   `SuperficiePS` decimal(50,2) NOT NULL,
   PRIMARY KEY (`NumEdd`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `edd`
 --
 
 INSERT INTO `edd` (`NumEdd`, `RefProjet`, `RefProgramme`, `DatePubli`, `Volume`, `RefPubli`, `Conservation`, `Notaire`, `TelNotaire`, `AdresseNotaire`, `NomPrenomGeo`, `AdresseGeo`, `TelGeo`, `DateEtablis`, `Redicte`, `NbrLog`, `SuperficieLog`, `NbrLoc`, `SuperficeiLoc`, `NbrBur`, `SuperficieBur`, `NbrCave`, `SuperficieCave`, `NbrEQ`, `SuperficieEQ`, `NbrPS`, `SuperficiePS`) VALUES
-(1, 1, 1, '2019-04-07', '30', '20', 'Oran ouest', 'KHIAT', '0661857456', 'ORAN', 'KHIAT', 'USTO', '0552147896', '2019-04-07', '30', '30', '30.00', '30', '300.00', '30', '300.00', '30', '300.00', '30', '300.00', '30', '300.00');
+(2, 1, 2, '2015-11-16', '520', '64', 'ES senia', 'Abd el kader Hamouda', '041 70 73 14', 'Hai el chahid fares el houwari 790 logts USTO - ORAN', 'Trache Abd el latif', 'Cité 1245 logts Bloc D/450 1E9 1er Etage USTO', '041 53 82 85', '2019-04-10', '160', '141233', '11313.60', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00');
 
 -- --------------------------------------------------------
 
@@ -483,14 +531,16 @@ CREATE TABLE IF NOT EXISTS `listeilot` (
   `NumIlot` varchar(50) NOT NULL,
   `RefProjet` int(255) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `listeilot`
 --
 
 INSERT INTO `listeilot` (`Id`, `NumIlot`, `RefProjet`) VALUES
-(1, 'A1', 1);
+(2, '1', 1),
+(3, '2', 1),
+(4, '3', 1);
 
 -- --------------------------------------------------------
 
@@ -637,7 +687,14 @@ CREATE TABLE IF NOT EXISTS `permisdeconstruire` (
   `RefProgramme` int(255) NOT NULL,
   `RefProjet` int(255) NOT NULL,
   PRIMARY KEY (`NumPermis`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `permisdeconstruire`
+--
+
+INSERT INTO `permisdeconstruire` (`NumPermis`, `DatePermisC`, `NbrLog`, `SupLog`, `NbrLoc`, `SupLoc`, `NbrBur`, `SupBur`, `NbrCave`, `SupCave`, `NbrCC`, `SupCC`, `NbrPS`, `SupPS`, `RefProgramme`, `RefProjet`) VALUES
+(1, '2014-06-23', '160', '11313.60', '', '0.00', '', '0.00', '', '0.00', '', '0.00', '', '0.00', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -664,14 +721,14 @@ CREATE TABLE IF NOT EXISTS `programme` (
   `PrixM2` decimal(50,2) NOT NULL,
   PRIMARY KEY (`RefProgramme`),
   KEY `RefProgramme` (`RefProgramme`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `programme`
 --
 
 INSERT INTO `programme` (`RefProgramme`, `RefProjet`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`, `TypeVente`, `CoutFoncier`, `TVA`, `CoutFoncierTTC`, `PrixM2`) VALUES
-(1, 1, 'LPA200', 'ORAN', 'ORAN', 'Oran', 'Logement', 'LPA', '3000', '30000.0000', 'Vente par m²', '23000.00', 19, '27370.00', '20000.00');
+(2, 1, 'LPA 160 logts', 'Oued Tlelat-ZUHN', 'Oued Tlelat', 'Oued Tlelat', 'Logement', 'LPA', '160', '38553.0000', 'Vente par m²', '3187.25', 17, '3729.08', '37383.18');
 
 -- --------------------------------------------------------
 
@@ -682,7 +739,7 @@ INSERT INTO `programme` (`RefProgramme`, `RefProjet`, `NomProgramme`, `Site`, `D
 DROP TABLE IF EXISTS `projet`;
 CREATE TABLE IF NOT EXISTS `projet` (
   `RefProjet` int(255) NOT NULL AUTO_INCREMENT,
-  `NomProjet` varchar(50) NOT NULL,
+  `NomProjet` text NOT NULL,
   `ProjetMaitre` varchar(50) NOT NULL,
   `Vendeur` varchar(50) NOT NULL,
   `Wilaya` varchar(50) NOT NULL,
@@ -690,10 +747,10 @@ CREATE TABLE IF NOT EXISTS `projet` (
   `Commune` varchar(50) NOT NULL,
   `Payement` varchar(50) NOT NULL,
   `Superficie` decimal(50,2) NOT NULL,
-  `LimiteNord` varchar(50) NOT NULL,
-  `LimiteEst` varchar(50) NOT NULL,
-  `LimiteOuest` varchar(50) NOT NULL,
-  `LimiteSud` varchar(50) NOT NULL,
+  `LimiteNord` text NOT NULL,
+  `LimiteEst` text NOT NULL,
+  `LimiteOuest` text NOT NULL,
+  `LimiteSud` text NOT NULL,
   `MontantCessionB` decimal(50,2) NOT NULL,
   `MontantCession` decimal(50,2) NOT NULL,
   `NumRecu` varchar(50) NOT NULL,
@@ -707,7 +764,7 @@ CREATE TABLE IF NOT EXISTS `projet` (
 --
 
 INSERT INTO `projet` (`RefProjet`, `NomProjet`, `ProjetMaitre`, `Vendeur`, `Wilaya`, `Daira`, `Commune`, `Payement`, `Superficie`, `LimiteNord`, `LimiteEst`, `LimiteOuest`, `LimiteSud`, `MontantCessionB`, `MontantCession`, `NumRecu`, `DateRecu`) VALUES
-(1, 'LPA', 'LPA', 'KHIAT', 'ORAN', 'ORAN', 'Oran', 'Effectué', '30000.00', 'ORAN', 'ORAN', 'ORAN', 'ORAN', '123669956.00', '123673556.00', '33669885', '2019-04-23');
+(1, 'Oued Tlelat-ZUHN', 'Oued Tlelat-ZUHN', 'Direction des domaine', 'ORAN', 'Oued Tlelat', 'Oued Tlelat', 'Effectué', '471540.00', 'RN No 04 Oued Tlelat', 'Surplus du terrain', 'Oued Tlelat', 'Chemin vicinal et surplus du terrain', '27245890.00', '27790807.80', '', '1995-03-08');
 
 -- --------------------------------------------------------
 
@@ -726,7 +783,8 @@ CREATE TABLE IF NOT EXISTS `projetmaitre` (
 --
 
 INSERT INTO `projetmaitre` (`NomProjetM`) VALUES
-('LPA');
+('LPA'),
+('Oued Tlelat-ZUHN');
 
 -- --------------------------------------------------------
 

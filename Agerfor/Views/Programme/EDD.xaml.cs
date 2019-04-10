@@ -137,6 +137,8 @@ namespace Agerfor.Views.Programme
                     inputSupEQ.Text = rdr["SuperficieEQ"].ToString();
                     inputNbrPS.Text = rdr["NbrPS"].ToString();
                     inputSupPS.Text = rdr["SuperficiePS"].ToString();
+                    inputDateGeo.Text = rdr["DateEtablis"].ToString();
+                    inputRedicte.Text=rdr["Redicte"].ToString();
 
 
 

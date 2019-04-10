@@ -31,7 +31,7 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("update programme set RefProjet='"+RefProjet+"', NomProgramme='" + NomProgramme + "',Site='" + Site + "',Daira='" + Daira + "',Commune='" + Commune + "',NatureProgramme='" + NatureProgramme + "',TypeProgramme='" + TypeProgramme + "',NombreBiens='" + NombreBiens + "',Superficie='" + Superficie + "',TypeVente='"+TypeVente+"', CoutFocier ='"+CoutFoncier+"',TVA='"+Tva+"',CoutFocnierTTC='"+CoutFoncierTTC+"',PrixM2='"+PrixM2+"'  where RefProgramme='"+tempRefProgramme+"'");
+                msh.ExecuteQuery("update programme set RefProjet='"+RefProjet+"', NomProgramme='" + NomProgramme + "',Site='" + Site + "',Daira='" + Daira + "',Commune='" + Commune + "',NatureProgramme='" + NatureProgramme + "',TypeProgramme='" + TypeProgramme + "',NombreBiens='" + NombreBiens + "',Superficie='" + Superficie + "',TypeVente='"+TypeVente+"', CoutFoncier ='"+CoutFoncier+"',TVA='"+Tva+"',CoutFoncierTTC='"+CoutFoncierTTC+"',PrixM2='"+PrixM2+"'  where RefProgramme='"+tempRefProgramme+"'");
                 MessageBox.Show("Le programme a était modifié avec succès");
             }
 

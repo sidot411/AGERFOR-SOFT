@@ -31,9 +31,9 @@ namespace Agerfor.Controlers
                 msh.ExecuteQuery("update edd set RefProjet='" + RefProjet + "',RefProgramme='" + RefProgramme + "',DatePubli=STR_TO_DATE('" + DatePubli+ "', '%d/%m/%Y'),Volume='" + Volume + "', RefPubli='"+RefPubli+"',Conservation = '" + Conservation + "',Notaire='" + Notaire + "',TelNotaire='" + TelNotaire + "',AdresseNotaire='" + AdresseNotaire + "',NomPrenomGeo='" + NomPrenomGeo + "',AdresseGeo='" + AdresseGeo + "',TelGeo='" + TelGeo + "',DateEtablis=STR_TO_DATE('" + DateEtablis + "', '%d/%m/%Y'),Redicte='"+Redicte+"', NbrLog='" + NbrLog + "',SuperficieLog='" + SupLog + "',NbrLoc='" + NbrLoc + "',SuperficeiLoc='" + SupLoc + "',NbrBur='" + NbrBur + "',SuperficieBur='" + SupBur + "',NbrCave='" + NbrCave + "',SuperficieCave='" + SupCave + "',NbrEQ='" + NbrCC + "',SuperficieEQ='" + SuperficieCC + "',NbrPS='" + NbrPS + "',SuperficiePS='" + SuperficiePS + "' where NumEdd = '" + tempNumEDD + "'");
                 MessageBox.Show("Le EDD à été bien modifier");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("Le EDD n'a pas été modifier");
+                MessageBox.Show("Le EDD n'a pas été modifier",e.ToString());
             }
         }
         public void SupprimerEdd(string NumEdd)

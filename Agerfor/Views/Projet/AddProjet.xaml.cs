@@ -411,7 +411,7 @@ namespace Agerfor.Views.Projet
             if(tempNumActeProjet != "")
             {
                 
-                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text + @"\Acte\" + inputNumAct.Text;
+                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + inputRefProjet.Text + @"\Acte\";
                 OpenFolder(folderPath);
             }
             else

@@ -15,7 +15,7 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("insert into biens  values ('" + RefProgramme + "','" + RefProjet + "','"+NumEdd+"', '" + NumIlot + "','"+TypeBien+"', '" + NumLot + "','"+NumBloc+"','"+Niveau+"', '"+NbrPiece+"', '" + SupH + "','"+SupU+"','" + PrixHT + "','" + Tva + "','" + PrixTTC + "','" + LimiteNord + "','" + LimiteSud + "','" + LimiteEst + "','" + LimiteOuest + "','"+Etat+"')");
+                msh.ExecuteQuery("insert into biens (`RefProgramme`, `RefProjet`, `NumEdd`, `NumIlot`, `TypeBien`, `Numlot`, `NumBloc`, `Niveau`, `NbrPiece`, `SurH`, `SurU`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`)  values ('" + RefProgramme + "','" + RefProjet + "','"+NumEdd+"', '" + NumIlot + "','"+TypeBien+"', '" + NumLot + "','"+NumBloc+"','"+Niveau+"', '"+NbrPiece+"', '" + SupH + "','"+SupU+"','" + PrixHT + "','" + Tva + "','" + PrixTTC + "','" + LimiteNord + "','" + LimiteSud + "','" + LimiteEst + "','" + LimiteOuest + "','"+Etat+"')");
                 MessageBox.Show("Le bien a été bien ajouté");
             }
             catch (Exception)
@@ -24,11 +24,11 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void ModifierBien(int RefProgramme, int RefProjet,int NumEdd, string NumIlot, string TypeBien, string NumLot, string NumBloc, string Niveau, string NbrPiece, decimal SupH,decimal SupU, decimal PrixHT, int Tva, decimal PrixTTC, string LimiteNord, string LimiteSud, string LimiteEst, string LimiteOuest, string tempNumlot ,string tempTypeBien)
+        public void ModifierBien(int RefProgramme, int RefProjet,int NumEdd, string NumIlot, string TypeBien, string NumLot, string NumBloc, string Niveau, string NbrPiece, decimal SupH,decimal SupU, decimal PrixHT, int Tva, decimal PrixTTC, string LimiteNord, string LimiteSud, string LimiteEst, string LimiteOuest, string id)
         {
             try
             {
-                msh.ExecuteQuery("update biens set RefProgramme='" + RefProgramme + "',RefProjet='" + RefProjet + "',NumEdd='"+NumEdd+"', NumIlot='" + NumIlot + "',TypeBien='"+TypeBien+"', NumLot='" + NumLot + "',NumBloc='"+NumBloc+"',Niveau='"+Niveau+"',NbrPiece='"+NbrPiece+"', SupH='" + SupH + "',SupU='"+SupU+"', PrixHT='" + PrixHT + "',Tva='" + Tva + "',PrixTTC='" + PrixTTC + "',LimiteNord='" + LimiteNord + "',LimiteSud='" + LimiteSud + "',LimiteEst='" + LimiteEst + "',LimiteOuest='" + LimiteOuest + "' where TypeBien='"+tempTypeBien+"' and  Numlot='"+tempNumlot+"' and RefProgramme=+'" + RefProgramme + "' and RefProjet='" + RefProjet + "' and NumEdd='"+NumEdd+"'");
+                msh.ExecuteQuery("update biens set RefProgramme='" + RefProgramme + "',RefProjet='" + RefProjet + "',NumEdd='"+NumEdd+"', NumIlot='" + NumIlot + "',TypeBien='"+TypeBien+"', NumLot='" + NumLot + "',NumBloc='"+NumBloc+"',Niveau='"+Niveau+"',NbrPiece='"+NbrPiece+"', SurH='" + SupH + "',SurU='"+SupU+"', PrixHT='" + PrixHT + "',Tva='" + Tva + "',PrixTTC='" + PrixTTC + "',LimiteNord='" + LimiteNord + "',LimiteSud='" + LimiteSud + "',LimiteEst='" + LimiteEst + "',LimiteOuest='" + LimiteOuest + "' where Id='"+id+"'");
                 MessageBox.Show("Le Bien à été bien modifié");
             }
             catch (Exception)
@@ -37,16 +37,16 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void SupprimerBien(string NumILot, string NumLot, string NumBloc, string Niveau , string tempNumlot, string tempTypeBien, int RefProgramme, int RefProjet, int NumEdd)
+        public void SupprimerBien(string Id)
         {
             try
             {
-                msh.ExecuteQuery("delete from biens  where NumIlot='"+NumILot+"' and NumLot='"+NumLot+"' and NumBloc='"+NumBloc+"' and Niveau='"+Niveau+"' and TypeBien='" + tempTypeBien + "' and  Numlot='" + tempNumlot + "' and RefProgramme=+'" + RefProgramme + "' and RefProjet='" + RefProjet + "' and NumEdd='" + NumEdd + "'");
-                MessageBox.Show("Le bien numéro " + tempNumlot + " à été bien supprimé");
+                msh.ExecuteQuery("delete from biens  where ID='"+Id+"'");
+                MessageBox.Show("Le bien numéro " + Id + " à été bien supprimé");
             }
             catch (Exception)
             {
-                MessageBox.Show("Le bien numéro " + tempNumlot + " n'a pas été supprimé");
+                MessageBox.Show("Le bien numéro " + Id + " n'a pas été supprimé");
             }
 
         }
