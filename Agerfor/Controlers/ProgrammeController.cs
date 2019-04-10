@@ -66,6 +66,8 @@ namespace Agerfor.Controlers
                 MessageBox.Show("Le programme n'a pas était supprimer", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+      //  MessageBox.S
+
     }
 }
 
