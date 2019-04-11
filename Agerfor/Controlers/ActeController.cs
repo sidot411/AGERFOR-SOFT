@@ -10,13 +10,14 @@ namespace Agerfor.Controlers
     class ActeController
     {
         MySqlHelper msh = new MySqlHelper();
-
+        
         public void AjouterActe(string DateActe, string Volume,string RefPubli,decimal FraisPubli,string Pos,string Conservation,int RefProjet)
         {
             try
             {
                 msh.ExecuteQuery("INSERT INTO `acteprojet` (`DatePubliActe`, `Volume`, `RefPubli`, `FraisPubli`, `Pos`, `Conservation`, `RefProjet`) VALUES (STR_TO_DATE('" + DateActe + "', '%d/%m/%Y'), '"+Volume+"', '"+RefPubli+"', '"+FraisPubli+"', '"+Pos+"','"+Conservation+"', '"+RefProjet+"')");
                 MessageBox.Show("L'Acte à était bien ajouté");
+              //  messagebox.show
             }
             catch(Exception)
             {
