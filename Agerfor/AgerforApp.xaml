@@ -107,7 +107,7 @@
                             <TextBlock Text="Remboursements" VerticalAlignment="Center" Height="18" />
                         </StackPanel>
                     </Button>
-                    <Button  x:Name="BtnRecapulatif" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White"
+                    <Button  x:Name="BtnRecapulatif" VerticalAlignment="Top" Height="65" Background="Transparent" BorderThickness="5 0 0 0" BorderBrush="White" HorizontalAlignment="Right" Width="110" Click="BtnRecapulatif_Click"
                  >
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="FileFind" Width="35" Height="35"

@@ -120,6 +120,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BiensReporting\Bien.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bien.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BiensReporting\BienViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BiensReporting\BienViwer.Designer.cs">
+      <DependentUpon>BienViwer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BiensReporting\DataSet1BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1BR.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BiensReporting\DataSet2BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2BR.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BiensReporting\ResearchB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResearchB.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controlers\ActeController.cs" />
     <Compile Include="Controlers\ActeProgrammeController.cs" />
     <Compile Include="Controlers\AddPayementController.cs" />
@@ -145,6 +173,7 @@
     <Compile Include="Controlers\ProgrammeController.cs" />
     <Compile Include="Controlers\ProjetController.cs" />
     <Compile Include="Controlers\ProjetMaitreController.cs" />
+    <Compile Include="Controlers\SearchLog.cs" />
     <Compile Include="ListeProjetReporting\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
@@ -435,6 +464,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="BiensReporting\Bien.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Bien.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BiensReporting\BienViwer.resx">
+      <DependentUpon>BienViwer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BiensReporting\ResearchB.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ResearchB.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListeProjetReporting\ListeProjet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ListeProjet.cs</LastGenOutput>
@@ -460,6 +500,28 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="BiensReporting\DataSet1BR.xsc">
+      <DependentUpon>DataSet1BR.xsd</DependentUpon>
+    </None>
+    <None Include="BiensReporting\DataSet1BR.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1BR.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="BiensReporting\DataSet1BR.xss">
+      <DependentUpon>DataSet1BR.xsd</DependentUpon>
+    </None>
+    <None Include="BiensReporting\DataSet2BR.xsc">
+      <DependentUpon>DataSet2BR.xsd</DependentUpon>
+    </None>
+    <None Include="BiensReporting\DataSet2BR.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2BR.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="BiensReporting\DataSet2BR.xss">
+      <DependentUpon>DataSet2BR.xsd</DependentUpon>
+    </None>
     <None Include="Drapper.Settings.json" />
     <None Include="ListeProjetReporting\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>

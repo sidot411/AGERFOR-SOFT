@@ -157,5 +157,10 @@ namespace Agerfor
             Frame.Navigate(new Payement());
             currentWindow.Text = "Payement";
         }
+
+        private void BtnRecapulatif_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

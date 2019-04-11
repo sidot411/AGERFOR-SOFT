@@ -7,7 +7,8 @@ using DbConnection.Models;
 using System.Data;
 using System.Collections.Generic;
 using System.Windows.Media;
-
+using Agerfor.Views.Programme;
+using Agerfor.BiensReporting;
 namespace Agerfor.Views.Programme
 
 {
@@ -46,8 +47,9 @@ namespace Agerfor.Views.Programme
             this.typevente = typevente;
             this.CoutFoncierTTC = CoutFoncierTTC;
             this.prixm2 = prixm2;
-            msh.FillDropDownList("select NumIlot from listeilot where RefProjet='" + RefProjet + "'",inputNumIlot,"NumIlot");
+            BtnSearch.IsEnabled = inputSurMax.IsEnabled = inputSurUMax.IsEnabled= false;
 
+            msh.FillDropDownList("select NumIlot from listeilot where RefProjet='" + RefProjet + "'",inputNumIlot,"NumIlot");
             if(TypeBien=="CNL" || TypeBien == "LPA" || TypeBien == "LSP" || TypeBien == "Promotionnel Semi Collectif" || TypeBien == "Promotionnel Individuel" || TypeBien == "Promotionnel Collectif")
             {
                 inputTypeBien.Text = "Logement";
@@ -243,6 +245,32 @@ namespace Agerfor.Views.Programme
             }
 
         }
+
+      
+
+        private void SearchSwitch_Checked(object sender, RoutedEventArgs e)
+        {
+            inputPrixHT.IsEnabled = inputPrixTTC.IsEnabled = inputTva.IsEnabled = inputLimiteEst.IsEnabled = inputLimiteNord.IsEnabled = inputLimiteOuest.IsEnabled = inputLimiteSud.IsEnabled = BtnAjouterBien.IsEnabled = BtnModifierBien.IsEnabled= BtnSupprimmerBien.IsEnabled = false;
+            inputSurMax.IsEnabled = inputSurUMax.IsEnabled = BtnSearch.IsEnabled = true;
+        }
+
+        private void SearchSwitch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            inputPrixHT.IsEnabled = inputPrixTTC.IsEnabled = inputTva.IsEnabled = inputLimiteEst.IsEnabled = inputLimiteNord.IsEnabled = inputLimiteOuest.IsEnabled = inputLimiteSud.IsEnabled = BtnAjouterBien.IsEnabled = BtnModifierBien.IsEnabled = BtnSupprimmerBien.IsEnabled = true;
+            inputSurMax.IsEnabled = inputSurUMax.IsEnabled = BtnSearch.IsEnabled = false;
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+           SearchLog SL = new SearchLog();
+           string Query;
+           Query = SL.AdvencedSearchGetQuery(inputNumLot, inputNumBloc, inputNiveau, inputNbrPiece, inputNumIlot, inputEtat,inputSurH,inputSurMax,inputSurU,inputSurUMax, RefProjet, RefProgramme, NumEdd, inputTypeBien.Text);
+
+           BienViwer BV = new BienViwer(RefProjet,RefProgramme,NumEdd,Query);
+           BV.Show();
+
+                
+    }
     }
 }
 

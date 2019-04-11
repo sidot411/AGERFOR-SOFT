@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1BR" targetNamespace="http://tempuri.org/DataSet1BR.xsd" xmlns:mstns="http://tempuri.org/DataSet1BR.xsd" xmlns="http://tempuri.org/DataSet1BR.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1BR" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1BR" msprop:Generator_UserDSName="DataSet1BR">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RefProjet" msprop:Generator_ColumnVarNameInTable="columnRefProjet" msprop:Generator_ColumnPropNameInRow="RefProjet" msprop:Generator_ColumnPropNameInTable="RefProjetColumn" msprop:Generator_UserColumnName="RefProjet" type="xs:string" minOccurs="0" />
+              <xs:element name="NomProjet" msprop:Generator_ColumnVarNameInTable="columnNomProjet" msprop:Generator_ColumnPropNameInRow="NomProjet" msprop:Generator_ColumnPropNameInTable="NomProjetColumn" msprop:Generator_UserColumnName="NomProjet" type="xs:string" minOccurs="0" />
+              <xs:element name="RefProgramme" msprop:Generator_ColumnVarNameInTable="columnRefProgramme" msprop:Generator_ColumnPropNameInRow="RefProgramme" msprop:Generator_ColumnPropNameInTable="RefProgrammeColumn" msprop:Generator_UserColumnName="RefProgramme" type="xs:string" minOccurs="0" />
+              <xs:element name="NomProgramme" msprop:Generator_ColumnVarNameInTable="columnNomProgramme" msprop:Generator_ColumnPropNameInRow="NomProgramme" msprop:Generator_ColumnPropNameInTable="NomProgrammeColumn" msprop:Generator_UserColumnName="NomProgramme" type="xs:string" minOccurs="0" />
+              <xs:element name="Volume" msprop:Generator_ColumnVarNameInTable="columnVolume" msprop:Generator_ColumnPropNameInRow="Volume" msprop:Generator_ColumnPropNameInTable="VolumeColumn" msprop:Generator_UserColumnName="Volume" type="xs:string" minOccurs="0" />
+              <xs:element name="RefPubli" msprop:Generator_ColumnVarNameInTable="columnRefPubli" msprop:Generator_ColumnPropNameInRow="RefPubli" msprop:Generator_ColumnPropNameInTable="RefPubliColumn" msprop:Generator_UserColumnName="RefPubli" type="xs:string" minOccurs="0" />
+              <xs:element name="DatePubli" msprop:Generator_ColumnVarNameInTable="columnDatePubli" msprop:Generator_ColumnPropNameInRow="DatePubli" msprop:Generator_ColumnPropNameInTable="DatePubliColumn" msprop:Generator_UserColumnName="DatePubli" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
