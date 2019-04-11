@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D524AF9D-AC2B-48D3-A1CC-FE0CD4F672D7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Agerfor</RootNamespace>
+    <AssemblyName>Agerfor</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CurrencyTextBoxControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CurrencyTextBox.1.4.3\lib\CurrencyTextBoxControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dragablz, Version=0.0.3.203, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Drapper, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Drapper.1.2.0\lib\net452\Drapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Drapper.Validation, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Drapper.Validation.1.1.0\lib\net452\Drapper.Validation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.0.1205, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.5.0.1205\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\MySQL\MySQL Connector Net 6.9.12\Assemblies\v4.5\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Notifications.Wpf, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Notifications.Wpf.0.1.1\lib\net45\Notifications.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SmarterDB.CodeProject.DataEntry">
+      <HintPath>..\Convert\SmarterDB.CodeProject.DataEntry.Binary\SmarterDB.CodeProject.DataEntry.dll</HintPath>
+    </Reference>
+    <Reference Include="SmarterDB.CodeProject.TestData">
+      <HintPath>..\Convert\SmarterDB.CodeProject.DataEntry.Binary\SmarterDB.CodeProject.TestData.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.109.2\lib\net451\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controlers\ActeController.cs" />
+    <Compile Include="Controlers\ActeProgrammeController.cs" />
+    <Compile Include="Controlers\AddPayementController.cs" />
+    <Compile Include="Controlers\AttributionController.cs" />
+    <Compile Include="Controlers\Bdd.cs" />
+    <Compile Include="Controlers\BiensController.cs" />
+    <Compile Include="Controlers\CahierChargeProgrammeController.cs" />
+    <Compile Include="Controlers\ClientController.cs" />
+    <Compile Include="Controlers\CNLController.cs" />
+    <Compile Include="Controlers\ConventionController.cs" />
+    <Compile Include="Controlers\CreditBancaireController.cs" />
+    <Compile Include="Controlers\DemandeController.cs" />
+    <Compile Include="Controlers\DirectoryCreator.cs" />
+    <Compile Include="Controlers\EddController.cs" />
+    <Compile Include="Controlers\FNPOSController.cs" />
+    <Compile Include="Controlers\IlotController.cs" />
+    <Compile Include="Controlers\ipPatchController.cs" />
+    <Compile Include="Controlers\LotController.cs" />
+    <Compile Include="Controlers\MySqlHelper.cs" />
+    <Compile Include="Controlers\OrdreVerssementController.cs" />
+    <Compile Include="Controlers\PermiLotirController.cs" />
+    <Compile Include="Controlers\PermisDeConstruireController.cs" />
+    <Compile Include="Controlers\ProgrammeController.cs" />
+    <Compile Include="Controlers\ProjetController.cs" />
+    <Compile Include="Controlers\ProjetMaitreController.cs" />
+    <Compile Include="ListeProjetReporting\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ListeProjetReporting\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ListeProjetReporting\ListeProjet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListeProjet.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListeProjetReporting\ListeProjetViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListeProjetReporting\ListeProjetViwer.Designer.cs">
+      <DependentUpon>ListeProjetViwer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OVReporting\OrdreVerssementR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OVReporting\OrdreVerssementR.Designer.cs">
+      <DependentUpon>OrdreVerssementR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OVReporting\OrdreVerssements.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrdreVerssements.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjetReporting\DataSetProjet.cs">
+      <DependentUpon>DataSetProjet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProjetReporting\DataSetProjet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetProjet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProjetReporting\FicheProjet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FicheProjet.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjetReporting\ProjetViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjetReporting\ProjetViwer.Designer.cs">
+      <DependentUpon>ProjetViwer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attribution\AddAttribution.xaml.cs">
+      <DependentUpon>AddAttribution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attribution\Attribution.xaml.cs">
+      <DependentUpon>Attribution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Clients\AddClient.xaml.cs">
+      <DependentUpon>AddClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Clients\Client.xaml.cs">
+      <DependentUpon>Client.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AutoCompleteEntry.cs" />
+    <Compile Include="Views\Controls\AutoCompleteTextBox.xaml.cs">
+      <DependentUpon>AutoCompleteTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demande\AddDemande.xaml.cs">
+      <DependentUpon>AddDemande.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demande\Demande.xaml.cs">
+      <DependentUpon>Demande.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\AddPayement.xaml.cs">
+      <DependentUpon>AddPayement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\CBPayement.xaml.cs">
+      <DependentUpon>CBPayement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\CNLPayement.xaml.cs">
+      <DependentUpon>CNLPayement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\FNPOSPayement.xaml.cs">
+      <DependentUpon>FNPOSPayement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\ListeVers.xaml.cs">
+      <DependentUpon>ListeVers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\Payement.xaml.cs">
+      <DependentUpon>Payement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\AddProgramme.xaml.cs">
+      <DependentUpon>AddProgramme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\CahierCharge.xaml.cs">
+      <DependentUpon>CahierCharge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\Convention.xaml.cs">
+      <DependentUpon>Convention.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\CreationListeLog.xaml.cs">
+      <DependentUpon>CreationListeLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\CreationListeLots.xaml.cs">
+      <DependentUpon>CreationListeLots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\EDD.xaml.cs">
+      <DependentUpon>EDD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Programme\Programme.xaml.cs">
+      <DependentUpon>Programme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projet\AddProjet.xaml.cs">
+      <DependentUpon>AddProjet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projet\PermisLotir.xaml.cs">
+      <DependentUpon>PermisLotir.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projet\Projet.xaml.cs">
+      <DependentUpon>Projet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Projet\ProjetMaitre.xaml.cs">
+      <DependentUpon>ProjetMaitre.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\referentiel\NatureTyperogramme.xaml.cs">
+      <DependentUpon>NatureTyperogramme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\referentiel\Ref.xaml.cs">
+      <DependentUpon>Ref.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\referentiel\WilayaDairaCommune.xaml.cs">
+      <DependentUpon>WilayaDairaCommune.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\SettingUserControl.xaml.cs">
+      <DependentUpon>SettingUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\SocieteInformation.xaml.cs">
+      <DependentUpon>SocieteInformation.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AgerforApp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AgerforApp.xaml.cs">
+      <DependentUpon>AgerforApp.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Attribution\AddAttribution.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Attribution\Attribution.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Clients\AddClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Clients\Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AutoCompleteTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Demande\AddDemande.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Demande\Demande.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\AddPayement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\CBPayement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\CNLPayement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\FNPOSPayement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\ListeVers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\Payement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\AddProgramme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\CahierCharge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\Convention.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\CreationListeLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\CreationListeLots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\EDD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programme\Programme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Projet\AddProjet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Projet\PermisLotir.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Projet\Projet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Projet\ProjetMaitre.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\referentiel\NatureTyperogramme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\referentiel\Ref.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\referentiel\WilayaDairaCommune.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\SettingUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\SocieteInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="ListeProjetReporting\ListeProjet.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListeProjet.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListeProjetReporting\ListeProjetViwer.resx">
+      <DependentUpon>ListeProjetViwer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OVReporting\OrdreVerssementR.resx">
+      <DependentUpon>OrdreVerssementR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OVReporting\OrdreVerssements.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OrdreVerssements.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjetReporting\FicheProjet.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FicheProjet.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjetReporting\ProjetViwer.resx">
+      <DependentUpon>ProjetViwer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Drapper.Settings.json" />
+    <None Include="ListeProjetReporting\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ListeProjetReporting\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ListeProjetReporting\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="ProjetReporting\DataSetProjet.xsc">
+      <DependentUpon>DataSetProjet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjetReporting\DataSetProjet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetProjet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjetReporting\DataSetProjet.xss">
+      <DependentUpon>DataSetProjet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DbConnection\DbConnection.csproj">
+      <Project>{01805584-05bc-4843-b93c-ebdb0a2bb630}</Project>
+      <Name>DbConnection</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CurrencyTextBoxControl.dll" />
+    <Content Include="Dragablz.dll" />
+    <Content Include="MaterialDesignColors.dll" />
+    <Content Include="MaterialDesignThemes.Wpf.dll" />
+    <Content Include="MySql.Data.dll" />
+    <Content Include="Notifications.Wpf.dll" />
+    <Content Include="SmarterDB.CodeProject.DataEntry.dll" />
+    <Content Include="SmarterDB.CodeProject.TestData.dll" />
+    <Resource Include="Source\Loading.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
