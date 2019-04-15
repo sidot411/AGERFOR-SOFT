@@ -217,6 +217,20 @@
       <DependentUpon>OrdreVerssements.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PrgReporting\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PrgReporting\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PrgReporting\PrgReporting.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrgReporting.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ProjetReporting\DataSetProjet.cs">
       <DependentUpon>DataSetProjet.xsd</DependentUpon>
     </Compile>
@@ -497,6 +511,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OrdreVerssements.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="PrgReporting\PrgReporting.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PrgReporting.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjetReporting\FicheProjet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FicheProjet.cs</LastGenOutput>
@@ -543,6 +561,17 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="PrgReporting\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="PrgReporting\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PrgReporting\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="ProjetReporting\DataSetProjet.xsc">
       <DependentUpon>DataSetProjet.xsd</DependentUpon>
     </None>
