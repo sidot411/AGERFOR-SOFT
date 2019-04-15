@@ -182,6 +182,7 @@
     <Compile Include="Controlers\ProjetController.cs" />
     <Compile Include="Controlers\ProjetMaitreController.cs" />
     <Compile Include="Controlers\SearchLog.cs" />
+    <Compile Include="Controlers\SearchProgramme.cs" />
     <Compile Include="ListeProjetReporting\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
