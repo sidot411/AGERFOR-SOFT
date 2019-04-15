@@ -53,14 +53,14 @@ namespace Agerfor.Controlers
 
         public void BiensEddModificatif(int PreviousNumEDD, int CurrentNumEDD, int RefProgramme, int RefProjet)
         {
-            try
-            {
-                msh.ExecuteQuery("CREATE TEMPORARY TABLE temporary_biens AS SELECT * FROM biens WHERE RefProgramme='"+RefProgramme+ "' and RefProjet='"+RefProjet+"' and  NumEdd='" + PreviousNumEDD + "' and Etat IN ('Réservé','Libre'); UPDATE temporary_biens SET NumEdd = '" + CurrentNumEDD + "'; INSERT INTO biens SELECT * FROM temporary_biens; ");
+            try { 
+           
+                msh.ExecuteQuery("CREATE TEMPORARY TABLE temporary_biens AS SELECT RefProgramme, RefProjet, NumEdd, NumIlot, TypeBien, Numlot, NumBloc, Niveau, NbrPiece, SurH, SurU, PrixHT, Tva, PrixTTC, LimiteNord, LimiteSud, LimiteEst, LimiteOuest, Etat FROM biens WHERE RefProgramme='" + RefProgramme+ "' and RefProjet='"+RefProjet+"' and  NumEdd='" + PreviousNumEDD + "' and Etat IN ('Réservé','Libre'); UPDATE temporary_biens SET NumEdd = '" + CurrentNumEDD + "'; INSERT INTO biens (`RefProgramme`, `RefProjet`, `NumEdd`, `NumIlot`, `TypeBien`, `Numlot`, `NumBloc`, `Niveau`, `NbrPiece`, `SurH`, `SurU`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`) SELECT * FROM temporary_biens; ");
                 MessageBox.Show("Les biens en état libre et réservé on était bien importé dans le nouveau EDD");
             }
             catch(Exception)
             {
-                MessageBox.Show("Les biens en pas état libre et réservé n'on pas était inmporté dans le nouveau EDD");
+                MessageBox.Show("Les biens en  état libre et réservé n'on pas était inmporté dans le nouveau EDD");
             }
         }
 

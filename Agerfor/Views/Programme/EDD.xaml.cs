@@ -112,7 +112,7 @@ namespace Agerfor.Views.Programme
 
                 if (oneTime)
                 {
-                    inputNumEDD.Text = rdr["NumEdd"].ToString();
+                    //inputNumEDD.Text = rdr["NumEdd"].ToString();
                   /*inputDateEdd.Text = rdr["DateEdd"].ToString();
                     inputNumEnreg.Text = rdr["NumEnrg"].ToString();*/
                     inputDateEnreg.Text = rdr["Date"].ToString();
@@ -325,17 +325,34 @@ namespace Agerfor.Views.Programme
             }
             else
             {
-                 string NumEddModif = (int.Parse(inputNumEDD.Text) + (1)).ToString();
+                string NumEddModif = "";
                  BiensController BS = new BiensController();
-                 string Edd = "Edd";
-              
-                 DirectoryCreator DC = new DirectoryCreator();
-                 DC.CreateDirectoryProgramme(RefProjet.ToString(), RefProgramme + "/" + Edd + "/" + NumEddModif);
+                 
+                
+               
                  EC.AjouterEdd(RefProjet, RefProgramme, inputDateEnreg.Text, inputVolume.Text,inputRefPub.Text, inputConservation.Text, inputNotaire.Text, inputTelNotaire.Text, inputAdresseNotaire.Text, inputNomGeo.Text, inputAddresseGeo.Text, inputTelGeo.Text, inputDateGeo.Text, inputRedicte.Text, inputNbrLog.Text, decimal.Parse(inputSupLog.Text), inputNbrLoc.Text, decimal.Parse(inputSupLoc.Text), inputNbrBur.Text, decimal.Parse(inputSupBur.Text), inputNbrCave.Text, decimal.Parse(inputSupCave.Text), inputNbrEQ.Text, decimal.Parse(inputSupEQ.Text), inputNbrPS.Text, decimal.Parse(inputSupPS.Text));
-                 BS.BiensEddModificatif(int.Parse(tempNumEdd),int.Parse(NumEddModif),int.Parse(RefProgramme),RefProjet);
-                 msh.LoadData("select *,DATE_FORMAT(DatePubli,'%d/%m/%y') AS Date from edd where RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "'", dataViewListeEdd);
-                 inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrEQ.Text = inputNbrPS.Text = inputNbrBur.Text = "";
-                 inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSupCave.Text = inputSupEQ.Text = inputSupPS.Text = "0";
+                string query3 = "select MAX(NumEdd) AS Num from edd where RefProjet='" + RefProjet + "' and RefProgramme='" + RefProgramme + "';";
+                MySqlDataReader rdr3 = null;
+                MySqlConnection con3 = null;
+                MySqlCommand cmd3 = null;
+                con3 = new MySqlConnection(Database.ConnectionString());
+                con3.Open();
+                cmd3 = new MySqlCommand(query3);
+                cmd3.Connection = con3;
+                rdr3 = cmd3.ExecuteReader();
+                bool oneTime3 = true;
+                while (rdr3.Read())
+                {
+                    NumEddModif = rdr3["Num"].ToString();
+                }
+                System.Windows.MessageBox.Show(NumEddModif);
+                string Edd = "Edd";
+                DirectoryCreator DC = new DirectoryCreator();
+                DC.CreateDirectoryProgramme(RefProjet.ToString(), RefProgramme + "/" + Edd + "/" + NumEddModif);
+                BS.BiensEddModificatif(int.Parse(tempNumEdd),int.Parse(NumEddModif),int.Parse(RefProgramme),RefProjet);
+                msh.LoadData("select *,DATE_FORMAT(DatePubli,'%d/%m/%y') AS Date from edd where RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "'", dataViewListeEdd);
+                inputDateEnreg.Text = inputVolume.Text = inputConservation.Text = inputNotaire.Text = inputTelNotaire.Text = inputAdresseNotaire.Text = inputNomGeo.Text = inputTelGeo.Text = inputAddresseGeo.Text = inputNbrLog.Text = inputNbrLoc.Text = inputNbrCave.Text = inputNbrEQ.Text = inputNbrPS.Text = inputNbrBur.Text = "";
+                inputSupLog.Text = inputSupLoc.Text = inputSupBur.Text = inputSupCave.Text = inputSupEQ.Text = inputSupPS.Text = "0";
 
             }
         }
