@@ -196,6 +196,7 @@
     <Compile Include="Controlers\ProjetController.cs" />
     <Compile Include="Controlers\ProjetMaitreController.cs" />
     <Compile Include="Controlers\SearchLog.cs" />
+    <Compile Include="Controlers\SearchProgramme.cs" />
     <Compile Include="ListeProjetReporting\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
@@ -250,6 +251,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PrgReporting.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrgReporting\PrgReportingViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrgReporting\PrgReportingViwer.Designer.cs">
+      <DependentUpon>PrgReportingViwer.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjetReporting\DataSetProjet.cs">
       <DependentUpon>DataSetProjet.xsd</DependentUpon>
@@ -542,6 +549,9 @@
     <EmbeddedResource Include="PrgReporting\PrgReporting.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PrgReporting.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrgReporting\PrgReportingViwer.resx">
+      <DependentUpon>PrgReportingViwer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjetReporting\FicheProjet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

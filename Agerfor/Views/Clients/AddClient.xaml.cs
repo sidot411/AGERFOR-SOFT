@@ -38,6 +38,7 @@ namespace Agerfor.Views.Clients
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieuNaissance, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieuNaissanceConj, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya", inputVille, "NomWilaya");
+
             string query2 = "select MAX(Numclient)+1 AS Num from client  ;";
             MySqlDataReader rdr2 = null;
             MySqlConnection con2 = null;
@@ -108,10 +109,10 @@ namespace Agerfor.Views.Clients
                         inputPrenomCongAr.Text = rdr["PrenomConjAR"].ToString();
                         inputLieuNaissanceConj.Text = rdr["LieuNaissanceConj"].ToString();
                         inputProffessionConj.Text = rdr["ProfessionConj"].ToString();
-                        inputDateNaissanceConj.SelectedDate = DateTime.ParseExact(rdr["DateNaissanceConj"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                        inputDateCration.SelectedDate = DateTime.ParseExact(rdr["DateCreation"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                        inputDateNaissance.SelectedDate = DateTime.ParseExact(rdr["DateNaissance"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                        inputDateCni.SelectedDate = DateTime.ParseExact(rdr["DateCni"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                        inputDateNaissanceConj.Text = rdr["DateNaissanceConj"].ToString();
+                        inputDateCration.Text = rdr["DateCreation"].ToString();
+                        inputDateNaissance.Text = rdr["DateNaissance"].ToString();
+                        inputDateCni.Text = rdr["DateCni"].ToString();
 
                         oneTime = false;
                     }
@@ -162,9 +163,9 @@ namespace Agerfor.Views.Clients
                             inputProffession.Text = rdr["Proffession"].ToString();
                             inputNomAutreCntacte.Text = rdr["NomContact"].ToString();
                             inputTelphoneContact.Text = rdr["TelContact"].ToString();
-                            inputDateCration.SelectedDate = DateTime.ParseExact(rdr["DateCreation"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                            inputDateNaissance.SelectedDate = DateTime.ParseExact(rdr["DateNaissance"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                            inputDateCni.SelectedDate = DateTime.ParseExact(rdr["DateCni"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            inputDateCration.Text = rdr["DateCreation"].ToString();
+                            inputDateNaissance.Text = rdr["DateNaissance"].ToString();
+                            inputDateCni.Text = rdr["DateCni"].ToString();
 
                             oneTime = false;
                         }
@@ -281,7 +282,7 @@ namespace Agerfor.Views.Clients
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("Veuillez entrer les informations nécessaire");
+                    System.Windows.MessageBox.Show("Veuillez entrer les informations nécessaire ");
                 }
             }
             else

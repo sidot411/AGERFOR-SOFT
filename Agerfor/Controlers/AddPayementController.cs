@@ -11,11 +11,11 @@ namespace Agerfor.Controlers
     {
         MySqlHelper msh = new MySqlHelper();
 
-        public void AjouterPayement(string DatePayement, int NumAttribution,string NumClient,string NomClient,string prenom, string DateNaissance,string NumCni,string NomProjet,string NomProgramme,string NumIlot,string NumLot,string TypeBien,string NumBloc,string NumBien, string Niveau, string NbrP, decimal Superficie, decimal MontantTotal, decimal MontantVerse, decimal Reste)
+        public void AjouterPayement(string DatePayement, int NumAttribution,string NumClient,string NomClient,string prenom, string DateNaissance,string NumCni,int RefProjet, string NomProjet,int RefProgramme, string NomProgramme,string NumIlot,string NumLot,string TypeBien,string NumBloc,string Niveau, string NbrP, decimal SurH,decimal SurU, decimal MontantTotal, decimal MontantVerse, decimal Reste)
         { 
             try
             {
-                msh.ExecuteQuery("INSERT INTO `payement` (`DatePayement`, `NumAttribution`, `NumClient`, `NomClient`, `PrenomClient`, `DateNaissance`, `NumCni`, `NomProjet`, `NomProgramme`, `NumIlot`, `NumLot`, `TypeBien`, `NumBloc`, `NumBien`, `Niveau`, `NbrP`, `Superficie`, `MontantTotal`, `MontantVerse`, `Reste`) VALUES('"+DatePayement+"', '"+NumAttribution+"', '"+NumClient+"', '"+NomClient+"','"+prenom+"', '"+DateNaissance+"', '"+NumCni+"', '"+NomProjet+"', '"+NomProgramme+"', '"+NumIlot+"', '"+NumLot+"', '"+TypeBien+"', '"+NumBloc+"', '"+NumBien+"', '"+Niveau+"', '"+NbrP+"', '"+Superficie+"', '"+MontantTotal+"', '"+MontantVerse+"', '"+Reste+"')");
+                msh.ExecuteQuery("INSERT INTO `payement` (`DatePayement`, `NumAttribution`, `NumClient`, `NomClient`, `PrenomClient`, `DateNaissance`, `NumCni`, `RefProjet`, `NomProjet`, `RefProgramme`, `NomProgramme`, `NumIlot`, `NumLot`, `TypeBien`, `NumBloc`, `Niveau`, `NbrP`, `SurH`, `SurU`, `MontantTotal`, `MontantVerse`, `Reste`) VALUES( '" + DatePayement + "', '" + NumAttribution + "', '" + NumClient + "', '" + NomClient + "', '" + prenom + "', '" + DateNaissance + "', '" + NumCni + "', '" + RefProjet + "', '" + NomProjet + "', '" + RefProgramme + "', '" + NomProgramme + "', '" + NumIlot + "', '" + NumLot + "', '" + TypeBien + "', '" + NumBloc + "', '" + Niveau + "', '" + NbrP + "', '" + SurH + "', '" + SurU + "', '" + MontantTotal + "', '" + MontantVerse + "', '" + Reste + "') ");
                 MessageBox.Show("Le payement à était bien ajouté");
             }
             catch(Exception)

@@ -305,7 +305,7 @@ namespace Agerfor.Views.Programme
                     SizeToContent = SizeToContent.WidthAndHeight,
                     ResizeMode = ResizeMode.NoResize,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
-
+                      
                 };
 
                 window.ShowDialog();

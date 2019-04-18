@@ -84,8 +84,16 @@
                                 <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Nom P 
                                     rg</Label>
                                 <TextBox x:Name="inputNomProgramme" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+                         
                             </StackPanel>
-
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Nature prg</Label>
+                                <TextBox x:Name="inputNatureProgramme" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" VerticalAlignment="Center">Type prg</Label>
+                                <TextBox x:Name="inputTypeProgramme" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
 
@@ -99,29 +107,24 @@
                                 <local:AutoCompleteTextBox x:Name="inputNumIlot" Background="#FAFAFA" Width="360"
                    Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumIlot_MouseLeave"/>
                             </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
 
+                                <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° Bloc</Label>
+                                <local:AutoCompleteTextBox x:Name="inputNumBloc" Background="#FAFAFA" Width="360"
+                   Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumBloc_MouseLeave" />
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° LOT</Label>
                                 <local:AutoCompleteTextBox x:Name="inputNumLot" Background="#FAFAFA" Width="360"
                    Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumLot_MouseLeave"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                                <Label FontSize="16" Foreground="black" Margin="0 0 10 0">Type de bien</Label>
-                                <ComboBox x:Name="inputTypeBien" Background="#FAFAFA" Width="147" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="black" Margin="0 0 10 0" SelectionChanged="inputTypeBien_SelectionChanged">
-                                    
-                                </ComboBox>
 
-                                <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° Bloc</Label>
-                                <local:AutoCompleteTextBox x:Name="inputNumBloc" Background="#FAFAFA" Width="130"
-                   Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumBloc_MouseLeave" />
-                            </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                                <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° Bien</Label>
-                                <local:AutoCompleteTextBox x:Name="inputNumBien" Background="#FAFAFA" Width="360"
-                   Height="30"  HorizontalAlignment="Right" MouseLeave="inputNumBien_MouseLeave" />
+                                <Label FontSize="16" Foreground="black" Margin="0 0 10 0">Type Bien</Label>
+                                <TextBox x:Name="inputTypeBien" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="black"/>
                             </StackPanel>
-                           
+
 
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Foreground="black" Margin="0 0 10 0">Niveau</Label>
@@ -134,11 +137,15 @@
                          VerticalContentAlignment="Center" Height="35" BorderBrush="black"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
-                                <Label FontSize="16" Margin="0 0 10 0" Foreground="black">Superficie</Label>
-                                <TextBox  x:Name="inputSup" Background="#FAFAFA" Width="360" FontSize="18"
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="black">Surface Habitable</Label>
+                                <TextBox  x:Name="inputSurH" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="black"/>
                             </StackPanel>
-
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 13" HorizontalAlignment="Right">
+                                <Label FontSize="16" Margin="0 0 10 0" Foreground="black">Surface Utile</Label>
+                                <TextBox  x:Name="inputSurU" Background="#FAFAFA" Width="360" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="black"/>
+                            </StackPanel>
 
 
 
@@ -202,7 +209,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 20">
                     <Button x:Name="BtnAttribuerBien" Background="#007CC3" Content="Attribuer le bien" Height="35" Width="150" Margin="0 0 20 0" Click="BtnAttribuerBien_Click"/>
-                    <Button x:Name="BtnSupprimmerLots" Background="#007CC3" Content="OV" Height="35" Width="105" Margin="0 0 20 0"/>
+                    <Button x:Name="BtnSupprimmerLots" Background="#007CC3" Content="OV" Height="35" Width="105" Margin="0 0 20 0" />
                 </StackPanel>
             </StackPanel>
 
