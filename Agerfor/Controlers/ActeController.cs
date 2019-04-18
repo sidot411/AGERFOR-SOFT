@@ -17,7 +17,7 @@ namespace Agerfor.Controlers
             {
                 msh.ExecuteQuery("INSERT INTO `acteprojet` (`DatePubliActe`, `Volume`, `RefPubli`, `FraisPubli`, `Pos`, `Conservation`, `RefProjet`) VALUES (STR_TO_DATE('" + DateActe + "', '%d/%m/%Y'), '"+Volume+"', '"+RefPubli+"', '"+FraisPubli+"', '"+Pos+"','"+Conservation+"', '"+RefProjet+"')");
                 MessageBox.Show("L'Acte à était bien ajouté");
-              //  messagebox.show
+              ////  messagebox.show
             }
             catch(Exception)
             {
