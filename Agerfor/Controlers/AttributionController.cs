@@ -12,11 +12,11 @@ namespace Agerfor.Controlers
     {
         MySqlHelper msh = new MySqlHelper();
 
-        public void AjouterAttribution(int NumAttri, string DateAttri, string NumClient, string NumProjet, string NumProgramme,string NatureProgramme, string NumIlot, string Numlot, string TypeBien, string NumBloc, string NumBien)
+        public void AjouterAttribution( string DateAttri, string NumClient, string NumProjet, string NumProgramme,string NatureProgramme,string TypeBien, string NumIlot, string Numlot, string NumBloc,int IdBien)
         {
             try
             {
-                msh.ExecuteQuery("INSERT INTO attribution(NumA,DateAttribution,NumClient,NumProjet,NumProgramme,NatureProgramme, NumIlot,Numlot,TypeBien,NumBloc,NumBien) VALUES ('" + NumAttri+"', '"+DateAttri+"', '"+NumClient+"', '"+NumProjet+"', '"+NumProgramme+"','"+NatureProgramme+"', '"+NumIlot+"', '"+Numlot+"', '"+TypeBien+"', '"+NumBloc+"', '"+NumBien+"')");
+                msh.ExecuteQuery("INSERT INTO `attribution` ( `DateAttribution`, `NumClient`, `NumProjet`, `NumProgramme`, `NatureProgramme`, `TypeBien`, `NumIlot`, `Numlot`, `NumBloc`,`IdBien`) VALUES ( STR_TO_DATE('" + DateAttri + "', '%d/%m/%Y'), '"+NumClient+"', '"+NumProjet+"', '"+NumProgramme+"','"+NatureProgramme+"','"+TypeBien+"', '"+NumIlot+"', '"+Numlot+"', '"+NumBloc+"','"+IdBien+"')");
                 MessageBox.Show("L'attribution a était bien ajouté");
               
                     }
@@ -27,11 +27,11 @@ namespace Agerfor.Controlers
 
         }
 
-        public void ModifierAttribution(string NumAttri, string DateAttri, string CodeClient, string NumProjet, string NumProgramme, string NumBien, string tempNumAttri)
+        public void ModifierAttribution(string DateAttri, string NumClient, string NumProjet, string NumProgramme,string NatureProgramme, string TypeBien, string NumIlot, string Numlot, string NumBloc, int IdBien, int tempnumattribution)
         {
             try
             {
-                msh.ExecuteQuery("update attribution set NumAttribution='" + NumAttri + "',DateAttribution='" + DateAttri + "',CodeClient='" + CodeClient + "',NumProjet='" + NumProjet + "',NumProgramme='" + NumProgramme + "',NumBien='" + NumBien + "' where NumAttribution='" + tempNumAttri + "'");
+                msh.ExecuteQuery("update attribution set DateAttribution=STR_TO_DATE('" + DateAttri + "', '%d/%m/%Y'),NumClient='" + NumClient + "',NumProjet='" + NumProjet + "',NumProgramme='" + NumProgramme + "',NatureProgramme='"+NatureProgramme+"',TypeBien='"+TypeBien+"',  NumIlot='" + NumIlot+"',Numlot='"+Numlot+"',NumBLoc='"+NumBloc+ "',IdBien='"+IdBien+"'  where NumA='" + tempnumattribution + "'");
                 MessageBox.Show("L'attribution a était bien modifié");
             }
             catch(Exception)

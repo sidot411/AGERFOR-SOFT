@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 10 avr. 2019 à 13:52
+-- Généré le :  jeu. 18 avr. 2019 à 08:07
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -75,16 +75,16 @@ INSERT INTO `acteprojet` (`NumActe`, `DatePubliActe`, `Volume`, `RefPubli`, `Fra
 DROP TABLE IF EXISTS `attribution`;
 CREATE TABLE IF NOT EXISTS `attribution` (
   `NumA` int(255) NOT NULL AUTO_INCREMENT,
-  `DateAttribution` varchar(50) NOT NULL,
+  `DateAttribution` date NOT NULL,
   `NumClient` varchar(50) NOT NULL,
   `NumProjet` varchar(50) NOT NULL,
   `NumProgramme` varchar(50) NOT NULL,
   `NatureProgramme` varchar(50) NOT NULL,
+  `TypeBien` varchar(50) NOT NULL,
   `NumIlot` varchar(50) NOT NULL,
   `Numlot` varchar(50) NOT NULL,
-  `TypeBien` varchar(50) NOT NULL,
   `NumBloc` varchar(50) NOT NULL,
-  `NumBien` varchar(50) NOT NULL,
+  `IdBien` int(255) NOT NULL,
   PRIMARY KEY (`NumA`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -131,54 +131,75 @@ CREATE TABLE IF NOT EXISTS `biens` (
   `LimiteEst` varchar(50) NOT NULL,
   `LimiteOuest` varchar(50) NOT NULL,
   `Etat` varchar(50) NOT NULL,
-  PRIMARY KEY (`Numlot`,`NumBloc`,`Niveau`),
+  PRIMARY KEY (`NumEdd`,`Numlot`,`NumBloc`,`Niveau`),
   UNIQUE KEY `UNIQUE` (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `biens`
 --
 
 INSERT INTO `biens` (`Id`, `RefProgramme`, `RefProjet`, `NumEdd`, `NumIlot`, `TypeBien`, `Numlot`, `NumBloc`, `Niveau`, `NbrPiece`, `SurH`, `SurU`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`) VALUES
-(1, 2, 1, 2, '1', 'Logement', '1', '1', '0', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
-(2, 2, 1, 2, '1', 'Logement', '2', '1', '0', 'F3', '70.44', '72.74', '37383.18', 17, '3343603.70', '', '', '', '', 'Libre'),
-(3, 2, 1, 2, '1', 'Logement', '3', '1', '0', 'F3', '70.64', '72.94', '37383.18', 17, '3353097.18', '', '', '', '', 'Libre'),
-(4, 2, 1, 2, '1', 'Logement', '4', '1', '0', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
-(5, 2, 1, 2, '1', 'Logement', '5', '1', '1', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
-(6, 2, 1, 2, '1', 'Logement', '6', '1', '1', 'F3', '70.44', '72.74', '37383.18', 17, '3343603.70', '', '', '', '', 'Libre'),
-(7, 2, 1, 2, '1', 'Logement', '7', '1', '1', 'F3', '70.64', '72.94', '37383.18', 17, '3353097.18', '', '', '', '', 'Libre'),
-(8, 2, 1, 2, '1', 'Logement', '8', '1', '1', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
-(9, 2, 1, 2, '1', 'Logement', '9', '1', '2', 'F3', '71.13', '78.21', '37383.18', 17, '3376356.20', '', '', '', '', 'Libre'),
-(10, 2, 1, 2, '1', 'Logement', '10', '1', '2', 'F3', '70.63', '75.24', '37383.18', 17, '3352622.50', '', '', '', '', 'Libre'),
-(11, 2, 1, 2, '1', 'Logement', '11', '1', '2', 'F3', '71.62', '76.23', '37383.18', 17, '3399615.23', '', '', '', '', 'Libre'),
-(12, 2, 1, 2, '1', 'Logement', '12', '1', '2', 'F3', '71.13', '78.21', '37383.18', 17, '3376356.20', '', '', '', '', 'Libre'),
-(13, 2, 1, 2, '1', 'Logement', '13', '1', '3', 'F3', '71.13', '78.21', '37383.18', 17, '3376356.20', '', '', '', '', 'Libre'),
-(14, 2, 1, 2, '1', 'Logement', '14', '1', '3', 'F3', '70.63', '75.24', '37383.18', 17, '3352622.50', '', '', '', '', 'Libre'),
-(15, 2, 1, 2, '1', 'Logement', '15', '1', '3', 'F3', '71.62', '76.23', '37383.18', 17, '3399615.23', '', '', '', '', 'Libre'),
-(16, 2, 1, 2, '1', 'Logement', '16', '1', '3', 'F3', '71.13', '78.21', '37383.18', 17, '3376356.20', '', '', '', '', 'Libre'),
-(17, 2, 1, 2, '1', 'Logement', '17', '1', '4', 'F3', '71.27', '78.35', '37383.18', 17, '3383001.64', '', '', '', '', 'Libre'),
-(18, 2, 1, 2, '1', 'Logement', '18', '1', '4', 'F3', '70.82', '75.43', '37383.18', 17, '3361641.31', '', '', '', '', 'Libre'),
-(19, 2, 1, 2, '1', 'Logement', '19', '1', '4', 'F3', '71.82', '81.05', '37383.18', 17, '3409108.71', '', '', '', '', 'Libre'),
-(20, 2, 1, 2, '1', 'Logement', '20', '1', '4', 'F3', '71.27', '78.35', '37383.18', 17, '3383001.64', '', '', '', '', 'Libre'),
-(21, 2, 1, 2, '1', 'Logement', '21', '1', '5', 'F3', '71.27', '81.79', '37383.18', 17, '3383001.64', '', '', '', '', 'Libre'),
-(22, 2, 1, 2, '1', 'Logement', '22', '1', '5', 'F3', '70.82', '77.85', '37383.18', 17, '3361641.31', '', '', '', '', 'Libre'),
-(23, 2, 1, 2, '1', 'Logement', '23', '1', '5', 'F3', '70.82', '77.85', '37383.18', 17, '3361641.31', '', '', '', '', 'Libre'),
-(24, 2, 1, 2, '1', 'Logement', '24', '1', '5', 'F3', '71.22', '81.74', '37383.18', 17, '3380628.27', '', '', '', '', 'Libre'),
-(25, 2, 1, 2, '1', 'Logement', '1', '2', '0', 'F3', '71.78', '74.17', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(26, 2, 1, 2, '1', 'Logement', '2', '2', '0', 'F3', '71.78', '74.17', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(27, 2, 1, 2, '1', 'Logement', '3', '2', '1', 'F3', '71.78', '74.17', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(28, 2, 1, 2, '1', 'Logement', '4', '2', '1', 'F3', '71.78', '74.17', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(29, 2, 1, 2, '1', 'Logement', '5', '2', '2', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(30, 2, 1, 2, '1', 'Logement', '6', '2', '2', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(31, 2, 1, 2, '1', 'Logement', '7', '2', '3', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(32, 2, 1, 2, '1', 'Logement', '8', '2', '3', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(33, 2, 1, 2, '1', 'Logement', '9', '2', '4', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(34, 2, 1, 2, '1', 'Logement', '10', '2', '4', 'F3', '71.78', '76.88', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(35, 2, 1, 2, '1', 'Logement', '11', '2', '5', 'F3', '71.78', '79.58', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(36, 2, 1, 2, '1', 'Logement', '12', '2', '5', 'F3', '71.78', '79.58', '37383.18', 17, '3407210.02', '', '', '', '', 'Libre'),
-(37, 2, 1, 2, '1', 'Logement', '1', '3', '0', 'F3', '70.79', '75.56', '37383.18', 17, '3360217.29', '', '', '', '', 'Libre'),
-(38, 2, 1, 2, '1', 'Logement', '2', '3', '0', 'F3', '70.64', '72.94', '37383.18', 17, '3353097.18', '', '', '', '', 'Libre'),
-(39, 2, 1, 2, '1', 'Logement', '3', '3', '0', 'F3', '70.44', '72.74', '37383.18', 17, '3343603.70', '', '', '', '', 'Libre');
+(1, 2, 1, 2, '1', 'Logement', '1', '1', '0', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
+(2, 2, 1, 2, '1', 'Logement', '2', '1', '0', 'F3', '70.44', '72.74', '37383.18', 7, '3080276.58', '', '', '', '', 'Libre'),
+(3, 2, 1, 2, '1', 'Logement', '3', '1', '0', 'F3', '70.64', '72.94', '37383.18', 7, '3089022.39', '', '', '', '', 'Libre'),
+(4, 2, 1, 2, '1', 'Logement', '4', '1', '0', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
+(5, 2, 1, 2, '1', 'Logement', '5', '1', '1', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
+(6, 2, 1, 2, '1', 'Logement', '6', '1', '1', 'F3', '70.44', '72.74', '37383.18', 7, '3080276.58', '', '', '', '', 'Libre'),
+(7, 2, 1, 2, '1', 'Logement', '7', '1', '1', 'F3', '70.64', '72.94', '37383.18', 7, '3089022.39', '', '', '', '', 'Libre'),
+(8, 2, 1, 2, '1', 'Logement', '8', '1', '1', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
+(9, 2, 1, 2, '1', 'Logement', '9', '1', '2', 'F3', '71.13', '78.21', '37383.18', 7, '3110449.65', '', '', '', '', 'Libre'),
+(10, 2, 1, 2, '1', 'Logement', '10', '1', '2', 'F3', '70.63', '75.24', '37383.18', 7, '3088585.10', '', '', '', '', 'Libre'),
+(11, 2, 1, 2, '1', 'Logement', '11', '1', '2', 'F3', '71.62', '76.23', '37383.18', 7, '3131876.90', '', '', '', '', 'Libre'),
+(12, 2, 1, 2, '1', 'Logement', '12', '1', '2', 'F3', '71.13', '78.21', '37383.18', 7, '3110449.65', '', '', '', '', 'Libre'),
+(13, 2, 1, 2, '1', 'Logement', '13', '1', '3', 'F3', '71.13', '78.21', '37383.18', 7, '3110449.65', '', '', '', '', 'Libre'),
+(14, 2, 1, 2, '1', 'Logement', '14', '1', '3', 'F3', '70.63', '75.24', '37383.18', 7, '3088585.10', '', '', '', '', 'Libre'),
+(15, 2, 1, 2, '1', 'Logement', '15', '1', '3', 'F3', '71.62', '76.23', '37383.18', 7, '3131876.90', '', '', '', '', 'Libre'),
+(16, 2, 1, 2, '1', 'Logement', '16', '1', '3', 'F3', '71.13', '78.21', '37383.18', 7, '3110449.65', '', '', '', '', 'Libre'),
+(17, 2, 1, 2, '1', 'Logement', '17', '1', '4', 'F3', '71.27', '78.35', '37383.18', 7, '3116571.72', '', '', '', '', 'Libre'),
+(18, 2, 1, 2, '1', 'Logement', '18', '1', '4', 'F3', '70.82', '75.43', '37383.18', 7, '3096893.63', '', '', '', '', 'Libre'),
+(19, 2, 1, 2, '1', 'Logement', '19', '1', '4', 'F3', '71.82', '81.05', '37383.18', 7, '3140622.71', '', '', '', '', 'Libre'),
+(20, 2, 1, 2, '1', 'Logement', '20', '1', '4', 'F3', '71.27', '78.35', '37383.18', 7, '3116571.72', '', '', '', '', 'Libre'),
+(21, 2, 1, 2, '1', 'Logement', '21', '1', '5', 'F3', '71.27', '81.79', '37383.18', 7, '3116571.72', '', '', '', '', 'Libre'),
+(22, 2, 1, 2, '1', 'Logement', '22', '1', '5', 'F3', '70.82', '77.85', '37383.18', 7, '3096893.63', '', '', '', '', 'Libre'),
+(23, 2, 1, 2, '1', 'Logement', '23', '1', '5', 'F3', '70.82', '77.85', '37383.18', 7, '3096893.63', '', '', '', '', 'Libre'),
+(24, 2, 1, 2, '1', 'Logement', '24', '1', '5', 'F3', '71.22', '81.74', '37383.18', 7, '3114385.26', '', '', '', '', 'Libre'),
+(25, 2, 1, 2, '1', 'Logement', '1', '2', '0', 'F3', '71.78', '74.17', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(26, 2, 1, 2, '1', 'Logement', '2', '2', '0', 'F3', '71.78', '74.17', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(27, 2, 1, 2, '1', 'Logement', '3', '2', '1', 'F3', '71.78', '74.17', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(28, 2, 1, 2, '1', 'Logement', '4', '2', '1', 'F3', '71.78', '74.17', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(29, 2, 1, 2, '1', 'Logement', '5', '2', '2', 'F3', '71.78', '76.88', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(30, 2, 1, 2, '1', 'Logement', '6', '2', '2', 'F3', '71.78', '76.88', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(31, 2, 1, 2, '1', 'Logement', '7', '2', '3', 'F3', '71.78', '76.88', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(32, 2, 1, 2, '1', 'Logement', '8', '2', '3', 'F3', '71.78', '76.88', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(33, 2, 1, 2, '1', 'Logement', '9', '2', '4', 'F3', '71.78', '76.88', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(34, 2, 1, 2, '1', 'Logement', '10', '2', '4', 'F3', '71.78', '76.88', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(35, 2, 1, 2, '1', 'Logement', '11', '2', '5', 'F3', '71.78', '79.58', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(36, 2, 1, 2, '1', 'Logement', '12', '2', '5', 'F3', '71.78', '79.58', '37383.18', 7, '3138873.55', '', '', '', '', 'Libre'),
+(37, 2, 1, 2, '1', 'Logement', '1', '3', '0', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
+(38, 2, 1, 2, '1', 'Logement', '2', '3', '0', 'F3', '70.64', '72.94', '37383.18', 7, '3089022.39', '', '', '', '', 'Libre'),
+(39, 2, 1, 2, '1', 'Logement', '3', '3', '0', 'F3', '70.44', '72.74', '37383.18', 7, '3080276.58', '', '', '', '', 'Libre'),
+(40, 2, 1, 2, '1', 'Logement', '4', '3', '0', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
+(41, 2, 1, 2, '1', 'Logement', '5', '3', '1', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
+(42, 2, 1, 2, '1', 'Logement', '6', '3', '1', 'F3', '70.64', '72.94', '37383.18', 7, '3089022.39', '', '', '', '', 'Libre'),
+(43, 2, 1, 2, '1', 'Logement', '7', '3', '1', 'F3', '70.44', '72.74', '37383.18', 7, '3080276.58', '', '', '', '', 'Libre'),
+(44, 2, 1, 2, '1', 'Logement', '8', '3', '1', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
+(45, 2, 1, 2, '1', 'Logement', '9', '3', '2', 'F3', '71.13', '78.21', '37383.18', 7, '3110449.65', '', '', '', '', 'Libre'),
+(46, 2, 1, 2, '1', 'Logement', '10', '3', '2', 'F3', '71.62', '76.23', '37383.18', 7, '3131876.90', '', '', '', '', 'Libre'),
+(47, 2, 1, 2, '1', 'Logement', '11', '3', '2', 'F3', '70.63', '75.24', '37383.18', 7, '3088585.10', '', '', '', '', 'Libre'),
+(48, 2, 1, 2, '1', 'Logement', '12', '3', '2', 'F3', '71.13', '78.21', '37383.18', 7, '3110449.65', '', '', '', '', 'Libre'),
+(49, 2, 1, 2, '1', 'Logement', '13', '3', '3', 'F3', '71.13', '78.21', '37383.18', 7, '3110449.65', '', '', '', '', 'Libre'),
+(50, 2, 1, 2, '1', 'Logement', '14', '3', '3', 'F3', '71.62', '76.23', '37383.18', 7, '3131876.90', '', '', '', '', 'Libre'),
+(51, 2, 1, 2, '1', 'Logement', '15', '3', '3', 'F3', '70.63', '75.24', '37383.18', 7, '3088585.10', '', '', '', '', 'Libre'),
+(52, 2, 1, 2, '1', 'Logement', '16', '3', '3', 'F3', '71.13', '78.21', '37383.18', 7, '3110449.65', '', '', '', '', 'Libre'),
+(53, 2, 1, 2, '1', 'Logement', '17', '3', '4', 'F3', '71.27', '78.35', '37383.18', 7, '3116571.72', '', '', '', '', 'Libre'),
+(54, 2, 1, 2, '1', 'Logement', '18', '3', '4', 'F3', '71.82', '81.05', '37383.18', 7, '3140622.71', '', '', '', '', 'Libre'),
+(55, 2, 1, 2, '1', 'Logement', '19', '3', '4', 'F3', '70.82', '75.43', '37383.18', 7, '3096893.63', '', '', '', '', 'Libre'),
+(56, 2, 1, 2, '1', 'Logement', '20', '3', '4', 'F3', '71.27', '78.35', '37383.18', 7, '3116571.72', '', '', '', '', 'Libre'),
+(57, 2, 1, 2, '1', 'Logement', '21', '3', '5', 'F3', '71.22', '81.74', '37383.18', 7, '3114385.26', '', '', '', '', 'Libre'),
+(58, 2, 1, 2, '1', 'Logement', '22', '3', '5', 'F3', '70.82', '77.85', '37383.18', 7, '3096893.63', '', '', '', '', 'Libre'),
+(59, 2, 1, 2, '1', 'Logement', '23', '3', '5', 'F3', '70.82', '77.85', '37383.18', 7, '3096893.63', '', '', '', '', 'Libre'),
+(60, 2, 1, 2, '1', 'Logement', '24', '3', '5', 'F3', '71.27', '81.79', '37383.18', 7, '3116571.72', '', '', '', '', 'Libre');
 
 -- --------------------------------------------------------
 
@@ -217,9 +238,8 @@ CREATE TABLE IF NOT EXISTS `cahierchargeprogramme` (
 
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE IF NOT EXISTS `client` (
-  `ID` int(50) NOT NULL AUTO_INCREMENT,
-  `NumClient` varchar(50) NOT NULL,
-  `DateCreation` varchar(50) DEFAULT NULL,
+  `NumClient` int(255) NOT NULL AUTO_INCREMENT,
+  `DateCreation` date DEFAULT NULL,
   `Nom` varchar(50) DEFAULT NULL,
   `Prenom` varchar(50) DEFAULT NULL,
   `NomAr` varchar(50) DEFAULT NULL,
@@ -234,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `NomMereAr` varchar(50) DEFAULT NULL,
   `PrenomMereAr` varchar(50) DEFAULT NULL,
   `Cni` varchar(20) DEFAULT NULL,
-  `DateCni` varchar(50) DEFAULT NULL,
+  `DateCni` date DEFAULT NULL,
   `LieuCni` varchar(50) DEFAULT NULL,
   `Ville` varchar(50) DEFAULT NULL,
   `Adress` varchar(2000) DEFAULT NULL,
@@ -250,15 +270,19 @@ CREATE TABLE IF NOT EXISTS `client` (
   `DateNaissanceConj` varchar(50) DEFAULT NULL,
   `LieuNaissanceConj` varchar(50) DEFAULT NULL,
   `ProfessionConj` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`NumClient`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`ID`, `NumClient`, `DateCreation`, `Nom`, `Prenom`, `NomAr`, `PrenomAr`, `Sexe`, `DateNaissance`, `LieuNaissance`, `PrenomPere`, `PrenomPereAr`, `NomMere`, `PrenomMere`, `NomMereAr`, `PrenomMereAr`, `Cni`, `DateCni`, `LieuCni`, `Ville`, `Adress`, `Proffession`, `Tel`, `NomContact`, `TelContact`, `Situation`, `NomConj`, `PrénomConj`, `NomConjAR`, `PrenomConjAR`, `DateNaissanceConj`, `LieuNaissanceConj`, `ProfessionConj`) VALUES
-(1, '1', '14/03/2019', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '01/03/2019', 'ORAN', 'MOUNIR', 'منير', 'FRIOUI', 'ZOULIKHA', 'فريوي', 'زليخة', '112233667', '14/03/2019', 'ORAN', 'ORAN', 'N°265 SIDI EL KHIAR ES-SENIA', 'INFORMATICIEN', '0661934408', 'MOUNIR', '0661934408', 'Célibataire', '', '', '', '', '', '', '');
+INSERT INTO `client` (`NumClient`, `DateCreation`, `Nom`, `Prenom`, `NomAr`, `PrenomAr`, `Sexe`, `DateNaissance`, `LieuNaissance`, `PrenomPere`, `PrenomPereAr`, `NomMere`, `PrenomMere`, `NomMereAr`, `PrenomMereAr`, `Cni`, `DateCni`, `LieuCni`, `Ville`, `Adress`, `Proffession`, `Tel`, `NomContact`, `TelContact`, `Situation`, `NomConj`, `PrénomConj`, `NomConjAR`, `PrenomConjAR`, `DateNaissanceConj`, `LieuNaissanceConj`, `ProfessionConj`) VALUES
+(1, '2019-04-16', 'KHIAT', 'SIDAHMED', 'خياط', 'سيدأحمد', 'Homme', '01/03/2019', 'ORAN', 'MOUNIR', 'منير', 'FRIOUI', 'ZOULIKHA', 'فريوي', 'زليخة', '112233667', '2019-03-14', 'ORAN', 'ORAN', 'N°265 SIDI EL KHIAR ES-SENIA', 'INFORMATICIEN', '0661934408', 'MOUNIR', '0661934408', 'Célibataire', '', '', '', '', '', '', ''),
+(2, '2019-04-16', 'BOUZOUINA', 'SALIM', 'بوزوينة', 'سليم', 'Homme', '1977-02-12', 'ORAN', 'BELKHIR', 'بلخير', 'ABD EL MALEK', 'FATIMA', 'عبد المالك', 'فاطمة', '502948', '2013-01-15', 'ORAN', 'ORAN', 'Rue korine AEK Oued Tlelate ', 'METREUR', '/', 'BELKHIR', '/', 'Marié(e)', 'KHALTI', 'SOUAD', 'خالتي', 'SOUAD', '25/06/1984', 'ORAN', 'SANS '),
+(3, '2019-04-16', 'MALEK CHELIH', 'TEWFIK', 'مالك شليح', 'توفيق', 'Homme', '1978-01-07', 'ORAN', 'ABD EL KADER', 'عبد القادر', 'MECHRI', 'FATIMA', 'مشري', 'فاطمة', '659932', '2004-01-24', 'ORAN', 'ORAN', '27 Rue ibrahim ben ahmed Oued telilet', 'Enseignant', '/', 'MECHRI', '/', 'Célibataire', '', '', '', '', '', '', ''),
+(4, '2019-04-16', 'BENLASRI', 'MUSTAFA', 'بن العسري', 'مصطفى', 'Homme', '1984-08-24', 'ORAN', 'ABDALLAH', 'عبد الله', 'FEKIR', 'RAHMA', 'فقير', 'رحمة', '540087', '2010-08-08', 'ORAN', 'ORAN', 'Cité 140 log Oued tlelat', 'Commerçant ', '/', 'ABDALLAH', '/', 'Célibataire', '', '', '', '', '', '', ''),
+(5, '2019-04-16', 'BELLACHHEB', 'SOMIA', 'بلشهب', 'سمية', 'Femme', '02/12/1981', 'ORAN', 'ABD EL KADER', 'عبد القادر', 'MOUALI MHAJI', 'HADDA', 'موالي مهاجي', 'حدة', '577503', '2011-12-22', 'ORAN', 'ORAN', 'Cité Hammou boutlelis Oued tlelat', 'Secraitaire', '/', 'ABD EL KADER', '/', 'Marié(e)', 'SGHIR', 'HOUARI', 'سغير', 'HOUARI', '12-10-1969', 'ORAN', 'Agent de sécurité');
 
 -- --------------------------------------------------------
 
@@ -492,7 +516,7 @@ CREATE TABLE IF NOT EXISTS `edd` (
   `NbrPS` varchar(50) NOT NULL,
   `SuperficiePS` decimal(50,2) NOT NULL,
   PRIMARY KEY (`NumEdd`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `edd`
@@ -551,7 +575,7 @@ INSERT INTO `listeilot` (`Id`, `NumIlot`, `RefProjet`) VALUES
 DROP TABLE IF EXISTS `lot`;
 CREATE TABLE IF NOT EXISTS `lot` (
   `RefProgramme` varchar(50) NOT NULL,
-  `NomProjet` varchar(50) NOT NULL,
+  `RefProjet` varchar(50) NOT NULL,
   `NumCC` varchar(50) NOT NULL,
   `NumIlot` varchar(50) NOT NULL,
   `NumLot` varchar(50) NOT NULL,
@@ -616,23 +640,25 @@ CREATE TABLE IF NOT EXISTS `ov` (
 DROP TABLE IF EXISTS `payement`;
 CREATE TABLE IF NOT EXISTS `payement` (
   `NumPayement` int(255) NOT NULL AUTO_INCREMENT,
-  `DatePayement` varchar(50) NOT NULL,
+  `DatePayement` date NOT NULL,
   `NumAttribution` int(255) NOT NULL,
-  `NumClient` varchar(50) NOT NULL,
+  `NumClient` int(255) NOT NULL,
   `NomClient` varchar(50) NOT NULL,
   `PrenomClient` varchar(50) NOT NULL,
   `DateNaissance` varchar(50) NOT NULL,
   `NumCni` varchar(50) NOT NULL,
+  `RefProjet` int(255) NOT NULL,
   `NomProjet` varchar(50) NOT NULL,
+  `RefProgramme` int(255) NOT NULL,
   `NomProgramme` varchar(50) NOT NULL,
   `NumIlot` varchar(50) NOT NULL,
   `NumLot` varchar(50) NOT NULL,
   `TypeBien` varchar(50) NOT NULL,
   `NumBloc` varchar(50) NOT NULL,
-  `NumBien` varchar(50) NOT NULL,
   `Niveau` varchar(50) NOT NULL,
   `NbrP` varchar(50) NOT NULL,
-  `Superficie` decimal(50,2) NOT NULL,
+  `SurH` decimal(50,2) NOT NULL,
+  `SurU` decimal(50,2) NOT NULL,
   `MontantTotal` decimal(50,2) NOT NULL,
   `MontantVerse` decimal(50,2) NOT NULL,
   `Reste` decimal(50,2) NOT NULL,
@@ -797,7 +823,7 @@ CREATE TABLE IF NOT EXISTS `tva` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `ValeurTva` int(50) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `tva`
@@ -806,7 +832,8 @@ CREATE TABLE IF NOT EXISTS `tva` (
 INSERT INTO `tva` (`Id`, `ValeurTva`) VALUES
 (1, 19),
 (2, 17),
-(3, 21);
+(3, 21),
+(4, 7);
 
 -- --------------------------------------------------------
 

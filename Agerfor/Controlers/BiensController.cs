@@ -37,6 +37,19 @@ namespace Agerfor.Controlers
             }
         }
 
+        public void ModifierEtat (int IdBien, string Etat)
+        {
+            try
+            {
+                msh.ExecuteQuery("update biens  set Etat='"+Etat+"' where Id='" + IdBien + "'");
+                MessageBox.Show("Le Bien à été bien modifié");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Le Bien n'a pas été modifié");
+            }
+
+        }
         public void SupprimerBien(string Id)
         {
             try

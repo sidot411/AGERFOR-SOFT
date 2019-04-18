@@ -6,6 +6,7 @@ using Agerfor.Controlers;
 
 using MySql.Data.MySqlClient;
 using DbConnection.Models;
+using Agerfor.PrgReporting;
 
 using System.Windows.Forms;
 
@@ -17,7 +18,7 @@ namespace Agerfor.Views.Programme
     /// </summary>
     public partial class Programme : Page
     {
-        
+
         PermiLotirController PLC = new PermiLotirController();
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
         string temprefprogramme = "";
@@ -26,7 +27,7 @@ namespace Agerfor.Views.Programme
         string tempRefProjet = "";
         string tempnumprojet = "";
         string query = "";
-        
+
         public Programme(string query)
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace Agerfor.Views.Programme
             }
         }
 
-      
+
 
         private void dataGridView2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -55,12 +56,12 @@ namespace Agerfor.Views.Programme
             DataGridCellInfo cell1 = dataGridView2.SelectedCells[1];
             tempNomProgramme = ((TextBlock)cell1.Column.GetCellContent(cell1.Item)).Text;
             DataGridCellInfo cell2 = dataGridView2.SelectedCells[2];
-            tempRefProjet  = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
-             
-        
+            tempRefProjet = ((TextBlock)cell2.Column.GetCellContent(cell2.Item)).Text;
 
-    }
-    private void BtnAfficherProgramme_Click(object sender, RoutedEventArgs e)
+
+
+        }
+        private void BtnAfficherProgramme_Click(object sender, RoutedEventArgs e)
         {
             if (temprefprogramme != "")
             {
@@ -76,7 +77,7 @@ namespace Agerfor.Views.Programme
         }
         private void BtnAjouterProgramme_Click(object sender, RoutedEventArgs e)
         {
-            AddProgramme AP = new AddProgramme(0); 
+            AddProgramme AP = new AddProgramme(0);
             NavigationService.Navigate(AP);
         }
 
@@ -89,7 +90,7 @@ namespace Agerfor.Views.Programme
 
         private void BtnSuppProgramme_Click(object sender, RoutedEventArgs e)
         {
-            if (temprefprogramme !="")
+            if (temprefprogramme != "")
             {
                 System.Windows.MessageBox.Show("Note: Lors de la supression d'un programme tous les élements qui appartienent au programme à savoir(Acte,Permis de lotir, permis de construire, Cahier des charges, Edd,Convention, et documents) seront automatiquement supprimé !", "Information", MessageBoxButton.OK, MessageBoxImage.Warning);
                 if (System.Windows.MessageBox.Show("Voulez-vous supprimer ce projet?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
@@ -100,8 +101,8 @@ namespace Agerfor.Views.Programme
                 }
                 else
                 {
-                 
-                    
+
+
                     ProgrammeController PC = new ProgrammeController();
                     DirectoryCreator DC = new DirectoryCreator();
                     PermisDeConstruireController PDCC = new PermisDeConstruireController();
@@ -110,7 +111,7 @@ namespace Agerfor.Views.Programme
                     ConventionController CC = new ConventionController();
                     BiensController BC = new BiensController();
                     DC.DeleteDirectory(@"Projet\" + tempRefProjet + @"\Programme\" + temprefprogramme);
-                    BC.SupprimerLogFromProgramme(int.Parse(temprefprogramme),int.Parse(tempRefProjet));  
+                    BC.SupprimerLogFromProgramme(int.Parse(temprefprogramme), int.Parse(tempRefProjet));
                     PDCC.SupprimerPermisConstruireFromProgramme(temprefprogramme);
                     CCPC.SupprimerCahierChargefromProgramme(temprefprogramme);
                     EC.SupprimerEddFromProgramme(temprefprogramme);
@@ -161,9 +162,8 @@ namespace Agerfor.Views.Programme
         {
             Commune.Items.Clear();
             msh.FillDropDownList("select NomCommune from commune,daira where NomDaira='" + Daira.SelectedItem.ToString() + "'and daira.IdDaira=commune.IdDaira", Commune, "NomCommune");
-            SearchProgramme SP = new SearchProgramme();
-            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjet, inputRefProgramme, inputNomProgramme, Daira, Commune, Natureprogramme, Typeprogramme), dataGridView2);
-
+        
+           
         }
 
         private void Natureprogramme_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -183,6 +183,51 @@ namespace Agerfor.Views.Programme
         }
 
         private void Commune_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SearchProgramme SP = new SearchProgramme();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjet, inputRefProgramme, inputNomProgramme, Daira, Commune, Natureprogramme, Typeprogramme), dataGridView2);
+        }
+
+        private void BtnVider_Click(object sender, RoutedEventArgs e)
+        {
+            Programme p = new Programme("");
+            this.NavigationService.Navigate(p);
+          
+        }
+
+        private void inputNomProjet_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchProgramme SP = new SearchProgramme();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjet, inputRefProgramme, inputNomProgramme, Daira, Commune, Natureprogramme, Typeprogramme), dataGridView2);
+        }
+
+        private void inputRefProgramme_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchProgramme SP = new SearchProgramme();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjet, inputRefProgramme, inputNomProgramme, Daira, Commune, Natureprogramme, Typeprogramme), dataGridView2);
+        }
+
+        private void inputNomProgramme_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchProgramme SP = new SearchProgramme();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjet, inputRefProgramme, inputNomProgramme, Daira, Commune, Natureprogramme, Typeprogramme), dataGridView2);
+        }
+
+        private void Typeprogramme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SearchProgramme SP = new SearchProgramme();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjet, inputRefProgramme, inputNomProgramme, Daira, Commune, Natureprogramme, Typeprogramme), dataGridView2);
+        }
+
+        private void BtnImprimeRecherche_Click(object sender, RoutedEventArgs e)
+        {
+            SearchProgramme SP = new SearchProgramme();
+            PrgReportingViwer PRV = new PrgReportingViwer(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjet, inputRefProgramme, inputNomProgramme, Daira, Commune, Natureprogramme, Typeprogramme));
+            PRV.Show();
+        }
+
+
+        private void Daira_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             SearchProgramme SP = new SearchProgramme();
             msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjet, inputRefProgramme, inputNomProgramme, Daira, Commune, Natureprogramme, Typeprogramme), dataGridView2);

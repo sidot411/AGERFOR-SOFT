@@ -67,96 +67,69 @@
         <Grid Grid.Column="0">
             <StackPanel Orientation="Vertical" Margin="30 10 0 0 ">
                 <TextBlock FontFamily="Arial" FontSize="16" FontWeight="Bold">Recherche rapide</TextBlock>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <StackPanel Orientation="Vertical" Margin="0 10 0 0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="inputRefProjet" Background="#FAFAFA" Width="300" FontSize="18"
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="inputRefProjet" Background="#FAFAFA" Width="300" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Code Projet" Margin="0 0 15 10" TextChanged="inputRefProjet_TextChanged" />
-                            <Button x:Name="btnimprim1" Background="#007CC3"  VerticalAlignment="Top" Height="35" Width="60" BorderThickness="0">
-                                <StackPanel Orientation="Vertical">
-                                    <materialDesign:PackIcon Kind="Printer" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"  />
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="inputNomProjet" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom Projet" Margin="0 0 15 10" TextChanged="inputRefProjet_TextChanged" />
-                            <Button x:Name="Btnimprim2" Background="#007CC3"  VerticalAlignment="Top" Height="35" Width="60" BorderThickness="0">
-                                <StackPanel Orientation="Vertical">
-                                    <materialDesign:PackIcon Kind="Printer" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"  />
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="inputRefProgramme" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Code programme" Margin="0 0 15 10" TextChanged="inputRefProjet_TextChanged"/>
-                            <Button x:Name="Btnimprim3" Background="#007CC3"  VerticalAlignment="Top" Height="35" Width="60" BorderThickness="0">
-                                <StackPanel Orientation="Vertical">
-                                    <materialDesign:PackIcon Kind="Printer" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"  />
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="inputNomProgramme" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom programme" Margin="0 0 15 10" TextChanged="inputRefProjet_TextChanged" />
-                            <Button x:Name="Btnimprim4" Background="#007CC3"  VerticalAlignment="Top" Height="35" Width="60" BorderThickness="0">
-                                <StackPanel Orientation="Vertical">
-                                    <materialDesign:PackIcon Kind="Printer" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"  />
 
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="30 10 0 0">
-                        <StackPanel Orientation="Horizontal">
-                            <ComboBox x:Name="Daira" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Daira" Margin="0 0 15 10" SelectionChanged="Daira_SelectionChanged"/>
-                            <Button x:Name="Btnimprim5" Background="#007CC3"  VerticalAlignment="Top" Height="35" Width="60" BorderThickness="0">
-                                <StackPanel Orientation="Vertical">
-                                    <materialDesign:PackIcon Kind="Printer" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"  />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="inputNomProjet" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom Projet" Margin="0 0 15 10" TextChanged="inputNomProjet_TextChanged" />
 
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <ComboBox x:Name="Commune" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Commune" Margin="0 0 15 10" SelectionChanged="Commune_SelectionChanged" />
-                            <Button x:Name="Btnimprim6" Background="#007CC3"  VerticalAlignment="Top" Height="35" Width="60" BorderThickness="0">
-                                <StackPanel Orientation="Vertical">
-                                    <materialDesign:PackIcon Kind="Printer" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"  />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="inputRefProgramme" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Code programme" Margin="0 0 15 10" TextChanged="inputRefProgramme_TextChanged"/>
 
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="inputNomProgramme" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom programme" Margin="0 0 15 10" TextChanged="inputNomProgramme_TextChanged" />
+
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="30 10 0 0">
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="Daira" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Daira" Margin="0 0 15 10" SelectionChanged="Daira_SelectionChanged" MouseLeave="Daira_MouseLeave"/>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="Commune" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Commune" Margin="0 0 15 10" SelectionChanged="Commune_SelectionChanged" MouseLeave="Daira_MouseLeave" />
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="Natureprogramme" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nature Programme" Margin="0 0 15 10" SelectionChanged="Natureprogramme_SelectionChanged" MouseLeave="Daira_MouseLeave"/>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="Typeprogramme" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Type Programme" Margin="0 0 15 10" SelectionChanged="Typeprogramme_SelectionChanged" MouseLeave="Daira_MouseLeave" />
+                            </StackPanel>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Button Background="#007CC3" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" x:Name="BtnImprimeRecherche" Click="BtnImprimeRecherche_Click" >
+                                <StackPanel Orientation="Vertical">
+                                    <materialDesign:PackIcon Kind="PrintPreview" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                    <TextBlock Text="Imprimer Recherche" VerticalAlignment="Center" Height="25" />
                                 </StackPanel>
                             </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <ComboBox x:Name="Natureprogramme" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nature Programme" Margin="0 0 15 10" SelectionChanged="Natureprogramme_SelectionChanged" />
-                            <Button x:Name="Btnimprim7" Background="#007CC3"  VerticalAlignment="Top" Height="35" Width="60" BorderThickness="0">
+                            <Button Background="#007CC3" VerticalAlignment="Top" Height="70" BorderThickness="0" Margin="10" x:Name="BtnVider" Click="BtnVider_Click" >
                                 <StackPanel Orientation="Vertical">
-                                    <materialDesign:PackIcon Kind="Printer" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"  />
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <ComboBox x:Name="Typeprogramme" Background="#FAFAFA" Width="300" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Type Programme" Margin="0 0 15 10" SelectionChanged="Commune_SelectionChanged" />
-                            <Button x:Name="Btnimprim8" Background="#007CC3"  VerticalAlignment="Top" Height="35" Width="60" BorderThickness="0">
-                                <StackPanel Orientation="Vertical">
-                                    <materialDesign:PackIcon Kind="Printer" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"/>
+                                    <materialDesign:PackIcon Kind="Restart" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                    <TextBlock Text="Vider les champs" VerticalAlignment="Center" Height="25" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
                 <Border BorderThickness="1">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity="0.2" />
