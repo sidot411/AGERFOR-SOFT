@@ -156,6 +156,20 @@
       <DependentUpon>ResearchB.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ClientRepoing\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ClientRepoing\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ClientRepoing\FiheClient.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FiheClient.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controlers\ActeController.cs" />
     <Compile Include="Controlers\ActeProgrammeController.cs" />
     <Compile Include="Controlers\AddPayementController.cs" />
@@ -225,6 +239,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PrgReporting\FichePrg.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FichePrg.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PrgReporting\PrgReporting.cs">
       <AutoGen>True</AutoGen>
@@ -504,6 +524,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ResearchB.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ClientRepoing\FiheClient.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FiheClient.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListeProjetReporting\ListeProjet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ListeProjet.cs</LastGenOutput>
@@ -517,6 +541,10 @@
     <EmbeddedResource Include="OVReporting\OrdreVerssements.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OrdreVerssements.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrgReporting\FichePrg.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FichePrg.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="PrgReporting\PrgReporting.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -557,6 +585,17 @@
     </None>
     <None Include="BiensReporting\DataSet2BR.xss">
       <DependentUpon>DataSet2BR.xsd</DependentUpon>
+    </None>
+    <None Include="ClientRepoing\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ClientRepoing\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ClientRepoing\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
     <None Include="Drapper.Settings.json" />
     <None Include="ListeProjetReporting\DataSet1.xsc">
