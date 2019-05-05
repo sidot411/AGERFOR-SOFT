@@ -31,7 +31,7 @@ namespace Agerfor.Views.Demande
 
             {
                 
-                string query = "select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient and demande.NumDemande ="+NumDemande;
+                string query = "select NumDemande,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DateD,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient and demande.NumDemande =" + NumDemande;
                 MySqlDataReader rdr = null;
                 MySqlConnection con = null;
                 MySqlCommand cmd = null;
@@ -48,16 +48,16 @@ namespace Agerfor.Views.Demande
                     if (oneTime)
                     {
                         inputNumDemande.Text = rdr["NumDemande"].ToString();
-                        inputDateDemande.SelectedDate = DateTime.ParseExact(rdr["DateDemande"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                        inputDateDemande.Text = rdr["DateD"].ToString();
                         inputTypeDemande.Text = rdr["TypeDemande"].ToString();
                         inputMotifDemande.Text = rdr["Motif"].ToString();
                         inputNum.Text = rdr["RefClient"].ToString();
                         inputNom.Text = rdr["Nom"].ToString();
                         inputPrenom.Text = rdr["Prenom"].ToString();
-                        inputDateNaissance.SelectedDate= DateTime.ParseExact(rdr["DateNaissance"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                        inputDateNaissance.Text= rdr["DateNaissance"].ToString();
                         inputLieuNaissance.Text = rdr["LieuNaissance"].ToString();
                         inputNumcni.Text = rdr["Cni"].ToString();
-                        inputDateCni.SelectedDate = DateTime.ParseExact(rdr["DateCni"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                        inputDateCni.Text = rdr["DateCni"].ToString();
                         inputLieuCni.Text = rdr["LieuCni"].ToString();
                         inputStatutDemande.Text = rdr["StatutDemande"].ToString();
 

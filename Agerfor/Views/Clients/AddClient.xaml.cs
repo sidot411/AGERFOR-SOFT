@@ -38,6 +38,7 @@ namespace Agerfor.Views.Clients
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieuNaissance, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieuNaissanceConj, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya", inputVille, "NomWilaya");
+            msh.FillDropDownList("select Nature from naturedemande", inputNatureDemande, "Nature");
 
             string query2 = "select MAX(Numclient)+1 AS Num from client  ;";
             MySqlDataReader rdr2 = null;
@@ -302,7 +303,7 @@ namespace Agerfor.Views.Clients
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient and NumClient='"+inputNumClient.Text+"'",dataViewDemande);
+            msh.LoadData("select *,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DATE from demande where RefClient='" + inputNumClient.Text + "'", dataViewDemande);
 
         }
         private void dataViewDemande_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -339,7 +340,8 @@ namespace Agerfor.Views.Clients
             try
             { 
             DemandeController DC = new DemandeController();
-            DC.ajouterDemande(inputDateDemande.Text,inputNumClient.Text,inputMotifDemande.Text,inputStatutDemande.Text,inputTypeDemande.Text); msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient and NumClient='" + inputNumClient.Text + "'", dataViewDemande);
+            DC.ajouterDemande(inputDateDemande.Text,inputNumClient.Text,inputMotifDemande.Text,inputStatutDemande.Text,inputDemande.Text,inputNatureDemande.Text);
+                msh.LoadData("select *,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DATE from demande where RefClient='" + inputNumClient.Text + "'", dataViewDemande);
             }
             catch (Exception)
             {
@@ -353,7 +355,7 @@ namespace Agerfor.Views.Clients
             {
                 DemandeController DC = new DemandeController();
                 DC.supprimerDemande(tempNumDemande);
-                msh.LoadData("select NumDemande,DateDemande,RefClient,Motif,TypeDemande,StatutDemande,Nom,Prenom,DateNaissance,LieuNaissance,Cni,DateCni,LieuCni from demande,client where demande.RefClient=client.NumClient and NumClient='" + inputNumClient.Text + "'", dataViewDemande);
+                msh.LoadData("select *,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DATE from demande where RefClient='" + inputNumClient.Text + "'", dataViewDemande);
             }
             catch (Exception)
             {

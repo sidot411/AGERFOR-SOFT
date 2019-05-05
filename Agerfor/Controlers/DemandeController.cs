@@ -13,11 +13,11 @@ namespace Agerfor.Controlers
         MySqlHelper msq = new MySqlHelper();
       
 
-        public void ajouterDemande(string DateDemande,string RefClient, string Motif, string StatutDemande, string TypeDemande)
+        public void ajouterDemande(string DateDemande,string RefClient, string Motif, string StatutDemande, string TypeDemande,string NatureDemande)
         {
             try
             {
-                msq.ExecuteQuery("insert into demande(DateDemande,RefClient,Motif,TypeDemande,StatutDemande) values('" + DateDemande + "','" + RefClient + "','" + Motif + "','" + TypeDemande + "','" + StatutDemande + "')");
+                msq.ExecuteQuery("insert into demande(DateDemande,RefClient,Motif,NatureDemande,TypeDemande,StatutDemande) values (STR_TO_DATE('" + DateDemande + "','%d/%m/%Y'),'" + RefClient + "','" + Motif + "','"+NatureDemande+"', '" + TypeDemande + "','" + StatutDemande + "')");
                 MessageBox.Show("La demande a était ajouter avec succès");
             }
 

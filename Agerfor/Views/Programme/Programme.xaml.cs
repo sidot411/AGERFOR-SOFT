@@ -8,6 +8,7 @@ using MySql.Data.MySqlClient;
 using DbConnection.Models;
 using Agerfor.PrgReporting;
 
+
 using System.Windows.Forms;
 
 
@@ -231,6 +232,11 @@ namespace Agerfor.Views.Programme
         {
             SearchProgramme SP = new SearchProgramme();
             msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjet, inputRefProgramme, inputNomProgramme, Daira, Commune, Natureprogramme, Typeprogramme), dataGridView2);
+        }
+
+        private void BtnImprimeliste_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

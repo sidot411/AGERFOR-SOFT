@@ -45,7 +45,7 @@
                         <TextBlock Text="Modifier" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                    <Button Background="#007CC3" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" x:Name="BtnImprimeliste"  >
+                    <Button Background="#007CC3" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" x:Name="BtnImprimeliste" Click="BtnImprimeliste_Click"  >
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="Printer" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />

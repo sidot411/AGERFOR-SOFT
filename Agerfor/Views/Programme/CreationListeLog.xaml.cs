@@ -9,13 +9,17 @@ using System.Collections.Generic;
 using System.Windows.Media;
 using Agerfor.Views.Programme;
 using Agerfor.BiensReporting;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
+
 namespace Agerfor.Views.Programme
 
 {
     /// <summary>
     /// Interaction logic for CreationListeLog.xaml
     /// </summary>
-    public partial class CreationListeLog : UserControl
+    public partial class CreationListeLog : System.Windows.Controls.UserControl
     {
         
         BiensController BC = new BiensController();
@@ -93,6 +97,9 @@ namespace Agerfor.Views.Programme
 
                 if (inputNumLot.Text != "")
                 {
+                    string Edd = "Edd";
+                    DirectoryCreator DC = new DirectoryCreator();
+                    DC.CreateDirectoryProgramme(RefProjet.ToString(), RefProgramme + "/" + Edd + "/" + NumEdd.ToString()+"/"+inputNumBloc.Text);
                     BC.AjouterBiens(RefProgramme, RefProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSurH.Text), decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text, inputEtat.Text);
                     inputNumLot.Background = Brushes.White;
                     inputNumIlot.Text = inputNumLot.Text = inputNumBloc.Text = inputNiveau.Text = inputNbrPiece.Text = inputSurH.Text = inputSurU.Text = inputLimiteEst.Text = inputLimiteNord.Text = inputLimiteOuest.Text = inputLimiteSud.Text = "";
@@ -100,7 +107,7 @@ namespace Agerfor.Views.Programme
                     inputTva.Text = "0";
                     inputPrixTTC.Text = "0.00";
 
-                    msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "' and NumEdd='" + NumEdd + "'", dataViewListeBien);
+                    msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "' and NumEdd='" + NumEdd + "'", dataViewListeBien); 
                 }
 
             }
@@ -271,6 +278,86 @@ namespace Agerfor.Views.Programme
 
                 
     }
+
+        private void BtnOuvrirPlan_Click(object sender, RoutedEventArgs e)
+        {
+            if (inputNumBloc.Text == "")
+            {
+                System.Windows.MessageBox.Show("Veuillez introduire un numéro de bloc pour ouvrir le dossier des  plans", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+
+                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + RefProjet + @"\Programme\" + RefProgramme + @"\Edd\" + NumEdd.ToString()+@"\"+inputNumBloc.Text;
+                OpenFolder(folderPath);
+            }
+        }
+
+        private void OpenFolder(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+            else
+            {
+                string Edd = "Edd";
+                DirectoryCreator dcr = new DirectoryCreator();
+                dcr.CreateDirectoryProgramme(RefProjet.ToString(), RefProgramme + "/" + Edd + "/" + NumEdd.ToString() + "/" + inputNumBloc.Text);
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+        private void BtnJoindrePlan_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                if (inputNumBloc.Text == "")
+                {
+                    System.Windows.MessageBox.Show("Veuillez selectionner un Bloc pour joindre des plan", "information", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    SelectFile();
+                }
+            }
+        }
+
+        public void SelectFile()
+        {
+
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Projet\" + RefProjet.ToString()  + @"\Programme\" + RefProgramme + @"\Edd\" + NumEdd + @"\" + inputNumBloc.Text + @"\" + System.IO.Path.GetFileName(openFileDialog1.FileName);
+                string Edd = "Edd";
+                dcr.CreateDirectoryProgramme(RefProjet.ToString(), RefProgramme + "/" + Edd + "/" + NumEdd.ToString() + "/" + inputNumBloc.Text);
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+
+                File.Copy(fileName, System.IO.Path.Combine(System.IO.Path.GetDirectoryName(fileName), destinationFolder));
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
+        }
     }
 }
+
 

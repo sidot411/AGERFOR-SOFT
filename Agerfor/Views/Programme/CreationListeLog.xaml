@@ -151,8 +151,8 @@
                             <Label VerticalAlignment="Center">Activer</Label>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="280 0 0 0">
-                            <Button x:Name="BtnSearch" Background="#007CC3" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="0 0 20 0" Click="BtnSearch_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 20 0 0">
+                            <Button x:Name="BtnSearch" Background="#007CC3" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="0 5 20 0" Click="BtnSearch_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 2 4 0" />
@@ -161,6 +161,8 @@
                             <Button x:Name="BtnAjouterBien" Background="#007CC3" Content="Ajouter" Height="35" Width="105" Margin="0 0 20 0" Click="BtnAjouterBien_Click" />
                             <Button x:Name="BtnModifierBien" Background="#007CC3" Content="Modifier" Height="35" Width="105" Margin="0 0 20 0" Click="BtnModifierBien_Click"/>
                             <Button x:Name="BtnSupprimmerBien" Background="#007CC3" Content="Supprimer" Height="35" Width="105" Margin="0 0 20 0" Click="BtnSupprimmerBien_Click" />
+                            <Button x:Name="BtnJoindrePlan" Background="#007CC3" Content="Joindre Plan" Height="35" Width="110" Margin="0 0 20 0" Click="BtnJoindrePlan_Click" />
+                            <Button x:Name="BtnOuvrirPlan" Background="#007CC3" Content="Ouvrir Plan" Height="35" Width="105" Margin="0 0 20 0" Click="BtnOuvrirPlan_Click" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

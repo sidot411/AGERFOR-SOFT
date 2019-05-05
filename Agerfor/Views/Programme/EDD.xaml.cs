@@ -67,12 +67,7 @@ namespace Agerfor.Views.Programme
 
         }
        
-
-     
-
-
-
-
+        
         private void Page_Loaded(object sender, RoutedEventArgs e)
 
         {

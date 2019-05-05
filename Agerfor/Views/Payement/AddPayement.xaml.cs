@@ -58,10 +58,9 @@ namespace Agerfor.Views.Payement
                 inputNumLot.Text = rdr["NumLot"].ToString();
                 inputTypeBien.Text = rdr["TypeBien"].ToString();
                 inputNumBloc.Text = rdr["NumBloc"].ToString();
-                inputNumBien.Text = rdr["NumBien"].ToString();
                 inputNiveau.Text = rdr["Niveau"].ToString();
                 inputNbrPiece.Text = rdr["NbrP"].ToString();
-                inputSup.Text = rdr["Superficie"].ToString();
+          
                 inputprixtotal.Text = rdr["MontantTotal"].ToString();
                 inputprixpayer.Text = rdr["MontantVerse"].ToString();
                 inputReste.Text = rdr["Reste"].ToString();
@@ -105,6 +104,8 @@ namespace Agerfor.Views.Payement
 
         private void BtnOV_Click(object sender, RoutedEventArgs e)
         {
+          //  ListeVers LV = new ListeVers(0, 0, 0, this);
+
             ListeVers LV = new ListeVers(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text),tempNumAttribution, this);
             LV.ShowInTaskbar = false;
             LV.Owner = Application.Current.Windows[0];

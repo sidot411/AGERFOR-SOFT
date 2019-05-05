@@ -16,7 +16,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0 0 10 0">
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Numéro*</Label>
+                        <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Code Client*</Label>
 
                         <TextBox x:Name="inputNumClient" Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"/>
@@ -25,7 +25,7 @@
                         <Label FontSize="16" Margin="0 0 10 0">Sexe</Label>
                         <ComboBox x:Name="inputSexe" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Center" FontSize="15"
-                          Height="35">
+                          Height="35" TabIndex="0">
                             <ComboBoxItem IsSelected="True">Homme</ComboBoxItem>
                             <ComboBoxItem>Femme</ComboBoxItem>
                         </ComboBox>
@@ -38,7 +38,7 @@
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Prénom*</Label>
                         <TextBox x:Name="inputPrenom" Background="#FAFAFA" Width="360" FontSize="18"
-                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" />
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" TabIndex="1"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
@@ -143,15 +143,22 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 14" HorizontalAlignment="Right">
-                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Type demande</Label>
-                        <ComboBox x:Name="inputTypeDemande" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Nature demande</Label>
+                        <ComboBox x:Name="inputNatureDemande" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15"
                           Height="35" BorderBrush="Red">
-                            <ComboBoxItem>Régularisation</ComboBoxItem>
-                            <ComboBoxItem>Vente par Adjudication</ComboBoxItem>
-                            <ComboBoxItem>Vente Libre</ComboBoxItem>
-                            <ComboBoxItem>Autre</ComboBoxItem>
                         </ComboBox>
+                        
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 14" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Type demande</Label>
+                        <ComboBox x:Name="inputDemande" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Left" FontSize="15"
+                          Height="35" BorderBrush="Red">
+                            <ComboBoxItem>Logement</ComboBoxItem>
+                            <ComboBoxItem>Terrain</ComboBoxItem>
+                        </ComboBox>
+
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 20" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Motif Demande</Label>
@@ -300,7 +307,7 @@
                         Width="500" Height="620" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewDemande_SelectionChanged">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumDemande}" Header="Num demande" />
-                                            <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DateDemande}" Header="Date demande" />
+                                            <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DATE}" Header="Date demande" />
                                         <DataGridTextColumn  Width="*" Binding="{Binding StatutDemande}" Header="Statut demande" />
                                     </DataGrid.Columns>
                                     </DataGrid>
