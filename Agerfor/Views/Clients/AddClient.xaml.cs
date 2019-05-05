@@ -345,7 +345,7 @@ namespace Agerfor.Views.Clients
             }
             catch (Exception)
             {
-
+                //ex
             }
         }
 
