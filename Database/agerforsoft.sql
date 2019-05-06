@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 18 avr. 2019 à 08:07
+-- Généré le :  Dim 05 mai 2019 à 14:20
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -86,7 +86,16 @@ CREATE TABLE IF NOT EXISTS `attribution` (
   `NumBloc` varchar(50) NOT NULL,
   `IdBien` int(255) NOT NULL,
   PRIMARY KEY (`NumA`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `attribution`
+--
+
+INSERT INTO `attribution` (`NumA`, `DateAttribution`, `NumClient`, `NumProjet`, `NumProgramme`, `NatureProgramme`, `TypeBien`, `NumIlot`, `Numlot`, `NumBloc`, `IdBien`) VALUES
+(4, '2019-04-18', '1', '1', '2', 'Logement', 'Logement', '1', '1', '1', 1),
+(5, '2019-04-18', '1', '1', '2', 'Logement', 'Logement', '1', '2', '1', 2),
+(6, '2019-04-18', '1', '1', '2', 'Logement', 'Logement', '1', '5', '1', 5);
 
 -- --------------------------------------------------------
 
@@ -140,11 +149,11 @@ CREATE TABLE IF NOT EXISTS `biens` (
 --
 
 INSERT INTO `biens` (`Id`, `RefProgramme`, `RefProjet`, `NumEdd`, `NumIlot`, `TypeBien`, `Numlot`, `NumBloc`, `Niveau`, `NbrPiece`, `SurH`, `SurU`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`) VALUES
-(1, 2, 1, 2, '1', 'Logement', '1', '1', '0', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
-(2, 2, 1, 2, '1', 'Logement', '2', '1', '0', 'F3', '70.44', '72.74', '37383.18', 7, '3080276.58', '', '', '', '', 'Libre'),
+(1, 2, 1, 2, '1', 'Logement', '1', '1', '0', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Réservé'),
+(2, 2, 1, 2, '1', 'Logement', '2', '1', '0', 'F3', '70.44', '72.74', '37383.18', 7, '3080276.58', '', '', '', '', 'Réservé'),
 (3, 2, 1, 2, '1', 'Logement', '3', '1', '0', 'F3', '70.64', '72.94', '37383.18', 7, '3089022.39', '', '', '', '', 'Libre'),
 (4, 2, 1, 2, '1', 'Logement', '4', '1', '0', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
-(5, 2, 1, 2, '1', 'Logement', '5', '1', '1', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
+(5, 2, 1, 2, '1', 'Logement', '5', '1', '1', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Réservé'),
 (6, 2, 1, 2, '1', 'Logement', '6', '1', '1', 'F3', '70.44', '72.74', '37383.18', 7, '3080276.58', '', '', '', '', 'Libre'),
 (7, 2, 1, 2, '1', 'Logement', '7', '1', '1', 'F3', '70.64', '72.94', '37383.18', 7, '3089022.39', '', '', '', '', 'Libre'),
 (8, 2, 1, 2, '1', 'Logement', '8', '1', '1', 'F3', '70.79', '75.56', '37383.18', 7, '3095581.76', '', '', '', '', 'Libre'),
@@ -471,14 +480,15 @@ INSERT INTO `daira` (`IdDaira`, `NomDaira`, `IdWilaya`) VALUES
 
 DROP TABLE IF EXISTS `demande`;
 CREATE TABLE IF NOT EXISTS `demande` (
-  `NumDemande` int(11) NOT NULL AUTO_INCREMENT,
-  `DateDemande` varchar(50) NOT NULL,
+  `NumDemande` int(50) NOT NULL AUTO_INCREMENT,
+  `DateDemande` date NOT NULL,
   `RefClient` varchar(50) NOT NULL,
   `Motif` text NOT NULL,
+  `NatureDemande` varchar(50) NOT NULL,
   `TypeDemande` varchar(50) NOT NULL,
   `StatutDemande` varchar(50) NOT NULL,
   PRIMARY KEY (`NumDemande`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -593,6 +603,30 @@ CREATE TABLE IF NOT EXISTS `lot` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `naturedemande`
+--
+
+DROP TABLE IF EXISTS `naturedemande`;
+CREATE TABLE IF NOT EXISTS `naturedemande` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Nature` varchar(50) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `naturedemande`
+--
+
+INSERT INTO `naturedemande` (`Id`, `Nature`) VALUES
+(1, 'Achat'),
+(2, 'Régularisation'),
+(3, 'Remboursement'),
+(4, 'Désistement'),
+(5, 'Payement');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `natureprogramme`
 --
 
@@ -663,7 +697,16 @@ CREATE TABLE IF NOT EXISTS `payement` (
   `MontantVerse` decimal(50,2) NOT NULL,
   `Reste` decimal(50,2) NOT NULL,
   PRIMARY KEY (`NumPayement`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `payement`
+--
+
+INSERT INTO `payement` (`NumPayement`, `DatePayement`, `NumAttribution`, `NumClient`, `NomClient`, `PrenomClient`, `DateNaissance`, `NumCni`, `RefProjet`, `NomProjet`, `RefProgramme`, `NomProgramme`, `NumIlot`, `NumLot`, `TypeBien`, `NumBloc`, `Niveau`, `NbrP`, `SurH`, `SurU`, `MontantTotal`, `MontantVerse`, `Reste`) VALUES
+(2, '2019-04-18', 1, 1, 'KHIAT', 'SIDAHMED', '01/03/2019', '112233667', 1, 'Oued Tlelat-ZUHN', 2, 'LPA 160 logts', '1', '1', 'Logement', '1', '0', 'F3', '70.79', '75.56', '3095581.76', '0.00', '3095581.76'),
+(3, '2019-04-18', 5, 1, 'KHIAT', 'SIDAHMED', '01/03/2019', '112233667', 1, 'Oued Tlelat-ZUHN', 2, 'LPA 160 logts', '1', '2', 'Logement', '1', '0', 'F3', '70.44', '72.74', '3080276.58', '0.00', '3080276.58'),
+(4, '2019-04-18', 6, 1, 'KHIAT', 'SIDAHMED', '01/03/2019', '112233667', 1, 'Oued Tlelat-ZUHN', 2, 'LPA 160 logts', '1', '5', 'Logement', '1', '1', 'F3', '70.79', '75.56', '3095581.76', '0.00', '3095581.76');
 
 -- --------------------------------------------------------
 
@@ -870,7 +913,7 @@ CREATE TABLE IF NOT EXISTS `typeprogramme` (
   `TypeProgramme` varchar(50) NOT NULL,
   `NatureProgramme` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `typeprogramme`
@@ -902,8 +945,13 @@ INSERT INTO `typeprogramme` (`ID`, `TypeProgramme`, `NatureProgramme`) VALUES
 (26, 'Equipement', 'Terrain'),
 (29, 'LSP', 'Logement'),
 (33, 'Promotionnel Semi Collectif', 'Logement'),
+(38, 'Social', 'Terrain'),
+(40, 'Investissement', 'Terrain'),
 (35, 'Promotionnel Individuel', 'Logement'),
-(36, 'Promotionnel Collectif', 'Logement');
+(36, 'Promotionnel Collectif', 'Logement'),
+(39, 'Promotionnel', 'Terrain'),
+(41, 'Fonal', 'Terrain'),
+(44, 'RHP', 'Terrain');
 
 -- --------------------------------------------------------
 
