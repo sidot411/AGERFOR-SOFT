@@ -39,6 +39,8 @@ namespace Agerfor.Views.Clients
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieuNaissanceConj, "NomWilaya");
             msh.FillDropDownList("select NomWilaya from wilaya", inputVille, "NomWilaya");
             msh.FillDropDownList("select Nature from naturedemande", inputNatureDemande, "Nature");
+            msh.FillDropDownList("select Type from typedemande", inputDemande, "Type");
+            msh.FillDropDownList("select Statut from demandestatut", inputStatutDemande, "Statut");
 
             string query2 = "select MAX(Numclient)+1 AS Num from client  ;";
             MySqlDataReader rdr2 = null;
@@ -303,7 +305,7 @@ namespace Agerfor.Views.Clients
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            msh.LoadData("select *,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DATE from demande where RefClient='" + inputNumClient.Text + "'", dataViewDemande);
+            msh.LoadData("select *,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DATE,DATE_FORMAT(DateReponse,'%d/%m/%Y') AS DATER from demande where RefClient='" + inputNumClient.Text + "'", dataViewDemande);
 
         }
         private void dataViewDemande_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -323,7 +325,6 @@ namespace Agerfor.Views.Clients
             try
             {
                 AddDemande AD = new AddDemande(tempNumDemande);
-                AD.BtnModifier.Visibility = Visibility.Collapsed;
                 this.NavigationService.Navigate(AD);
 
 
@@ -338,14 +339,18 @@ namespace Agerfor.Views.Clients
         private void BtnAjouterDemande_Click(object sender, RoutedEventArgs e)
         {
             try
-            { 
+            {
+            string Demandes = "Demandes";
+            DirectoryCreator DCR = new DirectoryCreator();
+            DCR.CreateDirectory2(inputNumClient.Text + "/"+Demandes+"/");
             DemandeController DC = new DemandeController();
             DC.ajouterDemande(inputDateDemande.Text,inputNumClient.Text,inputMotifDemande.Text,inputStatutDemande.Text,inputDemande.Text,inputNatureDemande.Text);
-                msh.LoadData("select *,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DATE from demande where RefClient='" + inputNumClient.Text + "'", dataViewDemande);
+            msh.LoadData("select *,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DATE,DATE_FORMAT(DateReponse,'%d/%m/%Y') AS DATER from demande where RefClient='" + inputNumClient.Text + "'", dataViewDemande);
+                inputStatutDemande.Text = inputNatureDemande.Text = inputDemande.Text = inputMotifDemande.Text = string.Empty;
             }
             catch (Exception)
             {
-                //ex
+               
             }
         }
 
@@ -355,7 +360,7 @@ namespace Agerfor.Views.Clients
             {
                 DemandeController DC = new DemandeController();
                 DC.supprimerDemande(tempNumDemande);
-                msh.LoadData("select *,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DATE from demande where RefClient='" + inputNumClient.Text + "'", dataViewDemande);
+                msh.LoadData("select *,DATE_FORMAT(DateDemande,'%d/%m/%Y') AS DATE,DATE_FORMAT(DateReponse,'%d/%m/%Y') AS DATER from demande where RefClient='" + inputNumClient.Text + "'", dataViewDemande);
             }
             catch (Exception)
             {
@@ -421,7 +426,57 @@ namespace Agerfor.Views.Clients
                 System.Windows.MessageBox.Show("aucun fichier selectionner");
             }
         }
+
+        private void BtnJoindreD_Click(object sender, RoutedEventArgs e)
+        {
+            if (tempNumDemande != "")
+            {
+                SelectFile2(tempNumDemande);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez sélectionner une demande");
+            }
+        }
+
+        public void SelectFile2(string theDirectory)
+        {
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Client\" + inputNumClient.Text + @"\Demandes\"+ @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
+                dcr.CreateDirectory2(inputNumClient.Text + "/"+"Demandes"+"/"+ theDirectory +"/");
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+
+                File.Copy(fileName, Path.Combine(Path.GetDirectoryName(fileName), destinationFolder));
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
+        }
+
+        private void BtnSupprimerD_Click(object sender, RoutedEventArgs e)
+        {
+            if (tempNumDemande != "")
+            {
+                string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Client\" + inputNumClient.Text + @"\Demandes\" + tempNumDemande;
+                OpenFolder(folderPath);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez sélectionner une demande");
+            }
+        }
     }
+
 }
     
 

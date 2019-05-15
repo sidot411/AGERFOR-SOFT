@@ -17,7 +17,7 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msq.ExecuteQuery("insert into demande(DateDemande,RefClient,Motif,NatureDemande,TypeDemande,StatutDemande) values (STR_TO_DATE('" + DateDemande + "','%d/%m/%Y'),'" + RefClient + "','" + Motif + "','"+NatureDemande+"', '" + TypeDemande + "','" + StatutDemande + "')");
+                msq.ExecuteQuery("insert into demande(DateDemande,RefClient,Motif,NatureDemande,TypeDemande,StatutDemande,DateReponse) values (STR_TO_DATE('" + DateDemande + "','%d/%m/%Y'),'" + RefClient + "','" + Motif + "','"+NatureDemande+"', '" + TypeDemande + "','" + StatutDemande + "',NULL)");
                 MessageBox.Show("La demande a était ajouter avec succès");
             }
 
@@ -42,10 +42,11 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msq.ExecuteQuery("update demande set StatutDemande='Acceptée' where NumDemande='"+NumDemande+"'");
+                MessageBox.Show("update demande set StatutDemande='Acceptée',  DateReponse = STR_TO_DATE('" + (System.DateTime.Now.Date).ToString("dd/MM/yyyy") + "','%d/%m/%Y') where NumDemande='" + NumDemande + "'");
+                msq.ExecuteQuery("update demande set StatutDemande='Acceptée',  DateReponse = STR_TO_DATE('"+(System.DateTime.Now.Date).ToString("dd/MM/yyyy") +"','%d/%m/%Y') where NumDemande='"+NumDemande+"'");
                 MessageBox.Show("La demande à était Acceptée");
             }
-catch(Exception)
+                catch(Exception)
             {
                 MessageBox.Show("La demande n'a pas était Acceptée");
             }
@@ -54,7 +55,7 @@ catch(Exception)
         {
             try
             {
-                msq.ExecuteQuery("update demande set StatutDemande='Refusée' where NumDemande='" + NumDemande + "'");
+                msq.ExecuteQuery("update demande set StatutDemande='Refusée', DateReponse = STR_TO_DATE('" + (System.DateTime.Now.Date).ToString("dd/MM/yyyy") + "','%d/%m/%Y') where NumDemande='" + NumDemande + "'");
                 MessageBox.Show("La demande à était Refusée");
             }
             catch (Exception)

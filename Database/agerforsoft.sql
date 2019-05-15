@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 05 mai 2019 à 14:20
--- Version du serveur :  5.7.23
+-- Généré le :  mar. 14 mai 2019 à 10:34
+-- Version du serveur :  5.5.53
 -- Version de PHP :  7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -487,8 +487,39 @@ CREATE TABLE IF NOT EXISTS `demande` (
   `NatureDemande` varchar(50) NOT NULL,
   `TypeDemande` varchar(50) NOT NULL,
   `StatutDemande` varchar(50) NOT NULL,
+  `DateReponse` date DEFAULT NULL,
   PRIMARY KEY (`NumDemande`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `demande`
+--
+
+INSERT INTO `demande` (`NumDemande`, `DateDemande`, `RefClient`, `Motif`, `NatureDemande`, `TypeDemande`, `StatutDemande`, `DateReponse`) VALUES
+(2, '2019-05-14', '1', 'Demande logement LPA', 'Achat', 'Logement', 'En cours', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `demandestatut`
+--
+
+DROP TABLE IF EXISTS `demandestatut`;
+CREATE TABLE IF NOT EXISTS `demandestatut` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Statut` varchar(50) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `demandestatut`
+--
+
+INSERT INTO `demandestatut` (`Id`, `Statut`) VALUES
+(2, 'En cours'),
+(3, 'Acceptée'),
+(4, 'Non Acceptée'),
+(5, 'Annulée');
 
 -- --------------------------------------------------------
 
@@ -900,6 +931,27 @@ INSERT INTO `typebiens` (`Id`, `Type`) VALUES
 (2, 'Logement'),
 (3, 'Bureau'),
 (4, 'Cave');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `typedemande`
+--
+
+DROP TABLE IF EXISTS `typedemande`;
+CREATE TABLE IF NOT EXISTS `typedemande` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Type` varchar(50) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `typedemande`
+--
+
+INSERT INTO `typedemande` (`Id`, `Type`) VALUES
+(1, 'Terrain'),
+(2, 'Logement');
 
 -- --------------------------------------------------------
 

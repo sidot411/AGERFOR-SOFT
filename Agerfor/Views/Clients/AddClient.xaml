@@ -127,7 +127,7 @@
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                         <Label FontSize="16" Margin="0 0 10 0">Date Demande</Label>
                         <DatePicker  x:Name="inputDateDemande" Background="#FAFAFA" Height="35" FontSize="17"
-                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short" 
                             HorizontalAlignment="Right" SelectedDate="{x:Static sys:DateTime.Now}">
                         </DatePicker>
                     </StackPanel>
@@ -135,10 +135,7 @@
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Statut Demande</Label>
                         <ComboBox x:Name="inputStatutDemande"  Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"  HorizontalContentAlignment="Left">
-                            <ComboBoxItem IsSelected="True">En cours</ComboBoxItem>
-                            <ComboBoxItem>Favorable</ComboBoxItem>
-                            <ComboBoxItem>Défavorable</ComboBoxItem>
-                            <ComboBoxItem>Annulée</ComboBoxItem>
+                           
                         </ComboBox>
                     </StackPanel>
 
@@ -155,24 +152,26 @@
                         <ComboBox x:Name="inputDemande" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15"
                           Height="35" BorderBrush="Red">
-                            <ComboBoxItem>Logement</ComboBoxItem>
-                            <ComboBoxItem>Terrain</ComboBoxItem>
+                           
                         </ComboBox>
 
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 20" HorizontalAlignment="Right">
                         <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Motif Demande</Label>
                         <TextBox  x:Name="inputMotifDemande" Background="#FAFAFA" Width="360" FontSize="18" Height="420"
-                           BorderBrush="Red" VerticalContentAlignment="Top" HorizontalAlignment="Left"/>
+                           BorderBrush="Red" VerticalContentAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Background="#007CC3"  Content="Afficher" Height="35" Width="100" Margin="0 0 20 0" Click="Button_Click" />
                         <Button Background="#007CC3"  x:Name="BtnAjouterDemande" Content="Ajouter" Height="35" Width="100" Margin="0 0 20 0" Click="BtnAjouterDemande_Click"  />
                         <Button Background="#007CC3"  x:Name="BtnSupprimerDemande" Content="Supprimer" Height="35" Width="100" Margin="0 0 20 0" Click="BtnSupprimerDemande_Click" />
                     </StackPanel>
-               
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Button Background="#007CC3"  x:Name="BtnJoindreD" Content="Joindre" Height="35" Width="100" Margin="0 0 20 0" Click="BtnJoindreD_Click"  />
+                        <Button Background="#007CC3"  x:Name="BtnSupprimerD" Content="Ouvrir" Height="35" Width="100" Margin="0 0 20 0" Click="BtnSupprimerD_Click"  />
+                    </StackPanel>
 
-            </StackPanel>
+                </StackPanel>
              
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Vertical">
@@ -309,6 +308,7 @@
                                             <DataGridTextColumn x:Name="idColumn" Width="*" Binding="{Binding NumDemande}" Header="Num demande" />
                                             <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding DATE}" Header="Date demande" />
                                         <DataGridTextColumn  Width="*" Binding="{Binding StatutDemande}" Header="Statut demande" />
+                                        <DataGridTextColumn  Width="*" Binding="{Binding DATER }" Header="Date Réponse" />
                                     </DataGrid.Columns>
                                     </DataGrid>
                                 </Border>

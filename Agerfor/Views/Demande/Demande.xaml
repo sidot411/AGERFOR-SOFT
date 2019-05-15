@@ -5,12 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Agerfor.Views.Demande"
       mc:Ignorable="d"
-      xml:lang="en-IN"
+      xml:lang="fr-FR"
+      d:DesignHeight="740" d:DesignWidth="1024"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       Height="{Binding SystemParameters.PrimaryScreenHeight}" 
       Width="{Binding SystemParameters.PrimaryScreenWidth}"
-      
       Title="Demande"
       Background="#E6EAED" Loaded="Page_Loaded">
     <Grid>
@@ -18,76 +18,110 @@
             <ColumnDefinition Width="341*" />
             <ColumnDefinition Width="52*" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="47*" />
-            <RowDefinition Height="250*" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Column="0" Grid.Row="0">
-            <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,-134,0">
+       
+        <Grid Grid.Column="0">
+            <StackPanel Orientation="Vertical" Margin="30 10 0 10 ">
+                <TextBlock FontFamily="Arial" FontSize="16" FontWeight="Bold">Recherche rapide</TextBlock>
 
-                <TextBox  x:Name="inputrecherche" Foreground="#262626" Width="230" VerticalContentAlignment="Center"
-                 FontSize="18" Height="40"
-                 Background="#FAFAFA" Margin="0 0 10 0" />
-              
-                <ComboBox x:Name="SelectTypeRecherche" HorizontalContentAlignment="Center" Foreground="#797979" Height="40"
-                  FontSize="16"
-                  VerticalContentAlignment="Center" Background="#FAFAFA" Width="160" Margin="0 0 10 0">
-                    <ComboBoxItem>NumClient</ComboBoxItem>
-                    <ComboBoxItem IsSelected="True">Nom</ComboBoxItem>
-                  
-                </ComboBox>
-                    <ComboBox x:Name="inputTypeDemande"  Background="#FAFAFA" Width="160" FontSize="18"
-                         VerticalContentAlignment="Center" Height="40" materialDesign:HintAssist.Hint="Type Demande" HorizontalContentAlignment="Left" Margin="0 0 10 0" >
-                        <ComboBoxItem>Régularisation</ComboBoxItem>
-                        <ComboBoxItem>Vente par Adjudication</ComboBoxItem>
-                        <ComboBoxItem>Vente Libre</ComboBoxItem>
-                        <ComboBoxItem>Autre</ComboBoxItem>
-                        <ComboBoxItem>Tous</ComboBoxItem>
-                    </ComboBox>
-                    <ComboBox  x:Name="inputStatutDemande" Background="#FAFAFA" Width="160" FontSize="18"
-                         VerticalContentAlignment="Center" Height="40" materialDesign:HintAssist.Hint="Statut Demande"  HorizontalContentAlignment="Left">
-                        <ComboBoxItem>En cours</ComboBoxItem>
-                        <ComboBoxItem>Acceptée</ComboBoxItem>
-                        <ComboBoxItem>Refusée</ComboBoxItem>
-                        <ComboBoxItem>Annulée</ComboBoxItem>
-                        <ComboBoxItem>Tous</ComboBoxItem>
-                    </ComboBox>
-                    
-                <Button Background="#007CC3"  x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="60" BorderThickness="0" Margin="10"
-                 Click="BtnRecherche_Click"  >
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center" Margin="0 2 4 0" />
-                        </StackPanel>
-                </Button>
-                
-                <Label />
-            </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
-                    <Label FontSize="16" FontWeight="Bold" VerticalAlignment="Center">Du</Label>
-                    <DatePicker  x:Name="inputDateDemandeFrom" Background="#FAFAFA" Height="35" FontSize="17"
-                            VerticalContentAlignment="Center" Width="200" SelectedDateFormat="Short"
-                            HorizontalAlignment="Right">
-                    </DatePicker>
-                    <Label FontSize="16" FontWeight="Bold" VerticalAlignment="Center" >Au</Label>
-                    <DatePicker x:Name="inputDateDemandeTo" Background="#FAFAFA" Height="35" FontSize="17"
-                            VerticalContentAlignment="Center" Width="219" SelectedDateFormat="Short"
-                            HorizontalAlignment="Right" Margin="0 0 19 0">
-                    </DatePicker>
-                    <Button Background="#007CC3"  x:Name="BtnRechercheDate" VerticalAlignment="Top" Height="41" FontSize="17" Width="230" BorderThickness="0" Margin="10"
-                 Click="BtnRechercheDate_Click" >
+                <StackPanel Orientation="Horizontal"  >
+
+                    <StackPanel Orientation="Vertical" Margin="0 10 0 0">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
-                                     HorizontalAlignment="Center" Margin="0 2 4 0" />
-                            <TextBlock Foreground="White" Text="Recercher par date" VerticalAlignment="Center" Height="25" />
+                            <TextBox x:Name="inputCodeDemande" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Code Demande" Margin="0 0 15 10" TextChanged="inputCodeDemande_TextChanged"/>
+
                         </StackPanel>
-                    </Button>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="inputCodeClient" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Code Client" Margin="0 0 15 10" TextChanged="inputCodeClient_TextChanged"/>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="inputNomClient" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nom Client" Margin="0 0 15 10" TextChanged="inputNomClient_TextChanged" />
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="inputCni" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Num Cni" Margin="0 0 15 10" TextChanged="inputCni_TextChanged"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="30 10 0 0">
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox x:Name="inputstatut" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Statut Demande" Margin="0 0 15 10" SelectionChanged="inputstatut_SelectionChanged" >
+                            </ComboBox>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox x:Name="inputNatureDemande" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Nature Demande" Margin="0 0 15 10" SelectionChanged="inputNatureDemande_SelectionChanged"/>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox x:Name="inputTypeDemande" Background="#FAFAFA" Width="300" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Type Demande" Margin="0 0 15 10" SelectionChanged="inputTypeDemande_SelectionChanged">
+                            </ComboBox>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
+                                <DatePicker  x:Name="inputDateFrom" Background="#FAFAFA" Width="142" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Date Du" Margin="0 0 15 10" SelectedDateChanged="inputDateFrom_SelectedDateChanged"/>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <DatePicker x:Name="inputDateTo" Background="#FAFAFA" Width="142" FontSize="18"
+                         VerticalContentAlignment="Center" Height="35" BorderBrush="Red" materialDesign:HintAssist.Hint="Date Au" Margin="0 0 15 10" SelectedDateChanged="inputDateTo_SelectedDateChanged"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" x:Name="BtnImprimeRecherche" Click="BtnImprimeRecherche_Click" >
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="PrintPreview" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Imprimer Recherche" VerticalAlignment="Center" Height="25"  />
+                            </StackPanel>
+                        </Button>
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="70" BorderThickness="0" Margin="10" x:Name="BtnVider" >
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="Restart" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Vider les champs" VerticalAlignment="Center" Height="25" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
+
+            <Border BorderThickness="1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20" Opacity="0.2" />
+                </Border.Effect>
+                <DataGrid HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="dataGridView2"
+                  AutoGenerateColumns="False" BorderBrush="White" BorderThickness="0"
+                  CanUserAddRows="False" AlternatingRowBackground="#F3F3F3"
+                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30,234,10,15"  RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" SelectionChanged="dataGridView2_SelectionChanged"  >
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Binding="{Binding NumDemande}" Header="Num Demande" />
+                        <DataGridTextColumn Width="*" Binding="{Binding DATED}" Header="Date Demande" />
+                        <DataGridTextColumn Width="*" Binding="{Binding RefClient}" Header="Référence Client" />
+                        <DataGridTextColumn Width="*" Binding="{Binding Nom}" Header="Nom" />
+                        <DataGridTextColumn Width="*" Binding="{Binding Prenom}" Header="Prénom" />
+                        <DataGridTextColumn Width="*" Binding="{Binding NatureDemande}" Header="Nature demande" />
+                        <DataGridTextColumn Width="*" Binding="{Binding TypeDemande}" Header="Type demande" />
+                        <DataGridTextColumn  Width="*" Binding="{Binding StatutDemande}" Header="Statut Demande" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
         </Grid>
-        <Grid Grid.Column="1" Grid.Row="2">
-            <StackPanel Orientation="Vertical" Margin="0 -5 10 0">
+        <Grid Grid.Column="1" >
+            <StackPanel Orientation="Vertical" Margin="0 -5 10 0" VerticalAlignment="Bottom">
                 <Button Background="#007CC3" x:Name="BtnAfficherDemande" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10"  Click="BtnAfficherDemande_Click">
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="Bookmark" Width="35" Height="35" VerticalAlignment="Center"
@@ -125,30 +159,6 @@
                 </Button>
 
             </StackPanel>
-           
-        </Grid>
-        <Grid Grid.Column="0" Grid.Row="1">
-            <Border BorderThickness="1">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" Opacity="0.2" />
-                </Border.Effect>
-                <DataGrid HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="dataGridView2"
-                  AutoGenerateColumns="False" BorderBrush="White" BorderThickness="0"
-                  CanUserAddRows="False" AlternatingRowBackground="#F3F3F3"
-                  IsReadOnly="True" ItemsSource="{Binding}"  Margin="30 5 10 15" RowDetailsVisibilityMode="VisibleWhenSelected" IsTextSearchEnabled="True" SelectionChanged="dataGridView2_SelectionChanged"  >
-
-                    <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="NumClient" Width="*" Binding="{Binding NumDemande}" Header="Num Demande" />
-                        <DataGridTextColumn x:Name="Nom" Width="*" Binding="{Binding DateDemande}" Header="Date Demande" />
-                        <DataGridTextColumn x:Name="Prenom" Width="*" Binding="{Binding RefClient}" Header="Référence Client" />
-                        <DataGridTextColumn x:Name="Sexe" Width="*" Binding="{Binding Nom}" Header="Nom" />
-                        <DataGridTextColumn x:Name="Cni" Width="*" Binding="{Binding Prenom}" Header="Prénom" />
-                        <DataGridTextColumn x:Name="Ville" Width="*" Binding="{Binding DateNaissance}" Header="Date Niassance" />
-                        <DataGridTextColumn x:Name="Tel" Width="*" Binding="{Binding TypeDemande}" Header="Type demande" />
-                        <DataGridTextColumn x:Name="Situaton" Width="*" Binding="{Binding StatutDemande}" Header="Statut Demande" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Border>
         </Grid>
     </Grid>
 </Page>

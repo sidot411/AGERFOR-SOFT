@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Agerfor.Views.Demande"
       mc:Ignorable="d" 
-      xml:lang="en-IN"
+      xml:lang="fr-FR"
       xmlns:encoding="UTF-8"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="740" d:DesignWidth="1024"
       Title="AddDemande"
       Background="#E6EAED">
-
+    <ScrollViewer>
     <Grid Margin="10">
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
@@ -30,7 +30,14 @@
                             HorizontalAlignment="Right">
                     </DatePicker>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0">Date Réponse</Label>
+                        <DatePicker  x:Name="inputDateReponse" Background="#FAFAFA" Height="35" FontSize="17"
+                            VerticalContentAlignment="Center" Width="360" SelectedDateFormat="Short"
+                            HorizontalAlignment="Right">
+                        </DatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Statut Demande</Label>
                     <ComboBox x:Name="inputStatutDemande"  Background="#FAFAFA" Width="360" FontSize="18"
                          VerticalContentAlignment="Center" Height="35" BorderBrush="Red"  HorizontalContentAlignment="Left">
@@ -42,19 +49,24 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 14" HorizontalAlignment="Right">
-                    <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Type demande</Label>
-                    <ComboBox x:Name="inputTypeDemande" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Nature demande</Label>
+                        <ComboBox x:Name="inputNatureDemande" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
                           HorizontalContentAlignment="Left" FontSize="15"
                           Height="35" BorderBrush="Red">
-                        <ComboBoxItem>Régularisation</ComboBoxItem>
-                        <ComboBoxItem>Vente par Adjudication</ComboBoxItem>
-                        <ComboBoxItem>Vente Libre</ComboBoxItem>
-                        <ComboBoxItem>Autre</ComboBoxItem>
-                    </ComboBox>
+                        </ComboBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 14" HorizontalAlignment="Right">
+                        <Label FontSize="16" Margin="0 0 10 0" Foreground="Red">Type demande</Label>
+                        <ComboBox x:Name="inputDemande" Background="#FAFAFA" Width="360" VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Left" FontSize="15"
+                          Height="35" BorderBrush="Red">
+                            <ComboBoxItem>Logement</ComboBoxItem>
+                            <ComboBoxItem>Terrain</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                     <Label FontSize="16" Foreground="Red" Margin="0 0 10 0">Motif Demande</Label>
-                    <TextBox  x:Name="inputMotifDemande" Background="#FAFAFA" Width="360" FontSize="18" Height="480"
+                    <TextBox  x:Name="inputMotifDemande" Background="#FAFAFA" Width="360" FontSize="18" Height="390"
                            BorderBrush="Red" VerticalContentAlignment="Top" HorizontalAlignment="Left"/>
                 </StackPanel>
             </StackPanel>
@@ -108,10 +120,13 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 250 0 0">
-                    <Button Background="#007CC3" Content="Modifier" Height="35" Width="110" Margin="0 0 20 0" x:Name="BtnModifier" />
-                    <Button Background="#007CC3" Content="Annuler" Height="35" Width="110" x:Name="BtnAnnuler" Click="BtnAnnuler_Click"  />
-                </StackPanel>
+                        <Button Background="#007CC3" Content="Imprimer" Height="35" Width="110" x:Name="Btnimprimer" Margin="0 0 20 0" Click="Btnimprimer_Click"/>
+                        <Button Background="#007CC3" Content="Afficher client" Height="35" Width="140" x:Name="BtnAfficherClient" Margin="0 0 20 0" Click="BtnAfficherClient_Click" />
+                        <Button Background="#007CC3" Content="Annuler" Height="35" Width="110" x:Name="BtnAnnuler" Click="BtnAnnuler_Click"  />
+    
+                    </StackPanel>
             </StackPanel>
         </StackPanel>  
     </Grid>
+    </ScrollViewer>
 </Page>
