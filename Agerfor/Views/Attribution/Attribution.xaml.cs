@@ -37,7 +37,7 @@ namespace Agerfor.Views.Attribution
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
              
-            msh.LoadData("Select DISTINCT * from client, projet, programme, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme", dataGridView2);
+            msh.LoadData("Select DISTINCT *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA from client, projet, programme, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme", dataGridView2);
          
 
 
@@ -169,8 +169,20 @@ namespace Agerfor.Views.Attribution
         private void BtnAfficherAttribution_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                AddAttribution addat = new AddAttribution(tempNumAttribution,tempDateAttribution,tempCodeClient,tempNumProjet,tempNumProgramme,tempNumIlot,tempNumlot,tempTypeBien,tempNumBloc,tempNumBien,tempNatureProgramme);
+            {/*
+                MessageBox.Show(tempNumAttribution);
+                MessageBox.Show(tempDateAttribution);
+                MessageBox.Show(tempCodeClient);
+                MessageBox.Show(tempNumProjet);
+                MessageBox.Show(tempNumProgramme);
+                MessageBox.Show(tempNumIlot);
+                MessageBox.Show(tempNumlot);
+                MessageBox.Show(tempTypeBien);
+                MessageBox.Show(tempNumBloc);
+                MessageBox.Show(tempNatureProgramme);*/
+
+                AddAttribution addat = new AddAttribution(tempNumAttribution,tempDateAttribution,tempCodeClient,tempNumProjet,tempNumProgramme,tempNumIlot,tempNumlot,tempTypeBien,tempNumBloc,tempNatureProgramme);
+
                 this.NavigationService.Navigate(addat);
             }
             catch (Exception)
@@ -183,7 +195,7 @@ namespace Agerfor.Views.Attribution
         {
             try
             {
-                AddAttribution addat = new AddAttribution("","","","","","","","","","","");
+                AddAttribution addat = new AddAttribution("","","","","","","","","","");
                 this.NavigationService.Navigate(addat);
             }
             catch (Exception)
@@ -218,7 +230,7 @@ namespace Agerfor.Views.Attribution
                 if (tempNatureProgramme == "Logement" || tempNatureProgramme == "Local")
                 {
 
-                    string query = "Select DISTINCT * from client, projet, programme, biens, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND attribution.NumBien = biens.NumBien AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.NomProjet=biens.NomPRojet and programme.RefProgramme) AND NumA='" + tempNumAttribution + "'";
+                    string query = "Select DISTINCT *,date_format(DateAttribution,'%d/%m/%Y') AS DateA from client, projet, programme, biens, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.RefProjet=biens.RefProjet and programme.RefProgramme=biens.RefProgramme) AND NumA='" + tempNumAttribution + "'";
 
                     MySqlDataReader rdr = null;
                     MySqlConnection con = null;
@@ -231,7 +243,7 @@ namespace Agerfor.Views.Attribution
                     bool oneTime = true;
                     while (rdr.Read())
                     {
-                        tempDateAttribution = rdr["DateAttribution"].ToString();
+                        tempDateAttribution = rdr["DateA"].ToString();
                         tempCodeClient = rdr["NumClient"].ToString();
                         tempNumProjet = rdr["NumProjet"].ToString();
                         tempNumProgramme = rdr["NumProgramme"].ToString();
@@ -239,7 +251,6 @@ namespace Agerfor.Views.Attribution
                         tempNumlot = rdr["Numlot"].ToString();
                         tempTypeBien = rdr["TypeBien"].ToString();
                         tempNumBloc = rdr["NumBloc"].ToString();
-                        tempNumBien = rdr["NumBien"].ToString();
                         tempNatureProgramme = rdr["NatureProgramme"].ToString();
                      
 
@@ -249,7 +260,7 @@ namespace Agerfor.Views.Attribution
 
                 else
                 {
-                    string query = "Select DISTINCT * from client, projet, programme,lot, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = lot.NumIlot AND attribution.Numlot = lot.Numlot  AND lot.NumCC = (SELECT MAX(NumCC) FROM biens where projet.NomProjet=lot.NomPRojet and programme.RefProgramme=lot.RefProgramme) AND NumA='" + tempNumAttribution + "'";
+                    string query = "Select DISTINCT *,date_format(DateAttribution,'%d/%m/%Y') AS DateA from client, projet, programme,lot, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = lot.NumIlot AND attribution.Numlot = lot.Numlot  AND lot.NumCC = (SELECT MAX(NumCC) FROM biens where projet.NomProjet=lot.NomPRojet and programme.RefProgramme=lot.RefProgramme) AND NumA='" + tempNumAttribution + "'";
 
                     MySqlDataReader rdr = null;
                     MySqlConnection con = null;
@@ -262,7 +273,7 @@ namespace Agerfor.Views.Attribution
                     bool oneTime = true;
                     while (rdr.Read())
                     {
-                        tempDateAttribution = rdr["DateAttribution"].ToString();
+                        tempDateAttribution = rdr["DateA"].ToString();
                         tempCodeClient = rdr["NumClient"].ToString();
                         tempNumProjet = rdr["NumProjet"].ToString();
                         tempNumProgramme = rdr["NumProgramme"].ToString();

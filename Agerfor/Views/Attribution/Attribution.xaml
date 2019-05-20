@@ -100,13 +100,13 @@
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Binding="{Binding NumA}" Header="Num Attribution" />
-                        <DataGridTextColumn Width="*" Binding="{Binding DateAttribution}" Header="Date Attribution" />
+                        <DataGridTextColumn Width="*" Binding="{Binding DATEA}" Header="Date Attribution" />
                         <DataGridTextColumn Width="*" Binding="{Binding NumClient}" Header="Code Client" />
                         <DataGridTextColumn Width="*" Binding="{Binding Nom}" Header="Nom Client" />
                         <DataGridTextColumn Width="*" Binding="{Binding DateNaissance}" Header="Date naissance" />
                         <DataGridTextColumn Width="*" Binding="{Binding NomProjet}" Header="Nom Projet" />
                         <DataGridTextColumn Width="*" Binding="{Binding NumProgramme}" Header="Num Programme" />
-                        <DataGridTextColumn Width="*" Binding="{Binding NumBien}" Header="Num bien" />
+                      
                     </DataGrid.Columns>
                 </DataGrid>
            

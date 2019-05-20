@@ -34,12 +34,11 @@ namespace Agerfor.Views.Attribution
         string Numlot = "";
         string TypeBien = "";
         string NumBloc = "";
-        string NumBien = "";
         string NatureProgramme = "";
         int tempIdbien;
 
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public AddAttribution(string NumAttribution, string DateAttribution, string NumClient, string NumProjet, string NumProgramme, string NumIlot, string Numlot, string TypeBien, string NumBloc, string Numbien, string NatureProgramme)
+        public AddAttribution(string NumAttribution, string DateAttribution, string NumClient, string NumProjet, string NumProgramme, string NumIlot, string Numlot, string TypeBien, string NumBloc, string NatureProgramme)
         {
             InitializeComponent();
             this.NumAttribution = NumAttribution;
@@ -51,18 +50,21 @@ namespace Agerfor.Views.Attribution
             this.Numlot = Numlot;
             this.TypeBien = TypeBien;
             this.NumBloc = NumBloc;
-            this.NumBien = Numbien;
+            
             this.NatureProgramme = NatureProgramme;
 
 
             inputEtat.SelectedIndex = 1;
             inputEtat.IsEnabled = false;
-
+        
             if (NumAttribution != "")
             {
+          
                 if (NatureProgramme == "Logement")
                 {
-                    string queryload = "Select * from client, projet, programme, biens, attribution where NumA='" + NumAttribution + "' and DateAttribution='" + DateAttribution + "' and attribution.NumClient='" + NumClient + "' and attribution.NumProjet='" + NumProjet + "' and attribution.NumProgramme='" + NumProgramme + "' and 	attribution.NumIlot='" + NumIlot + "' and attribution.Numlot='" + Numlot + "' and attribution.TypeBien='" + TypeBien + "' and attribution.NumBloc='" + NumBloc + "' and attribution.NumBien='" + Numbien + "' and attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND attribution.NumBien = biens.NumBien AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.NomProjet=biens.NomPRojet and programme.RefProgramme)";
+                    MessageBox.Show("Select * from client, projet, programme, biens, attribution where NumA='" + NumAttribution + "' and DateAttribution=STR_TO_DATE('" + DateAttribution + "','%d/%m/%Y') and attribution.NumClient='" + NumClient + "' and attribution.NumProjet='" + NumProjet + "' and attribution.NumProgramme='" + NumProgramme + "' and 	attribution.NumIlot='" + NumIlot + "' and attribution.Numlot='" + Numlot + "' and attribution.TypeBien='" + TypeBien + "' and attribution.NumBloc='" + NumBloc + "' and attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.RefProjet=biens.RefProjet and programme.RefProgramme)");
+
+                    string queryload = "Select * from client, projet, programme, biens, attribution where NumA='" + NumAttribution + "' and DateAttribution=STR_TO_DATE('" + DateAttribution + "','%d/%m/%Y') and attribution.NumClient='" + NumClient + "' and attribution.NumProjet='" + NumProjet + "' and attribution.NumProgramme='" + NumProgramme + "' and 	attribution.NumIlot='" + NumIlot + "' and attribution.Numlot='" + Numlot + "' and attribution.TypeBien='" + TypeBien + "' and attribution.NumBloc='" + NumBloc + "' and attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.RefProjet=biens.RefProjet and programme.RefProgramme)";
                     MySqlDataReader rdrL = null;
                     MySqlConnection conL = null;
                     MySqlCommand cmdL = null;
@@ -101,6 +103,8 @@ namespace Agerfor.Views.Attribution
                         inputLimiteOuest.Text = rdrL["LimiteOuest"].ToString();
                         inputLimiteSud.Text = rdrL["LimiteSud"].ToString();
                         inputEtat.Text = rdrL["Etat"].ToString();
+                        inputNatureProgramme.Text = rdrL["NatureProgramme"].ToString();
+                        inputTypeProgramme.Text = rdrL["TypeProgramme"].ToString();
 
 
                     }
@@ -516,6 +520,9 @@ namespace Agerfor.Views.Attribution
             }
         }
 
-        
+        private void BtnOv_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

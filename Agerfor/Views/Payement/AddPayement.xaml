@@ -101,11 +101,7 @@
                                     <TextBox x:Name="inputNumBloc" Background="#FAFAFA" Width="130"
                    Height="35"  HorizontalAlignment="Right" FontSize="18" />
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
-                                    <Label FontSize="16" Foreground="black" Margin="0 0 10 0">N° Bien</Label>
-                                    <TextBox x:Name="inputNumBien" Background="#FAFAFA" Width="360"
-                   Height="35"  HorizontalAlignment="Right" FontSize="18"/>
-                                </StackPanel>
+                              
 
 
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">

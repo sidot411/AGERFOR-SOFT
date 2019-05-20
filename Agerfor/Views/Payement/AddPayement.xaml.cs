@@ -60,10 +60,10 @@ namespace Agerfor.Views.Payement
                 inputNumBloc.Text = rdr["NumBloc"].ToString();
                 inputNiveau.Text = rdr["Niveau"].ToString();
                 inputNbrPiece.Text = rdr["NbrP"].ToString();
-          
                 inputprixtotal.Text = rdr["MontantTotal"].ToString();
                 inputprixpayer.Text = rdr["MontantVerse"].ToString();
                 inputReste.Text = rdr["Reste"].ToString();
+                inputSup.Text = rdr["SurH"].ToString();
                 oneTime = false; 
             }
             con.Close();

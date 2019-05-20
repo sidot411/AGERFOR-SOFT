@@ -152,7 +152,7 @@
 
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" Margin="0 -6 0 0">
+                        <StackPanel Orientation="Vertical" Margin="0 35 0 0">
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                                 <Label FontSize="16" Margin="0 0 10 0" Foreground="black">Prix M² HT (D.A.)</Label>
                                 <TextBox  x:Name="inputPrixHT" Background="#FAFAFA" Width="360" FontSize="18"
@@ -209,7 +209,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 20">
                     <Button x:Name="BtnAttribuerBien" Background="#007CC3" Content="Attribuer le bien" Height="35" Width="150" Margin="0 0 20 0" Click="BtnAttribuerBien_Click"/>
-                    <Button x:Name="BtnSupprimmerLots" Background="#007CC3" Content="OV" Height="35" Width="105" Margin="0 0 20 0" />
+                    <Button x:Name="BtnOv" Background="#007CC3" Content="OV" Height="35" Width="105" Margin="0 0 20 0" Click="BtnOv_Click"/>
                 </StackPanel>
             </StackPanel>
 
