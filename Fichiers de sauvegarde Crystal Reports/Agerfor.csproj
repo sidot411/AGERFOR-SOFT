@@ -156,6 +156,20 @@
       <DependentUpon>ResearchB.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ClientRepoing\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ClientRepoing\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ClientRepoing\FiheClient.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FiheClient.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controlers\ActeController.cs" />
     <Compile Include="Controlers\ActeProgrammeController.cs" />
     <Compile Include="Controlers\AddPayementController.cs" />
@@ -181,7 +195,38 @@
     <Compile Include="Controlers\ProgrammeController.cs" />
     <Compile Include="Controlers\ProjetController.cs" />
     <Compile Include="Controlers\ProjetMaitreController.cs" />
+    <Compile Include="Controlers\SearchDemande.cs" />
     <Compile Include="Controlers\SearchLog.cs" />
+    <Compile Include="Controlers\SearchProgramme.cs" />
+    <Compile Include="DemandeReporting\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DemandeReporting\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DemandeReporting\DemandeR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemandeReporting\DemandeR.Designer.cs">
+      <DependentUpon>DemandeR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemandeReporting\ListeD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemandeReporting\ListeD.Designer.cs">
+      <DependentUpon>ListeD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemandeReporting\ListeDemande.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListeDemande.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ListeProjetReporting\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
@@ -216,6 +261,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OrdreVerssements.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrgReporting\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PrgReporting\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PrgReporting\FichePrg.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FichePrg.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrgReporting\PrgReporting.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrgReporting.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrgReporting\PrgReportingViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrgReporting\PrgReportingViwer.Designer.cs">
+      <DependentUpon>PrgReportingViwer.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjetReporting\DataSetProjet.cs">
       <DependentUpon>DataSetProjet.xsd</DependentUpon>
@@ -483,6 +554,24 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ResearchB.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ClientRepoing\FiheClient.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FiheClient.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemandeReporting\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemandeReporting\DemandeR.resx">
+      <DependentUpon>DemandeR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemandeReporting\ListeD.resx">
+      <DependentUpon>ListeD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemandeReporting\ListeDemande.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListeDemande.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListeProjetReporting\ListeProjet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ListeProjet.cs</LastGenOutput>
@@ -496,6 +585,17 @@
     <EmbeddedResource Include="OVReporting\OrdreVerssements.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OrdreVerssements.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrgReporting\FichePrg.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FichePrg.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrgReporting\PrgReporting.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PrgReporting.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrgReporting\PrgReportingViwer.resx">
+      <DependentUpon>PrgReportingViwer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjetReporting\FicheProjet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -530,6 +630,28 @@
     <None Include="BiensReporting\DataSet2BR.xss">
       <DependentUpon>DataSet2BR.xsd</DependentUpon>
     </None>
+    <None Include="ClientRepoing\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ClientRepoing\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ClientRepoing\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DemandeReporting\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DemandeReporting\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DemandeReporting\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Drapper.Settings.json" />
     <None Include="ListeProjetReporting\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -543,6 +665,17 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="PrgReporting\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="PrgReporting\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PrgReporting\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="ProjetReporting\DataSetProjet.xsc">
       <DependentUpon>DataSetProjet.xsd</DependentUpon>
     </None>
