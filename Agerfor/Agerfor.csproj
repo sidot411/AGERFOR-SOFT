@@ -250,6 +250,11 @@
     <Compile Include="Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OVReporting\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="OVReporting\OrdreVerssementR.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -662,6 +667,17 @@
       <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Include="ListeProjetReporting\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="OVReporting\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="OVReporting\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="OVReporting\DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
