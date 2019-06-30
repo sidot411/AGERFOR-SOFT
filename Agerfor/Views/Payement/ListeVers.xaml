@@ -44,6 +44,23 @@
                         <DatePicker x:Name="inputDateEcheance" Width="300" Height="35" Background="White" FontSize="18"></DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <Label FontSize="18">Type de payement</Label>
+                        <ComboBox x:Name="inputTypePayement" FontSize="18" Width="300" Height="35" Background="White">
+                            <ComboBoxItem IsSelected="True" >تسديد كلي</ComboBoxItem>
+                            <ComboBoxItem>تسديد بالشطر</ComboBoxItem>
+                            <ComboBoxItem>مصاريف أخرى</ComboBoxItem>
+                        </ComboBox>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <Label FontSize="18">Nature payement</Label>
+                        <ComboBox x:Name="inputNaturePayement" FontSize="18" Width="300" Height="35" Background="White" SelectionChanged="inputNaturePayement_SelectionChanged"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <Label FontSize="18">Nature Frais</Label>
+                        <ComboBox x:Name="inputNatureFrais" FontSize="18" Width="300" Height="35" Background="White"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
                         <TextBlock FontSize="18" FontStyle="Normal" FontStretch="SemiExpanded" FontWeight="Bold" Margin="0 0 10 0" VerticalAlignment="Center">Montant à versé</TextBlock>
                         <TextBox x:Name="inputMontant" FontSize="18" HorizontalAlignment="Right" Background="White" Width="300"  Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
                          myentry:TextBoxMaskBehavior.Mask="0:#,0.00##" ></TextBox>
@@ -148,8 +165,8 @@
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
                         Width="1050" Height="450" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewOV_SelectionChanged" >
                             <DataGrid.Columns>
-
-                                <DataGridTextColumn x:Name="nameColumn" Width="*" Binding="{Binding NumOV}" Header="N° Ordre de versement" />
+                                <DataGridTextColumn  Width="*" Binding="{Binding NumVerssement}" Header="Code OV" />
+                                <DataGridTextColumn  Width="*" Binding="{Binding NumOV}" Header="N° Ordre de versement" />
                                 <DataGridTextColumn  Width="*" Binding="{Binding DateOV}" Header="Date OV" />
                                 <DataGridTextColumn  Width="*" Binding="{Binding DateEcheance}" Header="Date échéance" />
                                 <DataGridTextColumn  Width="*" Binding="{Binding MontantAV}" Header="Montant" />

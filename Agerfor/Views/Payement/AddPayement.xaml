@@ -12,7 +12,7 @@
       xmlns:local="clr-namespace:WPFAutoCompleteTextbox"
       xmlns:encoding="UTF-8"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      d:DesignHeight="800" d:DesignWidth="1100" Title="AddPayement" Background="#E6EAED">
+      d:DesignHeight="800" d:DesignWidth="1200" Title="AddPayement" Background="#E6EAED">
     <ScrollViewer>
         <Grid>
             <Grid.Resources >
@@ -128,21 +128,21 @@
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock FontSize="30" FontStyle="Normal" FontStretch="SemiExpanded" FontWeight="Bold" Margin="0 0 10 0" VerticalAlignment="Center">Prix du bien:</TextBlock>
-                            <TextBox x:Name="inputprixtotal" FontSize="30" FontStyle="Normal" Margin="0 0 10 0" HorizontalAlignment="Right" Width="300"  Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                            <TextBox x:Name="inputprixtotal" FontSize="30" FontStyle="Normal" Margin="0 0 10 0" HorizontalAlignment="Right" TextAlignment="Right" Width="300"  Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
                          myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
                          myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" ></TextBox>
                             <TextBlock FontSize="30" FontStyle="Normal" VerticalAlignment="Center">D.A.</TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock FontSize="30" FontStyle="Normal" FontStretch="SemiExpanded" FontWeight="Bold" Margin="0 0 10 0" Foreground="Green" VerticalAlignment="Center">Total payé:</TextBlock>
-                            <TextBox x:Name="inputprixpayer" FontSize="30" FontStyle="Normal" Margin="0 0 10 0" Width="300" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                            <TextBox x:Name="inputprixpayer" FontSize="30" TextAlignment="Right" FontStyle="Normal" Margin="0 0 10 0" Width="300" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
                          myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
                          myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" ></TextBox>
                             <TextBlock FontSize="30" FontStyle="Normal" VerticalAlignment="Center">D.A.</TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock FontSize="30" FontStyle="Normal" FontStretch="SemiExpanded" FontWeight="Bold" Margin="0 0 10 0" Foreground="Red" VerticalAlignment="Center">Reste à payer:</TextBlock>
-                            <TextBox x:Name="inputReste" FontSize="30" FontStyle="Normal" Margin="0 0 10 0" Width="300" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
+                            <TextBox x:Name="inputReste" FontSize="30" TextAlignment="Right" FontStyle="Normal" Margin="0 0 10 0" Width="300" Text="{Binding Path=TestDataDouble, Converter={StaticResource myconverter}, Mode=TwoWay}" 
                          myentry:TextBoxMaskBehavior.Mask="0:#,0.00##"
                          myentry:TextBoxMaskBehavior.ValueType="{Binding Path=TestDataDouble, Converter={StaticResource mytypeconverter}, Mode=OneWay}" ></TextBox>
                             <TextBlock FontSize="30" FontStyle="Normal" VerticalAlignment="Center">D.A.</TextBlock>
@@ -150,6 +150,14 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 30 0 0">
+                    
+                    <Button Background="#007CC3" x:Name="BtnDec" VerticalAlignment="Top" Height="80" Width="130" BorderThickness="0" Margin="10" Click="BtnDec_Click" >
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="Payment" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                            <TextBlock Text="Décision Res" VerticalAlignment="Center" Height="25" />
+                        </StackPanel>
+                    </Button>
                     <Button Background="#007CC3" x:Name="BtnCB" VerticalAlignment="Top" Height="80" Width="130" BorderThickness="0" Margin="10" Click="BtnCB_Click">
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="Payment" Width="35" Height="35" VerticalAlignment="Center"
@@ -175,14 +183,28 @@
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="Payment" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
-                            <TextBlock Text="Liste des versements / OV" VerticalAlignment="Center" Height="25" />
+                            <TextBlock Text="Liste  / OV" VerticalAlignment="Center" Height="25" />
                         </StackPanel>
                     </Button>
                     <Button Background="#007CC3" x:Name="BtnAttestation" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10">
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="FileDocument" Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
-                            <TextBlock Text="Attestation de liquidation" VerticalAlignment="Center" Height="25" />
+                            <TextBlock Text="Attestation de liqui" VerticalAlignment="Center" Height="25" />
+                        </StackPanel>
+                    </Button>
+                    <Button Background="#007CC3" x:Name="BtnVSP" VerticalAlignment="Top" Height="80" Width="130" BorderThickness="0" Margin="10" Click="BtnVSP_Click" >
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="Payment" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                            <TextBlock Text="V-S-P" VerticalAlignment="Center" Height="25" />
+                        </StackPanel>
+                    </Button>
+                    <Button Background="#007CC3" x:Name="BtnMainlever" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10" Click="BtnMainlever_Click">
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="FileDocument" Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                            <TextBlock Text="Main levée" VerticalAlignment="Center" Height="25" />
                         </StackPanel>
                     </Button>
                 </StackPanel>

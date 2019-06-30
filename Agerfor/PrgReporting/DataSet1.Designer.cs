@@ -289,7 +289,7 @@ namespace Agerfor.PrgReporting {
             
             private global::System.Data.DataColumn columnTypeProgramme;
             
-            private global::System.Data.DataColumn _columnNombreBiens_;
+            private global::System.Data.DataColumn columnNombreBiens;
             
             private global::System.Data.DataColumn columnSuperficie;
             
@@ -319,11 +319,69 @@ namespace Agerfor.PrgReporting {
             
             private global::System.Data.DataColumn columnSuperficieAmenag;
             
-            private global::System.Data.DataColumn _columnAutreSupercie_;
+            private global::System.Data.DataColumn columnAutreSupercie;
             
-            private global::System.Data.DataColumn columnDataColumn3;
+            private global::System.Data.DataColumn columnRefProjet;
             
-            private global::System.Data.DataColumn columnDataColumn4;
+            private global::System.Data.DataColumn columnNomProjet;
+            
+            private global::System.Data.DataColumn columnFraisAdm;
+            
+            private global::System.Data.DataColumn columnDatePubli;
+            
+            private global::System.Data.DataColumn columnVolume;
+            
+            private global::System.Data.DataColumn columnRefPubli;
+            
+            private global::System.Data.DataColumn columnConservation;
+            
+            private global::System.Data.DataColumn columnNotaire;
+            
+            private global::System.Data.DataColumn columnTelNotaire;
+            
+            private global::System.Data.DataColumn columnAdresseNotaire;
+            
+            private global::System.Data.DataColumn columnNomPrenomGeo;
+            
+            private global::System.Data.DataColumn columnAdresseGeo;
+            
+            private global::System.Data.DataColumn columnTelGeo;
+            
+            private global::System.Data.DataColumn columnDateEtablis;
+            
+            private global::System.Data.DataColumn columnRedicte;
+            
+            private global::System.Data.DataColumn columnNbrLog;
+            
+            private global::System.Data.DataColumn columnSuperficieLog;
+            
+            private global::System.Data.DataColumn columnNbrLoc;
+            
+            private global::System.Data.DataColumn columnSuperficeiLoc;
+            
+            private global::System.Data.DataColumn columnNbrBur;
+            
+            private global::System.Data.DataColumn columnSuperficieBur;
+            
+            private global::System.Data.DataColumn columnNbrCave;
+            
+            private global::System.Data.DataColumn columnSuperficieCave;
+            
+            private global::System.Data.DataColumn columnNbrEQ;
+            
+            private global::System.Data.DataColumn columnSuperficieEQ;
+            
+            private global::System.Data.DataColumn columnNbrPS;
+            
+            private global::System.Data.DataColumn columnSuperficiePS;
+            
+            private global::System.Data.DataColumn columnDatePermisC;
+            
+            private global::System.Data.DataColumn columnNbrLots;
+            
+            private global::System.Data.DataColumn columnNbrIlot;
+            
+            private global::System.Data.DataColumn columnNumPubli;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -400,9 +458,9 @@ namespace Agerfor.PrgReporting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn _NombreBiens_Column {
+            public global::System.Data.DataColumn NombreBiensColumn {
                 get {
-                    return this._columnNombreBiens_;
+                    return this.columnNombreBiens;
                 }
             }
             
@@ -520,25 +578,257 @@ namespace Agerfor.PrgReporting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn _AutreSupercie_Column {
+            public global::System.Data.DataColumn AutreSupercieColumn {
                 get {
-                    return this._columnAutreSupercie_;
+                    return this.columnAutreSupercie;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DataColumn3Column {
+            public global::System.Data.DataColumn RefProjetColumn {
                 get {
-                    return this.columnDataColumn3;
+                    return this.columnRefProjet;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DataColumn4Column {
+            public global::System.Data.DataColumn NomProjetColumn {
                 get {
-                    return this.columnDataColumn4;
+                    return this.columnNomProjet;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FraisAdmColumn {
+                get {
+                    return this.columnFraisAdm;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DatePubliColumn {
+                get {
+                    return this.columnDatePubli;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VolumeColumn {
+                get {
+                    return this.columnVolume;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RefPubliColumn {
+                get {
+                    return this.columnRefPubli;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ConservationColumn {
+                get {
+                    return this.columnConservation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NotaireColumn {
+                get {
+                    return this.columnNotaire;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TelNotaireColumn {
+                get {
+                    return this.columnTelNotaire;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AdresseNotaireColumn {
+                get {
+                    return this.columnAdresseNotaire;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NomPrenomGeoColumn {
+                get {
+                    return this.columnNomPrenomGeo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AdresseGeoColumn {
+                get {
+                    return this.columnAdresseGeo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TelGeoColumn {
+                get {
+                    return this.columnTelGeo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DateEtablisColumn {
+                get {
+                    return this.columnDateEtablis;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RedicteColumn {
+                get {
+                    return this.columnRedicte;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NbrLogColumn {
+                get {
+                    return this.columnNbrLog;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SuperficieLogColumn {
+                get {
+                    return this.columnSuperficieLog;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NbrLocColumn {
+                get {
+                    return this.columnNbrLoc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SuperficeiLocColumn {
+                get {
+                    return this.columnSuperficeiLoc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NbrBurColumn {
+                get {
+                    return this.columnNbrBur;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SuperficieBurColumn {
+                get {
+                    return this.columnSuperficieBur;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NbrCaveColumn {
+                get {
+                    return this.columnNbrCave;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SuperficieCaveColumn {
+                get {
+                    return this.columnSuperficieCave;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NbrEQColumn {
+                get {
+                    return this.columnNbrEQ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SuperficieEQColumn {
+                get {
+                    return this.columnSuperficieEQ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NbrPSColumn {
+                get {
+                    return this.columnNbrPS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SuperficiePSColumn {
+                get {
+                    return this.columnSuperficiePS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DatePermisCColumn {
+                get {
+                    return this.columnDatePermisC;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NbrLotsColumn {
+                get {
+                    return this.columnNbrLots;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NbrIlotColumn {
+                get {
+                    return this.columnNbrIlot;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NumPubliColumn {
+                get {
+                    return this.columnNumPubli;
                 }
             }
             
@@ -585,7 +875,7 @@ namespace Agerfor.PrgReporting {
                         string Site, 
                         string NatureProgramme, 
                         string TypeProgramme, 
-                        string _NombreBiens_, 
+                        string NombreBiens, 
                         string Superficie, 
                         string TypeVente, 
                         string PrixM2, 
@@ -600,9 +890,38 @@ namespace Agerfor.PrgReporting {
                         string SuperficieEV, 
                         string SuperficieEquip, 
                         string SuperficieAmenag, 
-                        string _AutreSupercie_, 
-                        string DataColumn3, 
-                        string DataColumn4) {
+                        string AutreSupercie, 
+                        string RefProjet, 
+                        string NomProjet, 
+                        string FraisAdm, 
+                        System.DateTime DatePubli, 
+                        string Volume, 
+                        string RefPubli, 
+                        string Conservation, 
+                        string Notaire, 
+                        string TelNotaire, 
+                        string AdresseNotaire, 
+                        string NomPrenomGeo, 
+                        string AdresseGeo, 
+                        string TelGeo, 
+                        System.DateTime DateEtablis, 
+                        string Redicte, 
+                        string NbrLog, 
+                        string SuperficieLog, 
+                        string NbrLoc, 
+                        string SuperficeiLoc, 
+                        string NbrBur, 
+                        string SuperficieBur, 
+                        string NbrCave, 
+                        string SuperficieCave, 
+                        string NbrEQ, 
+                        string SuperficieEQ, 
+                        string NbrPS, 
+                        string SuperficiePS, 
+                        System.DateTime DatePermisC, 
+                        string NbrLots, 
+                        string NbrIlot, 
+                        string NumPubli) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RefProgramme,
@@ -610,7 +929,7 @@ namespace Agerfor.PrgReporting {
                         Site,
                         NatureProgramme,
                         TypeProgramme,
-                        _NombreBiens_,
+                        NombreBiens,
                         Superficie,
                         TypeVente,
                         PrixM2,
@@ -625,9 +944,38 @@ namespace Agerfor.PrgReporting {
                         SuperficieEV,
                         SuperficieEquip,
                         SuperficieAmenag,
-                        _AutreSupercie_,
-                        DataColumn3,
-                        DataColumn4};
+                        AutreSupercie,
+                        RefProjet,
+                        NomProjet,
+                        FraisAdm,
+                        DatePubli,
+                        Volume,
+                        RefPubli,
+                        Conservation,
+                        Notaire,
+                        TelNotaire,
+                        AdresseNotaire,
+                        NomPrenomGeo,
+                        AdresseGeo,
+                        TelGeo,
+                        DateEtablis,
+                        Redicte,
+                        NbrLog,
+                        SuperficieLog,
+                        NbrLoc,
+                        SuperficeiLoc,
+                        NbrBur,
+                        SuperficieBur,
+                        NbrCave,
+                        SuperficieCave,
+                        NbrEQ,
+                        SuperficieEQ,
+                        NbrPS,
+                        SuperficiePS,
+                        DatePermisC,
+                        NbrLots,
+                        NbrIlot,
+                        NumPubli};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -655,7 +1003,7 @@ namespace Agerfor.PrgReporting {
                 this.columnSite = base.Columns["Site"];
                 this.columnNatureProgramme = base.Columns["NatureProgramme"];
                 this.columnTypeProgramme = base.Columns["TypeProgramme"];
-                this._columnNombreBiens_ = base.Columns["NombreBiens\t"];
+                this.columnNombreBiens = base.Columns["NombreBiens"];
                 this.columnSuperficie = base.Columns["Superficie"];
                 this.columnTypeVente = base.Columns["TypeVente"];
                 this.columnPrixM2 = base.Columns["PrixM2"];
@@ -670,9 +1018,38 @@ namespace Agerfor.PrgReporting {
                 this.columnSuperficieEV = base.Columns["SuperficieEV"];
                 this.columnSuperficieEquip = base.Columns["SuperficieEquip"];
                 this.columnSuperficieAmenag = base.Columns["SuperficieAmenag"];
-                this._columnAutreSupercie_ = base.Columns["AutreSupercie\t"];
-                this.columnDataColumn3 = base.Columns["DataColumn3"];
-                this.columnDataColumn4 = base.Columns["DataColumn4"];
+                this.columnAutreSupercie = base.Columns["AutreSupercie"];
+                this.columnRefProjet = base.Columns["RefProjet"];
+                this.columnNomProjet = base.Columns["NomProjet"];
+                this.columnFraisAdm = base.Columns["FraisAdm"];
+                this.columnDatePubli = base.Columns["DatePubli"];
+                this.columnVolume = base.Columns["Volume"];
+                this.columnRefPubli = base.Columns["RefPubli"];
+                this.columnConservation = base.Columns["Conservation"];
+                this.columnNotaire = base.Columns["Notaire"];
+                this.columnTelNotaire = base.Columns["TelNotaire"];
+                this.columnAdresseNotaire = base.Columns["AdresseNotaire"];
+                this.columnNomPrenomGeo = base.Columns["NomPrenomGeo"];
+                this.columnAdresseGeo = base.Columns["AdresseGeo"];
+                this.columnTelGeo = base.Columns["TelGeo"];
+                this.columnDateEtablis = base.Columns["DateEtablis"];
+                this.columnRedicte = base.Columns["Redicte"];
+                this.columnNbrLog = base.Columns["NbrLog"];
+                this.columnSuperficieLog = base.Columns["SuperficieLog"];
+                this.columnNbrLoc = base.Columns["NbrLoc"];
+                this.columnSuperficeiLoc = base.Columns["SuperficeiLoc"];
+                this.columnNbrBur = base.Columns["NbrBur"];
+                this.columnSuperficieBur = base.Columns["SuperficieBur"];
+                this.columnNbrCave = base.Columns["NbrCave"];
+                this.columnSuperficieCave = base.Columns["SuperficieCave"];
+                this.columnNbrEQ = base.Columns["NbrEQ"];
+                this.columnSuperficieEQ = base.Columns["SuperficieEQ"];
+                this.columnNbrPS = base.Columns["NbrPS"];
+                this.columnSuperficiePS = base.Columns["SuperficiePS"];
+                this.columnDatePermisC = base.Columns["DatePermisC"];
+                this.columnNbrLots = base.Columns["NbrLots"];
+                this.columnNbrIlot = base.Columns["NbrIlot"];
+                this.columnNumPubli = base.Columns["NumPubli"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -688,10 +1065,8 @@ namespace Agerfor.PrgReporting {
                 base.Columns.Add(this.columnNatureProgramme);
                 this.columnTypeProgramme = new global::System.Data.DataColumn("TypeProgramme", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTypeProgramme);
-                this._columnNombreBiens_ = new global::System.Data.DataColumn("NombreBiens\t", typeof(string), null, global::System.Data.MappingType.Element);
-                this._columnNombreBiens_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnNombreBiens_");
-                this._columnNombreBiens_.ExtendedProperties.Add("Generator_UserColumnName", "NombreBiens\t");
-                base.Columns.Add(this._columnNombreBiens_);
+                this.columnNombreBiens = new global::System.Data.DataColumn("NombreBiens", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreBiens);
                 this.columnSuperficie = new global::System.Data.DataColumn("Superficie", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSuperficie);
                 this.columnTypeVente = new global::System.Data.DataColumn("TypeVente", typeof(string), null, global::System.Data.MappingType.Element);
@@ -720,14 +1095,70 @@ namespace Agerfor.PrgReporting {
                 base.Columns.Add(this.columnSuperficieEquip);
                 this.columnSuperficieAmenag = new global::System.Data.DataColumn("SuperficieAmenag", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSuperficieAmenag);
-                this._columnAutreSupercie_ = new global::System.Data.DataColumn("AutreSupercie\t", typeof(string), null, global::System.Data.MappingType.Element);
-                this._columnAutreSupercie_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnAutreSupercie_");
-                this._columnAutreSupercie_.ExtendedProperties.Add("Generator_UserColumnName", "AutreSupercie\t");
-                base.Columns.Add(this._columnAutreSupercie_);
-                this.columnDataColumn3 = new global::System.Data.DataColumn("DataColumn3", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataColumn3);
-                this.columnDataColumn4 = new global::System.Data.DataColumn("DataColumn4", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataColumn4);
+                this.columnAutreSupercie = new global::System.Data.DataColumn("AutreSupercie", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAutreSupercie);
+                this.columnRefProjet = new global::System.Data.DataColumn("RefProjet", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRefProjet);
+                this.columnNomProjet = new global::System.Data.DataColumn("NomProjet", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNomProjet);
+                this.columnFraisAdm = new global::System.Data.DataColumn("FraisAdm", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFraisAdm);
+                this.columnDatePubli = new global::System.Data.DataColumn("DatePubli", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDatePubli);
+                this.columnVolume = new global::System.Data.DataColumn("Volume", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVolume);
+                this.columnRefPubli = new global::System.Data.DataColumn("RefPubli", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRefPubli);
+                this.columnConservation = new global::System.Data.DataColumn("Conservation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnConservation);
+                this.columnNotaire = new global::System.Data.DataColumn("Notaire", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNotaire);
+                this.columnTelNotaire = new global::System.Data.DataColumn("TelNotaire", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelNotaire);
+                this.columnAdresseNotaire = new global::System.Data.DataColumn("AdresseNotaire", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdresseNotaire);
+                this.columnNomPrenomGeo = new global::System.Data.DataColumn("NomPrenomGeo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNomPrenomGeo);
+                this.columnAdresseGeo = new global::System.Data.DataColumn("AdresseGeo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdresseGeo);
+                this.columnTelGeo = new global::System.Data.DataColumn("TelGeo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelGeo);
+                this.columnDateEtablis = new global::System.Data.DataColumn("DateEtablis", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateEtablis);
+                this.columnRedicte = new global::System.Data.DataColumn("Redicte", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRedicte);
+                this.columnNbrLog = new global::System.Data.DataColumn("NbrLog", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNbrLog);
+                this.columnSuperficieLog = new global::System.Data.DataColumn("SuperficieLog", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuperficieLog);
+                this.columnNbrLoc = new global::System.Data.DataColumn("NbrLoc", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNbrLoc);
+                this.columnSuperficeiLoc = new global::System.Data.DataColumn("SuperficeiLoc", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuperficeiLoc);
+                this.columnNbrBur = new global::System.Data.DataColumn("NbrBur", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNbrBur);
+                this.columnSuperficieBur = new global::System.Data.DataColumn("SuperficieBur", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuperficieBur);
+                this.columnNbrCave = new global::System.Data.DataColumn("NbrCave", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNbrCave);
+                this.columnSuperficieCave = new global::System.Data.DataColumn("SuperficieCave", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuperficieCave);
+                this.columnNbrEQ = new global::System.Data.DataColumn("NbrEQ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNbrEQ);
+                this.columnSuperficieEQ = new global::System.Data.DataColumn("SuperficieEQ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuperficieEQ);
+                this.columnNbrPS = new global::System.Data.DataColumn("NbrPS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNbrPS);
+                this.columnSuperficiePS = new global::System.Data.DataColumn("SuperficiePS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuperficiePS);
+                this.columnDatePermisC = new global::System.Data.DataColumn("DatePermisC", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDatePermisC);
+                this.columnNbrLots = new global::System.Data.DataColumn("NbrLots", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNbrLots);
+                this.columnNbrIlot = new global::System.Data.DataColumn("NbrIlot", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNbrIlot);
+                this.columnNumPubli = new global::System.Data.DataColumn("NumPubli", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNumPubli);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -950,17 +1381,17 @@ namespace Agerfor.PrgReporting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string _NombreBiens_ {
+            public string NombreBiens {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1._NombreBiens_Column]));
+                        return ((string)(this[this.tableDataTable1.NombreBiensColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NombreBiens\t\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NombreBiens\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1._NombreBiens_Column] = value;
+                    this[this.tableDataTable1.NombreBiensColumn] = value;
                 }
             }
             
@@ -1190,49 +1621,513 @@ namespace Agerfor.PrgReporting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string _AutreSupercie_ {
+            public string AutreSupercie {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1._AutreSupercie_Column]));
+                        return ((string)(this[this.tableDataTable1.AutreSupercieColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AutreSupercie\t\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'AutreSupercie\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1._AutreSupercie_Column] = value;
+                    this[this.tableDataTable1.AutreSupercieColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DataColumn3 {
+            public string RefProjet {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.DataColumn3Column]));
+                        return ((string)(this[this.tableDataTable1.RefProjetColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn3\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RefProjet\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.DataColumn3Column] = value;
+                    this[this.tableDataTable1.RefProjetColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DataColumn4 {
+            public string NomProjet {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.DataColumn4Column]));
+                        return ((string)(this[this.tableDataTable1.NomProjetColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn4\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NomProjet\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.DataColumn4Column] = value;
+                    this[this.tableDataTable1.NomProjetColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FraisAdm {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.FraisAdmColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FraisAdm\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.FraisAdmColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DatePubli {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableDataTable1.DatePubliColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DatePubli\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.DatePubliColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Volume {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.VolumeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Volume\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.VolumeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RefPubli {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.RefPubliColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RefPubli\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.RefPubliColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Conservation {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.ConservationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Conservation\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.ConservationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Notaire {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NotaireColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Notaire\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NotaireColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TelNotaire {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.TelNotaireColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TelNotaire\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.TelNotaireColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AdresseNotaire {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.AdresseNotaireColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AdresseNotaire\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.AdresseNotaireColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NomPrenomGeo {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NomPrenomGeoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NomPrenomGeo\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NomPrenomGeoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AdresseGeo {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.AdresseGeoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AdresseGeo\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.AdresseGeoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TelGeo {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.TelGeoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TelGeo\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.TelGeoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DateEtablis {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableDataTable1.DateEtablisColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DateEtablis\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.DateEtablisColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Redicte {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.RedicteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Redicte\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.RedicteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NbrLog {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NbrLogColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NbrLog\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NbrLogColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SuperficieLog {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.SuperficieLogColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SuperficieLog\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.SuperficieLogColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NbrLoc {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NbrLocColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NbrLoc\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NbrLocColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SuperficeiLoc {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.SuperficeiLocColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SuperficeiLoc\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.SuperficeiLocColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NbrBur {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NbrBurColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NbrBur\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NbrBurColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SuperficieBur {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.SuperficieBurColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SuperficieBur\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.SuperficieBurColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NbrCave {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NbrCaveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NbrCave\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NbrCaveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SuperficieCave {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.SuperficieCaveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SuperficieCave\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.SuperficieCaveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NbrEQ {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NbrEQColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NbrEQ\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NbrEQColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SuperficieEQ {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.SuperficieEQColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SuperficieEQ\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.SuperficieEQColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NbrPS {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NbrPSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NbrPS\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NbrPSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SuperficiePS {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.SuperficiePSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SuperficiePS\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.SuperficiePSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DatePermisC {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableDataTable1.DatePermisCColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DatePermisC\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.DatePermisCColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NbrLots {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NbrLotsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NbrLots\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NbrLotsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NbrIlot {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NbrIlotColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NbrIlot\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NbrIlotColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NumPubli {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.NumPubliColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NumPubli\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.NumPubliColumn] = value;
                 }
             }
             
@@ -1298,14 +2193,14 @@ namespace Agerfor.PrgReporting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Is_NombreBiens_Null() {
-                return this.IsNull(this.tableDataTable1._NombreBiens_Column);
+            public bool IsNombreBiensNull() {
+                return this.IsNull(this.tableDataTable1.NombreBiensColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Set_NombreBiens_Null() {
-                this[this.tableDataTable1._NombreBiens_Column] = global::System.Convert.DBNull;
+            public void SetNombreBiensNull() {
+                this[this.tableDataTable1.NombreBiensColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1478,38 +2373,386 @@ namespace Agerfor.PrgReporting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Is_AutreSupercie_Null() {
-                return this.IsNull(this.tableDataTable1._AutreSupercie_Column);
+            public bool IsAutreSupercieNull() {
+                return this.IsNull(this.tableDataTable1.AutreSupercieColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Set_AutreSupercie_Null() {
-                this[this.tableDataTable1._AutreSupercie_Column] = global::System.Convert.DBNull;
+            public void SetAutreSupercieNull() {
+                this[this.tableDataTable1.AutreSupercieColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDataColumn3Null() {
-                return this.IsNull(this.tableDataTable1.DataColumn3Column);
+            public bool IsRefProjetNull() {
+                return this.IsNull(this.tableDataTable1.RefProjetColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDataColumn3Null() {
-                this[this.tableDataTable1.DataColumn3Column] = global::System.Convert.DBNull;
+            public void SetRefProjetNull() {
+                this[this.tableDataTable1.RefProjetColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDataColumn4Null() {
-                return this.IsNull(this.tableDataTable1.DataColumn4Column);
+            public bool IsNomProjetNull() {
+                return this.IsNull(this.tableDataTable1.NomProjetColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDataColumn4Null() {
-                this[this.tableDataTable1.DataColumn4Column] = global::System.Convert.DBNull;
+            public void SetNomProjetNull() {
+                this[this.tableDataTable1.NomProjetColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFraisAdmNull() {
+                return this.IsNull(this.tableDataTable1.FraisAdmColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFraisAdmNull() {
+                this[this.tableDataTable1.FraisAdmColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDatePubliNull() {
+                return this.IsNull(this.tableDataTable1.DatePubliColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDatePubliNull() {
+                this[this.tableDataTable1.DatePubliColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsVolumeNull() {
+                return this.IsNull(this.tableDataTable1.VolumeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetVolumeNull() {
+                this[this.tableDataTable1.VolumeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRefPubliNull() {
+                return this.IsNull(this.tableDataTable1.RefPubliColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRefPubliNull() {
+                this[this.tableDataTable1.RefPubliColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsConservationNull() {
+                return this.IsNull(this.tableDataTable1.ConservationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetConservationNull() {
+                this[this.tableDataTable1.ConservationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNotaireNull() {
+                return this.IsNull(this.tableDataTable1.NotaireColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNotaireNull() {
+                this[this.tableDataTable1.NotaireColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTelNotaireNull() {
+                return this.IsNull(this.tableDataTable1.TelNotaireColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTelNotaireNull() {
+                this[this.tableDataTable1.TelNotaireColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAdresseNotaireNull() {
+                return this.IsNull(this.tableDataTable1.AdresseNotaireColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAdresseNotaireNull() {
+                this[this.tableDataTable1.AdresseNotaireColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNomPrenomGeoNull() {
+                return this.IsNull(this.tableDataTable1.NomPrenomGeoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNomPrenomGeoNull() {
+                this[this.tableDataTable1.NomPrenomGeoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAdresseGeoNull() {
+                return this.IsNull(this.tableDataTable1.AdresseGeoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAdresseGeoNull() {
+                this[this.tableDataTable1.AdresseGeoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTelGeoNull() {
+                return this.IsNull(this.tableDataTable1.TelGeoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTelGeoNull() {
+                this[this.tableDataTable1.TelGeoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDateEtablisNull() {
+                return this.IsNull(this.tableDataTable1.DateEtablisColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDateEtablisNull() {
+                this[this.tableDataTable1.DateEtablisColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRedicteNull() {
+                return this.IsNull(this.tableDataTable1.RedicteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRedicteNull() {
+                this[this.tableDataTable1.RedicteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNbrLogNull() {
+                return this.IsNull(this.tableDataTable1.NbrLogColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNbrLogNull() {
+                this[this.tableDataTable1.NbrLogColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSuperficieLogNull() {
+                return this.IsNull(this.tableDataTable1.SuperficieLogColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSuperficieLogNull() {
+                this[this.tableDataTable1.SuperficieLogColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNbrLocNull() {
+                return this.IsNull(this.tableDataTable1.NbrLocColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNbrLocNull() {
+                this[this.tableDataTable1.NbrLocColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSuperficeiLocNull() {
+                return this.IsNull(this.tableDataTable1.SuperficeiLocColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSuperficeiLocNull() {
+                this[this.tableDataTable1.SuperficeiLocColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNbrBurNull() {
+                return this.IsNull(this.tableDataTable1.NbrBurColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNbrBurNull() {
+                this[this.tableDataTable1.NbrBurColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSuperficieBurNull() {
+                return this.IsNull(this.tableDataTable1.SuperficieBurColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSuperficieBurNull() {
+                this[this.tableDataTable1.SuperficieBurColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNbrCaveNull() {
+                return this.IsNull(this.tableDataTable1.NbrCaveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNbrCaveNull() {
+                this[this.tableDataTable1.NbrCaveColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSuperficieCaveNull() {
+                return this.IsNull(this.tableDataTable1.SuperficieCaveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSuperficieCaveNull() {
+                this[this.tableDataTable1.SuperficieCaveColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNbrEQNull() {
+                return this.IsNull(this.tableDataTable1.NbrEQColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNbrEQNull() {
+                this[this.tableDataTable1.NbrEQColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSuperficieEQNull() {
+                return this.IsNull(this.tableDataTable1.SuperficieEQColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSuperficieEQNull() {
+                this[this.tableDataTable1.SuperficieEQColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNbrPSNull() {
+                return this.IsNull(this.tableDataTable1.NbrPSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNbrPSNull() {
+                this[this.tableDataTable1.NbrPSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSuperficiePSNull() {
+                return this.IsNull(this.tableDataTable1.SuperficiePSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSuperficiePSNull() {
+                this[this.tableDataTable1.SuperficiePSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDatePermisCNull() {
+                return this.IsNull(this.tableDataTable1.DatePermisCColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDatePermisCNull() {
+                this[this.tableDataTable1.DatePermisCColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNbrLotsNull() {
+                return this.IsNull(this.tableDataTable1.NbrLotsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNbrLotsNull() {
+                this[this.tableDataTable1.NbrLotsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNbrIlotNull() {
+                return this.IsNull(this.tableDataTable1.NbrIlotColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNbrIlotNull() {
+                this[this.tableDataTable1.NbrIlotColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNumPubliNull() {
+                return this.IsNull(this.tableDataTable1.NumPubliColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNumPubliNull() {
+                this[this.tableDataTable1.NumPubliColumn] = global::System.Convert.DBNull;
             }
         }
         

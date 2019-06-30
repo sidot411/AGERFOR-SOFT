@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Windows.Data;
 using System.ComponentModel;
 using System.Text;
+using Agerfor.PrgReporting;
 
 namespace Agerfor.Views.Programme
 {
@@ -159,6 +160,7 @@ namespace Agerfor.Views.Programme
                         inputTva.Text = rdr["TVA"].ToString();
                         inputCoutFTTC.Text = rdr["CoutFoncierTTC"].ToString();
                         inputM2.Text = rdr["PrixM2"].ToString();
+                        inputFraisAdm.Text = rdr["FraisAdm"].ToString();
                    
 
                         oneTime = false;
@@ -315,7 +317,7 @@ namespace Agerfor.Views.Programme
           
             DirectoryCreator DC = new DirectoryCreator();
             DC.CreateDirectoryProgramme(inputRefProjet.Text, inputRefProgramme.Text);
-            PC.AjouterProgramme(int.Parse(inputRefProjet.Text),inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text),inputTypevente.Text, decimal.Parse(inputCoutF.Text),decimal.Parse(inputTva.Text),decimal.Parse(inputCoutFTTC.Text),decimal.Parse(inputM2.Text));
+            PC.AjouterProgramme(int.Parse(inputRefProjet.Text),inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text),inputTypevente.Text, decimal.Parse(inputCoutF.Text),decimal.Parse(inputTva.Text),decimal.Parse(inputCoutFTTC.Text),decimal.Parse(inputM2.Text),decimal.Parse(inputFraisAdm.Text));
             AddProgramme AP = new AddProgramme(0);
             NavigationService.Navigate(AP);
            
@@ -323,7 +325,7 @@ namespace Agerfor.Views.Programme
         //Modifier Programme//
         private void BtnModifierProgramme_Click(object sender, RoutedEventArgs e)
         {
-            PC.Editprogramme(int.Parse(inputRefProjet.Text), inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text), inputTypevente.Text, decimal.Parse(inputCoutF.Text), decimal.Parse(inputTva.Text), decimal.Parse(inputCoutFTTC.Text), decimal.Parse(inputM2.Text),RefProgramme);
+            PC.Editprogramme(int.Parse(inputRefProjet.Text), inputNomProgramme.Text, inputSiteProgramme.Text, inputDairaProgramme.Text, inputCommuneProgramme.Text, inputNatureProgramme.Text, inputTypeProgramme.Text, inputNombredebien.Text, decimal.Parse(inputSuperficie.Text), inputTypevente.Text, decimal.Parse(inputCoutF.Text), decimal.Parse(inputTva.Text), decimal.Parse(inputCoutFTTC.Text),decimal.Parse(inputFraisAdm.Text), decimal.Parse(inputM2.Text),RefProgramme);
             AddProgramme AP = new AddProgramme(0);
             NavigationService.Navigate(AP);
         }
@@ -336,8 +338,7 @@ namespace Agerfor.Views.Programme
         //Ouvrir Programme//
         private void BtnOuvrirprogramme_Click(object sender, RoutedEventArgs e)
         {
-          
-            string ip = "localhost";
+            string ip = "192.168.0.222";
             string folderPath = @"\\"+ip+@"\"+ AppDomain.CurrentDomain.BaseDirectory+""+ @"Projet\" + inputRefProjet.Text + @"\Programme\" + inputRefProgramme.Text;
             OpenFolder(ipPatchController.getpath(folderPath, ip));
         }
@@ -744,6 +745,12 @@ namespace Agerfor.Views.Programme
         {
                inputCoutFTTC.Text = (decimal.Parse(inputCoutF.Text) + (decimal.Parse(inputCoutF.Text) * decimal.Parse(inputTva.SelectedValue.ToString())/100)).ToString();
            
+        }
+
+        private void BtnimprimeFicheP_Click(object sender, RoutedEventArgs e)
+        {
+            FicheProgramme FP = new FicheProgramme(int.Parse(inputRefProgramme.Text),inputNatureProgramme.Text);
+            FP.Show();
         }
     }
 }

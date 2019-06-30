@@ -10,7 +10,7 @@
         xml:lang="fr-FR"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="CNLPayement" Height="350" Width="1100" Background="#E6EAED" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="CNLPayement" Height="400" Width="1100" Background="#E6EAED" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.Resources >
             <myentry:NumericConverter x:Key="myconverter"/>
@@ -23,6 +23,24 @@
            
             <StackPanel Orientation="Horizontal" Margin="20">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <Label FontSize="18">Etat</Label>
+                        <ComboBox x:Name="inputEtat" FontSize="18" Width="240" Height="35" Background="White" Margin="0 0 10 0">
+                            <ComboBoxItem>Non Admis</ComboBoxItem>
+                            <ComboBoxItem>Admis</ComboBoxItem>
+                            <ComboBoxItem>Admis+conservation</ComboBoxItem>
+                            <ComboBoxItem>Controle</ComboBoxItem>
+                            <ComboBoxItem>Reserve</ComboBoxItem>
+                        </ComboBox>
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="35" Width="50" BorderThickness="0" 
+                       x:Name="BtnsaveEtat" HorizontalAlignment="center" Click="BtnsaveEtat_Click">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="ContentSave" Width="20" Height="20" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
                         <Label FontSize="18">N° décision aide CNL</Label>
                         <TextBox x:Name="inputNumDeci" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
@@ -41,26 +59,76 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
-                        <Label FontSize="18"  >Date Reçu</Label>
-                        <DatePicker x:Name="inputDateRecu" Width="300" Height="35" Background="White" FontSize="18"></DatePicker>
+                        <Label FontSize="18" >Date conservation</Label>
+                        <DatePicker x:Name="inputDateConserv" Width="180" Height="35" Background="White" FontSize="18" Margin="0 0 10 0"></DatePicker>
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="35" Width="50" BorderThickness="0" Margin="0 0 10 0"
+                       x:Name="BtnsaveDateC" HorizontalAlignment="center" Click="BtnsaveDateC_Click">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="ContentSave" Width="20" Height="20" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+                               
+                            </StackPanel>
+                        </Button>
+                        <Button Background="Red" VerticalAlignment="Top" Height="35" Width="50" BorderThickness="0" 
+                       x:Name="BtndeleteDateC" HorizontalAlignment="center" Click="BtndeleteDateC_Click" >
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="Delete" Width="20" Height="20" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
-                        <Label FontSize="18">Num reçu</Label>
-                        <TextBox x:Name="inputNumRecu" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
+                        <Label FontSize="18" >Date controle</Label>
+                        <DatePicker x:Name="inputDatecontrole" Width="180" Height="35" Background="White" FontSize="18" Margin="0 0 10 0"></DatePicker>
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="35" Width="50" BorderThickness="0" Margin="0 0 10 0"
+                       x:Name="BtnsaveDateCont" HorizontalAlignment="center" Click="BtnsaveDateCont_Click">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="ContentSave" Width="20" Height="20" VerticalAlignment="Center" 
+                                           HorizontalAlignment="Center" />
 
+                            </StackPanel>
+                        </Button>
+                        <Button Background="Red" VerticalAlignment="Top" Height="35" Width="50" BorderThickness="0" 
+                       x:Name="BtndeleteDateCont" HorizontalAlignment="center" Click="BtndeleteDateCont_Click" >
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="Delete" Width="20" Height="20" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                        <Label FontSize="18" >Date resrve</Label>
+                        <DatePicker x:Name="inputDatereserve" Width="180" Height="35" Background="White" FontSize="18" Margin="0 0 10 0"></DatePicker>
+                        <Button Background="#007CC3" VerticalAlignment="Top" Height="35" Width="50" BorderThickness="0" Margin="0 0 10 0" 
+                       x:Name="BtnsaveDateR" HorizontalAlignment="center" Click="BtnsaveDateR_Click">
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="ContentSave" Width="20" Height="20" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+
+                            </StackPanel>
+                        </Button>
+                        <Button Background="Red" VerticalAlignment="Top" Height="35" Width="50" BorderThickness="0" 
+                       x:Name="BtndeleteDateR" HorizontalAlignment="center" Click="BtndeleteDateR_Click" >
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="Delete" Width="20" Height="20" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
                     <StackPanel Orientation="Vertical">
 
-                        <Button Background="#007CC3" x:Name="BtnOV" VerticalAlignment="Top" Height="100" BorderThickness="0" Margin="20 0 0 20" >
+                        <Button Background="#007CC3" x:Name="BtnAddCNL" VerticalAlignment="Top" Height="100" BorderThickness="0" Margin="20 0 0 20" Click="BtnAddCNL_Click">
                             <StackPanel Orientation="Vertical">
-                                <materialDesign:PackIcon Kind="FileDocumentOutline"                         
+                                <materialDesign:PackIcon Kind="Add"                         
                                      Width="35" Height="35" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 0 0 5" />
-                                <TextBlock Text="Généré Décision" VerticalAlignment="Center" Height="25" />
-                                <TextBlock Text="de réservation" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" />
-
+                                <TextBlock Text="Ajouter CNL" VerticalAlignment="Center" Height="25" />
+                              
                             </StackPanel>
                         </Button>
 

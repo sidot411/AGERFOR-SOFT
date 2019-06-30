@@ -11,11 +11,11 @@ namespace Agerfor.Controlers
     class BiensController
     {
         MySqlHelper msh = new MySqlHelper();
-        public void AjouterBiens(int RefProgramme, int RefProjet,int NumEdd, string NumIlot,string TypeBien, string NumLot,string NumBloc, string Niveau, string NbrPiece, decimal SupH,decimal SupU, decimal PrixHT, int Tva, decimal PrixTTC, string LimiteNord, string LimiteSud, string LimiteEst, string LimiteOuest, string Etat)
+        public void AjouterBiens(int RefProgramme, int RefProjet,int NumEdd, string NumIlot,string TypeBien, string NumLot,string NumBloc, string Niveau, string NbrPiece, decimal SupH,decimal SupU, decimal PrixHT, int Tva, decimal PrixTTC, string LimiteNord, string LimiteSud, string LimiteEst, string LimiteOuest, string Etat,string TypeVente)
         {
             try
             {
-                msh.ExecuteQuery("insert into biens (`RefProgramme`, `RefProjet`, `NumEdd`, `NumIlot`, `TypeBien`, `Numlot`, `NumBloc`, `Niveau`, `NbrPiece`, `SurH`, `SurU`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`)  values ('" + RefProgramme + "','" + RefProjet + "','"+NumEdd+"', '" + NumIlot + "','"+TypeBien+"', '" + NumLot + "','"+NumBloc+"','"+Niveau+"', '"+NbrPiece+"', '" + SupH + "','"+SupU+"','" + PrixHT + "','" + Tva + "','" + PrixTTC + "','" + LimiteNord + "','" + LimiteSud + "','" + LimiteEst + "','" + LimiteOuest + "','"+Etat+"')");
+                msh.ExecuteQuery("insert into biens (`RefProgramme`, `RefProjet`, `NumEdd`, `NumIlot`, `TypeBien`, `Numlot`, `NumBloc`, `Niveau`, `NbrPiece`, `SurH`, `SurU`, `PrixHT`, `Tva`, `PrixTTC`, `LimiteNord`, `LimiteSud`, `LimiteEst`, `LimiteOuest`, `Etat`, `TypeVente`)  values ('" + RefProgramme + "','" + RefProjet + "','"+NumEdd+"', '" + NumIlot + "','"+TypeBien+"', '" + NumLot + "','"+NumBloc+"','"+Niveau+"', '"+NbrPiece+"', '" + SupH + "','"+SupU+"','" + PrixHT + "','" + Tva + "','" + PrixTTC + "','" + LimiteNord + "','" + LimiteSud + "','" + LimiteEst + "','" + LimiteOuest + "','"+Etat+"','"+TypeVente+"')");
                 MessageBox.Show("Le bien a été bien ajouté");
             }
             catch (Exception)
@@ -24,11 +24,11 @@ namespace Agerfor.Controlers
             }
         }
 
-        public void ModifierBien(int RefProgramme, int RefProjet,int NumEdd, string NumIlot, string TypeBien, string NumLot, string NumBloc, string Niveau, string NbrPiece, decimal SupH,decimal SupU, decimal PrixHT, int Tva, decimal PrixTTC, string LimiteNord, string LimiteSud, string LimiteEst, string LimiteOuest, string id)
+        public void ModifierBien(int RefProgramme, int RefProjet,int NumEdd, string NumIlot, string TypeBien, string NumLot, string NumBloc, string Niveau, string NbrPiece, decimal SupH,decimal SupU, decimal PrixHT, int Tva, decimal PrixTTC, string LimiteNord, string LimiteSud, string LimiteEst, string LimiteOuest, string id, string TypeVente)
         {
             try
             {
-                msh.ExecuteQuery("update biens set RefProgramme='" + RefProgramme + "',RefProjet='" + RefProjet + "',NumEdd='"+NumEdd+"', NumIlot='" + NumIlot + "',TypeBien='"+TypeBien+"', NumLot='" + NumLot + "',NumBloc='"+NumBloc+"',Niveau='"+Niveau+"',NbrPiece='"+NbrPiece+"', SurH='" + SupH + "',SurU='"+SupU+"', PrixHT='" + PrixHT + "',Tva='" + Tva + "',PrixTTC='" + PrixTTC + "',LimiteNord='" + LimiteNord + "',LimiteSud='" + LimiteSud + "',LimiteEst='" + LimiteEst + "',LimiteOuest='" + LimiteOuest + "' where Id='"+id+"'");
+                msh.ExecuteQuery("update biens set RefProgramme='" + RefProgramme + "',RefProjet='" + RefProjet + "',NumEdd='"+NumEdd+"', NumIlot='" + NumIlot + "',TypeBien='"+TypeBien+"', NumLot='" + NumLot + "',NumBloc='"+NumBloc+"',Niveau='"+Niveau+"',NbrPiece='"+NbrPiece+"', SurH='" + SupH + "',SurU='"+SupU+"', PrixHT='" + PrixHT + "',Tva='" + Tva + "',PrixTTC='" + PrixTTC + "',LimiteNord='" + LimiteNord + "',LimiteSud='" + LimiteSud + "',LimiteEst='" + LimiteEst + "',LimiteOuest='" + LimiteOuest + "',TypeVente='"+TypeVente+"' where Id='"+id+"'");
                 MessageBox.Show("Le Bien à été bien modifié");
             }
             catch (Exception)

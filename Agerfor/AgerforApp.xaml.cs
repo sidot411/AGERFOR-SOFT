@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using MaterialDesignThemes.Wpf;
 using Agerfor.Views.Attribution;
 using Agerfor.Views.Payement;
+using Agerfor.Views.Recap;
 
 namespace Agerfor
 {
@@ -161,6 +162,11 @@ namespace Agerfor
         private void BtnRecapulatif_Click(object sender, RoutedEventArgs e)
         {
 
+            BtnClient.BorderThickness = BtnVerssement.BorderThickness = BtnDemande.BorderThickness = BtnProjet.BorderThickness = BtnTableauDeBord.BorderThickness  = BtnRembourssement.BorderThickness = BtnAttribution.BorderThickness = BtnProgramme.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
+            BtnRecapulatif.BorderThickness = new Thickness(5, 0, 0, 0);
+            Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            Frame.Navigate(new RecapPage());
+            currentWindow.Text = "Recap";
         }
     }
 }

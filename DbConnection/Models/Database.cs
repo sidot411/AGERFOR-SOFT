@@ -21,6 +21,7 @@ namespace DbConnection.Models
             string database = "database=";
             string CHARSET = "CHARSET=utf8";
             string sqlLiteFileName = "dbaccess.sqlite";
+            string convert = "Convert Zero Datetime=True";
 
             using (SQLiteConnection conn = new SQLiteConnection("data source =" + sqlLiteFileName))
             {
@@ -42,7 +43,7 @@ namespace DbConnection.Models
                 }
                
             }
-            ConnectionString = Id + ";" + User + ";" + database + ";" + CHARSET;
+            ConnectionString = Id + ";" + User + ";" + database + ";" + CHARSET +";" + convert;
             return ConnectionString;
         }
 

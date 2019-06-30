@@ -32,7 +32,7 @@ namespace Agerfor.Controlers
         {
             try
             {
-                string MyConString = "server=localhost;user id=root;database=agerforsoft";
+                string MyConString = "server=localhost;user id=root;database=agerforsoft;Convert Zero Datetime=True";
                 using (MySqlConnection connection = new MySqlConnection(MyConString))
                 {
                     connection.Open();

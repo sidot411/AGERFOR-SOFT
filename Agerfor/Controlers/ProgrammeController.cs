@@ -12,11 +12,11 @@ namespace Agerfor.Controlers
     class ProgrammeController
     {
         MySqlHelper msh = new MySqlHelper();
-        public void AjouterProgramme(int RefProjet, string NomProgramme, string Site, string Daira, string Commune, string NatureProgramme, string TypeProgramme, string NombreBiens, decimal Superficie, string TypeVente, decimal CoutFoncier, decimal Tva, decimal CoutFoncierTTC, decimal PrixM2)
+        public void AjouterProgramme(int RefProjet, string NomProgramme, string Site, string Daira, string Commune, string NatureProgramme, string TypeProgramme, string NombreBiens, decimal Superficie, string TypeVente, decimal CoutFoncier, decimal Tva, decimal CoutFoncierTTC, decimal PrixM2,decimal FraisAdm)
         {
             try
             {
-                msh.ExecuteQuery("INSERT INTO `programme` (`RefProjet`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`,`TypeVente`,`CoutFoncier`,`TVA`,`CoutFoncierTTC`,`PrixM2`) VALUES ('" + RefProjet+"','"+NomProgramme+"', '"+Site+"', '"+Daira+"', '"+Commune+"', '"+NatureProgramme+"', '"+TypeProgramme+"', '"+NombreBiens+"', '"+Superficie+"','"+TypeVente+"','"+CoutFoncier+"','"+Tva+"','"+CoutFoncierTTC+"','"+PrixM2+"')");
+                msh.ExecuteQuery("INSERT INTO `programme` (`RefProjet`, `NomProgramme`, `Site`, `Daira`, `Commune`, `NatureProgramme`, `TypeProgramme`, `NombreBiens`, `Superficie`,`TypeVente`,`CoutFoncier`,`TVA`,`CoutFoncierTTC`,`PrixM2`,`FraisAdm`) VALUES ('" + RefProjet+"','"+NomProgramme+"', '"+Site+"', '"+Daira+"', '"+Commune+"', '"+NatureProgramme+"', '"+TypeProgramme+"', '"+NombreBiens+"', '"+Superficie+"','"+TypeVente+"','"+CoutFoncier+"','"+Tva+"','"+CoutFoncierTTC+"','"+PrixM2+"','"+FraisAdm+"')");
                     MessageBox.Show("Le programme a était ajouter avec succès");
             }
             catch (MySqlException myException)
@@ -27,11 +27,11 @@ namespace Agerfor.Controlers
 
 
         }        
-        public void Editprogramme(int RefProjet, string NomProgramme, string Site, string Daira, string Commune, string NatureProgramme, string TypeProgramme, string NombreBiens, decimal Superficie,string TypeVente, decimal CoutFoncier, decimal Tva, decimal CoutFoncierTTC, decimal PrixM2, int tempRefProgramme)
+        public void Editprogramme(int RefProjet, string NomProgramme, string Site, string Daira, string Commune, string NatureProgramme, string TypeProgramme, string NombreBiens, decimal Superficie,string TypeVente, decimal CoutFoncier, decimal Tva, decimal CoutFoncierTTC, decimal PrixM2,decimal FraisAdm, int tempRefProgramme)
         {
             try
             {
-                msh.ExecuteQuery("update programme set RefProjet='"+RefProjet+"', NomProgramme='" + NomProgramme + "',Site='" + Site + "',Daira='" + Daira + "',Commune='" + Commune + "',NatureProgramme='" + NatureProgramme + "',TypeProgramme='" + TypeProgramme + "',NombreBiens='" + NombreBiens + "',Superficie='" + Superficie + "',TypeVente='"+TypeVente+"', CoutFoncier ='"+CoutFoncier+"',TVA='"+Tva+"',CoutFoncierTTC='"+CoutFoncierTTC+"',PrixM2='"+PrixM2+"'  where RefProgramme='"+tempRefProgramme+"'");
+                msh.ExecuteQuery("update programme set RefProjet='"+RefProjet+"', NomProgramme='" + NomProgramme + "',Site='" + Site + "',Daira='" + Daira + "',Commune='" + Commune + "',NatureProgramme='" + NatureProgramme + "',TypeProgramme='" + TypeProgramme + "',NombreBiens='" + NombreBiens + "',Superficie='" + Superficie + "',TypeVente='"+TypeVente+"', CoutFoncier ='"+CoutFoncier+"',TVA='"+Tva+"',CoutFoncierTTC='"+CoutFoncierTTC+"',PrixM2='"+PrixM2+ "',FraisAdm='"+ FraisAdm+"'  where RefProgramme='" + tempRefProgramme+"'");
                 MessageBox.Show("Le programme a était modifié avec succès");
             }
 

@@ -27,6 +27,10 @@ namespace Agerfor.Views.Payement
         int NumPayement;
         int tempnbrov;
         int tempNumAttribution;
+        int refprogramme;
+        string tempetat;
+        string TypeProgramme;
+        string tempNumDeci;
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
         public AddPayement(int NumPayement)
         {
@@ -64,11 +68,30 @@ namespace Agerfor.Views.Payement
                 inputprixpayer.Text = rdr["MontantVerse"].ToString();
                 inputReste.Text = rdr["Reste"].ToString();
                 inputSup.Text = rdr["SurH"].ToString();
+                refprogramme = int.Parse(rdr["RefProgramme"].ToString());
+
                 oneTime = false; 
             }
             con.Close();
 
-            string Query2 = "SELECT COUNT(NumVerssement) as count FROM ov WHERE NumPayement='"+NumPayement+"'";
+
+            string Query3 = "select TypeProgramme from programme where RefProgramme='" + refprogramme + "'";
+            MySqlDataReader rdr3 = null;
+            MySqlConnection con3 = null;
+            MySqlCommand cmd3 = null;
+            con3 = new MySqlConnection(Database.ConnectionString());
+            con3.Open();
+            cmd3 = new MySqlCommand(Query3);
+            cmd3.Connection = con3;
+            rdr3 = cmd3.ExecuteReader();
+            bool oneTime3 = true;
+            while (rdr3.Read())
+            {
+                TypeProgramme = rdr3["TypeProgramme"].ToString();
+            }
+            con3.Close();
+
+            string Query2 = "SELECT COUNT(NumVerssement) as count, Etat FROM ov WHERE NumPayement = '" + NumPayement + "' ORDER BY NumVerssement LIMIT 1 ";
             MySqlDataReader rdr2 = null;
             MySqlConnection con2 = null;
             MySqlCommand cmd2 = null;
@@ -81,22 +104,55 @@ namespace Agerfor.Views.Payement
             while (rdr2.Read())
             {
                 tempnbrov = int.Parse(rdr2["count"].ToString());
+                tempetat = rdr2["Etat"].ToString();
             }
-            if (tempnbrov <= 0)
+          
+            if (tempnbrov <= 0 || tempetat=="En cours" ||  TypeProgramme!="LPA")
             {
+           
                 BtnCNL.IsEnabled = BtnCB.IsEnabled = BtnFNPOS.IsEnabled = false;
             }
             else
             {
+                
                 BtnCNL.IsEnabled = BtnCB.IsEnabled = BtnFNPOS.IsEnabled = true;
             }
             if (inputReste.Text !="0.00")
             {
-                BtnAttestation.IsEnabled = false;
+                BtnAttestation.IsEnabled  = BtnMainlever.IsEnabled= false;
+                
             }
             else
             {
-                BtnAttestation.IsEnabled = true;
+                BtnAttestation.IsEnabled = BtnMainlever.IsEnabled = true;
+            }
+            con2.Close();
+
+
+            string Query4 = "SELECT NumDeci FROM cnl WHERE NumPayement = '" + NumPayement + "'";
+            MySqlDataReader rdr4 = null;
+            MySqlConnection con4 = null;
+            MySqlCommand cmd4 = null;
+            con4 = new MySqlConnection(Database.ConnectionString());
+            con4.Open();
+            cmd4 = new MySqlCommand(Query4);
+            cmd4.Connection = con4;
+            rdr4 = cmd4.ExecuteReader();
+            bool oneTime4 = true;
+            while (rdr4.Read())
+            {
+                tempNumDeci = rdr4["NumDeci"].ToString();
+            }
+
+            if(tempNumDeci =="")
+            {
+                BtnDec.IsEnabled = false;
+
+            }
+
+            else
+            {
+                BtnDec.IsEnabled = true;
             }
 
 
@@ -141,6 +197,31 @@ namespace Agerfor.Views.Payement
             CBP.ShowInTaskbar = false;
             CBP.Owner = Application.Current.Windows[0];
             CBP.Show();
+        }
+
+        private void BtnDec_Click(object sender, RoutedEventArgs e)
+        {
+            DecisionReservation DR = new DecisionReservation(int.Parse(inputPayement.Text));
+           
+            DR.ShowInTaskbar = false;
+            DR.Owner = Application.Current.Windows[0];
+            DR.Show();
+        }
+
+        private void BtnMainlever_Click(object sender, RoutedEventArgs e)
+        {
+            MainLeve ML = new MainLeve(int.Parse(inputPayement.Text));
+            ML.ShowInTaskbar = false;
+            ML.Owner = Application.Current.Windows[0];
+            ML.Show();
+        }
+
+        private void BtnVSP_Click(object sender, RoutedEventArgs e)
+        {
+            VSP VSP = new VSP(int.Parse(inputPayement.Text));
+            VSP.ShowInTaskbar = false;
+            VSP.Owner = Application.Current.Windows[0];
+            VSP.Show();
         }
     }
 }

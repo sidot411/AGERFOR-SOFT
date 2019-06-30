@@ -31,6 +31,8 @@ namespace Agerfor.Views.Payement
         {
 
             InitializeComponent();
+            msh.FillDropDownList("select NatureP from naturepayement", inputNaturePayement, "NatureP");
+            inputNatureFrais.IsEnabled = false;
             msh.LoadData("select * from ov where NumPayement='" + NumPayement + "'", dataViewOV);
             this.NumPayement = NumPayement;
             this.Reste = Reste;
@@ -44,16 +46,26 @@ namespace Agerfor.Views.Payement
 
         private void BtnOV_Click(object sender, RoutedEventArgs e)
         {
-            if (decimal.Parse(inputMontant.Text) <= Reste)
+            System.Windows.MessageBox.Show(inputNaturePayement.Text);
+
+            if (inputNaturePayement.Text != "Autre frais")
             {
-                OVC.AjouterOV(NumPayement, inputNumOV.Text, inputDateVersement.Text, inputDateEcheance.Text, decimal.Parse(inputMontant.Text), inputEtat.Text, inputDateRecu.Text, inputNumRecu.Text);
-                msh.LoadData("select * from ov where NumPayement='" + NumPayement + "'", dataViewOV);
+                if (decimal.Parse(inputMontant.Text) <= Reste)
+                {
+                    OVC.AjouterOV(NumPayement, inputNumOV.Text, inputDateVersement.Text, inputDateEcheance.Text, decimal.Parse(inputMontant.Text), inputEtat.Text, inputDateRecu.Text, inputNumRecu.Text, inputTypePayement.Text, inputNaturePayement.Text, inputNatureFrais.Text);
+                    msh.LoadData("select * from ov where NumPayement='" + NumPayement + "'", dataViewOV);
+                }
+                else
+
+                {
+                    System.Windows.MessageBox.Show("Le montant est supérieux au montant reste à payé du bien veuillez introduire une valeur inferieur");
+                }
             }
             else
-            
-                {
-                System.Windows.MessageBox.Show("Le montant CNL est supérieux au montant reste à payé du bien veuillez introduire une valeur inferieur");
-                }
+            {
+                OVC.AjouterOV(NumPayement, inputNumOV.Text, inputDateVersement.Text, inputDateEcheance.Text, decimal.Parse(inputMontant.Text), inputEtat.Text, inputDateRecu.Text, inputNumRecu.Text, inputTypePayement.Text, inputNaturePayement.Text, inputNatureFrais.Text);
+                msh.LoadData("select * from ov where NumPayement='" + NumPayement + "'", dataViewOV);
+            }
         }
 
         private void dataViewOV_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,7 +73,7 @@ namespace Agerfor.Views.Payement
             DataGridCellInfo cell0 = dataViewOV.SelectedCells[0];
             tempNumOV = int.Parse(((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text);
 
-            string query = "select * from ov where NumPayement='" + NumPayement + "' and NumOV='" + tempNumOV + "'";
+            string query = "select * from ov where NumPayement='" + NumPayement + "' and NumVerssement='" + tempNumOV + "'";
             MySqlDataReader rdr = null;
             MySqlConnection con = null;
             MySqlCommand cmd = null;
@@ -81,6 +93,9 @@ namespace Agerfor.Views.Payement
                 inputEtat.Text = rdr["Etat"].ToString();
                 inputDateRecu.Text = rdr["DateRecu"].ToString();
                 inputNumRecu.Text = rdr["NumRecu"].ToString();
+                inputTypePayement.Text = rdr["TypePayement"].ToString();
+                inputNaturePayement.Text = rdr["NaturePayement"].ToString();
+                inputNatureFrais.Text = rdr["NatureFrais"].ToString();
                 inputNumPayement.IsEnabled = inputNumOV.IsEnabled = inputDateVersement.IsEnabled = inputDateEcheance.IsEnabled = inputMontant.IsEnabled = false;
                 BtnOV.IsEnabled = false;
             }
@@ -108,7 +123,16 @@ namespace Agerfor.Views.Payement
                 {
                     OrdreVerssementController OVC = new OrdreVerssementController();
                     OVC.UpdateOV("Terminé", inputDateRecu.Text, inputNumRecu.Text, tempNumVerssement);
-                    msh.ExecuteQuery("update payement set MontantVerse=MontantVerse+" + decimal.Parse(inputMontant.Text) + ",Reste=MontantTotal-MontantVerse where NumPayement='" + NumPayement + "'");
+                    if (inputNaturePayement.Text != "Autre frais")
+                    {
+                        msh.ExecuteQuery("update payement set MontantVerse=MontantVerse+" + decimal.Parse(inputMontant.Text) + ",Reste=MontantTotal-MontantVerse where NumPayement='" + NumPayement + "'");
+                    }
+
+                    if (inputNaturePayement.Text == "Autre frais" && inputNatureFrais.Text == "Frais de gestion")
+                    {
+                        msh.ExecuteQuery("update payement set EtatFraisGestion='Payé' where NumPayement='" + inputNumPayement.Text + "'");
+                    }
+
                     msh.LoadData("select * from ov where NumPayement='" + NumPayement + "'", dataViewOV);
                     string query = "select * from payement where NumPayement='" + NumPayement + "'";
                     MySqlDataReader rdr = null;
@@ -128,6 +152,15 @@ namespace Agerfor.Views.Payement
                         
                     }
                     AddPayement.BtnCNL.IsEnabled = AddPayement.BtnFNPOS.IsEnabled = AddPayement.BtnCB.IsEnabled = true;
+
+                    MainWindow mainWindows = (MainWindow)System.Windows.Application.Current.Windows[0];
+                    mainWindows.Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+                    mainWindows.Frame.Navigate(AddPayement);
+                    mainWindows.currentWindow.Text = "Payement";
+                    mainWindows.Activate();
+                    this.Close();
+
+                  
                 }
                 else
                 {
@@ -139,12 +172,7 @@ namespace Agerfor.Views.Payement
                 System.Windows.MessageBox.Show("Veuillez remplir le Num et la date du recu de verssement !");
             }
             
-            MainWindow mainWindows = (MainWindow)System.Windows.Application.Current.Windows[0];
-            mainWindows.Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            mainWindows.Frame.Navigate(AddPayement);
-            mainWindows.currentWindow.Text = "Payement";
-            mainWindows.Activate();
-            this.Close();
+           
         }
 
         private void BtnUploadFiles_Click(object sender, RoutedEventArgs e)
@@ -207,8 +235,21 @@ namespace Agerfor.Views.Payement
 
         private void BtnImpriOv_Click(object sender, RoutedEventArgs e)
         {
-            OrdreVerssementR OVR = new OrdreVerssementR();
+            OrdreVerssementR OVR = new OrdreVerssementR(tempNumOV.ToString());
             OVR.Show();
+        }
+
+        private void inputNaturePayement_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(inputNaturePayement.SelectedItem.ToString() == "Autre frais")
+            {
+                inputNatureFrais.IsEnabled = true;
+                msh.FillDropDownList("select NatureF from naturefrais where NatureP='" + inputNaturePayement.SelectedItem.ToString() + "'",inputNatureFrais,"NatureF");
+            }
+            else
+            {
+                inputNatureFrais.IsEnabled = false;
+            }
         }
     }
 }

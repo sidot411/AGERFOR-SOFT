@@ -12,11 +12,11 @@ namespace Agerfor.Controlers
     {
         MySqlHelper msh = new MySqlHelper();
 
-        public void AjouterOV(int NumPayement, string NumOV, string DateOV, string DateEcheance, decimal MontantAV, string Etat, string DateRecu, string NumRecu)
+        public void AjouterOV(int NumPayement, string NumOV, string DateOV, string DateEcheance, decimal MontantAV, string Etat, string DateRecu, string NumRecu,string TypeP,string NaturePayement,string NatureFrais)
         {
             try
             {
-                msh.ExecuteQuery("INSERT INTO `ov` (`NumPayement`, `NumOV`, `DateOV`, `DateEcheance`, `MontantAV`, `Etat`, `DateRecu`, `NumRecu`) VALUES('" + NumPayement + "', '" + NumOV + "', '" + DateOV + "', '" + DateEcheance + "', '" + MontantAV + "', '" + Etat + "', '" + DateRecu + "', '" + NumRecu + "')");
+                msh.ExecuteQuery("INSERT INTO `ov` (`NumPayement`, `NumOV`, `DateOV`, `DateEcheance`, `MontantAV`, `Etat`, `DateRecu`, `NumRecu`,`TypePayement`,`NaturePayement`,`NatureFrais`) VALUES('" + NumPayement + "', '" + NumOV + "', '" + DateOV + "', '" + DateEcheance + "', '" + MontantAV + "', '" + Etat + "', '" + DateRecu + "', '" + NumRecu + "','"+TypeP+"','"+NaturePayement+"','"+NatureFrais+"')");
                 MessageBox.Show("L'ordre de verssement à était bien  crée");
             }
             catch (Exception)

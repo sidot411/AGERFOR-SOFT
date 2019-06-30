@@ -44,6 +44,7 @@ namespace Agerfor.Views.Programme
 
             inputPrixHT.IsEnabled =  false;
             msh.FillDropDownList("select ValeurTva from tva", inputTva, "ValeurTva");
+            msh.FillDropDownList("select Type from typevente", inputTypeVente, "Type");
             this.RefProgramme = refprogramme;
             this.RefProjet = RefProjet;
             this.NumEdd = NumEdd;
@@ -100,7 +101,7 @@ namespace Agerfor.Views.Programme
                     string Edd = "Edd";
                     DirectoryCreator DC = new DirectoryCreator();
                     DC.CreateDirectoryProgramme(RefProjet.ToString(), RefProgramme + "/" + Edd + "/" + NumEdd.ToString()+"/"+inputNumBloc.Text);
-                    BC.AjouterBiens(RefProgramme, RefProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSurH.Text), decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text, inputEtat.Text);
+                    BC.AjouterBiens(RefProgramme, RefProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSurH.Text), decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text, inputEtat.Text,inputTypeVente.Text);
                     inputNumLot.Background = Brushes.White;
                     inputNumIlot.Text = inputNumLot.Text = inputNumBloc.Text = inputNiveau.Text = inputNbrPiece.Text = inputSurH.Text = inputSurU.Text = inputLimiteEst.Text = inputLimiteNord.Text = inputLimiteOuest.Text = inputLimiteSud.Text = "";
                     inputPrixHT.Text = "0.00";
@@ -157,6 +158,7 @@ namespace Agerfor.Views.Programme
                     inputLimiteSud.Text = rdr["LimiteSud"].ToString();
                     inputLimiteEst.Text = rdr["LimiteEst"].ToString();
                     inputLimiteOuest.Text = rdr["LimiteOuest"].ToString();
+                    inputTypeVente.Text = rdr["TypeVente"].ToString();
                     
 
                     oneTime = false;
@@ -166,7 +168,7 @@ namespace Agerfor.Views.Programme
 
         private void BtnModifierBien_Click(object sender, RoutedEventArgs e)
         {
-            BC.ModifierBien(RefProgramme, RefProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSurH.Text), decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text,tempId);
+            BC.ModifierBien(RefProgramme, RefProjet, NumEdd, inputNumIlot.Text, inputTypeBien.Text, inputNumLot.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSurH.Text), decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixHT.Text), int.Parse(inputTva.Text), decimal.Parse(inputPrixTTC.Text), inputLimiteNord.Text, inputLimiteSud.Text, inputLimiteEst.Text, inputLimiteOuest.Text,tempId,inputTypeVente.Text);
             msh.LoadData("select * from biens where RefProgramme='" + RefProgramme + "' and RefProjet='" + RefProjet + "' and NumEdd='" + NumEdd + "'", dataViewListeBien);
           
 

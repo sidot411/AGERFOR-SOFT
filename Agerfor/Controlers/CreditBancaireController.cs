@@ -23,5 +23,18 @@ namespace Agerfor.Controlers
                 MessageBox.Show("Le crédit bancaire n'a pas était ajouté");
             }
         }
+
+        public void ValiderCreditBancaire(int numpayement, string NumConvBan, string DateConv, string NomBanque, string BIC, decimal MontantCb)
+        {
+            try
+            {
+                msh.ExecuteQuery("update creditb set NumConvBan='" + NumConvBan + "',DateConv='" + DateConv + "',NomBanque='" + NomBanque + "',BIC='" + BIC + "',MontantCB='" + MontantCb + "' where NumPayement='" + numpayement + "'");
+                MessageBox.Show("Le crédit bancaire a été bien validé");
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Le crédit bancaire n'a pas été bien validé");
+            }
+        }
     }
 }

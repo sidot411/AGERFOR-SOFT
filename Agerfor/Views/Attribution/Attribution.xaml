@@ -40,7 +40,7 @@
                         <TextBlock Text="Ajouter" VerticalAlignment="Center" Height="25" />
                     </StackPanel>
                 </Button>
-                <Button Background="#007CC3" x:Name="BtnModifierAttribution" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10">
+                <Button Background="#007CC3" x:Name="BtnModifierAttribution" VerticalAlignment="Top" Height="80" BorderThickness="0" Margin="10,10,0,10" HorizontalAlignment="Left" Width="115" Click="BtnModifierAttribution_Click">
 
                     <StackPanel Orientation="Vertical">
                         <materialDesign:PackIcon Kind="BookmarkCheck" Width="35" Height="35" VerticalAlignment="Center"

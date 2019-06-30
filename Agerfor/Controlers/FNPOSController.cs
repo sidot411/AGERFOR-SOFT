@@ -10,16 +10,16 @@ namespace Agerfor.Controlers
     class FNPOSController
     {
         MySqlHelper msh = new MySqlHelper();
-        public void AjouterFNPOS(int NumPayement, string NumDeci, string DateDeci, decimal MontantFNPOS, string DateRecu, string NumRecu)
+        public void AjouterFNPOS(int NumPayement, string NumDeci, string DateDeci, decimal MontantFNPOS)
         {
             try
             {
-                msh.ExecuteQuery("INSERT INTO `fnpos` (`NumPayement`, `NumDeciF`, `DateDeciF`, `MontantFNPOS`, `DateRecu`, `NumRecu`) VALUES ('" + NumPayement + "', '" + NumDeci + "',STR_TO_DATE('" + DateDeci + "', '%d/%m/%Y') , '" + MontantFNPOS+ "',STR_TO_DATE('" + DateRecu + "', '%d/%m/%Y') , '" + NumRecu + "')");
-                MessageBox.Show("Le CNL à était bien ajouté");
+                msh.ExecuteQuery("update fnpos set NumDeciF='"+NumDeci+ "', DateDeciF=STR_TO_DATE('" + DateDeci + "', '%d/%m/%Y') , MontantFNPOS= '" + MontantFNPOS + "' where NumPayement='" + NumPayement + "'");
+                MessageBox.Show("Le FNPOS à était bien ajouté");
             }
             catch (Exception)
             {
-                MessageBox.Show("Le CNL n'a pas était ajouté ");
+                MessageBox.Show("Le FNPOS n'a pas était ajouté ");
             }
         }
 

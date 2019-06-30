@@ -23,7 +23,7 @@ namespace Agerfor.Views.Attribution
         string tempNumlot = "";
         string tempTypeBien = "";
         string tempNumBloc = "";
-        string tempNumBien = "";
+        string tempIdBien = "";
         string tempNatureProgramme = "";
        
         public Attribution(string query)
@@ -37,7 +37,7 @@ namespace Agerfor.Views.Attribution
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
              
-            msh.LoadData("Select DISTINCT *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA from client, projet, programme, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme", dataGridView2);
+            msh.LoadData("Select DISTINCT *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client, projet, programme, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme", dataGridView2);
          
 
 
@@ -45,14 +45,14 @@ namespace Agerfor.Views.Attribution
 
         private void IdClient_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where CodeClient like '" + IdClient.Text + "%' and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where CodeClient like '" + IdClient.Text + "%' and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
         }
 
 
 
         private void Nom_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where Nom like '" + inputNom.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where Nom like '" + inputNom.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
@@ -60,20 +60,20 @@ namespace Agerfor.Views.Attribution
 
         private void CNI_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where Cni like '" + inputCNI.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where Cni like '" + inputCNI.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputDateNaissance_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where DateNaissance like '" + inputDateNaissance.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where DateNaissance like '" + inputDateNaissance.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputDateNaissance_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where DateNaissance like '" + inputDateNaissance.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+           msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where DateNaissance like '" + inputDateNaissance.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
 
         }
@@ -81,88 +81,88 @@ namespace Agerfor.Views.Attribution
         private void inputNomProjet_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
 
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where projet.NomProjet like '" + inputNomProjet.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+           msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where projet.NomProjet like '" + inputNomProjet.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputNumProgramme_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where programme.RefProgramme like '" + inputNumProgramme.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where programme.RefProgramme like '" + inputNumProgramme.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputnumbien_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where Biens.NumBien like '" + inputnumbien.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where Biens.NumBien like '" + inputnumbien.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
 
         private void inputDateAttri_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where DateAttribution like '" + inputDateAttri.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where DateAttribution like '" + inputDateAttri.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputDateAttri_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where DateAttribution like '" + inputDateAttri.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where DateAttribution like '" + inputDateAttri.Text + "%'  and attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void IdClient_GotFocus(object sender, RoutedEventArgs e)
         {
-            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+           IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputNom_GotFocus(object sender, RoutedEventArgs e)
         {
             IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputCNI_GotFocus(object sender, RoutedEventArgs e)
         {
-            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+           IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+           msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputDateNaissance_GotFocus(object sender, RoutedEventArgs e)
         {
             IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputNomProjet_GotFocus(object sender, RoutedEventArgs e)
         {
             IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputNumProgramme_GotFocus(object sender, RoutedEventArgs e)
         {
-            IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+           IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
+           msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputnumbien_GotFocus(object sender, RoutedEventArgs e)
         {
             IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
         private void inputDateAttri_GotFocus(object sender, RoutedEventArgs e)
         {
             IdClient.Text = inputNom.Text = inputCNI.Text = inputDateNaissance.Text = inputNomProjet.Text = inputNumProgramme.Text = inputnumbien.Text = inputDateAttri.Text = string.Empty;
-            msh.LoadData("Select * from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
+            msh.LoadData("Select *,date_format(DateAttribution,'%d/%m/%Y') AS DATEA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client,projet,programme,biens,attribution where attribution.CodeClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumBien = biens.NumBien", dataGridView2);
 
         }
 
@@ -181,8 +181,8 @@ namespace Agerfor.Views.Attribution
                 MessageBox.Show(tempNumBloc);
                 MessageBox.Show(tempNatureProgramme);*/
 
-                AddAttribution addat = new AddAttribution(tempNumAttribution,tempDateAttribution,tempCodeClient,tempNumProjet,tempNumProgramme,tempNumIlot,tempNumlot,tempTypeBien,tempNumBloc,tempNatureProgramme);
-
+                AddAttribution addat = new AddAttribution(tempNumAttribution,tempDateAttribution,tempCodeClient,tempNumProjet,tempNumProgramme,tempNumIlot,tempNumlot,tempTypeBien,tempNumBloc,tempNatureProgramme,tempIdBien);
+                
                 this.NavigationService.Navigate(addat);
             }
             catch (Exception)
@@ -195,7 +195,7 @@ namespace Agerfor.Views.Attribution
         {
             try
             {
-                AddAttribution addat = new AddAttribution("","","","","","","","","","");
+                AddAttribution addat = new AddAttribution("","","","","","","","","","","");
                 this.NavigationService.Navigate(addat);
             }
             catch (Exception)
@@ -230,7 +230,7 @@ namespace Agerfor.Views.Attribution
                 if (tempNatureProgramme == "Logement" || tempNatureProgramme == "Local")
                 {
 
-                    string query = "Select DISTINCT *,date_format(DateAttribution,'%d/%m/%Y') AS DateA from client, projet, programme, biens, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.RefProjet=biens.RefProjet and programme.RefProgramme=biens.RefProgramme) AND NumA='" + tempNumAttribution + "'";
+                    string query = "Select DISTINCT *,date_format(DateAttribution,'%d/%m/%Y') AS DateA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client, projet, programme, biens, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.RefProjet=biens.RefProjet and programme.RefProgramme=biens.RefProgramme) AND NumA='" + tempNumAttribution + "'";
 
                     MySqlDataReader rdr = null;
                     MySqlConnection con = null;
@@ -252,7 +252,8 @@ namespace Agerfor.Views.Attribution
                         tempTypeBien = rdr["TypeBien"].ToString();
                         tempNumBloc = rdr["NumBloc"].ToString();
                         tempNatureProgramme = rdr["NatureProgramme"].ToString();
-                     
+                        tempIdBien = rdr["IdBien"].ToString();
+
 
                     }
 
@@ -260,7 +261,7 @@ namespace Agerfor.Views.Attribution
 
                 else
                 {
-                    string query = "Select DISTINCT *,date_format(DateAttribution,'%d/%m/%Y') AS DateA from client, projet, programme,lot, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = lot.NumIlot AND attribution.Numlot = lot.Numlot  AND lot.NumCC = (SELECT MAX(NumCC) FROM biens where projet.NomProjet=lot.NomPRojet and programme.RefProgramme=lot.RefProgramme) AND NumA='" + tempNumAttribution + "'";
+                    string query = "Select DISTINCT *,date_format(DateAttribution,'%d/%m/%Y') AS DateA,date_format(DateDLE,'%d/%m/%Y') AS DATEDLE,date_format(DateDLR,'%d/%m/%Y') AS DATEDLR from client, projet, programme,lot, attribution where attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = lot.NumIlot AND attribution.Numlot = lot.Numlot  AND lot.NumCC = (SELECT MAX(NumCC) FROM biens where projet.NomProjet=lot.NomPRojet and programme.RefProgramme=lot.RefProgramme) AND NumA='" + tempNumAttribution + "'";
 
                     MySqlDataReader rdr = null;
                     MySqlConnection con = null;
@@ -280,6 +281,7 @@ namespace Agerfor.Views.Attribution
                         tempNumIlot = rdr["NumIlot"].ToString();
                         tempNumlot = rdr["Numlot"].ToString();
                         tempNatureProgramme = rdr["NatureProgramme"].ToString();
+                        tempIdBien = rdr["IdBien"].ToString();
 
 
 
@@ -298,6 +300,11 @@ namespace Agerfor.Views.Attribution
             AC.SupprimerAttribution(tempNumAttribution);
             Attribution A = new Attribution("");
             this.NavigationService.Navigate(A);
+        }
+
+        private void BtnModifierAttribution_Click(object sender, RoutedEventArgs e)
+        {
+           // AddAttribution AA = new AddAttribution();
         }
     }
 }

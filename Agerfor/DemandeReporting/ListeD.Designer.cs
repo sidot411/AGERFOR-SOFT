@@ -61,7 +61,7 @@
 
         #endregion
 
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private ListeDemande ListeDemande1;
+        internal CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        public ListeDemande ListeDemande1;
     }
 }

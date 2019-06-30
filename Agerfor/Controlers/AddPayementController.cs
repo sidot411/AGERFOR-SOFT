@@ -25,5 +25,18 @@ namespace Agerfor.Controlers
             }
 
         }
+
+        public void ModifierPayement (int RefProjet, string NomProjet, int RefProgramme, string NomProgramme, string NumIlot, string NumLot, string TypeBien, string NumBloc, string Niveau, string NbrP, decimal SurH, decimal SurU, decimal MontantTotal, decimal Reste, int numAtri)
+        {
+            try
+            {
+                msh.ExecuteQuery("update payement set RefProjet='" + RefProjet + "',NomProjet='" + NomProjet + "',RefProgramme='" + RefProgramme + "',NomProgramme='" + NomProgramme + "',NumIlot='" + NumIlot + "',NumLot='" + NumLot + "',TypeBien='" + TypeBien + "',NumBloc='" + NumBloc + "',Niveau='" + Niveau + "',NbrP='" + NbrP + "',SurH='" + SurH + "',SurU='" + SurU + "',MontantTotal='" + MontantTotal + "',Reste='" + Reste + "' where NumAttribution='"+numAtri+"'");
+                MessageBox.Show("le payement à été bien modifier");
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("le payement n'a pas été bien modifier");
+            }
+        }
     }
 }

@@ -49,8 +49,7 @@ namespace Agerfor.Views.Payement
                 inputDeciF.Text = rdr["NumDeciF"].ToString();
                 inputDateDeciF.Text = rdr["DateDeciF"].ToString();
                 inputMontantFNPOS.Text = rdr["MontantFNPOS"].ToString();
-                inputDateRecu.Text = rdr["DateRecu"].ToString();
-                inputNumRecu.Text = rdr["NumRecu"].ToString();
+                
             }
 
             if (inputDeciF.Text != "")
@@ -65,7 +64,7 @@ namespace Agerfor.Views.Payement
             if (decimal.Parse(inputMontantFNPOS.Text) <= Reste)
             {
                 FNPOSController FNPOSC = new FNPOSController();
-                FNPOSC.AjouterFNPOS(NumPayement, inputDeciF.Text, inputDateDeciF.Text, decimal.Parse(inputMontantFNPOS.Text), inputDateRecu.Text, inputNumRecu.Text);
+                FNPOSC.AjouterFNPOS(NumPayement, inputDeciF.Text, inputDateDeciF.Text, decimal.Parse(inputMontantFNPOS.Text));
                 msh.ExecuteQuery("update payement set MontantVerse=MontantVerse+" + decimal.Parse(inputMontantFNPOS.Text) + ",Reste=MontantTotal-MontantVerse where NumPayement='" + NumPayement + "'");
                 string query = "select * from payement where NumPayement='" + NumPayement + "'";
                 MySqlDataReader rdr = null;
@@ -92,7 +91,7 @@ namespace Agerfor.Views.Payement
             }
             else
             {
-                MessageBox.Show("Le montant CNL est supérieux au montant reste à payé du bien veuillez introduire une valeur inferieur");
+                MessageBox.Show("Le montant FNPOS est supérieux au montant reste à payé du bien veuillez introduire une valeur inferieur");
             }
         }
         

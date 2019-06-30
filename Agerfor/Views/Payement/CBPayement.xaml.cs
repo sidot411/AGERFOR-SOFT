@@ -55,7 +55,7 @@ namespace Agerfor.Views.Payement
             if (decimal.Parse(inputMontant.Text) <= Reste)
             {
                 CreditBancaireController CBC = new CreditBancaireController();
-                CBC.AjouterCreditBancaire(NumPayement,inputNumConv.Text, inputDateConv.Text, inputNomBanque.Text, inputBIC.Text, decimal.Parse(inputMontant.Text));
+                CBC.ValiderCreditBancaire(NumPayement,inputNumConv.Text, inputDateConv.Text, inputNomBanque.Text, inputBIC.Text, decimal.Parse(inputMontant.Text));
                 msh.ExecuteQuery("update payement set MontantVerse=MontantVerse+" + decimal.Parse(inputMontant.Text) + ",Reste=MontantTotal-MontantVerse where NumPayement='" + NumPayement + "'");
                 string query = "select * from payement where NumPayement='" + NumPayement + "'"; 
                 MySqlDataReader rdr = null;

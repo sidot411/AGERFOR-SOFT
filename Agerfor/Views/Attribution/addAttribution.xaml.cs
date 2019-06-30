@@ -25,6 +25,7 @@ namespace Agerfor.Views.Attribution
     /// </summary>
     public partial class AddAttribution : Page
     {
+        int tempNumAttribution;
         string NumAttribution = "";
         string DateAttribution = "";
         string NumClient = "";
@@ -35,10 +36,15 @@ namespace Agerfor.Views.Attribution
         string TypeBien = "";
         string NumBloc = "";
         string NatureProgramme = "";
+        string Idbiens = "";
         int tempIdbien;
+        int tempIdbien2;
+        decimal tempMontantVers;
+        decimal tempreste;
+        int tempNumPayement;
 
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public AddAttribution(string NumAttribution, string DateAttribution, string NumClient, string NumProjet, string NumProgramme, string NumIlot, string Numlot, string TypeBien, string NumBloc, string NatureProgramme)
+        public AddAttribution(string NumAttribution, string DateAttribution, string NumClient, string NumProjet, string NumProgramme, string NumIlot, string Numlot, string TypeBien, string NumBloc, string NatureProgramme, string Idbiens)
         {
             InitializeComponent();
             this.NumAttribution = NumAttribution;
@@ -50,21 +56,22 @@ namespace Agerfor.Views.Attribution
             this.Numlot = Numlot;
             this.TypeBien = TypeBien;
             this.NumBloc = NumBloc;
-            
+            this.Idbiens = Idbiens;
+
             this.NatureProgramme = NatureProgramme;
 
 
             inputEtat.SelectedIndex = 1;
             inputEtat.IsEnabled = false;
-        
+
             if (NumAttribution != "")
             {
-          
+
                 if (NatureProgramme == "Logement")
                 {
-                    MessageBox.Show("Select * from client, projet, programme, biens, attribution where NumA='" + NumAttribution + "' and DateAttribution=STR_TO_DATE('" + DateAttribution + "','%d/%m/%Y') and attribution.NumClient='" + NumClient + "' and attribution.NumProjet='" + NumProjet + "' and attribution.NumProgramme='" + NumProgramme + "' and 	attribution.NumIlot='" + NumIlot + "' and attribution.Numlot='" + Numlot + "' and attribution.TypeBien='" + TypeBien + "' and attribution.NumBloc='" + NumBloc + "' and attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.RefProjet=biens.RefProjet and programme.RefProgramme)");
+                    //Clipboard.SetText("Select * from client, projet, programme, biens, attribution where NumA='" + NumAttribution + "' and DateAttribution=STR_TO_DATE('" + DateAttribution + "','%d/%m/%Y') and attribution.NumClient='" + NumClient + "' and attribution.NumProjet='" + NumProjet + "' and attribution.NumProgramme='" + NumProgramme + "' and 	attribution.NumIlot='" + NumIlot + "' and attribution.Numlot='" + Numlot + "' and attribution.TypeBien='" + TypeBien + "' and attribution.NumBloc='" + NumBloc + "' and attribution.IdBien='"+Idbiens+"' and attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.RefProjet=biens.RefProjet and programme.RefProgramme)");
 
-                    string queryload = "Select * from client, projet, programme, biens, attribution where NumA='" + NumAttribution + "' and DateAttribution=STR_TO_DATE('" + DateAttribution + "','%d/%m/%Y') and attribution.NumClient='" + NumClient + "' and attribution.NumProjet='" + NumProjet + "' and attribution.NumProgramme='" + NumProgramme + "' and 	attribution.NumIlot='" + NumIlot + "' and attribution.Numlot='" + Numlot + "' and attribution.TypeBien='" + TypeBien + "' and attribution.NumBloc='" + NumBloc + "' and attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.RefProjet=biens.RefProjet and programme.RefProgramme)";
+                    string queryload = "Select *,biens.LimiteNord AS LimiteNordB ,biens.LimiteSud AS LimiteSudB ,biens.LimiteEst AS LimiteEstB,biens.LimiteOuest AS LimiteOuestB from client, projet, programme, biens, attribution where NumA='" + NumAttribution + "' and DateAttribution=STR_TO_DATE('" + DateAttribution + "','%d/%m/%Y') and attribution.NumClient='" + NumClient + "' and attribution.NumProjet='" + NumProjet + "' and attribution.NumProgramme='" + NumProgramme + "' and 	attribution.NumIlot='" + NumIlot + "' and attribution.Numlot='" + Numlot + "' and attribution.TypeBien='" + TypeBien + "' and attribution.NumBloc='" + NumBloc + "' and attribution.NumClient = client.NumClient AND attribution.NumProjet = projet.RefProjet AND attribution.NumProgramme = programme.RefProgramme AND attribution.NumIlot = biens.NumIlot AND attribution.Numlot = biens.Numlot AND attribution.TypeBien = biens.TypeBien AND attribution.NumBloc = biens.NumBloc AND biens.NumEdd = (SELECT MAX(NumEdd) FROM biens where projet.RefProjet=biens.RefProjet and programme.RefProgramme)";
                     MySqlDataReader rdrL = null;
                     MySqlConnection conL = null;
                     MySqlCommand cmdL = null;
@@ -98,14 +105,18 @@ namespace Agerfor.Views.Attribution
                         inputPrixHT.Text = rdrL["PrixHT"].ToString();
                         inputTva.Text = rdrL["Tva"].ToString();
                         inputPrixTTC.Text = rdrL["PrixTTC"].ToString();
-                        inputLimiteEst.Text = rdrL["LimiteEst"].ToString();
-                        inputLimiteNord.Text = rdrL["LimiteNord"].ToString();
-                        inputLimiteOuest.Text = rdrL["LimiteOuest"].ToString();
-                        inputLimiteSud.Text = rdrL["LimiteSud"].ToString();
+                        inputLimiteEst.Text = rdrL["LimiteEstB"].ToString();
+                        inputLimiteNord.Text = rdrL["LimiteNordB"].ToString();
+                        inputLimiteOuest.Text = rdrL["LimiteOuestB"].ToString();
+                        inputLimiteSud.Text = rdrL["LimiteSudB"].ToString();
                         inputEtat.Text = rdrL["Etat"].ToString();
                         inputNatureProgramme.Text = rdrL["NatureProgramme"].ToString();
                         inputTypeProgramme.Text = rdrL["TypeProgramme"].ToString();
-
+                        inputDateDLE.Text = rdrL["DateDLE"].ToString();
+                        inputDateDLR.Text = rdrL["DateDLR"].ToString();
+                        inputRefDL.Text = rdrL["RefDL"].ToString();
+                        tempIdbien2 = int.Parse(rdrL["Id"].ToString());
+                        tempIdbien = int.Parse(rdrL["Id"].ToString());
 
                     }
                     BtnAttribuerBien.IsEnabled = false;
@@ -225,53 +236,95 @@ namespace Agerfor.Views.Attribution
         private void inputNumClient_MouseLeave(object sender, MouseEventArgs e)
 
         {
-            if (NumAttribution == "")
+
+
+            string query3 = "Select * from client where NumClient='" + inputNumClient.Text + "'";
+            MySqlDataReader rdr3 = null;
+            MySqlConnection con3 = null;
+            MySqlCommand cmd3 = null;
+            con3 = new MySqlConnection(Database.ConnectionString());
+            con3.Open();
+            cmd3 = new MySqlCommand(query3);
+            cmd3.Connection = con3;
+            rdr3 = cmd3.ExecuteReader();
+
+            while (rdr3.Read())
             {
+                inputNomClient.Text = rdr3["Nom"].ToString();
+                inputPrenomClient.Text = rdr3["Prenom"].ToString();
+                inputDateNaissance.Text = rdr3["DateNaissance"].ToString();
+                inputNumCNI.Text = rdr3["Cni"].ToString();
+                inputNumClient.IsEnabled = inputNomClient.IsEnabled = inputPrenomClient.IsEnabled = inputDateNaissance.IsEnabled = inputNumCNI.IsEnabled = false;
 
-                string query3 = "Select * from client where NumClient='" + inputNumClient.Text + "'";
-                MySqlDataReader rdr3 = null;
-                MySqlConnection con3 = null;
-                MySqlCommand cmd3 = null;
-                con3 = new MySqlConnection(Database.ConnectionString());
-                con3.Open();
-                cmd3 = new MySqlCommand(query3);
-                cmd3.Connection = con3;
-                rdr3 = cmd3.ExecuteReader();
-
-                while (rdr3.Read())
-                {
-                    inputNomClient.Text = rdr3["Nom"].ToString();
-                    inputPrenomClient.Text = rdr3["Prenom"].ToString();
-                    inputDateNaissance.Text = rdr3["DateNaissance"].ToString();
-                    inputNumCNI.Text = rdr3["Cni"].ToString();
-                    inputNumClient.IsEnabled = inputNomClient.IsEnabled = inputPrenomClient.IsEnabled = inputDateNaissance.IsEnabled = inputNumCNI.IsEnabled = false;
-
-                }
             }
+
         }
 
         private void inputNumProjet_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (NumAttribution == "")
+
+            string query3 = "Select * from projet where RefProjet='" + inputNumProjet.Text + "'";
+            MySqlDataReader rdr3 = null;
+            MySqlConnection con3 = null;
+            MySqlCommand cmd3 = null;
+            con3 = new MySqlConnection(Database.ConnectionString());
+            con3.Open();
+            cmd3 = new MySqlCommand(query3);
+            cmd3.Connection = con3;
+            rdr3 = cmd3.ExecuteReader();
+
+            while (rdr3.Read())
             {
-                string query3 = "Select * from projet where RefProjet='" + inputNumProjet.Text + "'";
-                MySqlDataReader rdr3 = null;
-                MySqlConnection con3 = null;
-                MySqlCommand cmd3 = null;
-                con3 = new MySqlConnection(Database.ConnectionString());
-                con3.Open();
-                cmd3 = new MySqlCommand(query3);
-                cmd3.Connection = con3;
-                rdr3 = cmd3.ExecuteReader();
-
-                while (rdr3.Read())
-                {
-                    inputNomProjet.Text = rdr3["NomProjet"].ToString();
-                    inputNumProjet.IsEnabled = inputNomProjet.IsEnabled = false;
-                }
+                inputNomProjet.Text = rdr3["NomProjet"].ToString();
+                inputNumProjet.IsEnabled = inputNomProjet.IsEnabled = false;
+            }
 
 
-                string query4 = "Select RefProgramme from programme where RefProjet='" + inputNumProjet.Text + "'";
+            string query4 = "Select RefProgramme from programme where RefProjet='" + inputNumProjet.Text + "'";
+            MySqlDataReader rdr4 = null;
+            MySqlConnection con4 = null;
+            MySqlCommand cmd4 = null;
+            con4 = new MySqlConnection(Database.ConnectionString());
+            con4.Open();
+            cmd4 = new MySqlCommand(query4);
+            cmd4.Connection = con4;
+            rdr4 = cmd4.ExecuteReader();
+
+            while (rdr4.Read())
+            {
+                inputNumProgramme.AddItem(new AutoCompleteEntry(rdr4["RefProgramme"].ToString(), null));
+
+            }
+
+
+        }
+
+        private void inputNumProgramme_MouseLeave(object sender, MouseEventArgs e)
+        {
+
+            string query3 = "Select * from programme where RefProgramme='" + inputNumProgramme.Text + "'";
+            MySqlDataReader rdr3 = null;
+            MySqlConnection con3 = null;
+            MySqlCommand cmd3 = null;
+            con3 = new MySqlConnection(Database.ConnectionString());
+            con3.Open();
+            cmd3 = new MySqlCommand(query3);
+            cmd3.Connection = con3;
+            rdr3 = cmd3.ExecuteReader();
+
+            while (rdr3.Read())
+            {
+                inputNomProgramme.Text = rdr3["NomProgramme"].ToString();
+                inputNatureProgramme.Text = rdr3["NatureProgramme"].ToString();
+                NatureProgramme = rdr3["NatureProgramme"].ToString();
+                inputTypeProgramme.Text = rdr3["TypeProgramme"].ToString();
+                inputNatureProgramme.IsEnabled = inputTypeProgramme.IsEnabled = inputNumProgramme.IsEnabled = inputNomProgramme.IsEnabled = false;
+
+            }
+
+            if (NatureProgramme == "Logement")
+            {
+                string query4 = "select DISTINCT NumIlot as NI from biens WHERE RefProjet='" + inputNumProjet.Text + "' and RefProgramme='" + inputNumProgramme.Text + "'";
                 MySqlDataReader rdr4 = null;
                 MySqlConnection con4 = null;
                 MySqlCommand cmd4 = null;
@@ -283,156 +336,105 @@ namespace Agerfor.Views.Attribution
 
                 while (rdr4.Read())
                 {
-                    inputNumProgramme.AddItem(new AutoCompleteEntry(rdr4["RefProgramme"].ToString(), null));
-
-                }
-
-            }
-        }
-
-        private void inputNumProgramme_MouseLeave(object sender, MouseEventArgs e)
-        {
-            if (NumAttribution == "")
-            {
-                string query3 = "Select * from programme where RefProgramme='" + inputNumProgramme.Text + "'";
-                MySqlDataReader rdr3 = null;
-                MySqlConnection con3 = null;
-                MySqlCommand cmd3 = null;
-                con3 = new MySqlConnection(Database.ConnectionString());
-                con3.Open();
-                cmd3 = new MySqlCommand(query3);
-                cmd3.Connection = con3;
-                rdr3 = cmd3.ExecuteReader();
-
-                while (rdr3.Read())
-                {
-                    inputNomProgramme.Text = rdr3["NomProgramme"].ToString();
-                    inputNatureProgramme.Text = rdr3["NatureProgramme"].ToString();
-                    NatureProgramme = rdr3["NatureProgramme"].ToString();
-                    inputTypeProgramme.Text = rdr3["TypeProgramme"].ToString();
-                    inputNatureProgramme.IsEnabled = inputTypeProgramme.IsEnabled = inputNumProgramme.IsEnabled = inputNomProgramme.IsEnabled = false;
-
-                }
-
-                if (NatureProgramme == "Logement")
-                {
-                    string query4 = "select DISTINCT NumIlot as NI from biens WHERE RefProjet='" + inputNumProjet.Text + "' and RefProgramme='" + inputNumProgramme.Text + "'";
-                    MySqlDataReader rdr4 = null;
-                    MySqlConnection con4 = null;
-                    MySqlCommand cmd4 = null;
-                    con4 = new MySqlConnection(Database.ConnectionString());
-                    con4.Open();
-                    cmd4 = new MySqlCommand(query4);
-                    cmd4.Connection = con4;
-                    rdr4 = cmd4.ExecuteReader();
-
-                    while (rdr4.Read())
-                    {
-                        inputNumIlot.AddItem(new AutoCompleteEntry(rdr4["NI"].ToString(), null));
-                    }
-                }
-                else
-                {
-
-                    string query4 = "select DISTINCT NumIlot as NI from lot WHERE RefProjet='" + inputNumProjet.Text + "' and RefProgramme='" + inputNumProgramme.Text + "' and NumCC=(SELECT MAX(NumCC) from lot WHERE RefProjet = '" + inputNumProjet.Text + "' and RefProgramme = '" + inputNumProgramme.Text + "')";
-                    MySqlDataReader rdr4 = null;
-                    MySqlConnection con4 = null;
-                    MySqlCommand cmd4 = null;
-                    con4 = new MySqlConnection(Database.ConnectionString());
-                    con4.Open();
-                    cmd4 = new MySqlCommand(query4);
-                    cmd4.Connection = con4;
-                    rdr4 = cmd4.ExecuteReader();
-
-                    while (rdr4.Read())
-                    {
-                        inputNumIlot.AddItem(new AutoCompleteEntry(rdr4["NI"].ToString(), null));
-
-                        inputNumBloc.IsEnabled = false;
-                        inputNiveau.IsEnabled = false;
-                        inputNbrPiece.IsEnabled = false;
-
-
-
-                    }
-                }
-            }
-        }
-
-        private void inputNumIlot_MouseLeave(object sender, MouseEventArgs e)
-        {
-            if (NumAttribution == "")
-            {
-                if (NatureProgramme == "Logement")
-                {
-                    string query3 = "Select DISTINCT NumBloc AS NB from biens WHERE RefProjet='" + inputNumProjet.Text + "' and RefProgramme='" + inputNumProgramme.Text + "' and NumIlot='" + inputNumIlot.Text + "'";
-                    MySqlDataReader rdr3 = null;
-                    MySqlConnection con3 = null;
-                    MySqlCommand cmd3 = null;
-                    con3 = new MySqlConnection(Database.ConnectionString());
-                    con3.Open();
-                    cmd3 = new MySqlCommand(query3);
-                    cmd3.Connection = con3;
-                    rdr3 = cmd3.ExecuteReader();
-
-                    while (rdr3.Read())
-                    {
-
-                        inputNumBloc.AddItem(new AutoCompleteEntry(rdr3["NB"].ToString(), null));
-                        inputNumIlot.IsEnabled = false;
-                    }
-                }
-                else
-                {
-                    string query3 = "Select DISTINCT Numlot AS NL from lot WHERE RefProjet='" + inputNomProjet.Text + "' and RefProgramme='" + inputNumProgramme.Text + "' and NumIlot='" + inputNumIlot.Text + "' and NumCC=(SELECT MAX(NumCC) from lot WHERE RefProjet = '" + inputNomProjet.Text + "' and RefProgramme = '" + inputNumProgramme.Text + "') and Etat='Libre' ";
-                    MySqlDataReader rdr3 = null;
-                    MySqlConnection con3 = null;
-                    MySqlCommand cmd3 = null;
-                    con3 = new MySqlConnection(Database.ConnectionString());
-                    con3.Open();
-                    cmd3 = new MySqlCommand(query3);
-                    cmd3.Connection = con3;
-                    rdr3 = cmd3.ExecuteReader();
-
-                    while (rdr3.Read())
-                    {
-
-                        inputNumLot.AddItem(new AutoCompleteEntry(rdr3["NL"].ToString(), null));
-                        inputNumIlot.IsEnabled = false;
-                    }
-                }
-            }
-        }
-
-        private void inputNumBloc_MouseLeave(object sender, MouseEventArgs e)
-        {
-            if (NumAttribution == "")
-            {
-
-                string query3 = "Select Numlot AS NL from biens WHERE RefProjet = '" + inputNumProjet.Text + "' and RefProgramme = '" + inputNumProgramme.Text + "' and NumIlot = '" + inputNumIlot.Text + "' and NumBloc = '" + inputNumBloc.Text + "' AND NumEdd = (SELECT MAX(NumEdd) from biens WHERE RefProjet = '" + inputNumProjet.Text + "' and RefProgramme = '" + inputNumProgramme.Text + "')   ";
-                MySqlDataReader rdr3 = null;
-                MySqlConnection con3 = null;
-                MySqlCommand cmd3 = null;
-                con3 = new MySqlConnection(Database.ConnectionString());
-                con3.Open();
-                cmd3 = new MySqlCommand(query3);
-                cmd3.Connection = con3;
-                rdr3 = cmd3.ExecuteReader();
-
-                while (rdr3.Read())
-                {
-                    inputNumLot.AddItem(new AutoCompleteEntry(rdr3["NL"].ToString(), null));
-                    inputNumBloc.IsEnabled = false;
-
-
+                    inputNumIlot.AddItem(new AutoCompleteEntry(rdr4["NI"].ToString(), null));
                 }
             }
             else
             {
-                MessageBox.Show("Veuillez sélectioner d'abord un type de bien");
+
+                string query4 = "select DISTINCT NumIlot as NI from lot WHERE RefProjet='" + inputNumProjet.Text + "' and RefProgramme='" + inputNumProgramme.Text + "' and NumCC=(SELECT MAX(NumCC) from lot WHERE RefProjet = '" + inputNumProjet.Text + "' and RefProgramme = '" + inputNumProgramme.Text + "')";
+                MySqlDataReader rdr4 = null;
+                MySqlConnection con4 = null;
+                MySqlCommand cmd4 = null;
+                con4 = new MySqlConnection(Database.ConnectionString());
+                con4.Open();
+                cmd4 = new MySqlCommand(query4);
+                cmd4.Connection = con4;
+                rdr4 = cmd4.ExecuteReader();
+
+                while (rdr4.Read())
+                {
+                    inputNumIlot.AddItem(new AutoCompleteEntry(rdr4["NI"].ToString(), null));
+
+                    inputNumBloc.IsEnabled = false;
+                    inputNiveau.IsEnabled = false;
+                    inputNbrPiece.IsEnabled = false;
+
+
+
+                }
             }
+
         }
-    
+
+        private void inputNumIlot_MouseLeave(object sender, MouseEventArgs e)
+        {
+
+            if (NatureProgramme == "Logement")
+            {
+                string query3 = "Select DISTINCT NumBloc AS NB from biens WHERE RefProjet='" + inputNumProjet.Text + "' and RefProgramme='" + inputNumProgramme.Text + "' and NumIlot='" + inputNumIlot.Text + "'";
+                MySqlDataReader rdr3 = null;
+                MySqlConnection con3 = null;
+                MySqlCommand cmd3 = null;
+                con3 = new MySqlConnection(Database.ConnectionString());
+                con3.Open();
+                cmd3 = new MySqlCommand(query3);
+                cmd3.Connection = con3;
+                rdr3 = cmd3.ExecuteReader();
+
+                while (rdr3.Read())
+                {
+
+                    inputNumBloc.AddItem(new AutoCompleteEntry(rdr3["NB"].ToString(), null));
+                    inputNumIlot.IsEnabled = false;
+                }
+            }
+            else
+            {
+                string query3 = "Select DISTINCT Numlot AS NL from lot WHERE RefProjet='" + inputNomProjet.Text + "' and RefProgramme='" + inputNumProgramme.Text + "' and NumIlot='" + inputNumIlot.Text + "' and NumCC=(SELECT MAX(NumCC) from lot WHERE RefProjet = '" + inputNomProjet.Text + "' and RefProgramme = '" + inputNumProgramme.Text + "') and Etat='Libre' ";
+                MySqlDataReader rdr3 = null;
+                MySqlConnection con3 = null;
+                MySqlCommand cmd3 = null;
+                con3 = new MySqlConnection(Database.ConnectionString());
+                con3.Open();
+                cmd3 = new MySqlCommand(query3);
+                cmd3.Connection = con3;
+                rdr3 = cmd3.ExecuteReader();
+
+                while (rdr3.Read())
+                {
+
+                    inputNumLot.AddItem(new AutoCompleteEntry(rdr3["NL"].ToString(), null));
+                    inputNumIlot.IsEnabled = false;
+                }
+            }
+
+        }
+
+        private void inputNumBloc_MouseLeave(object sender, MouseEventArgs e)
+        {
+
+
+            string query3 = "Select Numlot AS NL from biens WHERE RefProjet = '" + inputNumProjet.Text + "' and RefProgramme = '" + inputNumProgramme.Text + "' and NumIlot = '" + inputNumIlot.Text + "' and NumBloc = '" + inputNumBloc.Text + "' AND NumEdd = (SELECT MAX(NumEdd) from biens WHERE RefProjet = '" + inputNumProjet.Text + "' and RefProgramme = '" + inputNumProgramme.Text + "')   ";
+            MySqlDataReader rdr3 = null;
+            MySqlConnection con3 = null;
+            MySqlCommand cmd3 = null;
+            con3 = new MySqlConnection(Database.ConnectionString());
+            con3.Open();
+            cmd3 = new MySqlCommand(query3);
+            cmd3.Connection = con3;
+            rdr3 = cmd3.ExecuteReader();
+
+            while (rdr3.Read())
+            {
+                inputNumLot.AddItem(new AutoCompleteEntry(rdr3["NL"].ToString(), null));
+                inputNumBloc.IsEnabled = false;
+
+
+            }
+
+        }
+
 
 
         private void BtnAttribuerBien_Click(object sender, RoutedEventArgs e)
@@ -441,12 +443,51 @@ namespace Agerfor.Views.Attribution
             BiensController BC = new BiensController();
             dcr.CreateDirectory3(inputNumAttri.Text);
             AttributionController AC = new AttributionController();
-            AC.AjouterAttribution(inputDateAttribution.Text, inputNumClient.Text, inputNumProjet.Text, inputNumProgramme.Text,inputNatureProgramme.Text,inputTypeBien.Text, inputNumIlot.Text, inputNumLot.Text, inputNumBloc.Text,tempIdbien);
-            BC.ModifierEtat(tempIdbien, inputEtat.Text);  
+            AC.AjouterAttribution(inputDateAttribution.Text, inputNumClient.Text, inputNumProjet.Text, inputNumProgramme.Text, inputNatureProgramme.Text, inputTypeBien.Text, inputNumIlot.Text, inputNumLot.Text, inputNumBloc.Text, tempIdbien, inputDateDLE.Text, inputDateDLR.Text, inputRefDL.Text);
+            BC.ModifierEtat(tempIdbien, inputEtat.Text);
             AddPayementController APC = new AddPayementController();
-            APC.AjouterPayement(inputDateAttribution.Text,int.Parse(inputNumAttri.Text),inputNumClient.Text,inputNomClient.Text,inputPrenomClient.Text,inputDateNaissance.Text,inputNumCNI.Text,int.Parse(inputNumProjet.Text),inputNomProjet.Text,int.Parse(inputNumProgramme.Text),inputNomProgramme.Text,inputNumIlot.Text,inputNumLot.Text,inputTypeBien.Text,inputNumBloc.Text,inputNiveau.Text,inputNbrPiece.Text ,decimal.Parse(inputSurH.Text),decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixTTC.Text),0, decimal.Parse(inputPrixTTC.Text));
-            Attribution A = new Attribution("");
-            this.NavigationService.Navigate(A);
+            APC.AjouterPayement(inputDateAttribution.Text, int.Parse(inputNumAttri.Text), inputNumClient.Text, inputNomClient.Text, inputPrenomClient.Text, inputDateNaissance.Text, inputNumCNI.Text, int.Parse(inputNumProjet.Text), inputNomProjet.Text, int.Parse(inputNumProgramme.Text), inputNomProgramme.Text, inputNumIlot.Text, inputNumLot.Text, inputTypeBien.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text, decimal.Parse(inputSurH.Text), decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixTTC.Text), 0, decimal.Parse(inputPrixTTC.Text));
+
+            string queryL = "Select NumA from Attribution where NumA=(select MAX(NumA) from attribution)";
+            MySqlDataReader rdrL = null;
+            MySqlConnection conL = null;
+            MySqlCommand cmdL = null;
+            conL = new MySqlConnection(Database.ConnectionString());
+            conL.Open();
+            cmdL = new MySqlCommand(queryL);
+            cmdL.Connection = conL;
+            rdrL = cmdL.ExecuteReader();
+
+            while (rdrL.Read())
+            {
+               tempNumAttribution  = int.Parse(rdrL["NumA"].ToString());
+            }
+            MessageBox.Show(tempNumAttribution.ToString());
+
+            string queryL2 = "Select NumPayement from payement where NumAttribution='" + tempNumAttribution + "'";
+
+            MySqlDataReader rdrL2 = null;
+            MySqlConnection conL2 = null;
+            MySqlCommand cmdL2 = null;
+            conL2 = new MySqlConnection(Database.ConnectionString());
+            conL2.Open();
+            cmdL2 = new MySqlCommand(queryL2);
+            cmdL2.Connection = conL2;
+            rdrL2 = cmdL2.ExecuteReader();
+        
+            while (rdrL2.Read())
+            {
+                tempNumPayement =int.Parse(rdrL2["NumPayement"].ToString());   
+            }
+            msh.ExecuteQuery("INSERT INTO `cnl` (`NumCNL`, `NumPayement`, `Etat`, `NumDeci`, `DateDeci`, `MontantCNL`, `DateConservation`, `DateControle`, `DateReserve`) VALUES (NULL, '"+tempNumAttribution+"', 'Non Admis', '', NULL, NULL, NULL, NULL, NULL)");
+            msh.ExecuteQuery("INSERT INTO `creditb` (`NumCB`, `NumPayement`, `NumConvBan`, `DateConv`, `NomBanque`, `BIC`, `MontantCb`) VALUES (NULL, '"+tempNumAttribution+"', '', NULL, '', '', NULL)");
+            msh.ExecuteQuery("INSERT INTO `fnpos` (`NumFNPOS`, `NumPayement`, `NumDeciF`, `DateDeciF`, `MontantFNPOS`) VALUES (NULL, '"+tempNumAttribution+"', NULL, NULL, NULL)");
+           
+            BtnAttribuerBien.IsEnabled = false;
+         
+
+        Attribution A = new Attribution("");
+        this.NavigationService.Navigate(A);
 
         }
 
@@ -522,6 +563,44 @@ namespace Agerfor.Views.Attribution
 
         private void BtnOv_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void Btnmodifier_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
+            AttributionController AC = new AttributionController();
+            AC.ModifierAttribution(inputDateAttribution.Text, inputNumClient.Text, inputNumProjet.Text, inputNumProgramme.Text, inputNatureProgramme.Text, inputTypeBien.Text, inputNumIlot.Text, inputNumLot.Text, inputNumBloc.Text, tempIdbien,int.Parse(inputNumAttri.Text), inputDateDLE.Text, inputDateDLR.Text, inputRefDL.Text);
+
+            if (tempIdbien != tempIdbien2)
+            {
+               
+                BiensController BC = new BiensController();
+                BC.ModifierEtat(tempIdbien2, "Libre");
+                BC.ModifierEtat(tempIdbien, "Réservé");
+
+            }
+            string queryload = "Select MontantVerse from payement where NumAttribution='"+inputNumAttri.Text+"'";
+            MySqlDataReader rdrP = null;
+            MySqlConnection conP = null;
+            MySqlCommand cmdP = null;
+            conP = new MySqlConnection(Database.ConnectionString());
+            conP.Open();
+            cmdP = new MySqlCommand(queryload);
+            cmdP.Connection = conP;
+            rdrP = cmdP.ExecuteReader();
+            bool oneTimeP = true;
+            while (rdrP.Read())
+            {
+                tempMontantVers = decimal.Parse(rdrP["MontantVerse"].ToString());
+            }
+            conP.Close();
+          
+            tempreste = decimal.Parse(inputPrixTTC.Text) - tempMontantVers;
+
+            AddPayementController APC = new AddPayementController();
+            APC.ModifierPayement(int.Parse(inputNumProjet.Text), inputNomProjet.Text,int.Parse(inputNumProgramme.Text), inputNomProgramme.Text, inputNumIlot.Text, inputNumLot.Text, inputTypeBien.Text, inputNumBloc.Text, inputNiveau.Text, inputNbrPiece.Text,decimal.Parse(inputSurH.Text),decimal.Parse(inputSurU.Text), decimal.Parse(inputPrixTTC.Text), tempreste,int.Parse(inputNumAttri.Text));
 
         }
     }

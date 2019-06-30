@@ -181,6 +181,7 @@
     <Compile Include="Controlers\CNLController.cs" />
     <Compile Include="Controlers\ConventionController.cs" />
     <Compile Include="Controlers\CreditBancaireController.cs" />
+    <Compile Include="Controlers\DecisionReservationController.cs" />
     <Compile Include="Controlers\DemandeController.cs" />
     <Compile Include="Controlers\DirectoryCreator.cs" />
     <Compile Include="Controlers\EddController.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Controlers\IlotController.cs" />
     <Compile Include="Controlers\ipPatchController.cs" />
     <Compile Include="Controlers\LotController.cs" />
+    <Compile Include="Controlers\MainLeveeController.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
     <Compile Include="Controlers\OrdreVerssementController.cs" />
     <Compile Include="Controlers\PermiLotirController.cs" />
@@ -198,6 +200,35 @@
     <Compile Include="Controlers\SearchDemande.cs" />
     <Compile Include="Controlers\SearchLog.cs" />
     <Compile Include="Controlers\SearchProgramme.cs" />
+    <Compile Include="Controlers\VSPController.cs" />
+    <Compile Include="DecisionReporting\DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DecisionReporting\DataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DecisionReporting\DecisionReporting.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DecisionReporting.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DecisionReporting\DecisionViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DecisionReporting\DecisionViwer.Designer.cs">
+      <DependentUpon>DecisionViwer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DecisionReporting\PreviousDec.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PreviousDec.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DemandeReporting\CrystalReport1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -227,6 +258,12 @@
       <DependentUpon>ListeDemande.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ListePReporting\ListeP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListeP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ListeProjetReporting\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
@@ -249,6 +286,51 @@
     </Compile>
     <Compile Include="Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainLevéeReporting\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MainLevéeReporting\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MainLevéeReporting\DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MainLevéeReporting\DataSetOV.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetOV.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MainLevéeReporting\ListeVersement.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListeVersement.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainLevéeReporting\MainLevee.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainLevee.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainLevéeReporting\MainLeveeViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLevéeReporting\MainLeveeViewer.Designer.cs">
+      <DependentUpon>MainLeveeViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLevéeReporting\PreviousML.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PreviousML.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OVReporting\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="OVReporting\DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -280,6 +362,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FichePrg.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrgReporting\FichePrgT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FichePrgT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrgReporting\FicheProgramme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrgReporting\FicheProgramme.Designer.cs">
+      <DependentUpon>FicheProgramme.cs</DependentUpon>
     </Compile>
     <Compile Include="PrgReporting\PrgReporting.cs">
       <AutoGen>True</AutoGen>
@@ -313,6 +407,26 @@
     <Compile Include="ProjetReporting\ProjetViwer.Designer.cs">
       <DependentUpon>ProjetViwer.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecapPayementReporting\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RecapPayementReporting\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RecapPayementReporting\RecapPayement.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecapPayement.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RecapPayementReporting\RecapPayementViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecapPayementReporting\RecapPayementViwer.Designer.cs">
+      <DependentUpon>RecapPayementViwer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Attribution\AddAttribution.xaml.cs">
       <DependentUpon>AddAttribution.xaml</DependentUpon>
     </Compile>
@@ -344,14 +458,23 @@
     <Compile Include="Views\Payement\CNLPayement.xaml.cs">
       <DependentUpon>CNLPayement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Payement\DecisionReservation.xaml.cs">
+      <DependentUpon>DecisionReservation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Payement\FNPOSPayement.xaml.cs">
       <DependentUpon>FNPOSPayement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Payement\ListeVers.xaml.cs">
       <DependentUpon>ListeVers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Payement\MainLeve.xaml.cs">
+      <DependentUpon>MainLeve.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Payement\Payement.xaml.cs">
       <DependentUpon>Payement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payement\VSP.xaml.cs">
+      <DependentUpon>VSP.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Programme\AddProgramme.xaml.cs">
       <DependentUpon>AddProgramme.xaml</DependentUpon>
@@ -386,6 +509,15 @@
     <Compile Include="Views\Projet\ProjetMaitre.xaml.cs">
       <DependentUpon>ProjetMaitre.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Recap\RecapOv\RecapOV.xaml.cs">
+      <DependentUpon>RecapOV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Recap\RecapPage.xaml.cs">
+      <DependentUpon>RecapPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Recap\Recette\Recette.xaml.cs">
+      <DependentUpon>Recette.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Setting\referentiel\NatureTyperogramme.xaml.cs">
       <DependentUpon>NatureTyperogramme.xaml</DependentUpon>
     </Compile>
@@ -400,6 +532,48 @@
     </Compile>
     <Compile Include="Views\Setting\SocieteInformation.xaml.cs">
       <DependentUpon>SocieteInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VSPReporting\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VSPReporting\DataSet2.cs">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VSPReporting\DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VSPReporting\DataSetOV.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetOV.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VSPReporting\ListeVersement.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListeVersement.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VSPReporting\PreviousVSP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PreviousVSP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VSPReporting\VSPReporting.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPReporting.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VSPReporting\VSPViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VSPReporting\VSPViwer.Designer.cs">
+      <DependentUpon>VSPViwer.cs</DependentUpon>
     </Compile>
     <Page Include="AgerforApp.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -457,6 +631,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Payement\DecisionReservation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Payement\FNPOSPayement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -465,7 +643,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Payement\MainLeve.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Payement\Payement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payement\VSP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -510,6 +696,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Projet\ProjetMaitre.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Recap\RecapOv\RecapOV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Recap\RecapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Recap\Recette\Recette.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -563,6 +761,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FiheClient.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="DecisionReporting\DecisionReporting.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DecisionReporting.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DecisionReporting\DecisionViwer.resx">
+      <DependentUpon>DecisionViwer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DecisionReporting\PreviousDec.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PreviousDec.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="DemandeReporting\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.cs</LastGenOutput>
@@ -577,12 +786,31 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ListeDemande.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListePReporting\ListeP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListeP.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListeProjetReporting\ListeProjet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ListeProjet.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ListeProjetReporting\ListeProjetViwer.resx">
       <DependentUpon>ListeProjetViwer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLevéeReporting\ListeVersement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListeVersement.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLevéeReporting\MainLevee.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MainLevee.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLevéeReporting\MainLeveeViewer.resx">
+      <DependentUpon>MainLeveeViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLevéeReporting\PreviousML.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PreviousML.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="OVReporting\OrdreVerssementR.resx">
       <DependentUpon>OrdreVerssementR.cs</DependentUpon>
@@ -594,6 +822,13 @@
     <EmbeddedResource Include="PrgReporting\FichePrg.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FichePrg.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrgReporting\FichePrgT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FichePrgT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrgReporting\FicheProgramme.resx">
+      <DependentUpon>FicheProgramme.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrgReporting\PrgReporting.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -612,6 +847,28 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecapPayementReporting\RecapPayement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RecapPayement.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecapPayementReporting\RecapPayementViwer.resx">
+      <DependentUpon>RecapPayementViwer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSPReporting\ListeVersement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListeVersement.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSPReporting\PreviousVSP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PreviousVSP.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSPReporting\VSPReporting.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VSPReporting.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSPReporting\VSPViwer.resx">
+      <DependentUpon>VSPViwer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="BiensReporting\DataSet1BR.xsc">
       <DependentUpon>DataSet1BR.xsd</DependentUpon>
@@ -646,6 +903,28 @@
     <None Include="ClientRepoing\DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
+    <None Include="DecisionReporting\DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DecisionReporting\DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DecisionReporting\DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DecisionReporting\DataSet4.xsc">
+      <DependentUpon>DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="DecisionReporting\DataSet4.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet4.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DecisionReporting\DataSet4.xss">
+      <DependentUpon>DataSet4.xsd</DependentUpon>
+    </None>
     <None Include="DemandeReporting\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
@@ -668,6 +947,39 @@
     </None>
     <None Include="ListeProjetReporting\DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="MainLevéeReporting\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="MainLevéeReporting\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MainLevéeReporting\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="MainLevéeReporting\DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="MainLevéeReporting\DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MainLevéeReporting\DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="MainLevéeReporting\DataSetOV.xsc">
+      <DependentUpon>DataSetOV.xsd</DependentUpon>
+    </None>
+    <None Include="MainLevéeReporting\DataSetOV.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetOV.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MainLevéeReporting\DataSetOV.xss">
+      <DependentUpon>DataSetOV.xsd</DependentUpon>
     </None>
     <None Include="OVReporting\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -708,6 +1020,50 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="RecapPayementReporting\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="RecapPayementReporting\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RecapPayementReporting\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="VSPReporting\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="VSPReporting\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="VSPReporting\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="VSPReporting\DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="VSPReporting\DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="VSPReporting\DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="VSPReporting\DataSetOV.xsc">
+      <DependentUpon>DataSetOV.xsd</DependentUpon>
+    </None>
+    <None Include="VSPReporting\DataSetOV.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetOV.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="VSPReporting\DataSetOV.xss">
+      <DependentUpon>DataSetOV.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -740,7 +1096,11 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Recap\RecapCB\" />
+    <Folder Include="Views\Recap\RecapCNL\" />
+    <Folder Include="Views\Recap\RecapFnpos\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

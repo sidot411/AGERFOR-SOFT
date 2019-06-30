@@ -12,7 +12,7 @@
       xmlns:encoding="UTF-8"
       xml:lang="fr-FR"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      d:DesignHeight="800" d:DesignWidth="1100" Background="#E6EAED"
+      d:DesignHeight="1200" d:DesignWidth="1100" Background="#E6EAED"
       Title="AddAttribution">
 
     <ScrollViewer>
@@ -32,10 +32,22 @@
                             <TextBox x:Name="inputNumAttri" FontSize="18" Width="300" Height="35" Background="White"></TextBox>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="70 0 0 0">
-                        <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="70 0 0 0" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
                             <Label FontSize="16"  >Date attribution</Label>
-                            <DatePicker x:Name="inputDateAttribution" Width="300" Height="35" Background="White" FontSize="18" SelectedDate="{x:Static sys:DateTime.Now}"></DatePicker>
+                            <DatePicker x:Name="inputDateAttribution" Width="300" Height="35" Background="White" FontSize="18" SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Right"></DatePicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                            <Label FontSize="16"  >Date Enrg DL</Label>
+                            <DatePicker x:Name="inputDateDLE" Width="300" Height="35" Background="White" FontSize="18" HorizontalAlignment="Right"></DatePicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                            <Label FontSize="16"  >Date reçu DL</Label>
+                            <DatePicker x:Name="inputDateDLR" Width="300" Height="35" Background="White" FontSize="18" HorizontalAlignment="Right"></DatePicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 10">
+                            <Label FontSize="16"  >Référance DL</Label>
+                            <TextBox x:Name="inputRefDL" Width="300" Height="35" Background="White" FontSize="18"  HorizontalAlignment="Right"></TextBox>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -208,7 +220,9 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 20">
+                    
                     <Button x:Name="BtnAttribuerBien" Background="#007CC3" Content="Attribuer le bien" Height="35" Width="150" Margin="0 0 20 0" Click="BtnAttribuerBien_Click"/>
+                    <Button x:Name="Btnmodifier" Background="#007CC3" Content="Modifier l'attribution" Height="35" Width="150" Margin="0 0 20 0" Click="Btnmodifier_Click"/>
                     <Button x:Name="BtnOv" Background="#007CC3" Content="OV" Height="35" Width="105" Margin="0 0 20 0" Click="BtnOv_Click"/>
                 </StackPanel>
             </StackPanel>
