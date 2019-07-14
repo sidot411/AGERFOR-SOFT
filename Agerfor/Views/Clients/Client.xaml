@@ -39,7 +39,7 @@
                 <Button Background="#007CC3"  x:Name="BtnRecherche" VerticalAlignment="Top" Height="41" FontSize="17" Width="180" BorderThickness="0" Margin="10"
                  Click="BtnRecherche_Click" >
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
+                     <materialDesign:PackIcon Kind="DatabaseSearch" Width="25" Height="25" VerticalAlignment="Center"
                                      HorizontalAlignment="Center" Margin="0 2 4 0" />
                         <TextBlock Foreground="White" Text="Recercher" VerticalAlignment="Center" Height="25" />
                     </StackPanel>

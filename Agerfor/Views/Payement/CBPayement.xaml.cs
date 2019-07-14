@@ -7,6 +7,10 @@ using Agerfor.Controlers;
 using MySql.Data.MySqlClient;
 using DbConnection.Models;
 using System.Windows.Navigation;
+using System;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Agerfor.Views.Payement
 {
@@ -16,14 +20,17 @@ namespace Agerfor.Views.Payement
     public partial class CBPayement : Window
     {
         int NumPayement;
+        int NumAttribution;
         AddPayement AddPayement;
+
         decimal Reste;
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public CBPayement(int NumPayement, decimal Reste, AddPayement AddPayement)
+        public CBPayement(int NumPayement, decimal Reste, AddPayement AddPayement,int NumAttribution)
         {
             InitializeComponent();
             this.NumPayement = NumPayement;
             this.AddPayement = AddPayement;
+            this.NumAttribution = NumAttribution;
             this.Reste = Reste;
             string query = "select * FROM creditb  where NumCB=(select MAX(NumCB)) and NumPayement='" + NumPayement + "'";
             MySqlDataReader rdr = null;
@@ -73,7 +80,7 @@ namespace Agerfor.Views.Payement
                     AddPayement.inputprixpayer.Text = rdr["MontantVerse"].ToString();
                     AddPayement.inputReste.Text = rdr["Reste"].ToString();
                 }
-                MainWindow mainWindows = (MainWindow)Application.Current.Windows[0];
+                MainWindow mainWindows = (MainWindow)System.Windows.Application.Current.Windows[0];
                 mainWindows.Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
                 mainWindows.Frame.Navigate(AddPayement);
                 mainWindows.currentWindow.Text = "Payement";
@@ -82,7 +89,64 @@ namespace Agerfor.Views.Payement
             }
             else
             {
-                MessageBox.Show("Le montant CNL est supérieux au montant reste à payé du bien veuillez introduire une valeur inferieur");
+                System.Windows.MessageBox.Show("Le montant CNL est supérieux au montant reste à payé du bien veuillez introduire une valeur inferieur");
+            }
+        }
+
+        private void BtnOpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Attribution\" + NumAttribution.ToString() + @"\Payements\";
+            OpenFolder(folderPath);
+        }
+
+        private void OpenFolder(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+            else
+            {
+                DirectoryCreator dcr = new DirectoryCreator();
+                dcr.CreateDirectory3(NumAttribution.ToString() + "/");
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+        private void BtnUploadFiles_Click(object sender, RoutedEventArgs e)
+        {
+            SelectFile("Payements");
+        }
+        public void SelectFile(string theDirectory)
+        {
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Attribution\" + NumAttribution.ToString() + @"\" + theDirectory + @"\" + Path.GetFileName(openFileDialog1.FileName);
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+                File.Copy(fileName, Path.Combine(Path.GetDirectoryName(fileName), destinationFolder));
+                System.Windows.MessageBox.Show(destinationFolder.ToString());
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
             }
         }
     }

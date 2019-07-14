@@ -162,7 +162,7 @@ namespace Agerfor.Views.Payement
         {
           //  ListeVers LV = new ListeVers(0, 0, 0, this);
 
-            ListeVers LV = new ListeVers(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text),tempNumAttribution, this);
+            ListeVers LV = new ListeVers(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text),tempNumAttribution, this,inputNumClient.Text,inputNomProgramme.Text);
             LV.ShowInTaskbar = false;
             LV.Owner = Application.Current.Windows[0];
             LV.Show();
@@ -173,7 +173,7 @@ namespace Agerfor.Views.Payement
 
         private void BtnCNL_Click(object sender, RoutedEventArgs e)
         {
-            CNLPayement CNLP = new CNLPayement(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text),this);
+            CNLPayement CNLP = new CNLPayement(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text),this,tempNumAttribution);
             CNLP.ShowInTaskbar = false;
             CNLP.Owner = Application.Current.Windows[0];
             CNLP.Show();
@@ -184,7 +184,7 @@ namespace Agerfor.Views.Payement
 
         private void BtnFNPOS_Click(object sender, RoutedEventArgs e)
         {
-            FNPOSPayement FNPOS = new FNPOSPayement(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text), this);
+            FNPOSPayement FNPOS = new FNPOSPayement(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text), this,tempNumAttribution);
             FNPOS.ShowInTaskbar = false;
             FNPOS.Owner = Application.Current.Windows[0];
             FNPOS.Show();
@@ -193,7 +193,7 @@ namespace Agerfor.Views.Payement
 
         private void BtnCB_Click(object sender, RoutedEventArgs e)
         {
-            CBPayement CBP = new CBPayement(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text), this);
+            CBPayement CBP = new CBPayement(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text), this,tempNumAttribution);
             CBP.ShowInTaskbar = false;
             CBP.Owner = Application.Current.Windows[0];
             CBP.Show();
@@ -201,7 +201,7 @@ namespace Agerfor.Views.Payement
 
         private void BtnDec_Click(object sender, RoutedEventArgs e)
         {
-            DecisionReservation DR = new DecisionReservation(int.Parse(inputPayement.Text));
+            DecisionReservation DR = new DecisionReservation(int.Parse(inputPayement.Text),tempNumAttribution);
            
             DR.ShowInTaskbar = false;
             DR.Owner = Application.Current.Windows[0];
@@ -210,7 +210,7 @@ namespace Agerfor.Views.Payement
 
         private void BtnMainlever_Click(object sender, RoutedEventArgs e)
         {
-            MainLeve ML = new MainLeve(int.Parse(inputPayement.Text));
+            MainLeve ML = new MainLeve(int.Parse(inputPayement.Text),tempNumAttribution);
             ML.ShowInTaskbar = false;
             ML.Owner = Application.Current.Windows[0];
             ML.Show();
@@ -218,7 +218,7 @@ namespace Agerfor.Views.Payement
 
         private void BtnVSP_Click(object sender, RoutedEventArgs e)
         {
-            VSP VSP = new VSP(int.Parse(inputPayement.Text));
+            VSP VSP = new VSP(int.Parse(inputPayement.Text),tempNumAttribution);
             VSP.ShowInTaskbar = false;
             VSP.Owner = Application.Current.Windows[0];
             VSP.Show();

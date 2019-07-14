@@ -16,7 +16,7 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("INSERT INTO `ov` (`NumPayement`, `NumOV`, `DateOV`, `DateEcheance`, `MontantAV`, `Etat`, `DateRecu`, `NumRecu`,`TypePayement`,`NaturePayement`,`NatureFrais`) VALUES('" + NumPayement + "', '" + NumOV + "', '" + DateOV + "', '" + DateEcheance + "', '" + MontantAV + "', '" + Etat + "', '" + DateRecu + "', '" + NumRecu + "','"+TypeP+"','"+NaturePayement+"','"+NatureFrais+"')");
+                msh.ExecuteQuery("INSERT INTO `ov` (`NumPayement`, `NumOV`, `DateOV`, `DateEcheance`, `MontantAV`, `Etat`, `DateRecu`, `NumRecu`,`TypePayement`,`NaturePayement`,`NatureFrais`) VALUES('" + NumPayement + "', '" + NumOV + "',STR_TO_DATE('" + DateOV + "','%d/%m/%Y'), STR_TO_DATE('" + DateEcheance + "','%d/%m/%Y'), '" + MontantAV + "', '" + Etat + "',STR_TO_DATE( '" + DateRecu + "','%d/%m/%Y'), '" + NumRecu + "','"+TypeP+"','"+NaturePayement+"','"+NatureFrais+"')");
                 MessageBox.Show("L'ordre de verssement à était bien  crée");
             }
             catch (Exception)
@@ -28,7 +28,7 @@ namespace Agerfor.Controlers
         {
             try
             {
-                msh.ExecuteQuery("update ov set Etat='"+Etat+"', DateRecu='" + DateRecu + "',NumRecu='" + NumRecu + "' where NumVerssement='" + tempNumVerssement + "'");
+                msh.ExecuteQuery("update ov set Etat='"+Etat+ "', DateRecu=STR_TO_DATE('" + DateRecu + "','%d/%m/%Y'),NumRecu='" + NumRecu + "' where NumVerssement='" + tempNumVerssement + "'");
                 MessageBox.Show("Le verssement à était bien validé");
             }
             catch(Exception)

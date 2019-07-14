@@ -192,6 +192,7 @@
     <Compile Include="Controlers\MainLeveeController.cs" />
     <Compile Include="Controlers\MySqlHelper.cs" />
     <Compile Include="Controlers\OrdreVerssementController.cs" />
+    <Compile Include="Controlers\OvSoldeController.cs" />
     <Compile Include="Controlers\PermiLotirController.cs" />
     <Compile Include="Controlers\PermisDeConstruireController.cs" />
     <Compile Include="Controlers\ProgrammeController.cs" />
@@ -439,6 +440,9 @@
     <Compile Include="Views\Clients\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Clients\SoldeOV.xaml.cs">
+      <DependentUpon>SoldeOV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\AutoCompleteEntry.cs" />
     <Compile Include="Views\Controls\AutoCompleteTextBox.xaml.cs">
       <DependentUpon>AutoCompleteTextBox.xaml</DependentUpon>
@@ -604,6 +608,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Clients\Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Clients\SoldeOV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

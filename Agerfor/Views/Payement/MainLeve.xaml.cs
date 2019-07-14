@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using DbConnection.Models;
 using Agerfor.MainLevéeReporting;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Agerfor.Views.Payement
 {
@@ -28,11 +31,13 @@ namespace Agerfor.Views.Payement
         string tempNumCNL;
         string tempNumFNPOS;
         string tempNumConv;
+        int NumAttribution;
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public MainLeve(int NumP)
+        public MainLeve(int NumP, int NumAttribution)
         {
             InitializeComponent();
             this.NumP = NumP;
+            this.NumAttribution = NumAttribution;
             inputCodeP.Text = NumP.ToString();
             inputEtatML.IsEnabled = inputDateEnreg.IsEnabled = inputNumML.IsEnabled = false;
             msh.LoadData("select * from mainlevee where RefP='" + NumP + "'", dataViewML);
@@ -95,7 +100,7 @@ namespace Agerfor.Views.Payement
             }
             else
             {
-                MessageBox.Show("Veuillez remplir la date d'enregsitrement et le numéro de la main levée");
+                System.Windows.MessageBox.Show("Veuillez remplir la date d'enregsitrement et le numéro de la main levée");
             }
 
         }
@@ -118,7 +123,7 @@ namespace Agerfor.Views.Payement
             while (rdrcnl.Read())
             {
                 tempNumCNL = rdrcnl["countcnl"].ToString();
-                MessageBox.Show(tempNumCNL);
+                System.Windows.MessageBox.Show(tempNumCNL);
             }
             concnl.Close();
             MySqlDataReader rdrfn = null;
@@ -133,7 +138,7 @@ namespace Agerfor.Views.Payement
             while (rdrfn.Read())
             {
                 tempNumFNPOS = rdrfn["countfnpos"].ToString();
-                MessageBox.Show(tempNumFNPOS);
+                System.Windows.MessageBox.Show(tempNumFNPOS);
             }
             confn.Close();
             MySqlDataReader rdrconv = null;
@@ -148,7 +153,7 @@ namespace Agerfor.Views.Payement
             while (rdrconv.Read())
             {
                 tempNumConv = rdrconv["countconv"].ToString();
-                MessageBox.Show(tempNumConv);
+                System.Windows.MessageBox.Show(tempNumConv);
             }
             confn.Close();
 
@@ -172,6 +177,64 @@ namespace Agerfor.Views.Payement
             while (rdr.Read())
             {
                 inputadrNotaire.Text = rdr["AdresseNotaire"].ToString();
+            }
+        }
+
+        private void BtnOpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Attribution\" + NumAttribution.ToString() + @"\Payements\";
+            OpenFolder(folderPath);
+        }
+
+        private void OpenFolder(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+            else
+            {
+                DirectoryCreator dcr = new DirectoryCreator();
+                dcr.CreateDirectory3(NumAttribution.ToString() + "/");
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+        private void BtnUploadFiles_Click(object sender, RoutedEventArgs e)
+        {
+            SelectFile("Payements");
+        }
+
+        public void SelectFile(string theDirectory)
+        {
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Attribution\" + NumAttribution.ToString() + @"\" + theDirectory + @"\" + System.IO.Path.GetFileName(openFileDialog1.FileName);
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+                File.Copy(fileName, System.IO.Path.Combine(System.IO.Path.GetDirectoryName(fileName), destinationFolder));
+                System.Windows.MessageBox.Show(destinationFolder.ToString());
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
             }
         }
     }

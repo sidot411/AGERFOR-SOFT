@@ -109,7 +109,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Margin="20 0 0 0 ">
                             <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="110" BorderThickness="0" Margin="0 0 0 20"
-                       x:Name="BtnUploadFiles" HorizontalAlignment="center" >
+                       x:Name="BtnUploadFiles" HorizontalAlignment="center" Click="BtnUploadFiles_Click" >
                                 <StackPanel Orientation="Vertical">
                                     <materialDesign:PackIcon Kind="AttachFile" Width="35" Height="35" VerticalAlignment="Center"
                                            HorizontalAlignment="Center" Margin="0 0 0 5" />
@@ -117,12 +117,12 @@
                                 </StackPanel>
                             </Button>
                             <Button Background="#007CC3" VerticalAlignment="Top" Height="100" Width="110" BorderThickness="0" 
-                       x:Name="BtnOpenFolder" HorizontalAlignment="center">
+                       x:Name="BtnOpenFolder" HorizontalAlignment="center" Click="BtnOpenFolder_Click">
                                 <StackPanel Orientation="Vertical">
                                     <materialDesign:PackIcon Kind="FolderOpen" Width="35" Height="35" VerticalAlignment="Center"
                                            HorizontalAlignment="Center" Margin="0 0 0 5" />
                                     <TextBlock Text="Ouvrir" VerticalAlignment="Center" Height="25" HorizontalAlignment="Center" Margin="0 0 0 -10"/>
-                                    <TextBlock Text="Décisions" VerticalAlignment="Center" Height="25" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Paiement" VerticalAlignment="Center" Height="25" HorizontalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>

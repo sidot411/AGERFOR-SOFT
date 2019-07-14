@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using Agerfor.OVReporting;
+using System.Data;
+
 
 namespace Agerfor.Views.Payement
 {
@@ -24,10 +26,13 @@ namespace Agerfor.Views.Payement
         int NumAttribution;
         int NumPayement;
         int tempNumVerssement;
+        string tempApport;
         decimal Reste;
+        string CodeClient;
+        string NomProgramme;
         AddPayement AddPayement;
-        
-        public ListeVers(int NumPayement, decimal Reste,int NumAttribution, AddPayement AddPayement)
+
+        public ListeVers(int NumPayement, decimal Reste, int NumAttribution, AddPayement AddPayement, string CodeClient, string NomProgramme)
         {
 
             InitializeComponent();
@@ -38,9 +43,35 @@ namespace Agerfor.Views.Payement
             this.Reste = Reste;
             this.AddPayement = AddPayement;
             this.NumAttribution = NumAttribution;
+            this.CodeClient = CodeClient;
+            this.NomProgramme = NomProgramme;
+
             inputNumPayement.Text = NumPayement.ToString();
             inputEtat.IsEnabled = false;
-           
+
+            string query = "SELECT count(IdOvSolde) as APPORT FROM `ovsolde` WHERE CodeClient='1' and NomProgramme='LPA 160 logts' and EtatOvSolde='Terminé'";
+            MySqlDataReader rdr = null;
+            MySqlConnection con = null;
+            MySqlCommand cmd = null;
+            con = new MySqlConnection(Database.ConnectionString());
+            con.Open();
+            cmd = new MySqlCommand(query);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            bool oneTime = true;
+            while (rdr.Read())
+            {
+                tempApport = rdr["APPORT"].ToString();
+            }
+            if (int.Parse(tempApport) == 0)
+            {
+                BtnimportApport.IsEnabled = false;
+            }
+            else
+            {
+                BtnimportApport.IsEnabled = true;
+            }
+
 
         }
 
@@ -149,7 +180,7 @@ namespace Agerfor.Views.Payement
                         AddPayement.inputprixtotal.Text = rdr["MontantTotal"].ToString();
                         AddPayement.inputprixpayer.Text = rdr["MontantVerse"].ToString();
                         AddPayement.inputReste.Text = rdr["Reste"].ToString();
-                        
+
                     }
                     AddPayement.BtnCNL.IsEnabled = AddPayement.BtnFNPOS.IsEnabled = AddPayement.BtnCB.IsEnabled = true;
 
@@ -160,7 +191,7 @@ namespace Agerfor.Views.Payement
                     mainWindows.Activate();
                     this.Close();
 
-                  
+
                 }
                 else
                 {
@@ -171,8 +202,8 @@ namespace Agerfor.Views.Payement
             {
                 System.Windows.MessageBox.Show("Veuillez remplir le Num et la date du recu de verssement !");
             }
-            
-           
+
+
         }
 
         private void BtnUploadFiles_Click(object sender, RoutedEventArgs e)
@@ -205,7 +236,7 @@ namespace Agerfor.Views.Payement
         private void BtnOpenFolder_Click(object sender, RoutedEventArgs e)
         {
 
-            string folderPath = AppDomain.CurrentDomain.BaseDirectory+ @"Attribution\" + NumAttribution.ToString() + @"\Payements\";
+            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Attribution\" + NumAttribution.ToString() + @"\Payements\";
             OpenFolder(folderPath);
         }
 
@@ -241,14 +272,79 @@ namespace Agerfor.Views.Payement
 
         private void inputNaturePayement_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(inputNaturePayement.SelectedItem.ToString() == "Autre frais")
+            if (inputNaturePayement.SelectedItem.ToString() == "Autre frais")
             {
                 inputNatureFrais.IsEnabled = true;
-                msh.FillDropDownList("select NatureF from naturefrais where NatureP='" + inputNaturePayement.SelectedItem.ToString() + "'",inputNatureFrais,"NatureF");
+                msh.FillDropDownList("select NatureF from naturefrais where NatureP='" + inputNaturePayement.SelectedItem.ToString() + "'", inputNatureFrais, "NatureF");
             }
             else
             {
                 inputNatureFrais.IsEnabled = false;
+            }
+        }
+
+        private void BtnimportApport_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.Parse(tempApport) != 0)
+            {
+                DataTable DT = new DataTable();
+                string query = "SELECT IdOvSolde,DATE_FORMAT(DateOvSolde,'%Y-%m-%d') AS DateOvSolde, DATE_FORMAT(DateEchOvSolde,'%Y-%m-%d') AS DateEchOvSolde,Montant,EtatOvSolde, DATE_FORMAT(DateRecu,'%Y-%m-%d') AS DateRecu,NumRecu FROM `ovsolde` WHERE CodeClient='1' and NomProgramme='LPA 160 logts' and EtatOvSolde='Terminé'";
+
+                MySqlConnection con = null;
+                MySqlCommand cmd = null;
+                con = new MySqlConnection(Database.ConnectionString());
+                cmd = new MySqlCommand(query);
+                cmd.Connection = con;
+                con.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                da.Fill(DT);
+                con.Close();
+                da.Dispose();
+                for(int i=0;i<int.Parse(tempApport);i++)
+                {
+                    string ID = DT.Rows[i]["IdOvSolde"].ToString();
+                    string DateOvSolde = DT.Rows[i]["DateOvSolde"].ToString();
+                    string DateEchOvSolde = DT.Rows[i]["DateEchOvSolde"].ToString(); 
+                    string Montant = DT.Rows[i]["Montant"].ToString();
+                    string EtatOvSolde = DT.Rows[i]["EtatOvSolde"].ToString();
+                    string DateRecu = DT.Rows[i]["DateRecu"].ToString();
+                    string NumRecu = DT.Rows[i]["NumRecu"].ToString();
+
+                    OvSoldeController OSC = new OvSoldeController();
+                    OSC.UseOvSolde(ID);
+                    msh.ExecuteQuery("insert into ov (NumPayement,DateOV,DateEcheance,MontantAV,Etat,DateRecu,NumRecu) values ('" + inputNumPayement.Text + "','" + DateOvSolde + "','" + DateEchOvSolde + "','" + Montant + "','" + EtatOvSolde + "','" + DateRecu + "','" + NumRecu + "')");
+                    if (inputNaturePayement.Text != "Autre frais")
+                    {
+                        msh.ExecuteQuery("update payement set MontantVerse=MontantVerse+" + decimal.Parse(Montant) + ",Reste=MontantTotal-MontantVerse where NumPayement='" + NumPayement + "'");
+                    }
+
+                    msh.LoadData("select * from ov where NumPayement='" + NumPayement + "'", dataViewOV);
+                    string query2 = "select * from payement where NumPayement='" + NumPayement + "'";
+                    MySqlDataReader rdr2 = null;
+                    MySqlConnection con2 = null;
+                    MySqlCommand cmd2 = null;
+                    con2 = new MySqlConnection(Database.ConnectionString());
+                    con2.Open();
+                    cmd2 = new MySqlCommand(query2);
+                    cmd2.Connection = con2;
+                    rdr2 = cmd2.ExecuteReader();
+                    bool oneTime = true;
+                    while (rdr2.Read())
+                    {
+                        AddPayement.inputprixtotal.Text = rdr2["MontantTotal"].ToString();
+                        AddPayement.inputprixpayer.Text = rdr2["MontantVerse"].ToString();
+                        AddPayement.inputReste.Text = rdr2["Reste"].ToString();
+
+                    }
+
+                    MainWindow mainWindows = (MainWindow)System.Windows.Application.Current.Windows[0];
+                    mainWindows.Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+                    mainWindows.Frame.Navigate(AddPayement);
+                    mainWindows.currentWindow.Text = "Payement";
+                    mainWindows.Activate();
+                    this.Close();
+                }
+
             }
         }
     }

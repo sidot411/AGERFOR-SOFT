@@ -124,7 +124,6 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 0 0 0"  VerticalAlignment="Top" HorizontalAlignment="Right">
-
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock FontSize="30" FontStyle="Normal" FontStretch="SemiExpanded" FontWeight="Bold" Margin="0 0 10 0" VerticalAlignment="Center">Prix du bien:</TextBlock>

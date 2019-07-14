@@ -15,6 +15,9 @@ using Agerfor.Controlers;
 using MySql.Data.MySqlClient;
 using DbConnection.Models;
 using Agerfor.VSPReporting;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Agerfor.Views.Payement
 {
@@ -24,16 +27,18 @@ namespace Agerfor.Views.Payement
     public partial class VSP : Window
     {
         int NumP;
+        int NumAttribution;
         int tempCodeVSP;
         string tempNumCNL;
         string tempNumFNPOS;
         string tempNumConv;
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public VSP(int NumP)
+        public VSP(int NumP,int NumAttribution)
         {
          
             InitializeComponent();
             this.NumP = NumP;
+            this.NumAttribution = NumAttribution;
             inputCodeP.Text = NumP.ToString();
             inputEtatVSP.IsEnabled = inputDateEnreg.IsEnabled = inputNumVSP.IsEnabled = false;
             msh.LoadData("select * from vsp where RefP='" + NumP + "'", dataViewVSP);
@@ -96,7 +101,7 @@ namespace Agerfor.Views.Payement
             }
             else
             {
-                MessageBox.Show("Veuillez remplir la date d'enregsitrement et le numéro dU VSP");
+                System.Windows.MessageBox.Show("Veuillez remplir la date d'enregsitrement et le numéro dU VSP");
             }
         }
 
@@ -174,5 +179,64 @@ namespace Agerfor.Views.Payement
                 inputadrNotaire.Text = rdr["AdresseNotaire"].ToString();
             }
         }
+
+        private void BtnOpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+            string folderPath = AppDomain.CurrentDomain.BaseDirectory + @"Attribution\" + NumAttribution.ToString() + @"\Payements\";
+            OpenFolder(folderPath);
+        }
+
+        private void OpenFolder(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+            else
+            {
+                DirectoryCreator dcr = new DirectoryCreator();
+                dcr.CreateDirectory3(NumAttribution.ToString() + "/");
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+        private void BtnUploadFiles_Click(object sender, RoutedEventArgs e)
+        {
+            SelectFile("Payements");
+        }
+
+        public void SelectFile(string theDirectory)
+        {
+            string destinationFolder;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            DirectoryCreator dcr = new DirectoryCreator();
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var fileName = openFileDialog1.FileName;
+                destinationFolder = AppDomain.CurrentDomain.BaseDirectory + @"Attribution\" + NumAttribution.ToString() + @"\" + theDirectory + @"\" + System.IO.Path.GetFileName(openFileDialog1.FileName);
+                System.Windows.Forms.MessageBox.Show("operation réussi avec succès");
+                if (File.Exists(destinationFolder))
+                {
+                    File.Delete(destinationFolder);
+                }
+                File.Copy(fileName, System.IO.Path.Combine(System.IO.Path.GetDirectoryName(fileName), destinationFolder));
+                System.Windows.MessageBox.Show(destinationFolder.ToString());
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("aucun fichier selectionner");
+            }
+        }
+
     }
 }

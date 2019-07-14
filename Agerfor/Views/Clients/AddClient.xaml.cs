@@ -10,7 +10,8 @@ using System.Threading;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
-
+using System.Timers;
+using MaterialDesignThemes.Wpf;
 
 namespace Agerfor.Views.Clients
 {
@@ -32,6 +33,9 @@ namespace Agerfor.Views.Clients
             InitializeComponent();
             this.NumClient = NumClient;
             this.Situation = Situation;
+
+       
+
             inputNomconjoint.IsEnabled = inputPrenomConjoint.IsEnabled = inputNomConjArab.IsEnabled = inputPrenomCongAr.IsEnabled = inputDateNaissanceConj.IsEnabled = inputLieuNaissanceConj.IsEnabled = inputProffessionConj.IsEnabled = false;
 
             msh.FillDropDownList("select NomWilaya from wilaya", inputLieucni, "NomWilaya");
@@ -84,6 +88,7 @@ namespace Agerfor.Views.Clients
                     if (oneTime)
                     {
                         inputNumClient.Text = rdr["NumClient"].ToString();
+                        Statutclient.Text = rdr["StatutClient"].ToString();
                         inputName.Text = rdr["Nom"].ToString();
                         inputPrenom.Text = rdr["Prenom"].ToString();
                         inputNomAR.Text = rdr["NomAR"].ToString();
@@ -178,6 +183,16 @@ namespace Agerfor.Views.Clients
                     con.Close();
                 }
             }
+        
+            if (Statutclient.Text != "Contentieux")
+            {
+                alerte.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                alerte.Visibility = Visibility.Visible;
+            }
+
         }
 
 
@@ -190,7 +205,7 @@ namespace Agerfor.Views.Clients
                 {
                     DirectoryCreator dcr = new DirectoryCreator();
                     dcr.CreateDirectory2(inputNumClient.Text);
-                    cc.ajouterclient(inputNumClient.Text, inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text);
+                    cc.ajouterclient(inputNumClient.Text, inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text,inputNumDeliberation.Text,inputDateDeliberation.Text);
                     AddClient AddClient2 = new AddClient("","");
                     this.NavigationService.Navigate(AddClient2);
                 }
@@ -205,7 +220,7 @@ namespace Agerfor.Views.Clients
                 {
                     DirectoryCreator dcr = new DirectoryCreator();
                     dcr.CreateDirectory2(inputNumClient.Text);
-                    cc.ajouterclient(inputNumClient.Text, inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text);
+                    cc.ajouterclient(inputNumClient.Text, inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text,inputNumDeliberation.Text, inputDateDeliberation.Text);
                     AddClient AddClient2 = new AddClient("","");
                     this.NavigationService.Navigate(AddClient2);
                 }
@@ -279,7 +294,7 @@ namespace Agerfor.Views.Clients
             {
                 if (Clientissecure1() == true)
                 {
-                    cc.Editclient(inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text,int.Parse(inputNumClient.Text));
+                    cc.Editclient(inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text,int.Parse(inputNumClient.Text), inputNumDeliberation.Text, inputDateDeliberation.Text);
                     Client c = new Client("");
                     this.NavigationService.Navigate(c);
                 }
@@ -293,7 +308,7 @@ namespace Agerfor.Views.Clients
                 if (Clientissecure2() == true)
                 {
                     
-                    cc.Editclient(inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text,int.Parse(inputNumClient.Text));
+                    cc.Editclient(inputDateCration.Text, inputName.Text, inputPrenom.Text, inputNomAR.Text, inputPrenomAR.Text, inputSexe.Text, inputDateNaissance.Text, inputLieuNaissance.Text, inputPrenomPere.Text, inputPrenomPereAR.Text, inputNomMere.Text, inputPrenomMere.Text, inputnomMereAR.Text, inputPrenomMereAr.Text, inputNumcni.Text, inputDateCni.Text, inputLieucni.Text, inputVille.Text, inputAdress.Text, inputProffession.Text, inputTelphone.Text, inputNomAutreCntacte.Text, inputTelphoneContact.Text, inputSituationFamiliale.Text, inputNomconjoint.Text, inputPrenomConjoint.Text, inputNomConjArab.Text, inputPrenomConjoint.Text, inputDateNaissanceConj.Text, inputLieuNaissanceConj.Text, inputProffessionConj.Text,int.Parse(inputNumClient.Text), inputNumDeliberation.Text, inputDateDeliberation.Text);
                     Client c = new Client("");
                     this.NavigationService.Navigate(c);
                 }
@@ -474,6 +489,12 @@ namespace Agerfor.Views.Clients
             {
                 System.Windows.MessageBox.Show("Veuillez sélectionner une demande");
             }
+        }
+
+        private void BtnOVSolde_Click(object sender, RoutedEventArgs e)
+        {
+            SoldeOV SOV = new SoldeOV(int.Parse(inputNumClient.Text));
+            DialogHost.Show(SOV);
         }
     }
 

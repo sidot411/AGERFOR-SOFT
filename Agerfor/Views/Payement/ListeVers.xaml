@@ -114,6 +114,14 @@
 
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
+                        <Button Background="#007CC3" x:Name="BtnimportApport" VerticalAlignment="Top" Height="100" BorderThickness="0" Margin="20 0 0 20" Click="BtnimportApport_Click" >
+                            <StackPanel Orientation="Vertical">
+                                <materialDesign:PackIcon Kind="Money"  Width="35" Height="35" VerticalAlignment="Center"
+                                     HorizontalAlignment="Center" Margin="0 0 0 5" />
+                                <TextBlock Text="Importer" VerticalAlignment="Center" Height="25" HorizontalAlignment="Center" Margin="0 0 0 -10"/>
+                                <TextBlock Text="Apport client" VerticalAlignment="Center" Height="25" />
+                            </StackPanel>
+                        </Button>
                         <Button Background="Green" x:Name="BtnValiderverssement" VerticalAlignment="Top" Height="100" BorderThickness="0" Margin="20 0 0 20" Click="BtnValiderverssement_Click">
                             <StackPanel Orientation="Vertical">
                                 <materialDesign:PackIcon Kind="CheckAll"  Width="35" Height="35" VerticalAlignment="Center"
@@ -163,7 +171,7 @@
                         BorderThickness="0" 
                         AlternatingRowBackground="#F3F3F3"
                         CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
-                        Width="1050" Height="450" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewOV_SelectionChanged" >
+                        Width="1050" Height="300" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="dataViewOV_SelectionChanged" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn  Width="*" Binding="{Binding NumVerssement}" Header="Code OV" />
                                 <DataGridTextColumn  Width="*" Binding="{Binding NumOV}" Header="N° Ordre de versement" />
