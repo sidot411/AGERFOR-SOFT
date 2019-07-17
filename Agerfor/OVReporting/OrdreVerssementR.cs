@@ -15,10 +15,12 @@ namespace Agerfor.OVReporting
     public partial class OrdreVerssementR : Form
     {
         string NumOV;
-        public OrdreVerssementR(string NumOV)
+        private string M;
+        public OrdreVerssementR(string NumOV,string M)
         {
             InitializeComponent();
             this.NumOV = NumOV;
+            this.M = M;
         }
 
         private void report_Load(object sender, EventArgs e)
@@ -34,6 +36,7 @@ namespace Agerfor.OVReporting
                 DataSet1 DS = new DataSet1();
                 dab.Fill(DS.DataTable1);
                 ov.SetDataSource((DataTable)DS.DataTable1);
+                ov.SetParameterValue("MAC", M);
                 crystalReportViewer1.ReportSource = ov;
                 crystalReportViewer1.Refresh();
                 con.Close();

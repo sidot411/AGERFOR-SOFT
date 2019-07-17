@@ -186,6 +186,7 @@
     <Compile Include="Controlers\DirectoryCreator.cs" />
     <Compile Include="Controlers\EddController.cs" />
     <Compile Include="Controlers\FNPOSController.cs" />
+    <Compile Include="Controlers\GetMacAdresse.cs" />
     <Compile Include="Controlers\IlotController.cs" />
     <Compile Include="Controlers\ipPatchController.cs" />
     <Compile Include="Controlers\LotController.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Controlers\SearchDemande.cs" />
     <Compile Include="Controlers\SearchLog.cs" />
     <Compile Include="Controlers\SearchProgramme.cs" />
+    <Compile Include="Controlers\UsersControlle.cs" />
     <Compile Include="Controlers\VSPController.cs" />
     <Compile Include="DecisionReporting\DataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -287,6 +289,9 @@
     </Compile>
     <Compile Include="Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainLevéeReporting\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -537,6 +542,9 @@
     <Compile Include="Views\Setting\SocieteInformation.xaml.cs">
       <DependentUpon>SocieteInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Setting\UserRole\UserRole.xaml.cs">
+      <DependentUpon>UserRole.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VSPReporting\DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -592,6 +600,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -736,6 +748,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Setting\SocieteInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\UserRole\UserRole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1093,6 +1109,7 @@
   <ItemGroup>
     <Content Include="CurrencyTextBoxControl.dll" />
     <Content Include="Dragablz.dll" />
+    <Resource Include="LOGO agerfor_png.png" />
     <Content Include="MaterialDesignColors.dll" />
     <Content Include="MaterialDesignThemes.Wpf.dll" />
     <Content Include="MySql.Data.dll" />

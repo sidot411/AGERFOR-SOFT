@@ -1,0 +1,95 @@
+﻿<Page x:Class="Agerfor.Views.Setting.UserRole.UserRole"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Agerfor.Views.Setting.UserRole"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      Height="550" Width="840"
+      Background="#E6EAED"
+      Title="UserRole" HorizontalAlignment="Center" VerticalAlignment="Top">
+    <ScrollViewer>
+        <Grid Margin="20">
+        
+            <StackPanel Orientation="Vertical" Margin="20" Width="350" HorizontalAlignment="Left">
+                <TextBox x:Name="inputUserName" Width="350" Height="35" Background="White"  materialDesign:HintAssist.Hint="Nom d'utilisateur" FontSize="16" Margin="0 0 0 15" ></TextBox>
+                <PasswordBox x:Name="inputPasseword" Height="35" Width="350" Background="White" materialDesign:HintAssist.Hint="Mot de passe" FontSize="16" Margin="0 0 0 15"></PasswordBox>
+                <PasswordBox x:Name="inputConfirmPassword" Height="35" Width="350" Background="White" materialDesign:HintAssist.Hint="Confirmation Mot de passe" FontSize="16" Margin="0 0 0 15"></PasswordBox>
+                <ComboBox x:Name="inputDivision" Width="350" Height="35" Background="White"  materialDesign:HintAssist.Hint="Division" FontSize="16" Margin="0 0 0 15" >
+                    <ComboBoxItem>DG</ComboBoxItem>
+                    <ComboBoxItem>DAM</ComboBoxItem>
+                    <ComboBoxItem>DCCC</ComboBoxItem>
+                    <ComboBoxItem>DFC</ComboBoxItem>
+                    <ComboBoxItem>DFJ</ComboBoxItem>
+                </ComboBox>
+                <ComboBox x:Name="inputRole" Height="35" Width="350" Background="White" materialDesign:HintAssist.Hint="Selectionner un role d'utilisateur" FontSize="16" Margin="0 0 0 15">
+                    <ComboBoxItem>Administrateur</ComboBoxItem>
+                    <ComboBoxItem>Editeur</ComboBoxItem>
+                    <ComboBoxItem>Lecteur</ComboBoxItem>
+                </ComboBox>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0 15 0 0">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Right">
+                        <TextBlock FontSize="16" Margin="0 0 20 0" >Section projet</TextBlock>
+                        <ToggleButton x:Name="SP"></ToggleButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Right">
+                        <TextBlock FontSize="16" Margin="0 0 20 0">Section programme</TextBlock>
+                        <ToggleButton x:Name="SPROG"></ToggleButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Right">
+                        <TextBlock FontSize="16" Margin="0 0 20 0">Section client</TextBlock>
+                        <ToggleButton x:Name="SC"></ToggleButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Right">
+                        <TextBlock FontSize="16" Margin="0 0 20 0">Section demande</TextBlock>
+                        <ToggleButton x:Name="SD"></ToggleButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Right">
+                        <TextBlock FontSize="16" Margin="0 0 20 0">Section attribution</TextBlock>
+                        <ToggleButton x:Name="SA"></ToggleButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Right">
+                        <TextBlock FontSize="16" Margin="0 0 20 0">Section payement</TextBlock>
+                        <ToggleButton x:Name="SPAY"></ToggleButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Right">
+                        <TextBlock FontSize="16" Margin="0 0 20 0">Section remboursement</TextBlock>
+                        <ToggleButton x:Name="SR"></ToggleButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Right">
+                        <TextBlock FontSize="16" Margin="0 0 20 0">Section paramètre</TextBlock>
+                        <ToggleButton x:Name="SPAR"></ToggleButton>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <Button x:Name="BtnAjouter" Width="100" Height="40" Margin="0 0 20 0" Click="BtnAjouter_Click">Ajouter</Button>
+                    <Button x:Name="BtnModifier" Width="100" Height="40" Margin="0 0 20 0" Click="BtnModifier_Click">Modifier</Button>
+                    <Button x:Name="BtnSupprimer" Width="100" Height="40" Margin="0 0 20 0" Background="Red" BorderBrush="Red" Click="BtnSupprimer_Click">Supprimer</Button>
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="20 20 0 0" Width="400" HorizontalAlignment="Right">
+                
+                <Border BorderThickness="1">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Opacity="0.2" />
+                    </Border.Effect>
+                    <DataGrid x:Name="dataViewUser" AutoGenerateColumns="False" BorderBrush="White"
+                        BorderThickness="0" 
+                        AlternatingRowBackground="#F3F3F3"
+                        CanUserAddRows="False" EnableRowVirtualization="True" IsReadOnly="True" ItemsSource="{Binding}"
+                        Width="380" Height="570" RowDetailsVisibilityMode="VisibleWhenSelected"  HorizontalAlignment="Left" SelectionChanged="dataViewUser_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="idCoumn" Width="*" Binding="{Binding UserName}" Header="Nom d'utilisateur" />
+                            <DataGridTextColumn x:Name="nameolumn" Width="*" Binding="{Binding Divison}" Header="Division" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </StackPanel>
+       
+    </Grid>
+
+    </ScrollViewer>
+</Page>

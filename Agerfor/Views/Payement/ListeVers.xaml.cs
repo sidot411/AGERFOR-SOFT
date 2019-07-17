@@ -11,7 +11,9 @@ using System.IO;
 using System.Diagnostics;
 using Agerfor.OVReporting;
 using System.Data;
-
+using System.Net;
+using System.Net.Sockets;
+using System.Net.NetworkInformation;
 
 namespace Agerfor.Views.Payement
 {
@@ -74,6 +76,8 @@ namespace Agerfor.Views.Payement
 
 
         }
+
+       
 
         private void BtnOV_Click(object sender, RoutedEventArgs e)
         {
@@ -266,8 +270,9 @@ namespace Agerfor.Views.Payement
 
         private void BtnImpriOv_Click(object sender, RoutedEventArgs e)
         {
-            OrdreVerssementR OVR = new OrdreVerssementR(tempNumOV.ToString());
-            OVR.Show();
+       
+            OrdreVerssementR OVR = new OrdreVerssementR(tempNumOV.ToString(),GetMacAdresse.GetMacAdress());
+            OVR.ShowDialog();
         }
 
         private void inputNaturePayement_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -285,6 +290,9 @@ namespace Agerfor.Views.Payement
 
         private void BtnimportApport_Click(object sender, RoutedEventArgs e)
         {
+           
+            //   System.Windows.MessageBox.Show(GetLocalIPAddress());
+            /*
             if (int.Parse(tempApport) != 0)
             {
                 DataTable DT = new DataTable();
@@ -345,7 +353,9 @@ namespace Agerfor.Views.Payement
                     this.Close();
                 }
 
-            }
+            }*/
         }
+
+      
     }
 }

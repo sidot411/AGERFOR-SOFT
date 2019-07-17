@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Agerfor.Views;
 using Agerfor.Views.Setting.referentiel;
 using DbConnection.Models;
 
@@ -26,6 +14,7 @@ namespace Agerfor.Views.Setting
     {
         public SettingUserControl()
         {
+            
             InitializeComponent();
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             Frame.Navigate(new SocieteInformation());
@@ -52,6 +41,14 @@ namespace Agerfor.Views.Setting
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             Frame.Navigate(new Ref());
             title.Text = "Référentiel";
+        }
+
+        private void BtnUsers_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            Frame.Navigate(new Agerfor.Views.Setting.UserRole.UserRole(""));
+            title.Text = "Utilisateurs";
+            
         }
     }
 }
