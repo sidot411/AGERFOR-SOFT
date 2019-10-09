@@ -25,6 +25,9 @@ namespace Agerfor.Views.Clients
         string tempNumDemande = "";
         Agerfor.Controlers.MySqlHelper msh = new Agerfor.Controlers.MySqlHelper();
         ClientController cc = new ClientController();
+        MainWindow mw = new MainWindow("","","","","","","","","","");
+        
+        
 
 
         public AddClient(string NumClient, string Situation)

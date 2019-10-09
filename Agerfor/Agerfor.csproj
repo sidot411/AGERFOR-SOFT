@@ -186,6 +186,7 @@
     <Compile Include="Controlers\DirectoryCreator.cs" />
     <Compile Include="Controlers\EddController.cs" />
     <Compile Include="Controlers\FNPOSController.cs" />
+    <Compile Include="Controlers\GetIpAdress.cs" />
     <Compile Include="Controlers\GetMacAdresse.cs" />
     <Compile Include="Controlers\IlotController.cs" />
     <Compile Include="Controlers\ipPatchController.cs" />
@@ -1110,6 +1111,7 @@
     <Content Include="CurrencyTextBoxControl.dll" />
     <Content Include="Dragablz.dll" />
     <Resource Include="LOGO agerfor_png.png" />
+    <Resource Include="IMG_20190113_103008.jpg" />
     <Content Include="MaterialDesignColors.dll" />
     <Content Include="MaterialDesignThemes.Wpf.dll" />
     <Content Include="MySql.Data.dll" />

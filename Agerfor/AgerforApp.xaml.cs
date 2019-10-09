@@ -30,10 +30,39 @@ namespace Agerfor
     /// </summary>
     public partial class MainWindow : Window
     {
+        string tempSprojet;
+        string tempSprogramme;
+        string tempSclient;
+        string tempSdemande;
+        string tempSattribution;
+        string tempSpayement;
+        string tempSremboursement;
+        string tempSparametre;
+        string tempuserrole;
+        string tempdivision;
+
         bool isFullScreen = false;
-        public MainWindow()
+        public MainWindow(string tempSprojet,string tempSprogramme,
+        string tempSclient,
+        string tempSdemande,
+        string tempSattribution,
+        string tempSpayement,
+        string tempSremboursement,
+        string tempSparametre,
+        string tempuserrole,
+        string tempdivision)
+
         {
             InitializeComponent();
+            this.tempSprojet = tempSprojet;
+            this.tempSprogramme = tempSprogramme;
+            this.tempSclient = tempSclient;
+            this.tempSdemande = tempSdemande;
+            this.tempSattribution = tempSattribution;
+            this.tempSpayement = tempSpayement;
+            this.tempSremboursement = tempSremboursement;
+            this.tempSparametre = tempSparametre;
+            this.tempuserrole = tempuserrole;
             
             this.WindowState = WindowState.Normal;
             this.Width = 1366;
@@ -44,6 +73,64 @@ namespace Agerfor
             double screenHeight = SystemParameters.PrimaryScreenHeight;
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 0) - (windowHeight / 0);
+
+            if(tempSprojet == "True")
+            {
+                BtnProjet.IsEnabled = true;
+            }
+            else
+            {
+                BtnProjet.IsEnabled = false;
+            }
+
+            if (tempSprogramme == "True")
+            {
+                BtnProgramme.IsEnabled = true;
+            }
+            else
+            {
+                BtnProgramme.IsEnabled = false;
+            }
+            if (tempSclient == "True")
+            {
+                BtnClient.IsEnabled = true;
+            }
+            else
+            {
+                BtnClient.IsEnabled = false;
+            }
+            if (tempSdemande == "True")
+            {
+                BtnDemande.IsEnabled = true;
+            }
+            else
+            {
+                BtnDemande.IsEnabled = false;
+            }
+            if (tempSattribution == "True")
+            {
+                BtnAttribution.IsEnabled = true;
+            }
+            else
+            {
+                BtnAttribution.IsEnabled = false;
+            }
+            if (tempSpayement == "True")
+            {
+                BtnVerssement.IsEnabled = true;
+            }
+            else
+            {
+                BtnVerssement.IsEnabled = false;
+            }
+            if (tempSremboursement == "True")
+            {
+                BtnRembourssement.IsEnabled = true;
+            }
+            else
+            {
+                BtnRembourssement.IsEnabled = false;
+            }
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -113,7 +200,7 @@ namespace Agerfor
                 BtnClient.BorderThickness = BtnDemande.BorderThickness = BtnProgramme.BorderThickness = BtnTableauDeBord.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness = BtnVerssement.BorderThickness = BtnAttribution.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
                 BtnProjet.BorderThickness = new Thickness(5, 0, 0, 0);
                 Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-                Frame.Navigate(new Projet(""));
+                Frame.Navigate(new Projet("",tempuserrole));
                 currentWindow.Text = "Projet";
            
         }
@@ -155,7 +242,7 @@ namespace Agerfor
             BtnClient.BorderThickness = BtnDemande.BorderThickness = BtnProjet.BorderThickness = BtnTableauDeBord.BorderThickness = BtnRecapulatif.BorderThickness = BtnRembourssement.BorderThickness = BtnAttribution.BorderThickness = BtnProgramme.BorderThickness = BtnCloture.BorderThickness = new Thickness(0, 0, 0, 0);
             BtnVerssement.BorderThickness = new Thickness(5, 0, 0, 0);
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            Frame.Navigate(new Payement());
+            Frame.Navigate(new Payement(User.Text,ID.Text));
             currentWindow.Text = "Payement";
         }
 
@@ -167,6 +254,14 @@ namespace Agerfor
             Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             Frame.Navigate(new RecapPage());
             currentWindow.Text = "Recap";
+        }
+
+        private void Deconexion_Click(object sender, RoutedEventArgs e)
+        {
+           
+            Login LG = new Login();
+            LG.Show();
+            this.Close();
         }
     }
 }

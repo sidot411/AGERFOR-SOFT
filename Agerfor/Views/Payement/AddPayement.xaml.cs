@@ -31,11 +31,15 @@ namespace Agerfor.Views.Payement
         string tempetat;
         string TypeProgramme;
         string tempNumDeci;
+        string id;
+        string username;
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public AddPayement(int NumPayement)
+        public AddPayement(int NumPayement,string id,string username)
         {
             InitializeComponent();
             this.NumPayement = NumPayement;
+            this.id = id;
+            this.username = username;
             string query = "select * from payement where NumPayement='" + NumPayement + "'";
             MySqlDataReader rdr = null;
             MySqlConnection con = null;
@@ -92,6 +96,7 @@ namespace Agerfor.Views.Payement
             con3.Close();
 
             string Query2 = "SELECT COUNT(NumVerssement) as count, Etat FROM ov WHERE NumPayement = '" + NumPayement + "' ORDER BY NumVerssement LIMIT 1 ";
+            Clipboard.SetText(Query2);
             MySqlDataReader rdr2 = null;
             MySqlConnection con2 = null;
             MySqlCommand cmd2 = null;
@@ -162,7 +167,7 @@ namespace Agerfor.Views.Payement
         {
           //  ListeVers LV = new ListeVers(0, 0, 0, this);
 
-            ListeVers LV = new ListeVers(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text),tempNumAttribution, this,inputNumClient.Text,inputNomProgramme.Text);
+            ListeVers LV = new ListeVers(int.Parse(inputPayement.Text), decimal.Parse(inputReste.Text),tempNumAttribution, this,inputNumClient.Text,inputNomProgramme.Text,id,username);
             LV.ShowInTaskbar = false;
             LV.Owner = Application.Current.Windows[0];
             LV.Show();
@@ -201,7 +206,7 @@ namespace Agerfor.Views.Payement
 
         private void BtnDec_Click(object sender, RoutedEventArgs e)
         {
-            DecisionReservation DR = new DecisionReservation(int.Parse(inputPayement.Text),tempNumAttribution);
+            DecisionReservation DR = new DecisionReservation(int.Parse(inputPayement.Text),tempNumAttribution,id,username);
            
             DR.ShowInTaskbar = false;
             DR.Owner = Application.Current.Windows[0];
@@ -210,7 +215,7 @@ namespace Agerfor.Views.Payement
 
         private void BtnMainlever_Click(object sender, RoutedEventArgs e)
         {
-            MainLeve ML = new MainLeve(int.Parse(inputPayement.Text),tempNumAttribution);
+            MainLeve ML = new MainLeve(int.Parse(inputPayement.Text),tempNumAttribution,id,username);
             ML.ShowInTaskbar = false;
             ML.Owner = Application.Current.Windows[0];
             ML.Show();

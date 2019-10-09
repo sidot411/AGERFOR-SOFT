@@ -19,7 +19,8 @@ namespace Agerfor.MainLevéeReporting
         string NumDeciF;
         string NumConv;
         int NumP;
-        public MainLeveeViewer(int CodeML, string NumDeci, string NumDeciF, string NumConv, int NumP)
+        string id;
+        public MainLeveeViewer(int CodeML, string NumDeci, string NumDeciF, string NumConv, int NumP, string id)
         {
             InitializeComponent();
             this.CodeML = CodeML;
@@ -27,6 +28,7 @@ namespace Agerfor.MainLevéeReporting
             this.NumDeciF = NumDeciF;
             this.NumConv = NumConv;
             this.NumP = NumP;
+            this.id = id;
         }
 
 
@@ -43,7 +45,7 @@ namespace Agerfor.MainLevéeReporting
 
                         MainLevee cr1 = new MainLevee();
 
-                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,mainlevee.AdresseNotaire,sum(MontantAV) AS Apport,NumML,DateML from ov,edd,biens,programme,client,cnl,attribution,payement,mainlevee where CodeML='" + CodeML + "' AND mainlevee.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat='Terminé'";
+                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,mainlevee.AdresseNotaire,sum(MontantAV) AS Apport,NumML,DateML,IP,MAC,UserName,IdUser from ov,edd,biens,programme,client,cnl,attribution,payement,mainlevee,users where CodeML='" + CodeML + "' AND mainlevee.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat='Terminé' and IdUser='" + id + "'";
                         MySqlDataAdapter dab = new MySqlDataAdapter(query, con);
                         DataSet1 DSP = new DataSet1();
                         dab.Fill(DSP.DataTable1);
@@ -85,7 +87,7 @@ namespace Agerfor.MainLevéeReporting
                         MySqlConnection con = new MySqlConnection(Database.ConnectionString());
                         MainLevee cr1 = new MainLevee();
 
-                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,NumDeciF,DateDeciF,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,mainlevee.AdresseNotaire,sum(MontantAV) AS Apport, NumML, DateML,MontantCb from ov, edd, biens, programme, client, cnl,creditb,fnpos, attribution, payement, mainlevee where CodeML = '" + CodeML + "' AND mainlevee.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = creditb.NumPayement AND payement.NumPayement = fnpos.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé'";
+                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,NumDeciF,DateDeciF,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,mainlevee.AdresseNotaire,sum(MontantAV) AS Apport, NumML, DateML,MontantCb,IP,MAC,UserName,IdUser from ov, edd, biens, programme, client, cnl,creditb,fnpos, attribution, payement, mainlevee,users where CodeML = '" + CodeML + "' AND mainlevee.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = creditb.NumPayement AND payement.NumPayement = fnpos.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé' and IdUser='" + id + "'";
                         MySqlDataAdapter dab = new MySqlDataAdapter(query, con);
                         DataSet1 DSP = new DataSet1();
                         dab.Fill(DSP.DataTable1);
@@ -129,7 +131,7 @@ namespace Agerfor.MainLevéeReporting
                         MySqlConnection con = new MySqlConnection(Database.ConnectionString());
                         MainLevee cr1 = new MainLevee();
 
-                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,NumDeciF,DateDeciF,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,mainlevee.AdresseNotaire,sum(MontantAV) AS Apport, NumML, DateML,MontantCb from creditb,ov, edd, biens, programme, client, cnl,fnpos, attribution, payement, mainlevee where CodeML = '" + CodeML + "' AND mainlevee.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = fnpos.NumPayement AND payement.NumPayement = creditb.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé'";
+                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,NumDeciF,DateDeciF,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,mainlevee.AdresseNotaire,sum(MontantAV) AS Apport, NumML, DateML,MontantCb,IP,MAC,UserName,IdUser from creditb,ov, edd, biens, programme, client, cnl,fnpos, attribution, payement, mainlevee,users where CodeML = '" + CodeML + "' AND mainlevee.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = fnpos.NumPayement AND payement.NumPayement = creditb.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé' and IdUser='" + id + "'";
                         MySqlDataAdapter dab = new MySqlDataAdapter(query, con);
                         DataSet1 DSP = new DataSet1();
                         dab.Fill(DSP.DataTable1);
@@ -172,7 +174,7 @@ namespace Agerfor.MainLevéeReporting
                             MySqlConnection con = new MySqlConnection(Database.ConnectionString());
                             MainLevee cr1 = new MainLevee();
 
-                            string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,mainlevee.AdresseNotaire,sum(MontantAV) AS Apport, NumML, DateML,MontantCb from creditb,ov, edd, biens, programme, client, cnl,attribution, payement, mainlevee where CodeML = '" + CodeML + "' AND mainlevee.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = creditb.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé'";
+                            string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,mainlevee.AdresseNotaire,sum(MontantAV) AS Apport, NumML, DateML,MontantCb,IP,MAC,UserName,IdUser from creditb,ov, edd, biens, programme, client, cnl,attribution, payement, mainlevee,users where CodeML = '" + CodeML + "' AND mainlevee.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = creditb.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé' and IdUser='" + id + "'";
                             MySqlDataAdapter dab = new MySqlDataAdapter(query, con);
                             DataSet1 DSP = new DataSet1();
                             dab.Fill(DSP.DataTable1);

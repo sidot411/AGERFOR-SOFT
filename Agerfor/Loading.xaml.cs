@@ -38,8 +38,9 @@ namespace Agerfor
         }
         private void dt_Tick(object sender, EventArgs e)
         {
-            MainWindow mw = new MainWindow();
-            mw.Show();
+            Login lg = new Login();
+           
+            lg.Show();
             dt.Stop();
 
             this.Close();

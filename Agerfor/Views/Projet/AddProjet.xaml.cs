@@ -27,9 +27,10 @@ namespace Agerfor.Views.Projet
         string Query = "";
         int tempID;
         string tempNumActeProjet = "";
+        string UserRole;
 
 
-        public AddProjet(int RefProjet)
+        public AddProjet(int RefProjet,string UserRole)
         {
             InitializeComponent();
 
@@ -37,6 +38,7 @@ namespace Agerfor.Views.Projet
             msh.FillDropDownList("select NomConservation from conservation", inputConserv, "NomConservation");
             msh.FillDropDownList("select NomWilaya from wilaya", inputWilayaProjet, "NomWilaya");
             msh.FillDropDownList("select NomProjetM from projetmaitre", inputProjetMaitre,"NomProjetM");
+            this.UserRole = UserRole;
             this.RefProjet = RefProjet;
 
             if (RefProjet != 0)
@@ -163,13 +165,13 @@ namespace Agerfor.Views.Projet
 
                 if (System.Windows.MessageBox.Show("Voulez-vous attacher des documents au projet?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
                 {
-                    AddProjet Addprojet = new AddProjet(0);
+                    AddProjet Addprojet = new AddProjet(0,UserRole);
                     this.NavigationService.Navigate(Addprojet);
                 }
                 else
                 {
                     SelectFile("Document-Projet");
-                    AddProjet Addprojet = new AddProjet(0);
+                    AddProjet Addprojet = new AddProjet(0,UserRole);
                     this.NavigationService.Navigate(Addprojet);
                 }
 
@@ -187,7 +189,7 @@ namespace Agerfor.Views.Projet
             PC.Editprojet(inputNomProjet.Text, inputProjetMaitre.Text, inputVendeurProjet.Text, inputWilayaProjet.Text, inputDairaProjet.Text, inputCommuneProjet.Text, inputPayement.Text, decimal.Parse(inputSuperficieProjet.Text), inputLimitNord.Text, inputLimitEst.Text, inputLimitOuest.Text, inputLimitSud.Text, decimal.Parse(inputMontantCB.Text), decimal.Parse(inputMontantC.Text), inputNumReçu.Text, inputDateRecu.Text,RefProjet);
 
             RefProjet = int.Parse(inputRefProjet.Text);
-            AddProjet Addprojet = new AddProjet(RefProjet);
+            AddProjet Addprojet = new AddProjet(RefProjet,UserRole);
             this.NavigationService.Navigate(Addprojet);
         }
 
@@ -451,7 +453,7 @@ namespace Agerfor.Views.Projet
 
         private void BtnAnnulerProjet_Click(object sender, RoutedEventArgs e)
         {
-            Projet p = new Projet("");
+            Projet p = new Projet("",UserRole);
             NavigationService.Navigate(p);
         }
 

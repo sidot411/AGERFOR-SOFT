@@ -14,6 +14,7 @@ using System.Data;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
+using Agerfor.Controlers;
 
 namespace Agerfor.Views.Payement
 {
@@ -32,9 +33,13 @@ namespace Agerfor.Views.Payement
         decimal Reste;
         string CodeClient;
         string NomProgramme;
+        string id;
+        string username;
+        string ip;
+        string mac;
         AddPayement AddPayement;
 
-        public ListeVers(int NumPayement, decimal Reste, int NumAttribution, AddPayement AddPayement, string CodeClient, string NomProgramme)
+        public ListeVers(int NumPayement, decimal Reste, int NumAttribution, AddPayement AddPayement, string CodeClient, string NomProgramme,string id,string username)
         {
 
             InitializeComponent();
@@ -47,6 +52,8 @@ namespace Agerfor.Views.Payement
             this.NumAttribution = NumAttribution;
             this.CodeClient = CodeClient;
             this.NomProgramme = NomProgramme;
+            this.id = id;
+            this.username = username;
 
             inputNumPayement.Text = NumPayement.ToString();
             inputEtat.IsEnabled = false;
@@ -270,8 +277,37 @@ namespace Agerfor.Views.Payement
 
         private void BtnImpriOv_Click(object sender, RoutedEventArgs e)
         {
-       
-            OrdreVerssementR OVR = new OrdreVerssementR(tempNumOV.ToString(),GetMacAdresse.GetMacAdress());
+            
+            
+            string query = "select IP,MAC from users where UserName='"+username+ "' and IdUser='"+id+"'";
+            MySqlDataReader rdr = null;
+            MySqlConnection con = null;
+            MySqlCommand cmd = null;
+            con = new MySqlConnection(Database.ConnectionString());
+            con.Open();
+            cmd = new MySqlCommand(query);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            bool oneTime = true;
+            while (rdr.Read())
+            {
+                ip = rdr["IP"].ToString();
+                mac = rdr["MAC"].ToString();
+
+            }
+
+            if (GetIpAdress.GetLocalIPAddress() != ip)
+            {
+                msh.ExecuteQuery("update users set IP='" + GetIpAdress.GetLocalIPAddress() + "' where IdUser='" + id + "'");
+            }
+
+            else if (GetMacAdresse.GetMacAdress() !=mac)
+            {
+                msh.ExecuteQuery("update users set MAC='" + GetMacAdresse.GetMacAdress() + "' where IdUser='" + id + "'");
+            }
+            
+        
+            OrdreVerssementR OVR = new OrdreVerssementR(tempNumOV.ToString(),id);
             OVR.ShowDialog();
         }
 
@@ -291,8 +327,8 @@ namespace Agerfor.Views.Payement
         private void BtnimportApport_Click(object sender, RoutedEventArgs e)
         {
            
-            //   System.Windows.MessageBox.Show(GetLocalIPAddress());
-            /*
+      
+            
             if (int.Parse(tempApport) != 0)
             {
                 DataTable DT = new DataTable();
@@ -353,7 +389,7 @@ namespace Agerfor.Views.Payement
                     this.Close();
                 }
 
-            }*/
+            }
         }
 
       

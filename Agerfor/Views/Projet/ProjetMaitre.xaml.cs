@@ -17,11 +17,13 @@ namespace Agerfor.Views.Projet
         AddProjet addprojet;
         string tempNomProjetMaitre;
         MySqlHelper msh = new MySqlHelper();
-        public ProjetMaitre(AddProjet addprojet)
+        string UserRole;
+        public ProjetMaitre(AddProjet addprojet,string UserRole)
         {
            
             
             this.addprojet = addprojet;
+            this.UserRole = UserRole;
             InitializeComponent();
             msh.LoadData("select NomProjetM from projetmaitre", dataViewProjet);
 
@@ -34,7 +36,7 @@ namespace Agerfor.Views.Projet
             PMC.AjouterProjetMaitre(inputNomProjet.Text);
             MainWindow mainWindows = (MainWindow)Application.Current.Windows[0];
             mainWindows.Frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            addprojet = new AddProjet(0);
+            addprojet = new AddProjet(0,UserRole);
             mainWindows.Frame.Navigate(addprojet);
             mainWindows.currentWindow.Text = "Projet";
             mainWindows.Activate();

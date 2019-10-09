@@ -31,12 +31,18 @@ namespace Agerfor.Views.Payement
         int NumAttribution;
         string tempNumCNL;
         string tempNumFNPOS;
+        string id;
+        string username;
+        string ip;
+        string mac;
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public DecisionReservation(int NumP,int NumAttribution)
+        public DecisionReservation(int NumP,int NumAttribution, string id, string username)
         {
             InitializeComponent();
             this.NumP = NumP;
             this.NumAttribution = NumAttribution;
+            this.id = id;
+            this.username = username;
             inputCodeP.Text = NumP.ToString();
             inputEtatDec.IsEnabled = inputDateEnreg.IsEnabled = inputNumdecison.IsEnabled = false;
             msh.LoadData("select * from decisionr where RefP='" + NumP + "'", dataViewDec);
@@ -109,6 +115,36 @@ namespace Agerfor.Views.Payement
 
         private void BtnImpriDec_Click(object sender, RoutedEventArgs e)
         {
+
+            string query3 = "select IP,MAC from users where UserName='" + username + "' and IdUser='" + id + "'";
+            MySqlDataReader rdr = null;
+            MySqlConnection con = null;
+            MySqlCommand cmd = null;
+            con = new MySqlConnection(Database.ConnectionString());
+            con.Open();
+            cmd = new MySqlCommand(query3);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            bool oneTime3 = true;
+            while (rdr.Read())
+            {
+                ip = rdr["IP"].ToString();
+                mac = rdr["MAC"].ToString();
+
+            }
+
+            if (GetIpAdress.GetLocalIPAddress() != ip)
+            {
+                msh.ExecuteQuery("update users set IP='" + GetIpAdress.GetLocalIPAddress() + "' where IdUser='" + id + "'");
+            }
+
+            else if (GetMacAdresse.GetMacAdress() != mac)
+            {
+                msh.ExecuteQuery("update users set MAC='" + GetMacAdresse.GetMacAdress() + "' where IdUser='" + id + "'");
+            }
+
+
+
             string query = "select COUNT(NumDeci) AS countcnl from cnl where NumPayement = '" + inputCodeP.Text + "'";
             string query2 = "select COUNT(NumFNPOS) AS countfnpos from fnpos where NumPayement='" + inputCodeP.Text + "'";
             MySqlDataReader rdrcnl = null;
@@ -140,7 +176,7 @@ namespace Agerfor.Views.Payement
             }
             confn.Close();
 
-            DecisionViwer DV = new DecisionViwer(int.Parse(inputCodeDecision.Text), tempNumCNL, tempNumFNPOS);
+            DecisionViwer DV = new DecisionViwer(int.Parse(inputCodeDecision.Text), tempNumCNL, tempNumFNPOS,id);
             DV.Show();
 
 

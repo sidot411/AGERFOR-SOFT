@@ -31,13 +31,19 @@ namespace Agerfor.Views.Payement
         string tempNumCNL;
         string tempNumFNPOS;
         string tempNumConv;
+        string id;
+        string username;
+        string ip;
+        string mac;
         int NumAttribution;
         Controlers.MySqlHelper msh = new Controlers.MySqlHelper();
-        public MainLeve(int NumP, int NumAttribution)
+        public MainLeve(int NumP, int NumAttribution, string id,string username)
         {
             InitializeComponent();
             this.NumP = NumP;
             this.NumAttribution = NumAttribution;
+            this.id = id;
+            this.username = username;
             inputCodeP.Text = NumP.ToString();
             inputEtatML.IsEnabled = inputDateEnreg.IsEnabled = inputNumML.IsEnabled = false;
             msh.LoadData("select * from mainlevee where RefP='" + NumP + "'", dataViewML);
@@ -107,6 +113,36 @@ namespace Agerfor.Views.Payement
 
         private void BtnImpriML_Click(object sender, RoutedEventArgs e)
         {
+            string query4 = "select IP,MAC from users where UserName='" + username + "' and IdUser='" + id + "'";
+            MySqlDataReader rdr = null;
+            MySqlConnection con = null;
+            MySqlCommand cmd = null;
+            con = new MySqlConnection(Database.ConnectionString());
+            con.Open();
+            cmd = new MySqlCommand(query4);
+            cmd.Connection = con;
+            rdr = cmd.ExecuteReader();
+            bool oneTime4 = true;
+            while (rdr.Read())
+            {
+                ip = rdr["IP"].ToString();
+                mac = rdr["MAC"].ToString();
+
+            }
+
+            if (GetIpAdress.GetLocalIPAddress() != ip)
+            {
+                msh.ExecuteQuery("update users set IP='" + GetIpAdress.GetLocalIPAddress() + "' where IdUser='" + id + "'");
+            }
+
+            else if (GetMacAdresse.GetMacAdress() != mac)
+            {
+                msh.ExecuteQuery("update users set MAC='" + GetMacAdresse.GetMacAdress() + "' where IdUser='" + id + "'");
+            }
+
+
+
+
             string query = "select COUNT(NumDeci) AS countcnl from cnl where NumPayement = '" + inputCodeP.Text + "'";
             string query2 = "select COUNT(NumFNPOS) AS countfnpos from fnpos where NumPayement='" + inputCodeP.Text + "'";
             string query3 = "select COUNT(NumConvBan) AS countconv from creditb where NumPayement='" + inputCodeP.Text + "' AND NumConvBan!=''";
@@ -157,7 +193,7 @@ namespace Agerfor.Views.Payement
             }
             confn.Close();
 
-            MainLeveeViewer ML = new MainLeveeViewer(int.Parse(inputCodeML.Text), tempNumCNL, tempNumFNPOS,tempNumConv, int.Parse(inputCodeP.Text));
+            MainLeveeViewer ML = new MainLeveeViewer(int.Parse(inputCodeML.Text), tempNumCNL, tempNumFNPOS,tempNumConv, int.Parse(inputCodeP.Text),id);
             ML.Show();
 
         }

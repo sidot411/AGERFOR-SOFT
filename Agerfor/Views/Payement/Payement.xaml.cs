@@ -22,29 +22,33 @@ namespace Agerfor.Views.Payement
     public partial class Payement : Page
     {
         int tempNumPayement;
+        string id;
+        string username;
         MySqlHelper msh = new MySqlHelper();
-        public Payement()
+        public Payement(string username,string id)
         {
             InitializeComponent();
+            this.id = id;
+            this.username = username;
             
             msh.LoadData("select * from payement", dataGridView2);
         }
 
         private void BtnAfficherpayement_Click(object sender, RoutedEventArgs e)
         {
-            AddPayement AP = new AddPayement(tempNumPayement);
+            AddPayement AP = new AddPayement(tempNumPayement,id,username);
             this.NavigationService.Navigate(AP);
         }
 
         private void BtnAddPayement_Click(object sender, RoutedEventArgs e)
         {
-            AddPayement AP = new AddPayement(tempNumPayement);
+            AddPayement AP = new AddPayement(tempNumPayement, id, username);
             this.NavigationService.Navigate(AP);
         }
 
         private void BtnModifierpayement_Click(object sender, RoutedEventArgs e)
         {
-            AddPayement AP = new AddPayement(tempNumPayement);
+            AddPayement AP = new AddPayement(tempNumPayement, id, username );
             this.NavigationService.Navigate(AP);
         }
 

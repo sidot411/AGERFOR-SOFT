@@ -17,10 +17,16 @@ namespace Agerfor.Views.Projet
         string tempRefProjet = "";
         string Query = "";
         string tempnomprojet = "";
-        public Projet(string Query)
+        string UserRole;
+        public Projet(string Query, string UserRole)
         {
             InitializeComponent();
             this.Query = Query;
+            this.UserRole = UserRole;
+            if (UserRole =="Lecteur")
+            {
+                BtnSuppProjet.IsEnabled = BtnAjouterProjet.IsEnabled = BtnModifierProjet.IsEnabled = false;
+            }
 
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -42,14 +48,14 @@ namespace Agerfor.Views.Projet
         try
             {
                 if (tempnomprojet !="") { 
-                AddProjet AP = new AddProjet(int.Parse(tempRefProjet));
+                AddProjet AP = new AddProjet(int.Parse(tempRefProjet),UserRole);
                 AP.inputRefProjet.IsEnabled = AP.inputNomProjet.IsEnabled = AP.inputConserv.IsEnabled = AP.inputVendeurProjet.IsEnabled =
                 AP.inputWilayaProjet.IsEnabled = AP.inputDairaProjet.IsEnabled = AP.inputCommuneProjet.IsEnabled = AP.inputSuperficieProjet.IsEnabled = 
                 AP.inputLimitEst.IsEnabled = AP.inputLimitNord.IsEnabled = AP.inputLimitOuest.IsEnabled = AP.inputLimitSud.IsEnabled = AP.inputNumReçu.IsEnabled =
                 AP.inputDateRecu.IsEnabled =AP.BtnAjouterProjet.IsEnabled =AP.BtnModifierProjet.IsEnabled= AP.BtnUploadFiles.IsEnabled=AP.inputNumAct.IsEnabled=
                 AP.inputDatepubliActe.IsEnabled=AP.BtnAjouterActe.IsEnabled=AP.BtnModifierActe.IsEnabled=AP.BtnSupprimerActe.IsEnabled=AP.BtnJoindre.IsEnabled=
                 AP.BtnOuvrirActe.IsEnabled = AP.inputProjetMaitre.IsEnabled=AP.inputPayement.IsEnabled=AP.inputMontantC.IsEnabled=AP.inputMontantCB.IsEnabled=
-                AP.inputVolume.IsEnabled=AP.inputRefPub.IsEnabled=AP.inputFraisActe.IsEnabled=AP.inputPOS.IsEnabled= false;
+                AP.inputVolume.IsEnabled=AP.inputRefPub.IsEnabled=AP.inputFraisActe.IsEnabled=AP.inputPOS.IsEnabled= AP.BtnAjouterIlot.IsEnabled = AP.BtnModifierIlot.IsEnabled = AP.BtnSupprimerIlot.IsEnabled =  AP.dataViewActeProjet.IsEnabled = AP.dataViewIlot.IsEnabled = false;
                 this.NavigationService.Navigate(AP);
                 }
                 else
@@ -93,7 +99,7 @@ namespace Agerfor.Views.Projet
                 if (MessageBox.Show("Voulez-vous supprimer ce projet?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
                 {
 
-                    Projet P = new Projet("");
+                    Projet P = new Projet("",UserRole);
                     NavigationService.Navigate(P);
                 }
                 else
@@ -120,7 +126,7 @@ namespace Agerfor.Views.Projet
                     AC.SupprimerActe2(tempRefProjet);
                     PC.DeleteProjet(tempRefProjet);  
                     MessageBox.Show("Le projet " + tempRefProjet + " à était bien supprimer");
-                    Projet P = new Projet("");
+                    Projet P = new Projet("",UserRole);
                     NavigationService.Navigate(P);
                 }
 
@@ -141,14 +147,14 @@ namespace Agerfor.Views.Projet
             {
                 if (System.Windows.MessageBox.Show("Voulez-vous ajouter un projet maitre ?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 {
-                    AddProjet AP = new AddProjet(0);
+                    AddProjet AP = new AddProjet(0,UserRole);
                     AP.BtnModifierProjet.IsEnabled = AP.BtnUploadFiles.IsEnabled = AP.BtnOpenFolder.IsEnabled = false;
                     NavigationService.Navigate(AP);
                 }
                 else
                 {
-                    AddProjet AP = new AddProjet(0);
-                    ProjetMaitre PM = new ProjetMaitre(AP);
+                    AddProjet AP = new AddProjet(0,UserRole);
+                    ProjetMaitre PM = new ProjetMaitre(AP,UserRole);
                     DialogHost.Show(PM);
                 }
 
@@ -164,7 +170,7 @@ namespace Agerfor.Views.Projet
         {
             if (tempnomprojet != "")
             {
-                    AddProjet AP = new AddProjet(int.Parse(tempRefProjet));
+                    AddProjet AP = new AddProjet(int.Parse(tempRefProjet),UserRole);
                     AP.BtnAjouterProjet.IsEnabled = false;
                     this.NavigationService.Navigate(AP);
         

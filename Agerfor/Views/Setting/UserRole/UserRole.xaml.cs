@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Agerfor.Controlers;
 using MySql.Data.MySqlClient;
 using DbConnection.Models;
+using MaterialDesignThemes.Wpf;
 
 namespace Agerfor.Views.Setting.UserRole
 {
@@ -37,7 +38,7 @@ namespace Agerfor.Views.Setting.UserRole
             if (inputPasseword.Password.ToString() == inputConfirmPassword.Password.ToString())
             {
                 UsersControlle UC = new UsersControlle();
-                UC.AddUser(inputUserName.Text, inputPasseword.Password.ToString(), inputDivision.Text, inputRole.Text, SP.IsChecked.ToString(), SPROG.IsChecked.ToString(), SC.IsChecked.ToString(), SD.IsChecked.ToString(), SA.IsChecked.ToString(), SP.IsChecked.ToString(), SR.IsChecked.ToString(), SPAR.IsChecked.ToString());
+                UC.AddUser(inputUserName.Text, inputPasseword.Password.ToString(), inputDivision.Text, inputRole.Text, SP.IsChecked.ToString(), SPROG.IsChecked.ToString(), SC.IsChecked.ToString(), SD.IsChecked.ToString(), SA.IsChecked.ToString(), SPAY.IsChecked.ToString(), SR.IsChecked.ToString(), SPAR.IsChecked.ToString());
                 inputUserName.Text = inputDivision.Text = inputRole.Text = string.Empty;
                 inputPasseword.Clear();
                 inputConfirmPassword.Clear();
@@ -53,20 +54,26 @@ namespace Agerfor.Views.Setting.UserRole
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
+           
             if (inputPasseword.Password.ToString() == inputConfirmPassword.Password.ToString())
             {
+            
                 UsersControlle UC = new UsersControlle();
-                UC.EditUser(inputUserName.Text, inputPasseword.Password.ToString(), inputDivision.Text, inputRole.Text, SP.IsChecked.ToString(), SPROG.IsChecked.ToString(), SC.IsChecked.ToString(), SD.IsChecked.ToString(), SA.IsChecked.ToString(), SP.IsChecked.ToString(), SR.IsChecked.ToString(), SPAR.IsChecked.ToString(), tempUserName);
+                UC.EditUser(inputUserName.Text, inputPasseword.Password.ToString(), inputDivision.Text, inputRole.Text, SP.IsChecked.ToString(), SPROG.IsChecked.ToString(), SC.IsChecked.ToString(), SD.IsChecked.ToString(), SA.IsChecked.ToString(), SPAY.IsChecked.ToString(), SR.IsChecked.ToString(), SPAR.IsChecked.ToString(), tempUserName);
                 inputUserName.Text = inputDivision.Text = inputRole.Text = string.Empty;
                 inputPasseword.Clear();
                 inputConfirmPassword.Clear();
                 SP.IsChecked = SPROG.IsChecked = SC.IsChecked = SD.IsChecked = SA.IsChecked = SP.IsChecked = SPAY.IsChecked = SR.IsChecked = SPAR.IsChecked = false;
                 msh.LoadData("select * from users", dataViewUser);
+                MessageBox.Show("Veuillez redémarrer l'application dans le poste de l'utilisateurs pour enregistrer les chagements");
+
             }
+
             else
             {
                 MessageBox.Show("Le mot de passe de confirmation est différent du mot de passe introduit !");
             }
+         
         }
 
         private void BtnSupprimer_Click(object sender, RoutedEventArgs e)
@@ -86,7 +93,7 @@ namespace Agerfor.Views.Setting.UserRole
             tempUserName = ((TextBlock)cell0.Column.GetCellContent(cell0.Item)).Text;
      
 
-            string query = "select *,AES_DECRYPT(UserPassword,'BCGE2380A579C') as pass from users where UserName='"+ tempUserName+"'";
+            string query = "select *,CAST(AES_DECRYPT(UserPassword,'BCGE2380A579C') AS CHAR(50)) AS pass from users where UserName='" + tempUserName+"'";
             MySqlDataReader rdr = null;
             MySqlConnection con = null;
             MySqlCommand cmd = null;
@@ -102,6 +109,7 @@ namespace Agerfor.Views.Setting.UserRole
 
                 if (oneTime)
                 {
+                    
                     inputUserName.Text = rdr["UserName"].ToString();
                     inputDivision.Text = rdr["Divison"].ToString();
                     inputRole.Text = rdr["Role"].ToString();
@@ -115,7 +123,6 @@ namespace Agerfor.Views.Setting.UserRole
                     SPAY.IsChecked = bool.Parse(rdr["Spayement"].ToString());
                     SR.IsChecked = bool.Parse(rdr["Sremboursement"].ToString());
                     SPAR.IsChecked = bool.Parse(rdr["Sparametre"].ToString());
-
 
                 }
             }
