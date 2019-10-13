@@ -203,6 +203,7 @@
     <Compile Include="Controlers\SearchDemande.cs" />
     <Compile Include="Controlers\SearchLog.cs" />
     <Compile Include="Controlers\SearchProgramme.cs" />
+    <Compile Include="Controlers\SearchProjet.cs" />
     <Compile Include="Controlers\UsersControlle.cs" />
     <Compile Include="Controlers\VSPController.cs" />
     <Compile Include="DecisionReporting\DataSet2.Designer.cs">
@@ -407,6 +408,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FicheProjet.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjetReporting\ListeProjets.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListeProjets.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjetReporting\ListeProjetsViwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjetReporting\ListeProjetsViwer.Designer.cs">
+      <DependentUpon>ListeProjetsViwer.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjetReporting\ProjetViwer.cs">
       <SubType>Form</SubType>
@@ -865,6 +878,13 @@
     <EmbeddedResource Include="ProjetReporting\FicheProjet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FicheProjet.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjetReporting\ListeProjets.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListeProjets.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjetReporting\ListeProjetsViwer.resx">
+      <DependentUpon>ListeProjetsViwer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjetReporting\ProjetViwer.resx">
       <DependentUpon>ProjetViwer.cs</DependentUpon>

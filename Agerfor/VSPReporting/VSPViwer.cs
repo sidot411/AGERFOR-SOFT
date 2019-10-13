@@ -19,7 +19,8 @@ namespace Agerfor.VSPReporting
         string NumDeciF;
         string NumConv;
         int NumP;
-        public VSPViwer(int CodeVSP, string NumDeci, string NumDeciF,string Numconv, int NumP)
+        string id;
+        public VSPViwer(int CodeVSP, string NumDeci, string NumDeciF,string Numconv, int NumP, string id)
         {
             InitializeComponent();
             this.CodeVSP = CodeVSP;
@@ -27,6 +28,7 @@ namespace Agerfor.VSPReporting
             this.NumDeciF = NumDeciF;
             this.NumConv = NumConv;
             this.NumP = NumP;
+            this.id = id;
         }
 
         private void report_Load(object sender, EventArgs e)
@@ -42,7 +44,7 @@ namespace Agerfor.VSPReporting
 
                         VSPReporting cr1 = new VSPReporting();
 
-                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,vsp.AdresseNotaire,sum(MontantAV) AS Apport,NumVSP,DateVSP,Reste from ov,edd,biens,programme,client,cnl,attribution,payement,vsp where CodeVSP='" + CodeVSP + "' AND vsp.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat='Terminé'";
+                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,vsp.AdresseNotaire,sum(MontantAV) AS Apport,NumVSP,DateVSP,Reste,IP,MAC,UserName,IdUser from ov,edd,biens,programme,client,cnl,attribution,payement,vsp,users where CodeVSP='" + CodeVSP + "' AND vsp.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat='Terminé' and IdUser='" + id + "'";
                         MySqlDataAdapter dab = new MySqlDataAdapter(query, con);
                         DataSet1 DSP = new DataSet1();
                         dab.Fill(DSP.DataTable1);
@@ -83,7 +85,7 @@ namespace Agerfor.VSPReporting
                         MySqlConnection con = new MySqlConnection(Database.ConnectionString());
                         VSPReporting cr1 = new VSPReporting();
 
-                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,NumDeciF,DateDeciF,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,vsp.AdresseNotaire,sum(MontantAV) AS Apport, NumVSP, DateVSP,Reste from ov, edd, biens, programme, client, cnl,fnpos, attribution, payement,vsp where CodeVSP = '" + CodeVSP + "' AND vsp.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = fnpos.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé'";
+                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,NumDeciF,DateDeciF,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,vsp.AdresseNotaire,sum(MontantAV) AS Apport, NumVSP, DateVSP,Reste,IP,MAC,UserName,IdUser from ov, edd, biens, programme, client, cnl,fnpos, attribution, payement,vsp,users where CodeVSP = '" + CodeVSP + "' AND vsp.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = fnpos.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé' and IdUser='" + id + "'";
                         MySqlDataAdapter dab = new MySqlDataAdapter(query, con);
                         DataSet1 DSP = new DataSet1();
                         dab.Fill(DSP.DataTable1);
@@ -127,7 +129,7 @@ namespace Agerfor.VSPReporting
                         MySqlConnection con = new MySqlConnection(Database.ConnectionString());
                         VSPReporting cr1 = new VSPReporting();
 
-                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,NumDeciF,DateDeciF,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,vsp.AdresseNotaire,sum(MontantAV) AS Apport, NumVSP, DateVSP,Reste,MontantCb from creditb,ov, edd, biens, programme, client, cnl,fnpos, attribution, payement,vsp where CodeVSP = '" + CodeVSP + "' AND vsp.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = fnpos.NumPayement AND payement.NumPayement = creditb.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé'";
+                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,NumDeciF,DateDeciF,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,vsp.AdresseNotaire,sum(MontantAV) AS Apport, NumVSP, DateVSP,Reste,MontantCb,IP,MAC,UserName,IdUser from creditb,ov, edd, biens, programme, client, cnl,fnpos, attribution, payement,vsp,users where CodeVSP = '" + CodeVSP + "' AND vsp.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = fnpos.NumPayement AND payement.NumPayement = creditb.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé' and IdUser='" + id + "'";
                         MySqlDataAdapter dab = new MySqlDataAdapter(query, con);
                         DataSet1 DSP = new DataSet1();
                         dab.Fill(DSP.DataTable1);
@@ -170,7 +172,7 @@ namespace Agerfor.VSPReporting
                         MySqlConnection con = new MySqlConnection(Database.ConnectionString());
                         VSPReporting cr1 = new VSPReporting();
 
-                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,vsp.AdresseNotaire,sum(MontantAV) AS Apport, NumVSP, DateVSP,Reste,MontantCb from creditb,ov, edd, biens, programme, client, cnl, attribution, payement,vsp where CodeVSP = '" + CodeVSP + "' AND vsp.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = creditb.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé'";
+                        string query = @"select payement.NumPayement,NumA,DateDLR,NumDeci,DateDeci,MontantCNL,MontantFNPOS,Nom,Prenom,client.DateNaissance,LieuNaissance,PrenomPere,NomMere,PrenomMere,Adress,Tel,programme.NomProgramme,FraisAdm,Site,CoutFoncier,programme.TVA AS TVAF,CoutFoncierTTC,NbrPiece,biens.NumIlot,biens.NumBloc,biens.Niveau,biens.Numlot,biens.SurH,PrixHT,biens.Tva,PrixTTC,NomNotaire,vsp.AdresseNotaire,sum(MontantAV) AS Apport, NumVSP, DateVSP,Reste,MontantCb,IP,MAC,UserName,IdUser from creditb,ov, edd, biens, programme, client, cnl, attribution, payement,vsp,users where CodeVSP = '" + CodeVSP + "' AND vsp.RefP = payement.NumPayement AND payement.NumAttribution = attribution.NumA AND payement.NumPayement = cnl.NumPayement AND payement.NumPayement = creditb.NumPayement AND attribution.NumClient = client.NumClient AND attribution.NumProgramme = programme.RefProgramme AND attribution.IdBien = biens.Id AND programme.RefProgramme = edd.RefProgramme AND payement.NumPayement = ov.NumPayement and ov.Etat = 'Terminé' and IdUser='" + id + "'";
                         MySqlDataAdapter dab = new MySqlDataAdapter(query, con);
                         DataSet1 DSP = new DataSet1();
                         dab.Fill(DSP.DataTable1);

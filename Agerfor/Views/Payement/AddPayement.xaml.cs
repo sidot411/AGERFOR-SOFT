@@ -223,7 +223,7 @@ namespace Agerfor.Views.Payement
 
         private void BtnVSP_Click(object sender, RoutedEventArgs e)
         {
-            VSP VSP = new VSP(int.Parse(inputPayement.Text),tempNumAttribution);
+            VSP VSP = new VSP(int.Parse(inputPayement.Text),tempNumAttribution,id,username);
             VSP.ShowInTaskbar = false;
             VSP.Owner = Application.Current.Windows[0];
             VSP.Show();

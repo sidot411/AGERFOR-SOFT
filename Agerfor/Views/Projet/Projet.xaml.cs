@@ -5,6 +5,7 @@ using Agerfor.Controlers;
 using Agerfor.Views.Projet;
 using MaterialDesignThemes.Wpf;
 using Agerfor.ListeProjetReporting;
+using Agerfor.ProjetReporting;
 
 namespace Agerfor.Views.Projet
 {
@@ -21,6 +22,7 @@ namespace Agerfor.Views.Projet
         public Projet(string Query, string UserRole)
         {
             InitializeComponent();
+            msh.FillDropDownList("select NomWilaya from wilaya", wilaya, "NomWilaya");
             this.Query = Query;
             this.UserRole = UserRole;
             if (UserRole =="Lecteur")
@@ -182,110 +184,78 @@ namespace Agerfor.Views.Projet
 
         }
 
-        private void BtnImprimeliste_Click(object sender, RoutedEventArgs e)
+        private void BtnImprimeRecherche_Click(object sender, RoutedEventArgs e)
         {
-            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.RefProjet=acteprojet.RefProjet");
+
+        }
+
+        private void wilaya_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Daira.Items.Clear();
+            Commune.Items.Clear();
+            msh.FillDropDownList("select NomDaira from daira,wilaya where NomWilaya='" + wilaya.SelectedItem.ToString() + "'and wilaya.NumWilaya=daira.IdWilaya", Daira, "NomDaira");
+           
+
+        }
+
+        private void Daira_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Commune.Items.Clear();
+            msh.FillDropDownList("select NomCommune from commune,daira where NomDaira='" + Daira.SelectedItem.ToString() + "'and daira.IdDaira=commune.IdDaira", Commune, "NomCommune");
+
+        }
+
+        private void wilaya_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            SearchProjet SP = new SearchProjet();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjetM, inputNomProjet, inputAnneeP, wilaya, Daira, Commune),dataGridView2);
+        }
+
+        private void Daira_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            SearchProjet SP = new SearchProjet();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjetM, inputNomProjet, inputAnneeP, wilaya, Daira, Commune), dataGridView2);
+
+        }
+
+        private void inputRefProjet_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchProjet SP = new SearchProjet();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjetM, inputNomProjet, inputAnneeP, wilaya, Daira, Commune), dataGridView2);
+        }
+
+        private void inputNomProjetM_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchProjet SP = new SearchProjet();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjetM, inputNomProjet, inputAnneeP, wilaya, Daira, Commune), dataGridView2);
+        }
+
+        private void inputNomProjet_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchProjet SP = new SearchProjet();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjetM, inputNomProjet, inputAnneeP, wilaya, Daira, Commune), dataGridView2);
+        }
+
+        private void inputAnneeP_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchProjet SP = new SearchProjet();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjetM, inputNomProjet, inputAnneeP, wilaya, Daira, Commune), dataGridView2);
+        }
+
+
+        private void Commune_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            SearchProjet SP = new SearchProjet();
+            msh.LoadData(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjetM, inputNomProjet, inputAnneeP, wilaya, Daira, Commune), dataGridView2);
+
+        }
+
+        private void BtnImprimeRecherche_Click_1(object sender, RoutedEventArgs e)
+        {
+            SearchProjet SP = new SearchProjet();
+            ListeProjetsViwer LPV = new ListeProjetsViwer(SP.AdvencedSearchGetQuery(inputRefProjet, inputNomProjetM, inputNomProjet, inputAnneeP, wilaya, Daira, Commune));
             LPV.Show();
-        }
-
-        private void inputCodeProjet_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            msh.LoadData("select * from projet where RefProjet = '"+inputCodeProjet.Text+ "'", dataGridView2);
-        }
-
-        private void inputNomProjetMaitre_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            msh.LoadData("select * from projet where ProjetMaitre = '" + inputNomProjetMaitre.Text + "'", dataGridView2);
-        }
-
-
-        private void inputNomProjet_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            msh.LoadData("select * from projet where NomProjet = '" + inputNomProjet.Text +"'", dataGridView2);
-        }
-
-        private void inputDatePublication_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            msh.LoadData("SELECT * FROM projet, acteprojet WHERE year(acteprojet.DatePubliActe) like '"+inputDatePublication.Text+"%' and acteprojet.RefProjet = projet.RefProjet", dataGridView2);
-        }
-
-        private void wilaya_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            msh.LoadData("select * from projet where Wilaya like '" + wilaya.Text + "%'", dataGridView2);
-        }
-
-        private void Daira_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            msh.LoadData("select * from projet where Daira like '" + Daira.Text + "%'", dataGridView2);
-        }
-
-        private void Commune_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            msh.LoadData("select * from projet where Commune like '" + Commune.Text + "%'", dataGridView2);
-        }
-
-        private void Conservation_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            msh.LoadData("SELECT * FROM projet, acteprojet WHERE acteprojet.Conservation like '" +Conservation.Text + "%' and acteprojet.RefProjet = projet.RefProjet", dataGridView2);
-        }
-
-        private void btnimprim1_Click(object sender, RoutedEventArgs e)
-        {
-            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.RefProjet = '" + inputCodeProjet.Text + "' and projet.RefProjet=acteprojet.RefProjet");
-            LPV.Show();
-        }
-
-        private void Btnimprim2_Click(object sender, RoutedEventArgs e)
-        {
-            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.ProjetMaitre = '" + inputNomProjetMaitre.Text + "' and projet.RefProjet=acteprojet.RefProjet");
-            LPV.Show();
-        }
-
-        private void Btnimprim3_Click(object sender, RoutedEventArgs e)
-        {
-            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.NomProjet = '" + inputNomProjet.Text + "' and projet.RefProjet=acteprojet.RefProjet");
-            LPV.Show();
-        }
-
-        private void Btnimprim4_Click(object sender, RoutedEventArgs e)
-        {
-            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where year(acteprojet.DatePubliActe) like '" + inputDatePublication.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
-            LPV.Show();
-        }
-
-        private void Btnimprim5_Click(object sender, RoutedEventArgs e)
-        {
-            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.Wilaya like '" + wilaya.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
-            LPV.Show();
-        }
-
-        private void Btnimprim6_Click(object sender, RoutedEventArgs e)
-        {
-            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.Daira like '" + Daira.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
-            LPV.Show();
-        }
-
-        private void Btnimprim7_Click(object sender, RoutedEventArgs e)
-        {
-            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where projet.Commune like '" + Commune.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
-            LPV.Show();
-        }
-
-        private void Btnimprim8_Click(object sender, RoutedEventArgs e)
-        {
-            ListeProjetViwer LPV = new ListeProjetViwer(@"select *,DATE_FORMAT(DatePubliActe,'%d/%m/%y') AS DatePubli,DATE_FORMAT(DateRecu,'%d/%m/%y') AS DateR from projet,acteprojet where acteprojet.Conservation like '" + Conservation.Text + "%' and projet.RefProjet=acteprojet.RefProjet");
-            LPV.Show();
-        }
-
-        private void inputCodeProjet_GotFocus(object sender, RoutedEventArgs e)
-        {
-            inputNomProjet.Text = inputNomProjetMaitre.Text = inputCodeProjet.Text = inputDatePublication.Text = wilaya.Text = Daira.Text = Commune.Text = Conservation.Text = string.Empty;
-            msh.LoadData("select * from projet", dataGridView2);
-        }
-
-        private void Conservation_GotFocus(object sender, RoutedEventArgs e)
-        {
-
         }
     }
+    
 }

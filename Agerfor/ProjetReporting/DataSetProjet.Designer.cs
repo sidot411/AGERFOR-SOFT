@@ -313,7 +313,7 @@ namespace Agerfor.ProjetReporting {
             
             private global::System.Data.DataColumn columnDateR;
             
-            private global::System.Data.DataColumn columnDatePubli;
+            private global::System.Data.DataColumn columnDatePubliActe;
             
             private global::System.Data.DataColumn columnVolume;
             
@@ -496,9 +496,9 @@ namespace Agerfor.ProjetReporting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DatePubliColumn {
+            public global::System.Data.DataColumn DatePubliActeColumn {
                 get {
-                    return this.columnDatePubli;
+                    return this.columnDatePubliActe;
                 }
             }
             
@@ -597,7 +597,7 @@ namespace Agerfor.ProjetReporting {
                         decimal MontantCession, 
                         string NumRecu, 
                         string DateR, 
-                        string DatePubli, 
+                        string DatePubliActe, 
                         string Volume, 
                         string RefPubli, 
                         decimal FraisPubli, 
@@ -622,7 +622,7 @@ namespace Agerfor.ProjetReporting {
                         MontantCession,
                         NumRecu,
                         DateR,
-                        DatePubli,
+                        DatePubliActe,
                         Volume,
                         RefPubli,
                         FraisPubli,
@@ -667,7 +667,7 @@ namespace Agerfor.ProjetReporting {
                 this.columnMontantCession = base.Columns["MontantCession"];
                 this.columnNumRecu = base.Columns["NumRecu"];
                 this.columnDateR = base.Columns["DateR"];
-                this.columnDatePubli = base.Columns["DatePubli"];
+                this.columnDatePubliActe = base.Columns["DatePubliActe"];
                 this.columnVolume = base.Columns["Volume"];
                 this.columnRefPubli = base.Columns["RefPubli"];
                 this.columnFraisPubli = base.Columns["FraisPubli"];
@@ -712,8 +712,8 @@ namespace Agerfor.ProjetReporting {
                 base.Columns.Add(this.columnNumRecu);
                 this.columnDateR = new global::System.Data.DataColumn("DateR", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateR);
-                this.columnDatePubli = new global::System.Data.DataColumn("DatePubli", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDatePubli);
+                this.columnDatePubliActe = new global::System.Data.DataColumn("DatePubliActe", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDatePubliActe);
                 this.columnVolume = new global::System.Data.DataColumn("Volume", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVolume);
                 this.columnRefPubli = new global::System.Data.DataColumn("RefPubli", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1138,17 +1138,17 @@ namespace Agerfor.ProjetReporting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DatePubli {
+            public string DatePubliActe {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.DatePubliColumn]));
+                        return ((string)(this[this.tableDataTable1.DatePubliActeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DatePubli\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DatePubliActe\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.DatePubliColumn] = value;
+                    this[this.tableDataTable1.DatePubliActeColumn] = value;
                 }
             }
             
@@ -1438,14 +1438,14 @@ namespace Agerfor.ProjetReporting {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDatePubliNull() {
-                return this.IsNull(this.tableDataTable1.DatePubliColumn);
+            public bool IsDatePubliActeNull() {
+                return this.IsNull(this.tableDataTable1.DatePubliActeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDatePubliNull() {
-                this[this.tableDataTable1.DatePubliColumn] = global::System.Convert.DBNull;
+            public void SetDatePubliActeNull() {
+                this[this.tableDataTable1.DatePubliActeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
